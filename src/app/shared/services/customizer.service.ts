@@ -58,6 +58,9 @@ export class CustomizerService {
     } else if (color == "color-6") {
       this.data.color.primary_color = '#3949ab';
       this.data.color.secondary_color = '#4fc3f7';
+    } else if (color == "color-7") {
+      this.data.color.primary_color = '#a8c954';
+      this.data.color.secondary_color = '#73ba5b';
     }
     localStorage.setItem('color', this.data.color.color);
     localStorage.setItem('primary_color', this.data.color.primary_color);
