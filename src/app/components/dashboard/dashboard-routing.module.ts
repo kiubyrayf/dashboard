@@ -6,6 +6,7 @@ import { UniversityComponent } from './university/university.component';
 import { BitcoinComponent } from './bitcoin/bitcoin.component';
 import { ServerComponent } from './server/server.component';
 import { ProjectComponent } from './project/project.component';
+import { Testcomponent } from './test/test.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,14 @@ const routes: Routes = [
         data: {
           title: "Default",
           breadcrumb: "Default"
+        }
+      },
+      {
+        path: 'test',
+        component: Testcomponent,
+        data: {
+          title: "Test",
+          breadcrumb: "teast"
         }
       },
       {

@@ -18,6 +18,7 @@ import { UniversityComponent } from './university/university.component';
 import { BitcoinComponent } from './bitcoin/bitcoin.component';
 import { ServerComponent } from './server/server.component';
 import { ProjectComponent } from './project/project.component';
+import { Testcomponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProjectComponent } from './project/project.component';
     UniversityComponent, 
     BitcoinComponent, 
     ServerComponent, 
-    ProjectComponent
+    ProjectComponent,
+    Testcomponent
   ],
   imports: [
     CommonModule,
