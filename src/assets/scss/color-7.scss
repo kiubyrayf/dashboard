@@ -96,9 +96,10 @@
 	 86. checkout
 	 87. typahead-search
  */
+
  @import "theme/variables";
- $primary-color: #a8c954;
- $secondary-color :#73ba5b;
+ $primary-color: #9ABE26;
+ $secondary-color :#2e9de4;
  $gradient-primary: linear-gradient($secondary-color, $primary-color);
  $all-focus-outline-color: $primary-color;
  $code-tag-color: $primary-color;
@@ -111,7 +112,6 @@
  $page-body-bg-color: $light-color;
  $card-box-shadow     :1px 5px 24px 0 rgba($primary-color, 0.05);
  $pre-tag-bg-color: rgba($primary-color, 0.05);
- 
  
  @import "theme/general";
  @import "theme/generic";
