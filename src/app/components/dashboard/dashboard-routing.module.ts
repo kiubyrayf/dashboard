@@ -28,46 +28,46 @@ const routes: Routes = [
           breadcrumb: 'test'
         }
       },
-      {
-        path: 'e-commerce',
-        component: ECommerceComponent,
-        data: {
-          title: 'E-commerce',
-          breadcrumb: 'E-commerce'
-        }
-      },
-      {
-        path: 'university',
-        component: UniversityComponent,
-        data: {
-          title: 'University',
-          breadcrumb: 'University'
-        }
-      },
-      {
-        path: 'bitcoin',
-        component: BitcoinComponent,
-        data: {
-          title: 'Crypto',
-          breadcrumb: 'Crypto'
-        }
-      },
-      {
-        path: 'server',
-        component: ServerComponent,
-        data: {
-          title: 'Server',
-          breadcrumb: 'Server'
-        }
-      },
-      {
-        path: 'project',
-        component: ProjectComponent,
-        data: {
-          title: 'Project',
-          breadcrumb: 'Project'
-        }
-      }
+      // {
+      //   path: 'e-commerce',
+      //   component: ECommerceComponent,
+      //   data: {
+      //     title: 'E-commerce',
+      //     breadcrumb: 'E-commerce'
+      //   }
+      // },
+      // {
+      //   path: 'university',
+      //   component: UniversityComponent,
+      //   data: {
+      //     title: 'University',
+      //     breadcrumb: 'University'
+      //   }
+      // },
+      // {
+      //   path: 'bitcoin',
+      //   component: BitcoinComponent,
+      //   data: {
+      //     title: 'Crypto',
+      //     breadcrumb: 'Crypto'
+      //   }
+      // },
+      // {
+      //   path: 'server',
+      //   component: ServerComponent,
+      //   data: {
+      //     title: 'Server',
+      //     breadcrumb: 'Server'
+      //   }
+      // },
+      // {
+      //   path: 'project',
+      //   component: ProjectComponent,
+      //   data: {
+      //     title: 'Project',
+      //     breadcrumb: 'Project'
+      //   }
+      // }
     ]
   }
 ];
