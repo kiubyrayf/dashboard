@@ -6,12 +6,11 @@ declare var require;
 const Swal = require('sweetalert2');
 
 @Component({
-  selector: 'app-birth-date',
-  templateUrl: './birth-date.component.html',
-  styleUrls: ['./birth-date.component.scss'],
+  selector: 'app-payment-business',
+  templateUrl: './payment-business.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class BirthDateComponent implements OnInit {
+export class PaymentBusinessComponent implements OnInit {
   public birthdateForm: FormGroup;
   public submitted = false;
   public allData = FormData;

@@ -4,6 +4,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { EmailComponent } from './email/email.component';
 import { BirthDateComponent } from './birth-date/birth-date.component';
 import { NgxWizardComponent } from './ngx-wizard.component';
+
 const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'email', component: EmailComponent },
