@@ -2242,7 +2242,8 @@ table tbody .border-bottom-warning td {
 .custom-scrollbar {
   transition: all 3s; }
   .custom-scrollbar::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px #e8ebf2; }
+    -webkit-box-shadow: inset 0 0 6px #e8ebf2;
+    box-shadow: inset 0 0 6px #e8ebf2; }
   .custom-scrollbar::-webkit-scrollbar {
     width: 3px;
     transition: .3s; }
@@ -3424,7 +3425,8 @@ ul .submenu {
   overflow: auto;
   box-shadow: 0 0 11px rgba(69, 110, 243, 0.13); }
   .page-wrapper .page-body-wrapper .sidebar.custom-scrollbar::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px transparent; }
+    -webkit-box-shadow: inset 0 0 6px transparent;
+    box-shadow: inset 0 0 6px transparent; }
   .page-wrapper .page-body-wrapper .sidebar.custom-scrollbar::-webkit-scrollbar {
     width: 6px;
     transition: .3s; }
@@ -10541,7 +10543,9 @@ header {
   height: 60px;
   left: 50%;
   margin-left: -30px;
+  transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   position: absolute;
   top: 0;
@@ -20237,7 +20241,7 @@ body.dark-sidebar-body-mix {
         width: 33.33%;
         text-align: center; }
         .customizer-contain .customizer-body .nac-pills .nav-item .nav-link {
-          border-radious: 5px; }
+          border-radius: 5px; }
           .customizer-contain .customizer-body .nac-pills .nav-item .nav-link.active {
             background-color: #0288d1;
             color: #fff; }

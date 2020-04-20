@@ -18,56 +18,56 @@ const routes: Routes = [
         path: 'validation',
         component: FormValidationComponent,
         data: {
-          title: "Validation",
-          breadcrumb: "Validation"
+          title: 'Validation',
+          breadcrumb: 'Validation'
         }
       },
       {
         path: 'inputs',
         component: BaseInputsComponent,
         data: {
-          title: "Inputs",
-          breadcrumb: "Inputs"
+          title: 'Inputs',
+          breadcrumb: 'Inputs'
         }
       },
       {
         path: 'checkbox-radio',
         component: CheckboxRadioComponent,
         data: {
-          title: "Checkbox-Radio",
-          breadcrumb: "Checkbox-Radio"
+          title: 'Checkbox-Radio',
+          breadcrumb: 'Checkbox-Radio'
         }
       },
       {
         path: 'input-groups',
         component: InputGroupsComponent,
         data: {
-          title: "Input-Groups",
-          breadcrumb: "Input-Groups"
+          title: 'Input-Groups',
+          breadcrumb: 'Input-Groups'
         }
       },
       {
         path: 'mega-options',
         component: MegaOptionsComponent,
         data: {
-          title: "Mega-Options",
-          breadcrumb: "Mega-Options"
+          title: 'Mega-Options',
+          breadcrumb: 'Mega-Options'
         }
       },
       {
         path: 'form-default',
         component: FormDefaultComponent,
         data: {
-          title: "Form-Default",
-          breadcrumb: "Form-Default"
+          title: 'Form-Default',
+          breadcrumb: 'Form-Default'
         }
       },
       {
         path: 'wizard',
         component: NgxWizardComponent,
         data: {
-          title: "Ngx-Wizard",
-          breadcrumb: "Ngx-Wizard"
+          title: 'Ngx-Wizard',
+          breadcrumb: 'Ngx-Wizard'
         }
       }
     ]

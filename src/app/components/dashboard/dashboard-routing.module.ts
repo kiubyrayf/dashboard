@@ -6,7 +6,7 @@ import { UniversityComponent } from './university/university.component';
 import { BitcoinComponent } from './bitcoin/bitcoin.component';
 import { ServerComponent } from './server/server.component';
 import { ProjectComponent } from './project/project.component';
-import { Testcomponent } from './test/test.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {
@@ -16,56 +16,56 @@ const routes: Routes = [
         path: 'default',
         component: DefaultComponent,
         data: {
-          title: "Default",
-          breadcrumb: "Default"
+          title: 'Default',
+          breadcrumb: 'Default'
         }
       },
       {
         path: 'test',
-        component: Testcomponent,
+        component: TestComponent,
         data: {
-          title: "Test",
-          breadcrumb: "teast"
+          title: 'Test',
+          breadcrumb: 'test'
         }
       },
       {
         path: 'e-commerce',
         component: ECommerceComponent,
         data: {
-          title: "E-commerce",
-          breadcrumb: "E-commerce"
+          title: 'E-commerce',
+          breadcrumb: 'E-commerce'
         }
       },
       {
         path: 'university',
         component: UniversityComponent,
         data: {
-          title: "University",
-          breadcrumb: "University"
+          title: 'University',
+          breadcrumb: 'University'
         }
       },
       {
         path: 'bitcoin',
         component: BitcoinComponent,
         data: {
-          title: "Crypto",
-          breadcrumb: "Crypto"
+          title: 'Crypto',
+          breadcrumb: 'Crypto'
         }
       },
       {
         path: 'server',
         component: ServerComponent,
         data: {
-          title: "Server",
-          breadcrumb: "Server"
+          title: 'Server',
+          breadcrumb: 'Server'
         }
       },
       {
         path: 'project',
         component: ProjectComponent,
         data: {
-          title: "Project",
-          breadcrumb: "Project"
+          title: 'Project',
+          breadcrumb: 'Project'
         }
       }
     ]

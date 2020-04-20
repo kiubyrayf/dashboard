@@ -9,7 +9,8 @@ import { AuthService } from '../services/firebase/auth.service';
 export class AdminGuard implements CanActivate {
   constructor(public authService: AuthService,
     public router: Router) { }
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  
+    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     // Guard for user is login or not
     let user = JSON.parse(localStorage.getItem('user'));
     if (!user) {

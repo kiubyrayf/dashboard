@@ -9,7 +9,7 @@ import { CountToModule } from 'angular-count-to';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { SharedModule } from "../../shared/shared.module";
+import { SharedModule } from '../../shared/shared.module';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DefaultComponent } from './default/default.component';
@@ -18,17 +18,17 @@ import { UniversityComponent } from './university/university.component';
 import { BitcoinComponent } from './bitcoin/bitcoin.component';
 import { ServerComponent } from './server/server.component';
 import { ProjectComponent } from './project/project.component';
-import { Testcomponent } from './test/test.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
-    DefaultComponent, 
-    ECommerceComponent, 
-    UniversityComponent, 
-    BitcoinComponent, 
-    ServerComponent, 
+    DefaultComponent,
+    ECommerceComponent,
+    UniversityComponent,
+    BitcoinComponent,
+    ServerComponent,
     ProjectComponent,
-    Testcomponent
+    TestComponent
   ],
   imports: [
     CommonModule,
