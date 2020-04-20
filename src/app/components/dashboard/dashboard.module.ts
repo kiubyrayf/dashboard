@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartistModule } from 'ng-chartist';
@@ -19,6 +19,11 @@ import { BitcoinComponent } from './bitcoin/bitcoin.component';
 import { ServerComponent } from './server/server.component';
 import { ProjectComponent } from './project/project.component';
 import { TestComponent } from './test/test.component';
+import { NavBarBusinessComponent } from './test/nav-bar-business/nav-bar-business.component';
+import { ContactBusinessComponent } from './test/contact-business/contact-business.component';
+import { InfoBusinessComponent } from './test/info-business/info-business.component';
+import { PaymentBusinessComponent } from './test/payment-business/payment-business.component';
+import { ArchwizardModule } from 'angular-archwizard';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,11 @@ import { TestComponent } from './test/test.component';
     BitcoinComponent,
     ServerComponent,
     ProjectComponent,
-    TestComponent
+    TestComponent,
+    NavBarBusinessComponent,
+    ContactBusinessComponent,
+    InfoBusinessComponent,
+    PaymentBusinessComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +51,9 @@ import { TestComponent } from './test/test.component';
     NgxChartsModule,
     Ng2GoogleChartsModule,
     SharedModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    ReactiveFormsModule,
+    ArchwizardModule,
   ]
 })
 export class DashboardModule { }

@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './default/default.component';
-import { ECommerceComponent } from './e-commerce/e-commerce.component';
-import { UniversityComponent } from './university/university.component';
-import { BitcoinComponent } from './bitcoin/bitcoin.component';
-import { ServerComponent } from './server/server.component';
-import { ProjectComponent } from './project/project.component';
+// import { ECommerceComponent } from './e-commerce/e-commerce.component';
+// import { UniversityComponent } from './university/university.component';
+// import { BitcoinComponent } from './bitcoin/bitcoin.component';
+// import { ServerComponent } from './server/server.component';
+// import { ProjectComponent } from './project/project.component';
 import { TestComponent } from './test/test.component';
+import { InfoBusinessComponent } from './test/info-business/info-business.component';
+import { ContactBusinessComponent } from './test/contact-business/contact-business.component';
+import { PaymentBusinessComponent } from './test/payment-business/payment-business.component';
 
 const routes: Routes = [
   {
@@ -26,6 +29,30 @@ const routes: Routes = [
         data: {
           title: 'Test',
           breadcrumb: 'test'
+        }
+      },
+      { 
+        path: 'info', 
+        component: InfoBusinessComponent ,
+        data: {
+          title: 'info',
+          breadcrumb: 'info'
+        }
+      },
+      { 
+        path: 'contacto', 
+        component: ContactBusinessComponent,
+        data: {
+          title: 'contacto',
+          breadcrumb: 'contacto'
+        }
+      },
+      { 
+        path: 'payment', 
+        component: PaymentBusinessComponent,
+        data: {
+          title: 'payment',
+          breadcrumb: 'payment'
         }
       },
       // {
