@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-declare var require
-const Swal = require('sweetalert2')
+declare var require;
+const Swal = require('sweetalert2');
 
 @Component({
   selector: 'app-sweet-alert',
@@ -29,7 +29,7 @@ export class SweetAlertComponent implements OnInit {
 
   // Alert with Image
   withImage() {
-    Swal.fire({ imageUrl: './assets/images/endless-logo.png', imageHeight: 65, imageAlt: 'A Endless Logo' })
+    Swal.fire({ imageUrl: './assets/images/asistemps-logo.png', imageHeight: 65, imageAlt: 'A Endless Logo' });
   }
 
   // A modal with a title, an error icon, a text, and a footer
@@ -100,7 +100,7 @@ export class SweetAlertComponent implements OnInit {
       cancelButtonText:
         '<i class="fa fa-thumbs-down"></i>',
       cancelButtonAriaLabel: 'Thumbs down',
-    })
+    });
   }
 
   // custom position
@@ -111,7 +111,7 @@ export class SweetAlertComponent implements OnInit {
       title: 'Your work has been saved',
       showConfirmButton: false,
       timer: 1500
-    })
+    });
   }
 
   // Custom animation
@@ -388,7 +388,7 @@ export class SweetAlertComponent implements OnInit {
         }, 100)
       },
       onClose: () => {
-        clearInterval(timerInterval)
+        clearInterval(timerInterval);
       }
     })
 

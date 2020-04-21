@@ -7,11 +7,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './info-business.component.html',
   encapsulation: ViewEncapsulation.None
 })
+
 export class InfoBusinessComponent implements OnInit {
   public border_validation = false;
   public regForm: FormGroup;
   public title = 'registration page';
   public form: any;
+
   constructor(private route: Router, private fb: FormBuilder) {
     this.createForm();
   }
@@ -19,8 +21,19 @@ export class InfoBusinessComponent implements OnInit {
   // create form
   createForm() {
     this.regForm = this.fb.group({
-      firstName: [null, [Validators.required, Validators.pattern(/^[A-z]*$/), ]],
-      lastName: [null, [Validators.required, Validators.pattern(/^[A-z]*$/), ]]
+      firstName: ['', Validators.required, ],
+      email: ['', Validators.required, ],
+      phoneNumber: [ '', [Validators.required,  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ],
+      address: this.fb.group({
+        street: ['', Validators.required, ],
+        number: ['', Validators.required, ],
+        cp: ['', [Validators.required], ],
+        municipality: ['', Validators.required, ],
+        suburb: ['', Validators.required, ],
+      }),
+      requestServiceByMail: ['', , ],
+      selfFormat: ['', , ],
+      logo: ['', Validators.required, ],
     });
   }
 

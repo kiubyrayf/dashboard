@@ -1,47 +1,79 @@
-<form [formGroup]="emailForm" class="ngx-form" novalidate>
-  <div class="form-group">
-    <label class="sr-only" for="email">Email</label>
-    <input type="email" formControlName="emailAdd" class="form-control" autocomplete="off"
-      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [email]="true" required="required" placeholder="Enter Email..">
-    <div
-      *ngIf="emailForm.controls['emailAdd'].invalid && (emailForm.controls['emailAdd'].dirty || emailForm.controls['emailAdd'].touched)"
-      class="alert">
-      <div *ngIf="emailForm.controls['emailAdd'].errors?.pattern">
-        Email is required and format should be <i>john@doe.com</i>
+<form [formGroup]="contactForm" class="ngx-form" novalidate>
+  
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+        <label class="control-label">Nombre</label>
+        <input type="text"  class="form-control" >
+    </div>
+    <div class="col-md-4 mb-3">
+        <label class="control-label" >Empleo</label>
+        <input type="text"  class="form-control" >
+        
+    </div>
+    <div class="col-md-4 mb-3">
+        <label class="control-label" >Telefono</label>
+        <input type="text"  class="form-control" >
+        
+    </div>
+</div>
+<div class="form-row">
+  <div class="col-md-4 mb-3">
+      <label class="control-label" >correo</label>
+      <input type="text" class="form-control" >
+  </div>
+  <div class="col-md-4 mb-3">
+      <label class="control-label">Persona encargada de pago</label>
+      <input type="text"  class="form-control" >
+  </div>
+ 
+</div>
+<h4 class="mt-5">Horario de contacto</h4>
+<hr>
+<div class="form-row">
+  <div class="col-md-4 mb-3">
+      <label class="control-label" for="lastname">Lunes</label>
+      <div class="row">
+        <div class="form-group">
+          <ngb-timepicker [formControl]="ctrl" class="time-picker-custom" required></ngb-timepicker>
+          <div *ngIf="ctrl.valid" class="small form-text text-primary">Great choice</div>
+          <div class="small form-text text-danger" *ngIf="!ctrl.valid">
+            <div *ngIf="ctrl.errors['required']">Select some time during lunchtime</div>
+            <div *ngIf="ctrl.errors['tooLate']">Oh no, it's way too late</div>
+            <div *ngIf="ctrl.errors['tooEarly']">It's a bit too early</div>
+          </div>
+        </div>
       </div>
-      <div *ngIf="emailForm.controls['emailAdd'].errors.required ">Email is required.</div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <label class="control-label" for="lastname">Martes</label>
+    <div class="row-display"> 
+      
     </div>
   </div>
-
-  <div class="form-group">
-    <label class="sr-only" for="f1-password">Password</label>
-    <input type="password" formControlName="password" class="form-control" autocomplete="off"
-      placeholder="Enter Password..">
-    <div
-      *ngIf="emailForm.controls['password'].invalid && (emailForm.controls['password'].dirty || emailForm.controls['password'].touched)"
-      class="alert">
-      <div *ngIf="emailForm.controls['password'].errors.required">
-        Password is required.</div>
-      <div *ngIf="emailForm.controls['password'].errors?.minlength">Password must be at least 6 characters</div>
-    </div>
+  <div class="col-md-4 mb-3">
+    <label class="control-label" for="lastname">Miercoles</label>
+    <div class="row-display">
+      
+    </div>  
   </div>
-
-  <div class="form-group">
-    <label class="sr-only" for="f1-repeat-password">Repeat password</label>
-    <input type="password" formControlName="confirmPassword" class="form-control" autocomplete="off"
-      placeholder="Enter Repeat Password ..">
-    <div
-      *ngIf="emailForm.controls['confirmPassword'].invalid && (emailForm.controls['confirmPassword'].dirty || emailForm.controls['confirmPassword'].touched)"
-      class="alert">
-      <div *ngIf="emailForm.controls['confirmPassword'].errors.required">
-        Password is required.</div>
-      <div *ngIf="emailForm.controls['confirmPassword'].errors?.mustMatch">
-        Password does not match
+  <div class="col-md-4 mb-3">
+    <label class="control-label" for="lastname">Jueves</label>
+    <div class="form-row">
+      <div class="row-display">
+        
       </div>
     </div>
   </div>
+  <div class="col-md-4 mb-3">
+    <label class="control-label" for="lastname">Viernes</label>
+    <div class="row-display">
+      
+    </div>  
+  </div>
+ 
+</div>
   <div class="f1-buttons">
     <button class="btn btn-primary btn-previous" type="button" awPreviousStep>Previous</button>
-    <button class="btn btn-primary btn-next" type="button" [disabled]="!emailForm.valid" awNextStep>Next</button>
+    <button class="btn btn-primary btn-next" type="button" [disabled]="!contactForm.valid" awNextStep>Next</button>
   </div>
 </form>

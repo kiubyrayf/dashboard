@@ -26,128 +26,128 @@ const routes: Routes = [
         path: 'accordion',
         component: AccordionComponent,
         data: {
-          title: "Accordion",
-          breadcrumb: "Accordion"
+          title: 'Accordion',
+          breadcrumb: 'Accordion'
         }
       },
       {
         path: 'alert',
         component: AlertComponent,
         data: {
-          title: "Alert",
-          breadcrumb: "Alert"
+          title: 'Alert',
+          breadcrumb: 'Alert'
         }
       },
       {
         path: 'buttons',
         component: ButtonsComponent,
         data: {
-          title: "Buttons",
-          breadcrumb: "Buttons"
+          title: 'Buttons',
+          breadcrumb: 'Buttons'
         }
       },
       {
         path: 'carousel',
         component: CarouselComponent,
         data: {
-          title: "Carousel",
-          breadcrumb: "Carousel"
+          title: 'Carousel',
+          breadcrumb: 'Carousel'
         }
       },
       {
         path: 'collapse',
         component: CollapseComponent,
         data: {
-          title: "Collapse",
-          breadcrumb: "Collapse"
+          title: 'Collapse',
+          breadcrumb: 'Collapse'
         }
       },
       {
         path: 'datepicker',
         component: DatepickerComponent,
         data: {
-          title: "Datepicker",
-          breadcrumb: "Datepicker"
+          title: 'Datepicker',
+          breadcrumb: 'Datepicker'
         }
       },
       {
         path: 'dropdown',
         component: DropdownComponent,
         data: {
-          title: "Dropdown",
-          breadcrumb: "Dropdown"
+          title: 'Dropdown',
+          breadcrumb: 'Dropdown'
         }
       },
       {
         path: 'modal',
         component: ModalComponent,
         data: {
-          title: "Modal",
-          breadcrumb: "Modal"
+          title: 'Modal',
+          breadcrumb: 'Modal'
         }
       },
       {
         path: 'pagination',
         component: PaginationComponent,
         data: {
-          title: "Pagination",
-          breadcrumb: "Pagination"
+          title: 'Pagination',
+          breadcrumb: 'Pagination'
         }
       },
       {
         path: 'popover',
         component: PopoverComponent,
         data: {
-          title: "Popover",
-          breadcrumb: "Popover"
+          title: 'Popover',
+          breadcrumb: 'Popover'
         }
       },
       {
         path: 'progressbar',
         component: ProgressbarComponent,
         data: {
-          title: "Progressbar",
-          breadcrumb: "Progressbar"
+          title: 'Progressbar',
+          breadcrumb: 'Progressbar'
         }
       },
       {
         path: 'rating',
         component: RatingComponent,
         data: {
-          title: "Rating",
-          breadcrumb: "Rating"
+          title: 'Rating',
+          breadcrumb: 'Rating'
         }
       },
       {
         path: 'tabset',
         component: TabsetComponent,
         data: {
-          title: "Tabset",
-          breadcrumb: "Tabset"
+          title: 'Tabset',
+          breadcrumb: 'Tabset'
         }
       },
       {
         path: 'timepicker',
         component: TimepickerComponent,
         data: {
-          title: "TimePicker",
-          breadcrumb: "TimePicker"
+          title: 'TimePicker',
+          breadcrumb: 'TimePicker'
         }
       },
       {
         path: 'tooltip',
         component: TooltipComponent,
         data: {
-          title: "Tooltip",
-          breadcrumb: "Tooltip"
+          title: 'Tooltip',
+          breadcrumb: 'Tooltip'
         }
       },
       {
         path: 'typeahead',
         component: TypeaheadComponent,
         data: {
-          title: "Typeahead",
-          breadcrumb: "Typeahead"
+          title: 'Typeahead',
+          breadcrumb: 'Typeahead'
         }
       }
     ]
