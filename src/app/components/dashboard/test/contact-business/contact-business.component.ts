@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MustMatch } from './mustMatch';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
-
-
 
 
 @Component({
@@ -15,23 +12,10 @@ import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ContactBusinessComponent implements OnInit {
 
-  // timepicker
-  ctrl = new FormControl('', (control: FormControl) => {
-    const value = control.value;
-    if (!value) {
-      return null;
-    }
-    if (value.hour < 12) {
-      return {tooEarly: true};
-    }
-    if (value.hour > 13) {
-      return {tooLate: true};
-    }
-    return null;
-  });
-
   public contactForm: FormGroup;
+  public border_validation = false;
   public form: any;
+  public title = 'contact registration page';
 
   constructor(private route: Router, private fb: FormBuilder) {
     this.createContactForm();
@@ -39,15 +23,35 @@ export class ContactBusinessComponent implements OnInit {
 
   createContactForm() {
     this.contactForm = this.fb.group({
-      emailAdd: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, {
-        validator: MustMatch('password', 'confirmPassword')
-      });
+      job: ['', Validators.required],
+      phoneNumber: ['', [Validators.required]],
+      email: ['', Validators.required],
+      paymentPerson: ['', Validators.required],
+      fax: ['', Validators.required],
+      schedule: this.fb.group({
+        mondayStart: ['', , ],
+        mondayEnd: ['', , ],
+        tuesdayStart: ['', , ],
+        tuesdayEnd: ['', , ],
+        wednesdayStart: ['', , ],
+        wednesdayEnd: ['', , ],
+        thursdayStart: ['', , ],
+        thursdayEnd: ['', , ],
+        fridayStart: ['', , ],
+        fridayEnd: ['', , ],
+        saturdayStart: ['', , ],
+        saturdayEnd: ['', , ],
+      }),
+    });
+  }
+
+  save(form: any) {
+    if (!form.valid) {
+      return false;
+    }
+    return true;
   }
 
   ngOnInit() {  }
 
-  
 }

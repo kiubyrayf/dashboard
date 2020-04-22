@@ -38,11 +38,17 @@
     </div>
     <div class="form-group" formGroupName="address">
         <div class="form-row ">
-            
+
             <div class="col-md-4 mb-3">
                 <label class="control-label" for="street">Calle</label>
                 <input type="text" formControlName="street" class="form-control" placeholder="Calle">
-                
+
+                <div *ngIf="regForm.controls['address'].get('street').invalid && (regForm.controls['address'].get('street').dirty || regForm.controls['address'].get('street').touched)" class="alert">
+                    <div *ngIf="regForm.controls['address'].get('street').errors.required">
+                        La calle es obligatoria.
+                    </div>
+                </div>
+
             </div>
             <div class="col-md-4 mb-3">
                 <label class="control-label" for="number">Numero</label>
