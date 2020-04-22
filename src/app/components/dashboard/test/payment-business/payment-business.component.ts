@@ -22,9 +22,9 @@ export class PaymentBusinessComponent implements OnInit {
 
   createForm() {
     this.birthdateForm = this.fb.group({
-      dd: [null, Validators.required],
-      mm: [null, Validators.required],
-      yyyy: [null, Validators.required],
+      dd: [null, Validators.required, ],
+      mm: [null, Validators.required, ],
+      yyyy: [null, Validators.required, ],
     });
   }
 

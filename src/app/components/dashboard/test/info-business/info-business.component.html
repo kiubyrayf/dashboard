@@ -1,30 +1,106 @@
-<form [formGroup]="regForm" (ngSubmit)="save(regForm)" class="ngx-form" novalidate>
-    <div class="form-group">
-        <label class="control-label" for="firstname">First Name</label>
-        <input type="text" formControlName="firstName" class="form-control" placeholder="Enter First Name..">
-        <div *ngIf="regForm.controls['firstName'].invalid && (regForm.controls['firstName'].dirty || regForm.controls['firstName'].touched)"
-            class="alert">
-            <div *ngIf="regForm.controls['firstName'].errors.required">
-                First Name is required.
+<form [formGroup]="regForm" (ngSubmit)="save(regForm)" class="ngx-form mt-5" novalidate>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label class="control-label" for="firstname">Nombre</label>
+            <input type="text" formControlName="firstName" class="form-control" placeholder="Nombre Empresa">
+            <div *ngIf="regForm.controls['firstName'].invalid && (regForm.controls['firstName'].dirty || regForm.controls['firstName'].touched)"
+                class="alert">
+                <div *ngIf="regForm.controls['firstName'].errors.required">
+                    Nombre es obligatorio.
+                </div>
             </div>
-            <div *ngIf="regForm.controls['firstName'].errors?.pattern">
-                Number is not allowed!
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="control-label" for="email">Correo</label>
+            <input type="email" formControlName="email" class="form-control" placeholder="Correo de Empresa">
+            <div *ngIf="regForm.controls['email'].invalid && (regForm.controls['email'].dirty || regForm.controls['email'].touched)"
+                class="alert">
+                <div *ngIf="regForm.controls['email'].errors.required">
+                    Correo es obligatorio.
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="control-label" for="phoneNumber">Telefono</label>
+            <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Telefono de Empresa">
+            <div *ngIf="regForm.controls['phoneNumber'].invalid && (regForm.controls['phoneNumber'].dirty || regForm.controls['phoneNumber'].touched)"
+                class="alert">
+                <div *ngIf="regForm.controls['phoneNumber'].errors.required">
+                    Telefono es obligatorio.
+                </div>
+                <div *ngIf="regForm.controls['phoneNumber'].errors?.pattern">
+                    Telefono tiene que ser 10 digitos
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="form-group" formGroupName="address">
+        <div class="form-row ">
+            
+            <div class="col-md-4 mb-3">
+                <label class="control-label" for="street">Calle</label>
+                <input type="text" formControlName="street" class="form-control" placeholder="Calle">
+                
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label" for="number">Numero</label>
+                <input type="text" formControlName="number" class="form-control" placeholder="Numero">
+               
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label" for="suburb">Colonia</label>
+                <input type="text" formControlName="suburb" class="form-control" placeholder="Colonia">
+                
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label" for="cp">Codigo Postal</label>
+                <input type="text" formControlName="cp" class="form-control" placeholder="Codigo Postal">
+               
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label" for="municipality">Municipio</label>
+                <input type="text" formControlName="municipality" class="form-control" placeholder="Municipio">
+               
+            </div>
+            
+        </div>
+
+    </div>    
+    <div class=" row">
+        <div class="col-md-12 mb-5">
+            <div class=" m-t-15 m-checkbox-inline mb-0 ml-1 animate-chk">
+                <div class="checkbox checkbox-primary">
+                    <input id="requestServiceByMail" type="checkbox" formControlName="requestServiceByMail">
+                    <label class="control-label" for="requestServiceByMail">Se solicito servicio por correo</label>
+                    
+                </div>
+                <div class="checkbox checkbox-primary">
+                    <input id="selfFormat" type="checkbox" formControlName="selfFormat">
+                    <label class="control-label" for="selfFormat">Tiene formato propio</label>
+                </div>
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <label class="control-label" for="lastname">Last Name</label>
-        <input type="text" formControlName="lastName" class="form-control" placeholder="Enter Last Name..">
-        <div *ngIf="regForm.controls['lastName'].invalid && (regForm.controls['lastName'].dirty || regForm.controls['lastName'].touched)"
+   
+    <div class="form-group row mb-5" >
+        <label class="col-sm-3 col-form-label">Subir logo de la empresa</label>
+        <div class="col-sm-9">
+            <input type="file" class="form-control" formControlName="logo">
+            <div *ngIf="regForm.controls['logo'].invalid && (regForm.controls['logo'].dirty || regForm.controls['logo'].touched)"
             class="alert">
-            <div *ngIf="regForm.controls['lastName'].errors.required">
-                Last Name is required.
-            </div>
-            <div *ngIf="regForm.controls['lastName'].errors?.pattern">
-                Number is not allowed!
+                <div *ngIf="regForm.controls['logo'].errors.required">
+                    Subir logo es obligatorio.
+                </div>
             </div>
         </div>
+        
     </div>
+
+    
     <div class="form-group f1-buttons">
         <button class="btn btn-primary btn-next" [disabled]="!regForm.valid" awNextStep> Next
         </button>

@@ -24,6 +24,7 @@ import { ContactBusinessComponent } from './test/contact-business/contact-busine
 import { InfoBusinessComponent } from './test/info-business/info-business.component';
 import { PaymentBusinessComponent } from './test/payment-business/payment-business.component';
 import { ArchwizardModule } from 'angular-archwizard';
+import { TimepickerComponent } from '../base/timepicker/timepicker.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ArchwizardModule } from 'angular-archwizard';
     ContactBusinessComponent,
     InfoBusinessComponent,
     PaymentBusinessComponent,
+    TimepickerComponent
   ],
   imports: [
     CommonModule,
