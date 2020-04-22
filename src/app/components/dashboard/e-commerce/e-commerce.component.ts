@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as data from './../../../shared/data/dashboard/e-commerce';
-declare var require: any
-var Knob = require('knob') // browserify require
+declare var require: any;
+var Knob = require('knob'); // browserify require
 
-var primary = localStorage.getItem('primary_color') || '#4466f2';
+var primary = localStorage.getItem('primary_color') || '#9abe26';
 var secondary = localStorage.getItem('secondary_color') || '#1ea6ec';
 
 @Component({
@@ -13,21 +13,37 @@ var secondary = localStorage.getItem('secondary_color') || '#1ea6ec';
   encapsulation: ViewEncapsulation.None
 })
 export class ECommerceComponent implements OnInit {
+  // Charts1
+  public saleChartType = data.saleChartType;
+  public saleChartLable = data.saleChartLabels;
+  public saleChartData = data.saleChartData;
+  public saleChartOption = data.saleChartOptions;
+  public saleChartColor = data.saleChartColors;
+  public saleChartLegend = data.saleChartLegend;
 
-  constructor() { }
+  // Charts1
+  public chartType1 = data.lineChartType1;
+  public chartLable1 = data.lineChartLabels1;
+  public chartData1 = data.lineChartData1;
+  public chartOption1 = data.lineChartOptions1;
+  public chartColor1 = data.lineChartColors1;
+  public chartLegend1 = data.lineChartLegend1;
 
-  ngOnInit() {
-    var review = Knob({
-      value: 35,
-      angleOffset: 180,
-      className: "review",
-      thickness: 0.1,
-      width: 290,
-      height: 290,
-      fgColor: primary
-    })
-    document.getElementById('review').append(review)
-  }
+  // Chart2
+  public chartType2 = data.lineChartType2;
+  public chartLable2 = data.lineChartLabels2;
+  public chartData2 = data.lineChartData2;
+  public chartOption2 = data.lineChartOptions2;
+  public chartColor2 = data.lineChartColors2;
+  public chartLegend2 = data.lineChartLegend2;
+
+  // Static chart
+  public staticChartType = data.staticChartType;
+  public staticChartLable = data.staticChartLabels;
+  public staticChartData = data.staticChartData;
+  public staticChartOption = data.staticChartOptions;
+  public staticChartColor = data.staticChartColors;
+  public staticChartLegend = data.staticChartLegend;
 
   public slidesStore = [{
     id: 1,
@@ -58,7 +74,7 @@ export class ECommerceComponent implements OnInit {
     icon: 'dollar-sign',
     title: 'Total Earning',
     number: 72
-  }]
+  }];
 
   public customOptions: any = {
     margin: 10,
@@ -87,38 +103,21 @@ export class ECommerceComponent implements OnInit {
         nav: false
       }
     }
+  };
+
+  constructor() { }
+
+  ngOnInit() {
+    var review = Knob({
+      value: 35,
+      angleOffset: 180,
+      className: 'review',
+      thickness: 0.1,
+      width: 290,
+      height: 290,
+      fgColor: primary
+    });
+    document.getElementById('review').append(review);
   }
-
-  // Charts1
-  public saleChartType = data.saleChartType;
-  public saleChartLable = data.saleChartLabels;
-  public saleChartData = data.saleChartData;
-  public saleChartOption = data.saleChartOptions;
-  public saleChartColor = data.saleChartColors;
-  public saleChartLegend = data.saleChartLegend;
-
-  // Charts1
-  public chartType1 = data.lineChartType1;
-  public chartLable1 = data.lineChartLabels1;
-  public chartData1 = data.lineChartData1;
-  public chartOption1 = data.lineChartOptions1;
-  public chartColor1 = data.lineChartColors1;
-  public chartLegend1 = data.lineChartLegend1;
-
-  // Chart2
-  public chartType2 = data.lineChartType2;
-  public chartLable2 = data.lineChartLabels2;
-  public chartData2 = data.lineChartData2;
-  public chartOption2 = data.lineChartOptions2;
-  public chartColor2 = data.lineChartColors2;
-  public chartLegend2 = data.lineChartLegend2;
-
-  //Static chart
-  public staticChartType = data.staticChartType;
-  public staticChartLable = data.staticChartLabels;
-  public staticChartData = data.staticChartData;
-  public staticChartOption = data.staticChartOptions;
-  public staticChartColor = data.staticChartColors;
-  public staticChartLegend = data.staticChartLegend;
 
 }

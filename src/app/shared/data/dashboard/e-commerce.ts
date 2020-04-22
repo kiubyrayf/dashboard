@@ -1,9 +1,9 @@
-var primary = localStorage.getItem('primary_color') || '#4466f2';
+var primary = localStorage.getItem('primary_color') || '#9abe26';
 var secondary = localStorage.getItem('secondary_color') || '#1ea6ec';
 
-//Sale chart
+// Sale chart
 export var saleChartType = 'line';
-export var saleChartLabels: Array<any> = ["2009", "2010", "2011", "2012", "2013", "2014", "2015"];
+export var saleChartLabels: Array<any> = ['2009', '2010', '2011', '2012', '2013', '2014', '2015'];
 export var saleChartData: Array<any> = [0, 2.25, 1.25, 3, 1.25, 2.25, 0];
 export var saleChartOptions: any = {
   responsive: true,
@@ -13,7 +13,7 @@ export var saleChartOptions: any = {
     xAxes: [{
       display: true,
       gridLines: {
-        color: "#fff",
+        color: '#fff',
         drawTicks: true,
       }
     }],
@@ -35,9 +35,9 @@ export var saleChartColors: Array<any> = [{
 export var saleChartLegend = false;
 
 
-//Line chart
+// Line chart
 export var lineChartType1 = 'line';
-export var lineChartLabels1: Array<any> = ["", "2009", "2010", "2011", "2012", "2013", "2014"];
+export var lineChartLabels1: Array<any> = ['', '2009', '2010', '2011', '2012', '2013', '2014'];
 export var lineChartData1: Array<any> = [20, 33, 20, 50, 20, 33, 20, 0];
 export var lineChartOptions1: any = {
   responsive: true,
@@ -46,7 +46,7 @@ export var lineChartOptions1: any = {
     xAxes: [{
       display: true,
       gridLines: {
-        color: "#fff",
+        color: '#fff',
         drawTicks: true,
       }
     }],
@@ -67,7 +67,7 @@ export var lineChartLegend1 = false;
 
 //Line chart 2
 export var lineChartType2 = 'line';
-export var lineChartLabels2: Array<any> = ["", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016"];
+export var lineChartLabels2: Array<any> = ['', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'];
 export var lineChartData2: Array<any> = [5, 0, 5, 0, 15, 0, 5, 0, 5];
 export var lineChartOptions2: any = {
   responsive: true,
@@ -76,7 +76,7 @@ export var lineChartOptions2: any = {
     xAxes: [{
       display: true,
       gridLines: {
-        color: "#fff",
+        color: '#fff',
         drawTicks: true,
       }
     }],
@@ -105,7 +105,7 @@ export var lineChartLegend2 = false;
 
 
 export var staticChartType = 'line';
-export var staticChartLabels: Array<any> = ["0", "50", "100", "150", "200", "250", "300", "350"];
+export var staticChartLabels: Array<any> = ['0', '50', '100', '150', '200', '250', '300', '350'];
 export var staticChartData: Array<any> = [1.000000000, 0.642787610, -0.173648178, -0.866025404, -0.939692621, -0.342020143, 0.500000000, 0.984807753];
 export var staticChartOptions: any = {
   responsive: true,
@@ -116,7 +116,7 @@ export var staticChartOptions: any = {
     xAxes: [{
       display: true,
       gridLines: {
-        color: "#fff",
+        color: '#fff',
         drawTicks: true,
       },
     }],

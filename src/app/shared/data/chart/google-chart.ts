@@ -13,7 +13,7 @@ export var pieChart1: any = {
     title: 'My Daily Activities',
     width: '100%',
     height: 400,
-    colors: ["#4466f2", "#1ea6ec", "#22af47", "#007bff", "#FF5370"],
+    colors: ["#9abe26", "#1ea6ec", "#22af47", "#007bff", "#FF5370"],
     backgroundColor:'transparent'
   },
 };
@@ -34,7 +34,7 @@ export var pieChart2: any = {
     is3D: true,
     width: '100%',
     height: 400,
-    colors: ["#4466f2", "#1ea6ec", "#22af47", "#007bff", "#FF5370"],
+    colors: ["#9abe26", "#1ea6ec", "#22af47", "#007bff", "#FF5370"],
     backgroundColor:'transparent'
   },
 };
@@ -55,7 +55,7 @@ export var pieChart3: any = {
     pieHole: 0.4,
     width: '100%',
     height: 400,
-    colors: ["#4466f2", "#1ea6ec", "#22af47", "#007bff", "#FF5370", "#FF5370"],
+    colors: ["#9abe26", "#1ea6ec", "#22af47", "#007bff", "#FF5370", "#FF5370"],
     backgroundColor:'transparent'
   },
 };
@@ -101,7 +101,7 @@ export var pieChart4: any = {
       15: { offset: 0.5 },
     },
     // colors: ["#ab8ce4", "#26c6da"]
-    colors: ["#4466f2", "#1ea6ec", "#22af47", "#007bff", "#ff9f40", "#FF5370", "#4466f2", "#1ea6ec", "#22af47", "#007bff", "#ff9f40", "#FF5370", "#4466f2", "#1ea6ec", "#22af47", "#007bff", "#ff9f40", "#FF5370", "#fd7b6c", "#22af47", "#007bff", "#ff9f40"],
+    colors: ["#9abe26", "#1ea6ec", "#22af47", "#007bff", "#ff9f40", "#FF5370", "#9abe26", "#1ea6ec", "#22af47", "#007bff", "#ff9f40", "#FF5370", "#9abe26", "#1ea6ec", "#22af47", "#007bff", "#ff9f40", "#FF5370", "#fd7b6c", "#22af47", "#007bff", "#ff9f40"],
     backgroundColor:'transparent'
   },
 };
@@ -122,7 +122,7 @@ export var areaChart1: any = {
     vAxis: { minValue: 0 },
     width: '100%',
     height: 400,
-    colors: ["#4466f2", "#1ea6ec"],
+    colors: ["#9abe26", "#1ea6ec"],
     backgroundColor:'transparent'
   },
 };
@@ -143,7 +143,7 @@ export var areaChart2: any = {
     vAxis: { minValue: 0 },
     width: '100%',
     height: 400,
-    colors: ["#4466f2", "#1ea6ec", "#22af47", "#007bff"],
+    colors: ["#9abe26", "#1ea6ec", "#22af47", "#007bff"],
     backgroundColor:'transparent'
   },
 };
@@ -169,7 +169,7 @@ export var columnChart1: any = {
     },
     height: 400,
     width: '100%',
-    colors: ["#4466f2", "#1ea6ec", "#22af47"],
+    colors: ["#9abe26", "#1ea6ec", "#22af47"],
     backgroundColor:'transparent'
   },
 };
@@ -195,7 +195,7 @@ export var columnChart2: any = {
     },
     height: 400,
     width: '100%',
-    colors: ["#4466f2", "#1ea6ec", "#22af47"],
+    colors: ["#9abe26", "#1ea6ec", "#22af47"],
     backgroundColor:'transparent'
   },
 };
@@ -205,7 +205,7 @@ export var barChart1: any = {
   chartType: 'ColumnChart',
   dataTable: [
     ["Element", "Density", { role: "style" }],
-    ["Copper", 10, "#4466f2"],
+    ["Copper", 10, "#9abe26"],
     ["Silver", 12, "#1ea6ec"],
     ["Gold", 14, "#22af47"],
     ["Platinum", 16, "color: #007bff"]
@@ -227,7 +227,7 @@ export var barChart2: any = {
     ["Element", "Density", {
       role: "style"
     }],
-    ["Copper", 10, "#4466f2"],
+    ["Copper", 10, "#9abe26"],
     ["Silver", 12, "#1ea6ec"],
     ["Gold", 14, "#22af47"],
     ["Platinum", 16, "color: #007bff"]
@@ -265,7 +265,7 @@ export var lineChart: any = {
       title: 'Box Office Earnings in First Two Weeks of Opening',
       subtitle: 'in millions of dollars (USD)'
     },
-    colors: ["#4466f2", "#1ea6ec", "#22af47"],
+    colors: ["#9abe26", "#1ea6ec", "#22af47"],
     height: 500,
     width: '100%',
     backgroundColor:'transparent'
@@ -291,7 +291,7 @@ export var comboChart: any = {
     series: { 5: { type: 'line' } },
     height: 500,
     fullWidth: true,
-    colors: ["#4466f2", "#1ea6ec", "#22af47", "#FF5370", "#007bff"],
+    colors: ["#9abe26", "#1ea6ec", "#22af47", "#FF5370", "#007bff"],
     backgroundColor:'transparent'
   },
 };
