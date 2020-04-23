@@ -2941,7 +2941,7 @@ li:hover > a {
             padding-right: 0; }
           .page-main-header .main-header-right .nav-right > ul > li:nth-child(5) {
             border-left: none;
-            border-right: 1px solid #eff0f1;
+            border-right: none;
             padding-left: 0; }
           .page-main-header .main-header-right .nav-right > ul > li h6 {
             margin-top: 10px;
@@ -25885,7 +25885,7 @@ footer.blockquote-footer {
     text-align: left; }
     [main-theme-layout="rtl"] .page-main-header .main-header-right .nav-right > ul > li {
       text-align: right;
-      border-right: 1px solid #eff0f1;
+      border-right: none;
       border-left: unset; }
       [main-theme-layout="rtl"] .page-main-header .main-header-right .nav-right > ul > li .dot {
         left: 17px;

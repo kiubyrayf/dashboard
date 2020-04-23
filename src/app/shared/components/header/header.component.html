@@ -47,11 +47,11 @@
             </div>
           </form>
         </li>
-        <li>
+        <!--<li>
           <a href="javascript:void(0)" class="text-dark" toggleFullscreen>
             <app-feather-icons [icon]="'maximize'"></app-feather-icons>
           </a>
-        </li>
+        </li>-->
         <li class="onhover-dropdown">
           <a class="txt-dark" href="javascript:void(0)">
             <h6>ES</h6>
@@ -66,7 +66,7 @@
         <li class="onhover-dropdown">
           <app-feather-icons [icon]="'bell'"></app-feather-icons><span class="dot"></span>
           <ul class="notification-dropdown onhover-show-div">
-            <li>Notification <span class="badge badge-pill badge-primary pull-right">3</span></li>
+            <li>Notificaciones <span class="badge badge-pill badge-primary pull-right">3</span></li>
             <li>
               <div class="media">
                 <div class="media-body">
@@ -97,7 +97,7 @@
                 </div>
               </div>
             </li>
-            <li class="bg-light txt-dark"><a href="javascript:void(0)">All</a> notification</li>
+            <li class="bg-light txt-dark"><a href="javascript:void(0)">Todas</a> las notificaciones</li>
           </ul>
         </li>
         <li><a>
@@ -117,19 +117,19 @@
           </div>
           <ul class="profile-dropdown onhover-show-div p-20">
             <li><a href="javascript:void(0)">
-                <app-feather-icons [icon]="'user'"></app-feather-icons>Edit Profile
+                <app-feather-icons [icon]="'user'"></app-feather-icons>Editar Perfil
               </a></li>
             <li><a href="javascript:void(0)">
                 <app-feather-icons [icon]="'mail'"></app-feather-icons>Inbox
               </a></li>
             <li><a href="javascript:void(0)">
-                <app-feather-icons [icon]="'lock'"></app-feather-icons>Lock Screen
+                <app-feather-icons [icon]="'lock'"></app-feather-icons>Bloquear Pantalla
               </a></li>
-            <li><a href="javascript:void(0)">
+           <!-- <li><a href="javascript:void(0)">
                 <app-feather-icons [icon]="'settings'"></app-feather-icons>Settings
-              </a></li>
+              </a></li>-->
             <li *ngIf="authService.userData as user"><a href="javascript:void(0)" (click)="authService.SignOut()">
-                <app-feather-icons [icon]="'log-out'"></app-feather-icons>Logout
+                <app-feather-icons [icon]="'log-out'"></app-feather-icons>Salir
               </a></li>
           </ul>
         </li>
