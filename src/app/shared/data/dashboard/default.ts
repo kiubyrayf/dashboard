@@ -1,7 +1,7 @@
 import * as Chartist from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
 
-var primary = localStorage.getItem('primary_color') || '#9abe26';
+var primary = localStorage.getItem('primary_color') || '#4466f2';
 var secondary = localStorage.getItem('secondary_color') || '#1ea6ec';
 
 export interface Chart {

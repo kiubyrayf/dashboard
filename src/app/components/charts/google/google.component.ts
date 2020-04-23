@@ -37,7 +37,7 @@ export class GoogleComponent {
     options: {
       'region': 'IT',
       'displayMode': 'markers',
-      colors: ["#9abe26", "#1ea6ec", "#22af47", "#007bff", "#FF5370"]
+      colors: ["#4466f2", "#1ea6ec", "#22af47", "#007bff", "#FF5370"]
     }
   };
 }

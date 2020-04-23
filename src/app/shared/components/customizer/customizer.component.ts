@@ -11,35 +11,35 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CustomizerComponent implements OnInit {
 
-  public customizer: any;
-  public sidebarSetting: any = 'color';
-  public layoutType: string = 'ltr';
-  public sidebarType: string = 'default';
+  public customizer: any
+  public sidebarSetting: any = 'color'
+  public layoutType: string = 'ltr'
+  public sidebarType: string = 'default'
   public data: any;
 
   constructor(public customize: CustomizerService,
     private modalService: NgbModal,
     private toastrService: ToastrService) { 
-      this.customize.data.color.layout_version = localStorage.getItem("layoutVersion");
-      this.customize.data.color.color = localStorage.getItem("color");
-      this.customize.data.color.primary_color = localStorage.getItem("primary_color");
-      this.customize.data.color.secondary_color = localStorage.getItem("secondary_color");
+      this.customize.data.color.layout_version = localStorage.getItem("layoutVersion")
+      this.customize.data.color.color = localStorage.getItem("color")
+      this.customize.data.color.primary_color = localStorage.getItem("primary_color")
+      this.customize.data.color.secondary_color = localStorage.getItem("secondary_color")
     }
 
   // Open customizer
   openCustomizerSetting(val) {
-    this.customizer = val;
+    this.customizer = val
   }
 
   // Sidebar customizer Settings
   customizerSetting(val) {
-    this.sidebarSetting = val;
+    this.sidebarSetting = val
   }
 
   // Customize Layout Type
   customizeLayoutType(val) {
-    this.customize.setLayoutType(val);
-    this.layoutType = val;
+    this.customize.setLayoutType(val)
+    this.layoutType = val
   }
 
   // Customize Sidebar Type
@@ -59,33 +59,33 @@ export class CustomizerComponent implements OnInit {
 
   // Customize Sidebar Setting
   customizeSidebarSetting(val) {
-    this.customize.data.settings.sidebar_setting = val;
+    this.customize.data.settings.sidebar_setting = val
   }
 
   // Customize Sidebar Backround
   customizeSidebarBackround(val) {
-    this.customize.data.settings.sidebar_backround = val;
+    this.customize.data.settings.sidebar_backround = val
   }
 
   // Customize Mix Layout
   customizeMixLayout(val) {
-    this.customize.setLayout(val);
+    this.customize.setLayout(val)
   }
 
   // Customize Light Color
   customizeLightColorScheme(val) {
-    this.customize.setColorLightScheme(val);
+    this.customize.setColorLightScheme(val)
   }
 
   // Customize Dark Color
   customizeDarkColorScheme(val) {
-    this.customize.setColorDarkScheme(val);
+    this.customize.setColorDarkScheme(val)
   }
 
-  // Display modal for copy config
+  //Display modal for copy config
   copyConfig(popup, data) {
     this.modalService.open(popup, { backdropClass: 'dark-modal', centered: true });
-    data = this.customize.data;
+    data = this.customize.data
   }
 
   //Copy config

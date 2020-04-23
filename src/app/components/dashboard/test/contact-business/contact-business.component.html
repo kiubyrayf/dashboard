@@ -59,19 +59,9 @@
   <div class="	col-md-4 mb-3">
       <label class="control-label" for="lastname">Lunes</label>
       <div class="row divceter">
-            <div class="input-group clockpicker" data-placement="bottom" data-align="top" data-autoclose="true">
-                <input type="text" formControlName="mondayStart" class="form-control" value="09:32">
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-time"></span>
-                </span>
-            </div>
+          <ngb-timepicker formControlName="mondayStart" class="time-picker-custom" required></ngb-timepicker>
           <label class="m-15"> A </label>
-          <div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-            <input type="text" formControlName="mondayEnd" class="form-control" value="09:00">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-time"></span>
-            </span>
-        </div>
+           <ngb-timepicker formControlName="mondayEnd" class="time-picker-custom" required></ngb-timepicker>
       </div>
       
   </div>
@@ -79,17 +69,23 @@
     <label class="control-label" for="lastname">Martes</label>
     <div class="row divceter">
       
-        <label class="m-15"> A </label>
+        <ngb-timepicker formControlName="tuesdayStart" class="time-picker-custom" required></ngb-timepicker>
+        
+         <label class="m-15"> A </label>
          
-         
+         <ngb-timepicker formControlName="tuesdayEnd" class="time-picker-custom" required></ngb-timepicker>
+        
     </div>
   </div>
   <div class="col-md-4 mb-3">
     <label class="control-label" for="lastname">Miercoles</label>
     <div class="row divceter">
      
-         <label class="m-15"> A </label>
+        <ngb-timepicker formControlName="wednesdayStart" class="time-picker-custom" required></ngb-timepicker>
         
+        <label class="m-15"> A </label>
+        
+        <ngb-timepicker formControlName="wednesdayEnd" class="time-picker-custom" required></ngb-timepicker>
         
     </div>
   </div>
@@ -97,13 +93,38 @@
     <label class="control-label" for="lastname">Jueves</label>
     <div class="row divceter">
      
+        <ngb-timepicker formControlName="thursdayStart" class="time-picker-custom" required></ngb-timepicker>
         
         <label class="m-15"> A </label>
         
+        <ngb-timepicker formControlName="thursdayEnd" class="time-picker-custom" required></ngb-timepicker>
         
     </div>
   </div>
- 
+  <div class="col-md-4 mb-3">
+    <label class="control-label" for="lastname">viernes</label>
+    <div class="row divceter">
+     
+        <ngb-timepicker formControlName="fridayStart" class="time-picker-custom" required></ngb-timepicker>
+        
+        <label class="m-15"> A </label>
+        
+        <ngb-timepicker formControlName="fridayEnd" class="time-picker-custom" required></ngb-timepicker>
+        
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <label class="control-label" for="lastname">Sabado</label>
+    <div class="row divceter">
+     
+        <ngb-timepicker formControlName="saturdayStart" class="time-picker-custom" required></ngb-timepicker>
+        
+        <label class="m-15"> A </label>
+        
+        <ngb-timepicker formControlName="saturdayEnd" class="time-picker-custom" required></ngb-timepicker>
+        
+    </div>
+  </div>
 </div>
 
   <div class="form-group f1-buttons">

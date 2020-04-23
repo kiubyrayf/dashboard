@@ -1,6 +1,6 @@
 import * as Chartist from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
-var primary = localStorage.getItem('primary_color') || '#9abe26';
+var primary = localStorage.getItem('primary_color') || '#4466f2';
 var secondary = localStorage.getItem('secondary_color') || '#1ea6ec';
 
 export interface Chart {
@@ -10,7 +10,7 @@ export interface Chart {
   responsiveOptions?: any;
   events?: ChartEvent;
 }
-// Line Chart
+//Line Chart
 export var chart1: Chart = {
   type: 'Line',
   data: {
@@ -143,7 +143,7 @@ export var WidgetBarChart1: Chart = {
     tooltips: {
       disabled: true
     },
-    toolTipContent: '<a href = {name}> {label}</a><hr/>Views: {y}',
+    toolTipContent: "<a href = {name}> {label}</a><hr/>Views: {y}",
     chartPadding: {
       bottom: 0,
       top: 0,
@@ -231,7 +231,7 @@ export var turnOverChart: Chart = {
   options: {
     height: 300,
   }
-};
+}
 
 export var monthlyChart: Chart = {
   type: 'Bar',
@@ -387,20 +387,20 @@ export var skillWidget: Chart = {
 export var monthlydoughnutData = [
   {
     value: 500,
-    name: 'Safari'
+    name: "Safari"
 
   },
   {
     value: 600,
-    name: 'Mozila Firefox'
+    name: "Mozila Firefox"
   },
   {
     value: 400,
-    name: 'Google Crome'
+    name: "Google Crome"
   },
   {
     value: 700,
-    name: 'Opera Browser'
+    name: "Opera Browser"
   }
 ];
 
@@ -416,20 +416,20 @@ export var monthlydoughnutChartcolorScheme = {
 export var dailydoughnutData = [
   {
     value: 448,
-    name: 'India'
+    name: "India"
 
   },
   {
     value: 340,
-    name: 'USA'
+    name: "USA"
   },
   {
     value: 270,
-    name: 'Canada'
+    name: "Canada"
   },
   {
     value: 359,
-    name: 'UK'
+    name: "UK"
   }
 ];
 //Monthly donught chart Options

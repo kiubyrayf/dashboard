@@ -6,7 +6,7 @@ import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, Cal
 
 const colors: any = {
   red: {
-    primary: '#9abe26',
+    primary: '#4466f2',
     secondary: '#FAE3E3'
   },
   blue: {
@@ -27,7 +27,7 @@ const colors: any = {
 })
 export class CalenderComponent {
 
-  @ViewChild('modalContent', { static: false })
+  @ViewChild('modalContent',{static: false})
   modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;

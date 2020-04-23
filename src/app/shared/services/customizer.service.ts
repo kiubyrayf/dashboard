@@ -42,7 +42,7 @@ export class CustomizerService {
     this.createStyle(color);
     this.data.color.color = color;
     if (color === 'color-1') {
-      this.data.color.primary_color = '#9abe26';
+      this.data.color.primary_color = '#4466f2';
       this.data.color.secondary_color = '#1ea6ec';
     } else if (color === 'color-2') {
       this.data.color.primary_color = '#0288d1';
@@ -60,7 +60,7 @@ export class CustomizerService {
       this.data.color.primary_color = '#3949ab';
       this.data.color.secondary_color = '#4fc3f7';
     } else if (color === 'color-7') {
-      this.data.color.primary_color = '#9abe26';
+      this.data.color.primary_color = '#9ABE26';
       this.data.color.secondary_color = '#2e9de4';
     }
     localStorage.setItem('color', this.data.color.color);

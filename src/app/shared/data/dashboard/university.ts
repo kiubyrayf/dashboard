@@ -1,7 +1,7 @@
 import * as Chartist from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
 
-var primary = localStorage.getItem('primary_color') || '#9abe26';
+var primary = localStorage.getItem('primary_color') || '#4466f2';
 var secondary = localStorage.getItem('secondary_color') || '#1ea6ec';
 
 export interface Chart {
@@ -168,7 +168,7 @@ export var chart5: Chart = {
 
 //Admission chart
 export var admissionChartType = 'line';
-export var admissionChartLabels: Array<any> = ['', '1000', '2000', '3000', '4000', '5000', '6000'];
+export var admissionChartLabels: Array<any> = ["", "1000", "2000", "3000", "4000", "5000", "6000"];
 export var admissionChartData: Array<any> = [20, 25, 22, 25, 35, 30, 38, 35, 20];
 export var admissionChartOptions: any = {
 	responsive: true,
@@ -178,7 +178,7 @@ export var admissionChartOptions: any = {
 		xAxes: [{
 			display: true,
 			gridLines: {
-				color: '#fff',
+				color: "#fff",
 				drawTicks: true,
 			}
 		}],
@@ -189,7 +189,7 @@ export var admissionChartOptions: any = {
 };
 export var admissionChartColors: Array<any> = [{
 	fill: true,
-	backgroundColor: 'rgba(68, 102, 242,0.1)',
+	backgroundColor: "rgba(68, 102, 242,0.1)",
 	borderColor: primary,
 	borderWidth: 2.5,
 	pointBackgroundColor: primary,

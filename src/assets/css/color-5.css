@@ -274,7 +274,7 @@ a:hover {
   margin-right: auto;
   margin-left: auto;
   padding: 50px;
-  border: 2px dashed #9abe26;
+  border: 2px dashed #4466f2;
   border-radius: 15px;
   background: rgba(68, 102, 242, 0.2);
   min-height: 150px;
@@ -284,7 +284,7 @@ a:hover {
   border: none; }
 .dropzone-custom .dropzone i {
   font-size: 50px;
-  color: #9abe26;
+  color: #4466f2;
   text-align: center; }
 .dropzone-custom .card .card-body {
   z-index: 0; }
@@ -9067,7 +9067,7 @@ table.dataTable.display tbody tr.odd > .sorting_1 {
   margin-bottom: 20px; }
 
 .inside.preview-image.active {
-  border: 1px solid #9abe26; }
+  border: 1px solid #4466f2; }
 
 .product-box .product-details {
   padding: 25px;
@@ -11279,7 +11279,7 @@ header {
   .gallery .hover-11:hover img {
     opacity: .5; }
 .gallery .hover-12 {
-  background: #9abe26; }
+  background: #4466f2; }
   .gallery .hover-12 img {
     width: 100%;
     cursor: pointer;
@@ -11975,7 +11975,7 @@ footer {
      51. Search CSS Start
 ==========================**/
 #search-custom .nav-material .nav-link.active {
-  border-bottom: 1px solid #9abe26; }
+  border-bottom: 1px solid #4466f2; }
 #search-custom #tabset {
   width: 100%; }
 
@@ -20106,7 +20106,7 @@ body.dark-sidebar-body-mix {
 
 .headerTitle {
   font-variant: all-small-caps;
-  color: #9abe26; }
+  color: #4466f2; }
 
 .config-popup {
   display: block;
@@ -20263,7 +20263,7 @@ body.dark-sidebar-body-mix {
       border: 1px solid #b8b8b8;
       padding: 3px; }
       .customizer-contain .customizer-body .color-layout > div {
-        background-color: #9abe26;
+        background-color: #4466f2;
         height: 100%;
         width: 100%;
         border-radius: 3px; }
@@ -20274,7 +20274,7 @@ body.dark-sidebar-body-mix {
         .customizer-contain .customizer-body .color-layout .body .contain li {
           height: 1px;
           width: 65%;
-          background-color: #9abe26;
+          background-color: #4466f2;
           border-radius: 5px;
           padding: 0;
           margin-left: 10px;
@@ -20284,7 +20284,7 @@ body.dark-sidebar-body-mix {
             position: absolute;
             height: 1px;
             width: 3px;
-            background-color: #9abe26;
+            background-color: #4466f2;
             left: -6px;
             border-radius: 5px; }
       .customizer-contain .customizer-body .color-layout[data-attr="light-2"] div, .customizer-contain .customizer-body .color-layout[data-attr="dark-2"] div {
@@ -21107,7 +21107,7 @@ body.dark-sidebar-body-mix {
   padding-left: 15px;
   margin-bottom: 30px; }
   .social-app-tab input:focus {
-    outline-color: #9abe26; }
+    outline-color: #4466f2; }
 
 .social-app-profile .nav i {
   margin-right: 0; }
@@ -21880,7 +21880,7 @@ div.review canvas {
   .chat-footer .media-body input {
     padding-left: 20px; }
     .chat-footer .media-body input.form-control:focus {
-      box-shadow: 0 0 0 0.2rem #9abe26; }
+      box-shadow: 0 0 0 0.2rem #4466f2; }
 
 .selling-update {
   padding: 40px 0;

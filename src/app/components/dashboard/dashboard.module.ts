@@ -41,20 +41,6 @@ import { TimepickerComponent } from '../base/timepicker/timepicker.component';
     PaymentBusinessComponent,
     TimepickerComponent
   ],
-  exports: [
-    DefaultComponent,
-    ECommerceComponent,
-    UniversityComponent,
-    BitcoinComponent,
-    ServerComponent,
-    ProjectComponent,
-    TestComponent,
-    NavBarBusinessComponent,
-    ContactBusinessComponent,
-    InfoBusinessComponent,
-    PaymentBusinessComponent,
-    TimepickerComponent
-  ],
   imports: [
     CommonModule,
     FormsModule,
