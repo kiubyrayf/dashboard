@@ -29,9 +29,14 @@
             "styles": [
               "src/assets/scss/app.scss",
               "node_modules/angular-archwizard/archwizard.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "./assets/css/jquery-clockpicker.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "../node_modules/jquery/dist/jquery.min.js",
+              "./assets/js/bootstrap.min.js",
+              "./assets/js/jquery-clockpicker.min.js",
+            ]
           },
           "configurations": {
             "production": {
