@@ -144,6 +144,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 position: relative;
 display: table;
 border-collapse: separate;
+width: 110px;
+margin-bottom: 10px;
 }
 .input-group .form-control {
     display: table-cell;
