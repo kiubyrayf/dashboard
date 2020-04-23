@@ -1,33 +1,33 @@
 import * as Chartist from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
 
-var primary = localStorage.getItem('primary_color') || '#4466f2';
+var primary = localStorage.getItem('primary_color') || '#9abe26';
 var secondary = localStorage.getItem('secondary_color') || '#1ea6ec';
 
 export var doughnutData = [
     {
         value: 300,
-        name: "Frontend"
+        name: 'Frontend'
 
     },
     {
         value: 50,
-        name: "Backend"
+        name: 'Backend'
     },
     {
         value: 30,
-        name: "Api"
+        name: 'Api'
     },
     {
         value: 100,
-        name: "Issues"
+        name: 'Issues'
     }
 ];
 
-//doughnut-Chart
+// doughnut-Chart
 export var view: any[] = [285, 285];
 
-//Options
+// Options
 export var doughnutChartShowLabels = false;
 export var doughnutChartGradient = true;
 export var doughnutChartcolorScheme = {
@@ -36,130 +36,130 @@ export var doughnutChartcolorScheme = {
 
 export var multiData = [
     {
-        "name": "Mon",
-        "series": [
+        'name': 'Mon',
+        'series': [
             {
-                "name": "y",
-                "value": 3
+                'name': 'y',
+                'value': 3
             },
             {
-                "name": "z",
-                "value": 2
+                'name': 'z',
+                'value': 2
             }]
     },
     {
-        "name": "Tue",
-        "series": [
+        'name': 'Tue',
+        'series': [
             {
-                "name": "y",
-                "value": 3
+                'name': 'y',
+                'value': 3
             },
             {
-                "name": "z",
-                "value": 0
+                'name': 'z',
+                'value': 0
             }]
     },
     {
-        "name": "Wen",
-        "series": [
+        'name': 'Wen',
+        'series': [
             {
-                "name": "y",
-                "value": 0
+                'name': 'y',
+                'value': 0
             },
             {
-                "name": "z",
-                "value": 1.5
+                'name': 'z',
+                'value': 1.5
             }]
     },
     {
-        "name": "Thu",
-        "series": [
+        'name': 'Thu',
+        'series': [
             {
-                "name": "y",
-                "value": 2
+                'name': 'y',
+                'value': 2
             },
             {
-                "name": "z",
-                "value": 0
+                'name': 'z',
+                'value': 0
             }]
     },
     {
-        "name": "Fri",
-        "series": [
+        'name': 'Fri',
+        'series': [
             {
-                "name": "y",
-                "value": 0
+                'name': 'y',
+                'value': 0
             },
             {
-                "name": "z",
-                "value": 3.5
+                'name': 'z',
+                'value': 3.5
             }]
     },
     {
-        "name": "Sat",
-        "series": [
+        'name': 'Sat',
+        'series': [
             {
-                "name": "y",
-                "value": 3
+                'name': 'y',
+                'value': 3
             },
             {
-                "name": "z",
-                "value": 2
+                'name': 'z',
+                'value': 2
             }]
     },
     {
-        "name": "sun",
-        "series": [
+        'name': 'sun',
+        'series': [
             {
-                "name": "y",
-                "value": 0
+                'name': 'y',
+                'value': 0
             },
             {
-                "name": "z",
-                "value": 2
+                'name': 'z',
+                'value': 2
             }]
     }
 ];
-//vertical-stack chart
+// vertical-stack chart
 export var vertical_stack_chart = [
     {
-        x: "Mon",
+        x: 'Mon',
         y: 3,
         z: 2
     },
     {
-        x: "Tue",
+        x: 'Tue',
         y: 3,
         z: null
     },
     {
-        x: "Wed",
+        x: 'Wed',
         y: 0,
         z: 1.5
     },
     {
-        x: "Thu",
+        x: 'Thu',
         y: 2,
         z: null
     },
     {
-        x: "Fri",
+        x: 'Fri',
         y: 0,
         z: 3.5
     },
     {
-        x: "Sat",
+        x: 'Sat',
         y: 3,
         z: 2
 
     },
     {
-        x: "Sun",
+        x: 'Sun',
         y: 0,
         z: 2
-    }]
+    }];
 
-//Vertical stacked chart option
+// Vertical stacked chart option
 export var showXAxis = true;
 export var showYAxis = true;
 export var gradient = false;
@@ -494,9 +494,9 @@ export var pieChart1: any = {
     options: {
         title: 'My Daily Activities',
         height: 400,
-        colors: [ primary, secondary, "#22af47", "#007bff", "#FF5370", "#22af47", "#ff9f40"],
+        colors: [ primary, secondary, '#22af47', '#007bff', '#FF5370', '#22af47', '#ff9f40'],
         labels: false,
-        backgroundColor:'transparent'
+        backgroundColor: 'transparent'
     },
 };
 
@@ -521,7 +521,7 @@ export var barChartSingle1: Chart = {
         responsive: true,
         height: 70,
         width: 450,
-        fill: [ primary, secondary, "#22af47"],
+        fill: [ primary, secondary, '#22af47'],
     }
 };
 export var barChartSingle2: Chart = {
@@ -545,7 +545,7 @@ export var barChartSingle2: Chart = {
         responsive: true,
         height: 70,
         width: 450,
-        fill: [ primary, secondary, "#22af47"]
+        fill: [ primary, secondary, '#22af47']
     }
 
 };
@@ -570,7 +570,7 @@ export var barChartSingle3: Chart = {
         responsive: true,
         height: 70,
         width: 450,
-        fill: [ primary, secondary, "#22af47"]
+        fill: [ primary, secondary, '#22af47']
     }
 };
 

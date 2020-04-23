@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-info-business',
@@ -14,27 +14,30 @@ export class InfoBusinessComponent implements OnInit {
   public title = 'registration page';
   public form: any;
 
-  constructor(private route: Router, private fb: FormBuilder) {
+  constructor(
+    private route: Router
+  ) {
     this.createForm();
   }
 
   // create form
   createForm() {
-    this.regForm = this.fb.group({
-      firstName: ['', Validators.required, ],
-      email: ['', Validators.required, ],
-      phoneNumber: [ '', [Validators.required,  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ],
-      address: this.fb.group({
-        street: ['', Validators.required, ],
-        number: ['', Validators.required, ],
-        cp: ['', [Validators.required], ],
-        municipality: ['', Validators.required, ],
-        suburb: ['', Validators.required, ],
+    this.regForm = new FormGroup({
+      firstName: new FormControl('', Validators.required, ),
+      email: new FormControl('', Validators.required, ),
+      phoneNumber: new FormControl('', [Validators.required,  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
+      address: new FormGroup({
+        street: new FormControl('', Validators.required, ),
+        number: new FormControl('', Validators.required, ),
+        cp: new FormControl('', [Validators.required], ),
+        municipality: new FormControl('', Validators.required, ),
+        suburb: new FormControl('', Validators.required, ),
       }),
-      requestServiceByMail: ['', , ],
-      selfFormat: ['', , ],
-      logo: ['', Validators.required, ],
+      requestServiceByMail: new FormControl(''),
+      selfFormat: new FormControl(''),
+      logo: new FormControl('', Validators.required, ),
     });
+//    console.log(this.regForm.get('address').get('street'));
   }
 
   save(form: any) {

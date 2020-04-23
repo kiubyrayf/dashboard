@@ -270,7 +270,7 @@ a{
         margin-right: auto;
         margin-left: auto;
         padding: 50px;
-        border: 2px dashed #4466f2;
+        border: 2px dashed #9abe26;
         border-radius: 15px;
         background: rgba(68, 102, 242, 0.2);
         min-height: 150px;
@@ -283,7 +283,7 @@ a{
     }
     .dropzone  i {
         font-size: 50px;
-        color: #4466f2;
+        color: #9abe26;
         text-align: center;
     }
     .card{
@@ -501,8 +501,7 @@ image-cropper {
         color: white;
     }
 
-    .container {
-    }
+    .container {}
     .gu-mirror {
         cursor: grabbing;
     }
@@ -687,7 +686,7 @@ perfect-scrollbar {
     margin: 0 !important;
     z-index: 9999 !important;
     opacity: 0.8;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=80)';
     filter: alpha(opacity=80);
 }
 .gu-hide {
@@ -701,7 +700,7 @@ perfect-scrollbar {
 }
 .gu-transit {
     opacity: 0.2;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=20)';
     filter: alpha(opacity=20);
 }
 // google map page css

@@ -1,78 +1,112 @@
-<form [formGroup]="contactForm" class="ngx-form" novalidate>
+<form [formGroup]="contactForm" class="ngx-form mt-5" novalidate >
   
 <div class="form-row">
     <div class="col-md-4 mb-3">
-        <label class="control-label">Nombre</label>
-        <input type="text"  class="form-control" >
+        <label class="control-label" for="paymentPerson">Nombre</label>
+        <input type="text" formControlName="paymentPerson"  class="form-control" formControlName="paymentPerson"  placeholder="Nombre">
+        <div *ngIf="contactForm.controls['paymentPerson'].invalid && (contactForm.controls['paymentPerson'].dirty || contactForm.controls['paymentPerson'].touched)"
+                class="alert">
+            <div *ngIf="contactForm.controls['paymentPerson'].errors.required">
+                Nombre es obligatorio.
+            </div>
+        </div>
     </div>
     <div class="col-md-4 mb-3">
-        <label class="control-label" >Empleo</label>
-        <input type="text"  class="form-control" >
-        
+        <label class="control-label" for="job">Empleo</label>
+        <input type="text"  class="form-control" formControlName="job"  placeholder="Empleo">
+        <div *ngIf="contactForm.controls['job'].invalid && (contactForm.controls['job'].dirty || contactForm.controls['job'].touched)"
+                class="alert">
+            <div *ngIf="contactForm.controls['job'].errors.required">
+                Empleo es obligatorio.
+            </div>
+        </div>
     </div>
     <div class="col-md-4 mb-3">
-        <label class="control-label" >Telefono</label>
-        <input type="text"  class="form-control" >
-        
+        <label class="control-label" for="phoneNumber" >Telefono</label>
+        <input type="text"  class="form-control" formControlName="phoneNumber"  placeholder="telefono">
+        <div *ngIf="contactForm.controls['phoneNumber'].invalid && (contactForm.controls['phoneNumber'].dirty || contactForm.controls['phoneNumber'].touched)"
+                class="alert">
+            <div *ngIf="contactForm.controls['phoneNumber'].errors.required">
+                Empleo es obligatorio.
+            </div>
+        </div>
     </div>
 </div>
 <div class="form-row">
   <div class="col-md-4 mb-3">
-      <label class="control-label" >correo</label>
-      <input type="text" class="form-control" >
+      <label class="control-label" for="email">correo</label>
+      <input type="text" class="form-control" formControlName="email"  placeholder="Correo">
+      <div *ngIf="contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty || contactForm.controls['email'].touched)"
+                class="alert">
+            <div *ngIf="contactForm.controls['email'].errors.required">
+                Empleo es obligatorio.
+            </div>
+        </div>
   </div>
   <div class="col-md-4 mb-3">
-      <label class="control-label">Persona encargada de pago</label>
-      <input type="text"  class="form-control" >
-  </div>
- 
-</div>
-<h4 class="mt-5">Horario de contacto</h4>
-<hr>
-<div class="form-row">
-  <div class="col-md-4 mb-3">
-      <label class="control-label" for="lastname">Lunes</label>
-      <div class="row">
-        <div class="form-group">
-          <ngb-timepicker [formControl]="ctrl" class="time-picker-custom" required></ngb-timepicker>
-          <div *ngIf="ctrl.valid" class="small form-text text-primary">Great choice</div>
-          <div class="small form-text text-danger" *ngIf="!ctrl.valid">
-            <div *ngIf="ctrl.errors['required']">Select some time during lunchtime</div>
-            <div *ngIf="ctrl.errors['tooLate']">Oh no, it's way too late</div>
-            <div *ngIf="ctrl.errors['tooEarly']">It's a bit too early</div>
+    <label class="control-label" for="fax">Fax</label>
+    <input type="text" class="form-control" formControlName="fax"  placeholder="Fax">
+    <div *ngIf="contactForm.controls['fax'].invalid && (contactForm.controls['fax'].dirty || contactForm.controls['fax'].touched)"
+              class="alert">
+          <div *ngIf="contactForm.controls['fax'].errors.required">
+              Empleo es obligatorio.
           </div>
+      </div>
+</div>
+</div>
+<h3 class="mt-5 mb-5">Horario de contacto</h3>
+<div class="form-group" formGroupName="schedule">
+  <div class="	col-md-4 mb-3">
+      <label class="control-label" for="lastname">Lunes</label>
+      <div class="row divceter">
+            <div class="input-group clockpicker" data-placement="bottom" data-align="top" data-autoclose="true">
+                <input type="text" formControlName="mondayStart" class="form-control" value="09:32">
+                <span class="input-group-addon">
+                    <span class="glyphicon icofont icofont-clock-time"></span>
+                </span>
+            </div>
+          <label class="m-r-15 m-l-15"> A </label>
+          <div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+            <input type="text" formControlName="mondayEnd" class="form-control" value="09:00">
+            <span class="input-group-addon">
+                <span class="glyphicon icofont icofont-clock-time"></span>
+            </span>
         </div>
       </div>
+      
   </div>
   <div class="col-md-4 mb-3">
     <label class="control-label" for="lastname">Martes</label>
-    <div class="row-display"> 
+    <div class="row divceter">
       
+       <label class="m-r-15 m-l-15"> A </label>
+         
+         
     </div>
   </div>
   <div class="col-md-4 mb-3">
     <label class="control-label" for="lastname">Miercoles</label>
-    <div class="row-display">
-      
-    </div>  
-  </div>
-  <div class="col-md-4 mb-3">
-    <label class="control-label" for="lastname">Jueves</label>
-    <div class="form-row">
-      <div class="row-display">
+    <div class="row divceter">
+     
+         <label class="m-r-15 m-l-15"> A </label>
         
-      </div>
+        
     </div>
   </div>
-  <div class="col-md-4 mb-3">
-    <label class="control-label" for="lastname">Viernes</label>
-    <div class="row-display">
-      
-    </div>  
+  <div class="	col-md-4 mb-3">
+    <label class="control-label" for="lastname">Jueves</label>
+    <div class="row divceter">
+     
+        
+       <label class="m-r-15 m-l-15"> A </label>
+        
+        
+    </div>
   </div>
  
 </div>
-  <div class="f1-buttons">
+
+  <div class="form-group f1-buttons">
     <button class="btn btn-primary btn-previous" type="button" awPreviousStep>Previous</button>
     <button class="btn btn-primary btn-next" type="button" [disabled]="!contactForm.valid" awNextStep>Next</button>
   </div>

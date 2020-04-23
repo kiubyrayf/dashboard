@@ -1,7 +1,7 @@
 import * as Chartist from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
 
-var primary = localStorage.getItem('primary_color') || '#4466f2';
+var primary = localStorage.getItem('primary_color') || '#9abe26';
 var secondary = localStorage.getItem('secondary_color') || '#1ea6ec';
 
 export interface Chart {
@@ -163,9 +163,9 @@ export var chart4: Chart = {
   }
 };
 
-//Sale chart
+// Sale chart
 export var saleChartType = 'line';
-export var saleChartLabels: Array<any> = ["2010", "2011", "2012", "2013", "2014", "2015", "2016"];
+export var saleChartLabels: Array<any> = ['2010', '2011', '2012', '2013', '2014', '2015', '2016'];
 export var saleChartData: Array<any> = [
   { data: [1, 2.5, 1.5, 3, 1.3, 2, 4, 4.5] },
   { data: [0, 1, 0.5, 1, 0.3, 1.6, 1.4, 2] }
@@ -178,7 +178,7 @@ export var saleChartOptions: any = {
     xAxes: [{
       display: true,
       gridLines: {
-        color: "#fff",
+        color: '#fff',
         drawTicks: true,
       }
     }],
@@ -211,11 +211,11 @@ export var saleChartColors: Array<any> = [
 ];
 export var saleChartLegend = false;
 
-//Invest Chart data and options
+// Invest Chart data and options
 export var dailyChartLabels: string[] = ['Bitcoin', 'Ripple', 'Invest'];
 export var dailyChartData: number[] = [40, 8, 10];
 export var dailyChartColors: any[] = [{
-  backgroundColor: [primary, "#f6f6f6", secondary],
+  backgroundColor: [primary, '#f6f6f6', secondary],
   borderAlign: 'center',
   borderColor: primary,
   weight: 1,

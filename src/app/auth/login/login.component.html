@@ -5,7 +5,7 @@
 			<div class="card mt-4">
 				<div class="card-body">
 					<div class="text-center">
-						<h4>LOGIN</h4>
+						<h4>INICIAR SESION</h4>
 						<h6>Ingrese usuario y contraseña </h6>
 					</div>
 					<form class="theme-form" [formGroup]="loginForm" *ngIf="!newUser">
@@ -37,7 +37,7 @@
 							<button class="btn btn-primary btn-block btn-lg"
 								[class.loader--text]="authService.showLoader"
 								[disabled]="!loginForm.valid || authService.showLoader" (click)="login(loginForm.value)"
-								type="submit"><span>{{ authService.showLoader ? '' : 'Login' }}</span>
+								type="submit"><span>{{ authService.showLoader ? '' : 'Ingresar' }}</span>
 							</button>
 						</div>
 						
