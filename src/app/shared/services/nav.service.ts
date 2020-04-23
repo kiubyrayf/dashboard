@@ -47,9 +47,6 @@ export class NavService {
 				// { path: '/dashboard/project', title: 'Project', type: 'link' }
 			]
 		},
-		{
-			path: '/business', title: 'Empresa', icon: 'box', type: 'link', bookmark: true
-		}
 		// {
 		// 	title: 'Widgets', icon: 'airplay', type: 'sub', active: false, children: [
 		// 		{ path: '/widgets/general', title: 'General', type: 'link' },

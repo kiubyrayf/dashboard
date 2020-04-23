@@ -501,7 +501,8 @@ image-cropper {
         color: white;
     }
 
-    .container {}
+    .container {
+    }
     .gu-mirror {
         cursor: grabbing;
     }
@@ -686,7 +687,7 @@ perfect-scrollbar {
     margin: 0 !important;
     z-index: 9999 !important;
     opacity: 0.8;
-    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=80)';
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
     filter: alpha(opacity=80);
 }
 .gu-hide {
@@ -700,7 +701,7 @@ perfect-scrollbar {
 }
 .gu-transit {
     opacity: 0.2;
-    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=20)';
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
     filter: alpha(opacity=20);
 }
 // google map page css

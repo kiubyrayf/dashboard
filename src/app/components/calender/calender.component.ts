@@ -27,7 +27,7 @@ const colors: any = {
 })
 export class CalenderComponent {
 
-  @ViewChild('modalContent', { static: false })
+  @ViewChild('modalContent',{static: false})
   modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;

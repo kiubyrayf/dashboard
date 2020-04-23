@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
     private afauth: AngularFireAuth, private fb: FormBuilder,
     private router: Router) {
     this.loginForm = fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      email: ['test@gmail.com', [Validators.required, Validators.email]],
+      password: ['test123', Validators.required]
     });
   }
 

@@ -2941,7 +2941,7 @@ li:hover > a {
             padding-right: 0; }
           .page-main-header .main-header-right .nav-right > ul > li:nth-child(5) {
             border-left: none;
-            border-right: none;
+            border-right: 1px solid #eff0f1;
             padding-left: 0; }
           .page-main-header .main-header-right .nav-right > ul > li h6 {
             margin-top: 10px;
@@ -13560,7 +13560,7 @@ body.dark-only {
           body.dark-only .page-wrapper .page-main-header .main-header-right .nav-right > ul > li:last-child, body.dark-only .page-wrapper .page-main-header .main-header-right .nav-right > ul > li:nth-child(5), body.dark-only .page-wrapper .page-main-header .main-header-right .nav-right > ul > li:nth-child(1) {
             border-left: none; }
           body.dark-only .page-wrapper .page-main-header .main-header-right .nav-right > ul > li:nth-child(5) {
-            border-right: none; }
+            border-right: 1px solid #374558; }
           body.dark-only .page-wrapper .page-main-header .main-header-right .nav-right > ul > li:first-child .search-form .form-group:before {
             background: #374558; }
         body.dark-only .page-wrapper .page-main-header .main-header-right .nav-right .nav-menus li .media .media-body .txt-dark {
@@ -17233,7 +17233,7 @@ body.dark-header-sidebar-mix {
           body.dark-header-sidebar-mix .page-wrapper .page-main-header .main-header-right .nav-right > ul > li:last-child, body.dark-header-sidebar-mix .page-wrapper .page-main-header .main-header-right .nav-right > ul > li:nth-child(5), body.dark-header-sidebar-mix .page-wrapper .page-main-header .main-header-right .nav-right > ul > li:nth-child(1) {
             border-left: none; }
           body.dark-header-sidebar-mix .page-wrapper .page-main-header .main-header-right .nav-right > ul > li:nth-child(5) {
-            border-right: none; }
+            border-right: 1px solid #374558; }
           body.dark-header-sidebar-mix .page-wrapper .page-main-header .main-header-right .nav-right > ul > li:first-child .search-form .form-group:before {
             background: #374558; }
         body.dark-header-sidebar-mix .page-wrapper .page-main-header .main-header-right .nav-right .nav-menus li .media .media-body .txt-dark {
@@ -23025,7 +23025,7 @@ footer.blockquote-footer {
   .updating-chart .flot-chart-container #updating-data-morris-chart path {
     stroke-width: 1.9; }
   .updating-chart .flot-chart-container #updating-data-morris-chart circle {
-    r: 5;
+    /*r: 5;*/
     stroke-width: 0; }
 
 #owl-carousel-14 {
