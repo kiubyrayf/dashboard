@@ -3,7 +3,7 @@ declare var require: any
 const moment = require('moment');
 moment.suppressDeprecationWarnings = true;
 
-var primary = localStorage.getItem('primary_color') || '#4466f2';
+var primary = localStorage.getItem('primary_color') || '#9abe26';
 var secondary = localStorage.getItem('secondary_color') || '#1ea6ec';
 
 //Sale chart
@@ -103,10 +103,10 @@ export var latencyChartOptions: any = {
 export var latencyChartColors: Array<any> = [{
   fill: true,
   backgroundColor: "rgb(183, 196, 246)",
-  borderColor: "#4466f2",
+  borderColor: "#9abe26",
   borderWidth: 1.5,
-  pointBackgroundColor: '#4466f2',
-  pointBorderColor: "#4466f2",
+  pointBackgroundColor: '#9abe26',
+  pointBorderColor: "#9abe26",
   pointBorderWidth: 0,
   lineTension: 0,
 }];

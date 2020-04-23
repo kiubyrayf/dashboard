@@ -6,7 +6,7 @@ import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, Cal
 
 const colors: any = {
   red: {
-    primary: '#4466f2',
+    primary: '#9abe26',
     secondary: '#FAE3E3'
   },
   blue: {

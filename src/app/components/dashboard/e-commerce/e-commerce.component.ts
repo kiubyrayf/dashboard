@@ -3,7 +3,7 @@ import * as data from './../../../shared/data/dashboard/e-commerce';
 declare var require: any
 var Knob = require('knob') // browserify require
 
-var primary = localStorage.getItem('primary_color') || '#4466f2';
+var primary = localStorage.getItem('primary_color') || '#9abe26';
 var secondary = localStorage.getItem('secondary_color') || '#1ea6ec';
 
 @Component({

@@ -12,7 +12,7 @@ export var barChartData: any[] = [
 ];
 export var barChartColors: Array<any> = [
   {
-    backgroundColor: '#4466f2',
+    backgroundColor: '#9abe26',
     borderColor: "rgba(30, 166, 236, 0.8)",
     borderWidth: 1,
   },
@@ -51,7 +51,7 @@ export var lineGraphData: any[] = [
 export var lineGraphColors: Array<any> = [
   {
     backgroundColor: 'rgba(68, 102, 242, 0.3)',
-    borderColor: "#4466f2",
+    borderColor: "#9abe26",
     borderWidth: 2,
   },
   {
@@ -88,7 +88,7 @@ export var radarGraphData: any[] = [
 ];
 export var radarGraphColors: Array<any> = [{
   backgroundColor: 'rgba(68, 102, 242, 0.4)',
-  borderColor: "#4466f2",
+  borderColor: "#9abe26",
   borderWidth: 2,
 }];
 
@@ -108,7 +108,7 @@ export var lineChartOptions: any = {
 export var lineChartColors: Array<any> = [
   {
     backgroundColor: 'rgba(68, 102, 242, 0.3)',
-    borderColor: "#4466f2",
+    borderColor: "#9abe26",
     borderWidth: 2,
     lineTension: 0,
   },
@@ -120,7 +120,7 @@ export var lineChartColors: Array<any> = [
   },
   {
     backgroundColor: 'rgba(68, 102, 242, 0.4)',
-    borderColor: "#4466f2",
+    borderColor: "#9abe26",
     borderWidth: 2,
     lineTension: 0,
   }
@@ -131,7 +131,7 @@ export var lineChartType = 'line';
 // Doughnut
 export var doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
 export var doughnutChartData: number[] = [350, 450, 100];
-export var doughnutChartColors: any[] = [{ backgroundColor: ["#4466f2", "#1ea6ec", "#FF5370"] }];
+export var doughnutChartColors: any[] = [{ backgroundColor: ["#9abe26", "#1ea6ec", "#FF5370"] }];
 export var doughnutChartType = 'doughnut';
 export var doughnutChartOptions: any = {
   animation: false,
@@ -143,7 +143,7 @@ export var doughnutChartOptions: any = {
 export var polarAreaChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
 export var polarAreaChartData: number[] = [300, 500, 100, 40, 120];
 export var polarAreaLegend = false;
-export var ploarChartColors: any[] = [{ backgroundColor: ["#4466f2", "#1ea6ec", "#22af47", "#007bff", "#ff2046"] }];
+export var ploarChartColors: any[] = [{ backgroundColor: ["#9abe26", "#1ea6ec", "#22af47", "#007bff", "#ff2046"] }];
 export var polarAreaChartType = 'polarArea';
 export var polarChartOptions: any = {
   animation: false,
