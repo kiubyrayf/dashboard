@@ -18,7 +18,9 @@
                 <div *ngIf="regForm.controls['email'].errors.required">
                     Correo es obligatorio.
                 </div>
-                
+                <div *ngIf="regForm.controls['email'].errors?.pattern">
+                    Correo no valido.
+                </div>
             </div>
         </div>
         <div class="col-md-4 mb-3">
@@ -30,7 +32,7 @@
                     Telefono es obligatorio.
                 </div>
                 <div *ngIf="regForm.controls['phoneNumber'].errors?.pattern">
-                    Telefono tiene que ser 10 digitos
+                    Telefono tiene que ser 10 digitos numericos.
                 </div>
             </div>
         </div>
@@ -53,30 +55,50 @@
             <div class="col-md-4 mb-3">
                 <label class="control-label" for="number">Numero</label>
                 <input type="text" formControlName="number" class="form-control" placeholder="Numero">
-               
+                <div *ngIf="regForm.controls['address'].get('number').invalid && (regForm.controls['address'].get('number').dirty || regForm.controls['address'].get('number').touched)" class="alert">
+                    <div *ngIf="regForm.controls['address'].get('number').errors.required">
+                        El numemro es obligatoria.
+                    </div>
+                </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label class="control-label" for="suburb">Colonia</label>
                 <input type="text" formControlName="suburb" class="form-control" placeholder="Colonia">
-                
+                <div *ngIf="regForm.controls['address'].get('suburb').invalid && (regForm.controls['address'].get('suburb').dirty || regForm.controls['address'].get('suburb').touched)" class="alert">
+                    <div *ngIf="regForm.controls['address'].get('suburb').errors.required">
+                        La colonia es obligatoria.
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label class="control-label" for="cp">Codigo Postal</label>
                 <input type="text" formControlName="cp" class="form-control" placeholder="Codigo Postal">
-               
+                <div *ngIf="regForm.controls['address'].get('cp').invalid && (regForm.controls['address'].get('cp').dirty || regForm.controls['address'].get('cp').touched)"
+                class="alert">
+                    <div *ngIf="regForm.controls['address'].get('cp').errors.required">
+                        Telefono es obligatorio.
+                    </div>
+                    <div *ngIf="regForm.controls['address'].get('cp').errors?.pattern">
+                        Telefono tiene que ser 5 digitos numericos.
+                    </div>
+                </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label class="control-label" for="municipality">Municipio</label>
                 <input type="text" formControlName="municipality" class="form-control" placeholder="Municipio">
-               
+                <div *ngIf="regForm.controls['address'].get('municipality').invalid && (regForm.controls['address'].get('municipality').dirty || regForm.controls['address'].get('municipality').touched)" class="alert">
+                    <div *ngIf="regForm.controls['address'].get('municipality').errors.required">
+                        El municipio es obligatoria.
+                    </div>
+                </div>
             </div>
             
         </div>
 
     </div>    
-    <div class=" row">
+    <div class=" group-row">
         <div class="col-md-12 mb-5">
             <div class=" m-t-15 m-checkbox-inline mb-0 ml-1 animate-chk">
                 <div class="checkbox checkbox-primary">
@@ -108,7 +130,16 @@
 
     
     <div class="form-group f1-buttons">
-        <button class="btn btn-primary btn-next" [disabled]="!regForm.valid" awNextStep> Next
+        <button class="btn btn-primary btn-next" [disabled]="!regForm.valid" awNextStep> siguiente
         </button>
     </div>
 </form>
+<hr>
+<pre>
+    estado del formulario : {{regForm.valid}}
+    <br>
+    status : {{regForm.status}}
+</pre>
+<pre>
+    {{regForm.value | json}}
+</pre>

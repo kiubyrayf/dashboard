@@ -22,16 +22,16 @@ export class ContactBusinessComponent implements OnInit {
   }
 
   createContactForm() {
-    this.contactForm = this.fb.group({
-      job: ['', Validators.required],
-      phoneNumber: ['', [Validators.required]],
-      email: ['', Validators.required],
-      paymentPerson: ['', Validators.required],
-      fax: ['', Validators.required],
-      schedule: this.fb.group({
-        mondayStart: ['', , ],
-        mondayEnd: ['', , ],
-        tuesdayStart: ['', , ],
+    this.contactForm = new FormGroup({
+      job:  new FormControl('', Validators.required, ),
+      phoneNumber:  new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      paymentPerson: new FormControl('', Validators.required, ),
+      fax:  new FormControl('', [Validators.required ] ),
+      schedule: new FormGroup({
+        mondayStart: new FormControl(''),
+        mondayEnd: new FormControl('' ),
+        /*tuesdayStart: ['', , ],
         tuesdayEnd: ['', , ],
         wednesdayStart: ['', , ],
         wednesdayEnd: ['', , ],
@@ -40,7 +40,7 @@ export class ContactBusinessComponent implements OnInit {
         fridayStart: ['', , ],
         fridayEnd: ['', , ],
         saturdayStart: ['', , ],
-        saturdayEnd: ['', , ],
+        saturdayEnd: ['', , ],*/
       }),
     });
   }

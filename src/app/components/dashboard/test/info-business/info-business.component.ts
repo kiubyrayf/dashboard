@@ -24,12 +24,12 @@ export class InfoBusinessComponent implements OnInit {
   createForm() {
     this.regForm = new FormGroup({
       firstName: new FormControl('', Validators.required, ),
-      email: new FormControl('', Validators.required, ),
+      email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ),
       phoneNumber: new FormControl('', [Validators.required,  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
       address: new FormGroup({
         street: new FormControl('', Validators.required, ),
         number: new FormControl('', Validators.required, ),
-        cp: new FormControl('', [Validators.required], ),
+        cp: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{5}$')], ),
         municipality: new FormControl('', Validators.required, ),
         suburb: new FormControl('', Validators.required, ),
       }),
@@ -37,7 +37,7 @@ export class InfoBusinessComponent implements OnInit {
       selfFormat: new FormControl(''),
       logo: new FormControl('', Validators.required, ),
     });
-//    console.log(this.regForm.get('address').get('street'));
+
   }
 
   save(form: any) {

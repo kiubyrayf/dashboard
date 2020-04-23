@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 declare var require;
@@ -11,7 +11,7 @@ const Swal = require('sweetalert2');
   encapsulation: ViewEncapsulation.None
 })
 export class PaymentBusinessComponent implements OnInit {
-  public birthdateForm: FormGroup;
+  public payForm: FormGroup;
   public submitted = false;
   public allData = FormData;
   public form: any;
@@ -21,16 +21,25 @@ export class PaymentBusinessComponent implements OnInit {
   }
 
   createForm() {
-    this.birthdateForm = this.fb.group({
-      dd: [null, Validators.required, ],
-      mm: [null, Validators.required, ],
-      yyyy: [null, Validators.required, ],
+    this.payForm = new FormGroup({
+      closingDocument: new FormControl('', Validators.required, ),
+      serviceWarranty: new FormControl('', Validators.required, ),
+      servicesPrice: new FormGroup({
+        foreign: new FormControl('', Validators.required, ),
+        viaticForeign:  new FormControl('', Validators.required, ),
+        local:  new FormControl('', Validators.required, ),
+        viaticLocal: new FormControl('', Validators.required, ),
+        visitNotRealized:  new FormControl('', Validators.required, ),
+        visitRealized:  new FormControl('', Validators.required, ),
+        endingPrice:  new FormControl('', Validators.required, ),
+        disscount:  new FormControl('', Validators.required, )
+      })
     });
   }
 
   onSubmit() {
     this.submitted = true;
-    if (!this.birthdateForm.valid) {
+    if (!this.payForm.valid) {
       return false;
     }
     return true;
