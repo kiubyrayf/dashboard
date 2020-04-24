@@ -48,7 +48,7 @@ export class NavService {
 			]
 		},
 		{
-			path: '/empresas/general', title: 'General', icon: 'box', type: 'link' 
+			path: '/empresas/general', title: 'General', icon: 'box', type: 'link' 		
 		},
 		//{
 			// 	path: '/contact/contacts', title: 'contact', icon: 'user-plus', type: 'link'

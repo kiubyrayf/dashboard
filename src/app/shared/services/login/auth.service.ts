@@ -4,7 +4,11 @@ import { HttpClient } from '@angular/common/http';
 
 import { Config } from '../../../config/index';
 import { HttpInterface } from '../../../interface/services/http/http.response.interface';
+import { Observable } from 'rxjs';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
     private config: any;
     private routes: any;
@@ -20,27 +24,31 @@ export class AuthService {
       this._SESSION_USER_DATA = '_user_data';
       this.routes = {
         validate: 'security/validate',
-        login: 'security/auth'
+        login: 'auth/login'
       };
     }
 
-    login(userName: string, password: string): Promise<any> {
-        return new Promise((resolve, reject) => {
-          password = btoa(password);
-          this.httpService.post(`${this.config.api}${this.routes.login}`, {
-            userName,
-            password
-          }).subscribe((response: HttpInterface) => {
-            if (response.status === 200) {
-              localStorage.setItem(this._SESSION_TOKEN_NAME, btoa(response.message));
-              resolve(true);
-            } else {
-              reject(false);
-            }
-          }, (err) => {
-            reject(false);
-          });
-        });
+    login(userName: string, password: string): Observable<any> {
+      return this.httpService.post<any>(`https://apidev.sieesweb.com/${this.routes.login}`, {
+        userName,
+        password
+      });
+        // return new Promise((resolve, reject) => {
+        //   password = btoa(password);
+        //   this.httpService.post(`https://apidev.sieesweb.com/${this.routes.login}`, {
+        //     userName,
+        //     password
+        //   }).subscribe((response: HttpInterface) => {
+        //     if (response.status === 200) {
+        //       localStorage.setItem(this._SESSION_TOKEN_NAME, btoa(response.message));
+        //       resolve(true);
+        //     } else {
+        //       reject(false);
+        //     }
+        //   }, (err) => {
+        //     reject(false);
+        //   });
+        // });
       }
     
     logout(): void {
@@ -63,7 +71,7 @@ export class AuthService {
             reject();
             } else {
             // Token validation
-            this.httpService.post(`${this.config.api}${this.routes.validate}`, {
+            this.httpService.post(`https://apidev.sieesweb.com/${this.routes.validate}`, {
                 token
             }).subscribe((response: HttpInterface) => {
                 if (response.status === 200) {
