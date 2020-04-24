@@ -21,12 +21,12 @@ export interface Menu {
 export class NavService {
 
 	public screenWidth: any
-	public collapseSidebar: boolean = false
+	public collapseSidebar: boolean = false;
 
 	constructor() {
 		this.onResize();
 		if (this.screenWidth < 991) {
-			this.collapseSidebar = true
+			this.collapseSidebar = true;
 		}
 	}
 
@@ -47,6 +47,12 @@ export class NavService {
 				// { path: '/dashboard/project', title: 'Project', type: 'link' }
 			]
 		},
+		{
+			path: '/empresas/general', title: 'General', icon: 'box', type: 'link' 		
+		},
+		//{
+			// 	path: '/contact/contacts', title: 'contact', icon: 'user-plus', type: 'link'
+			// },
 		// {
 		// 	title: 'Widgets', icon: 'airplay', type: 'sub', active: false, children: [
 		// 		{ path: '/widgets/general', title: 'General', type: 'link' },

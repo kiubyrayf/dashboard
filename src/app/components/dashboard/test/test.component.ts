@@ -7,7 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TestComponent implements OnInit {
     @Input() formData;
     title = 'Empresa';
-
     ngOnInit() {}
 
 }

@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthService } from '../../shared/services/firebase/auth.service';
+import { AuthService } from 'src/app/shared/services/login/auth.service';
 
-type UserFields = 'email' | 'password';
-type FormErrors = { [u in UserFields]: string };
 
 @Component({
   selector: 'app-login',
@@ -13,32 +10,48 @@ type FormErrors = { [u in UserFields]: string };
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  public newUser = false;
-  public user: firebase.User;
+ 
   public loginForm: FormGroup;
-  public formErrors: FormErrors = {
-    'email': '',
-    'password': '',
-  };
+
   public errorMessage: any;
 
-  constructor(public authService: AuthService,
-    private afauth: AngularFireAuth, private fb: FormBuilder,
-    private router: Router) {
+  user: string;
+  pass: string;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private auth: AuthService,
+    )
+    {
     this.loginForm = fb.group({
-      email: ['test@gmail.com', [Validators.required, Validators.email]],
-      password: ['test123', Validators.required]
+      user: ['', [Validators.required, Validators.email]],
+      pass: ['', Validators.required]
     });
   }
 
   ngOnInit() {
   }
 
-
-  // Simple Login
   login() {
-    this.authService.SignIn(this.loginForm.value['email'], this.loginForm.value['password']);
+    // tslint:disable-next-line: no-debugger
+    debugger;
+    this.auth.login(this.user, this.pass).subscribe (result => {
+      console.log('Esto regresa la API');
+      console.log(result);
+    });
   }
+
+  updateUser(val: string) {
+    this.user = val;
+    console.log (this.user);
+  }
+
+  updatePassword(val: string) {
+    this.pass = val;
+    console.log (this.pass);
+    console.log("usted es del mal");
+  }
+
 
 }

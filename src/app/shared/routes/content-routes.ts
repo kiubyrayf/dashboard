@@ -9,6 +9,12 @@ export const content: Routes = [
     }
   },
   {
+    path: 'empresas',
+    loadChildren: () => import('../../pages/empresas/empresas.module').then(m => m.EmpresasModule),
+    data: {
+      breadcrumb: "Empresas"
+    }
+  },{
     path: 'base',
     loadChildren: () => import('../../components/base/base.module').then(m => m.BaseModule),
     data: {

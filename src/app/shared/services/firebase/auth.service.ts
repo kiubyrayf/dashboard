@@ -25,7 +25,8 @@ export class AuthService implements OnInit {
   private _sessionId: string;
   public showLoader: boolean = false;
 
-  constructor(public afs: AngularFirestore,
+  constructor(
+    public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone,
@@ -49,7 +50,7 @@ export class AuthService implements OnInit {
 
   ngOnInit(): void { }
 
-  //sign in function
+  // sign in function
   SignIn(email, password) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
@@ -65,27 +66,28 @@ export class AuthService implements OnInit {
         }
       }).catch((error) => {
         this.toster.error('You have enter Wrong Email or Password.');
-      })
+      });
   }
-  //main verification function
+  
+  // main verification function
   SendVerificationMail() {
     return this.afAuth.auth.currentUser.sendEmailVerification()
       .then(() => {
         this.router.navigateByUrl('/dashboard/default');
-      })
+      });
   }
 
-  //Sign in with Facebook
+  // Sign in with Facebook
   signInFacebok() {
     return this.AuthLogin(new auth.FacebookAuthProvider());
   }
 
-  //Sign in with Twitter
+  // Sign in with Twitter
   signInTwitter() {
     return this.AuthLogin(new auth.TwitterAuthProvider());
   }
 
-  //Sign in with Google
+  // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider());
   }
@@ -99,7 +101,7 @@ export class AuthService implements OnInit {
       });
   }
 
-  //Authentication for Login
+  // Authentication for Login
   AuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((result) => {
@@ -112,7 +114,7 @@ export class AuthService implements OnInit {
       });
   }
 
-  //Set user
+  // Set user
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
@@ -145,7 +147,7 @@ export class AuthService implements OnInit {
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user != null && user.emailVerified != false) ? true : false;
+    return (user != null && user.emailVerified !== false) ? true : false;
   }
 
 }
