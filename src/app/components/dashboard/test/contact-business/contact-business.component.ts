@@ -50,6 +50,7 @@ export class ContactBusinessComponent implements OnInit {
       return false;
     }
     return true;
+
   }
 
   ngOnInit() {  }
