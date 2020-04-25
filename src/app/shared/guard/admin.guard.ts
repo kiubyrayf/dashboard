@@ -12,7 +12,7 @@ export class AdminGuard implements CanActivate {
   
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     // Guard for user is login or not
-    const user = JSON.parse(localStorage.getItem('_user_data'));
+    const user = JSON.parse(localStorage.getItem('user'));
     if (!user) { //!usser
       this.router.navigate(['/auth/login']);
       return true;

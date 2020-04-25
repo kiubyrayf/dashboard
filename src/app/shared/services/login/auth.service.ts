@@ -20,8 +20,8 @@ export class AuthService {
       private httpService: HttpClient
     ) {
       this.config = Config,
-      this._SESSION_TOKEN_NAME = '_token',
-      this._SESSION_USER_DATA = '_user_data',
+      this._SESSION_TOKEN_NAME = 'token',
+      this._SESSION_USER_DATA = 'user',
       this.routes = {
         validate: 'security/validate',
         login: 'auth/login'
@@ -46,8 +46,11 @@ export class AuthService {
           }).subscribe((response: HttpInterface) => {
             
             if (response.status === 1) {
+              debugger
+
               localStorage.setItem(this._SESSION_TOKEN_NAME, btoa(response.message));
               resolve(true);
+
               console.log(response);
             } else {
               reject(false);
@@ -64,8 +67,7 @@ export class AuthService {
         this.showLoader = false;
     }
     
-    getToken() {
-      
+    getToken() { //lee el toquen 
         let tokenEncoded: string = localStorage.getItem(this._SESSION_TOKEN_NAME);
         let token = (tokenEncoded !== null) ? atob(tokenEncoded) : null;
         return token;
@@ -84,10 +86,10 @@ export class AuthService {
             }).subscribe((response: HttpInterface) => {
                 if (response.status === 3) {
                 this.setUserData(response.message);
-                resolve(true);
+                  resolve(true);
                 } else {
-                localStorage.removeItem(this._SESSION_USER_DATA);
-                reject(false);
+                  localStorage.removeItem(this._SESSION_USER_DATA);
+                  reject(false);
                 }
             }, (err) => {
                 localStorage.removeItem(this._SESSION_USER_DATA);
@@ -106,7 +108,7 @@ export class AuthService {
         return JSON.parse(jsonData);
     }
     get isLoggedIn(): boolean {
-      const user = JSON.parse(localStorage.getItem('_user_data'));
+      const user = JSON.parse(localStorage.getItem('user'));
       return (user !== null ) ? true : false; // !==
     }
 }

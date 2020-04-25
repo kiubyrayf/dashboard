@@ -12,7 +12,7 @@ export class SecureInnerPagesGuard implements CanActivate {
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        const user = JSON.parse(localStorage.getItem('_user_data'));
+        //const user = JSON.parse(localStorage.getItem('_user_data'));
         if (this.authService.isLoggedIn) {
             window.alert('¡No tienes permiso para acceder a esta URL!');
             this.router.navigate(['/auth/login']);

@@ -24,12 +24,15 @@ export class LoginComponent implements OnInit {
         user: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required]
     });
-    
-    
   }
 
   ngOnInit() {
-    
+    console.log(atob('YWRtaW5pc3RyYWRvcjEyMzQ1Nj8='));
+    this.auth.validateToken().then(() => {
+      this.router.navigate(['/dashboard/default']);
+    }).catch(() => {
+      console.log ('cacho aqui');
+    });
   }
 
   login() {
@@ -43,7 +46,7 @@ export class LoginComponent implements OnInit {
     });*/
   this.auth.login( this.loginForm.value['user'], this.loginForm.value['password'])
     .then(async () => {
-     // await this.auth.validateToken();
+     await this.auth.validateToken();
       this.router.navigate(['dashboard/default']);
     })
     .catch (() => {
