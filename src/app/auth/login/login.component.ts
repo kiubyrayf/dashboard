@@ -12,46 +12,47 @@ import { AuthService } from 'src/app/shared/services/login/auth.service';
 export class LoginComponent implements OnInit {
  
   public loginForm: FormGroup;
-
   public errorMessage: any;
-
-  user: string;
-  pass: string;
+  
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth: AuthService,
-    )
-    {
-    this.loginForm = fb.group({
-      user: ['', [Validators.required, Validators.email]],
-      pass: ['', Validators.required]
+    public auth: AuthService,
+    ) {
+      this.loginForm = fb.group({
+        user: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required]
+    });
+    
+    this.auth.validateToken().then(() => {
+      this.router.navigate(['/']);
+    }).catch(() => {
+      console.log( 'entro al catch del loging ts');
     });
   }
 
   ngOnInit() {
+    console.log(atob('YWRtaW5pc3RyYWRvcjEyMzQ1Nj8='));
   }
 
   login() {
-    // tslint:disable-next-line: no-debugger
-    debugger;
-    this.auth.login(this.user, this.pass).subscribe (result => {
+  
+   /* this.auth.login( this.loginForm.value['user'], this.loginForm.value['password']).subscribe (result => {
       console.log('Esto regresa la API');
       console.log(result);
+      if (result.status === 1) {
+        this.router.navigate(['dashboard/default']);
+      }
+    });*/
+  this.auth.login( this.loginForm.value['user'], this.loginForm.value['password'])
+    .then(async () => {
+     // await this.auth.validateToken();
+      this.router.navigate(['dashboard/default']);
+    })
+    .catch (() => {
+      console.log('Usuario Invalido ps no valida el token logincomponentTS');
     });
   }
-
-  updateUser(val: string) {
-    this.user = val;
-    console.log (this.user);
-  }
-
-  updatePassword(val: string) {
-    this.pass = val;
-    console.log (this.pass);
-    console.log("usted es del mal");
-  }
-
 
 }

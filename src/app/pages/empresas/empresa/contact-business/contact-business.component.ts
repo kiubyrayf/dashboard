@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
-
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-contact-business',
@@ -30,7 +30,7 @@ export class ContactBusinessComponent implements OnInit {
       fax:  new FormControl('', [Validators.required ] ),
       schedule: new FormGroup({
         mondayStart: new FormControl(''),
-        mondayEnd: new FormControl('' ),
+        mondayEnd: new FormControl(''),
         /*tuesdayStart: ['', , ],
         tuesdayEnd: ['', , ],
         wednesdayStart: ['', , ],
@@ -53,6 +53,14 @@ export class ContactBusinessComponent implements OnInit {
 
   }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    function jQuery () {
+      $('.clockpicker').clockpicker({
+        placement: 'bottom',
+        align: 'left',
+        donetext: 'Cerrar'
+      });
+    }
+   }
 
 }

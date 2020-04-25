@@ -15,12 +15,12 @@ export interface Menu {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 
 export class NavService {
 
-	public screenWidth: any
+	public screenWidth: any;
 	public collapseSidebar: boolean = false;
 
 	constructor() {
@@ -40,7 +40,6 @@ export class NavService {
 		{
 			title: 'Home', icon: 'home', type: 'sub', badgeType: 'primary', active: false, children: [
 				{ path: '/dashboard/default', title: 'Default', type: 'link' },
-				{ path: '/dashboard/test', title: 'Test Component', type: 'link', },
 				// { path: '/dashboard/university', title: 'University', type: 'link' },
 				// { path: '/dashboard/bitcoin', title: 'Crypto', type: 'link' },
 				// { path: '/dashboard/server', title: 'Server', type: 'link' },
@@ -48,7 +47,7 @@ export class NavService {
 			]
 		},
 		{
-			path: '/empresas/general', title: 'General', icon: 'box', type: 'link' 		
+			path: '/empresas/general', title: 'Empresas', icon: 'box', type: 'link' 		
 		},
 		//{
 			// 	path: '/contact/contacts', title: 'contact', icon: 'user-plus', type: 'link'
@@ -59,22 +58,22 @@ export class NavService {
 		// 		{ path: '/widgets/chart', title: 'Chart', type: 'link' }
 		// 	]
 		// },
-		// {
-		// 	title: 'UI-Elements', icon: 'slack', type: 'sub', active: false, children: [
-		// 		{ path: '/ui-elements/avatars', title: 'Avatars', type: 'link' },
-		// 		{ path: '/ui-elements/breadcrumb', title: 'Breadcrumb', type: 'link' },
-		// 		{ path: '/ui-elements/grid', title: 'Grid', type: 'link' },
-		// 		{ path: '/ui-elements/helper-classes', title: 'Helper-Classes', type: 'link' },
-		// 		{ path: '/ui-elements/list', title: 'List', type: 'link' },
-		// 		{ path: '/ui-elements/ribbons', title: 'Ribbons', type: 'link' },
-		// 		{ path: '/ui-elements/shadow', title: 'Shadow', type: 'link' },
-		// 		{ path: '/ui-elements/spinner', title: 'Spinner', type: 'link' },
-		// 		{ path: '/ui-elements/state-color', title: 'State-color', type: 'link' },
-		// 		{ path: '/ui-elements/steps', title: 'Steps', type: 'link' },
-		// 		{ path: '/ui-elements/tag-n-pills', title: 'Tag and Pills', type: 'link' },
-		// 		{ path: '/ui-elements/typography', title: 'Typography', type: 'link' }
-		// 	]
-		// },
+		 {
+		 	title: 'UI-Elements', icon: 'slack', type: 'sub', active: false, children: [
+		 		{ path: '/ui-elements/avatars', title: 'Avatars', type: 'link' },
+		 		{ path: '/ui-elements/breadcrumb', title: 'Breadcrumb', type: 'link' },
+		 		{ path: '/ui-elements/grid', title: 'Grid', type: 'link' },
+		 		{ path: '/ui-elements/helper-classes', title: 'Helper-Classes', type: 'link' },
+		 		{ path: '/ui-elements/list', title: 'List', type: 'link' },
+		 		{ path: '/ui-elements/ribbons', title: 'Ribbons', type: 'link' },
+		 		{ path: '/ui-elements/shadow', title: 'Shadow', type: 'link' },
+		 		{ path: '/ui-elements/spinner', title: 'Spinner', type: 'link' },
+		 		{ path: '/ui-elements/state-color', title: 'State-color', type: 'link' },
+		 		{ path: '/ui-elements/steps', title: 'Steps', type: 'link' },
+		 		{ path: '/ui-elements/tag-n-pills', title: 'Tag and Pills', type: 'link' },
+		 		{ path: '/ui-elements/typography', title: 'Typography', type: 'link' }
+		 	]
+		 },
 
 		// {
 		// 	title: 'Base', icon: 'box', type: 'sub', active: false, children: [

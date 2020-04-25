@@ -5,29 +5,24 @@ export const content: Routes = [
     path: 'dashboard',
     loadChildren: () => import('../../components/dashboard/dashboard.module').then(m => m.DashboardModule),
     data: {
-      breadcrumb: "Dashboard"
+      breadcrumb: 'Dashboard'
     }
   },
   {
     path: 'empresas',
     loadChildren: () => import('../../pages/empresas/empresas.module').then(m => m.EmpresasModule),
     data: {
-      breadcrumb: "Empresas"
-    }
-  },{
-    path: 'base',
-    loadChildren: () => import('../../components/base/base.module').then(m => m.BaseModule),
-    data: {
-      breadcrumb: "Base"
+      breadcrumb: 'Empresas'
     }
   },
-  {
-    path: 'empresa',
-    loadChildren: () => import('../../components/empresa/empresa.module').then(m => m.EmpresaModule),
-    data: {
-      breadcrumb: "empresa"
-    }
-  },
+  // {
+  //   path: 'base',
+  //   loadChildren: () => import('../../components/base/base.module').then(m => m.BaseModule),
+  //   data: {
+  //     breadcrumb: "Base"
+ //    }
+  // },
+  
   // {
   //   path: 'advance',
   //   loadChildren: () => import('../../components/advance/advance.module').then(m => m.AdvanceModule),
@@ -203,13 +198,13 @@ export const content: Routes = [
   //     breadcrumb: "Map"
   //   }
   // },
-  // {
-  //   path: 'ui-elements',
-  //   loadChildren: () => import('../../components/ui-elements/ui-elements.module').then(m => m.UiElementsModule),
-  //   data: {
-  //     breadcrumb: "UI-Elements"
-  //   }
-  // },
+   {
+     path: 'ui-elements',
+     loadChildren: () => import('../../components/ui-elements/ui-elements.module').then(m => m.UiElementsModule),
+     data: {
+       breadcrumb: "UI-Elements"
+     }
+   },
   // {
   //   path: 'widgets',
   //   loadChildren: () => import('../../components/widgets/widgets.module').then(m => m.WidgetsModule),

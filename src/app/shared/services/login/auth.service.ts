@@ -13,42 +13,49 @@ export class AuthService {
     private config: any;
     private routes: any;
     private _SESSION_TOKEN_NAME: string;
-    private _SESSION_USER_DATA: string;
+    public _SESSION_USER_DATA: string;
     public showLoader: boolean = false;
 
     constructor(
       private httpService: HttpClient
     ) {
-      this.config = Config;
-      this._SESSION_TOKEN_NAME = '_token';
-      this._SESSION_USER_DATA = '_user_data';
+      this.config = Config,
+      this._SESSION_TOKEN_NAME = '_token',
+      this._SESSION_USER_DATA = '_user_data',
       this.routes = {
         validate: 'security/validate',
         login: 'auth/login'
       };
+      
     }
 
-    login(userName: string, password: string): Observable<any> {
-      return this.httpService.post<any>(`https://apidev.sieesweb.com/${this.routes.login}`, {
-        userName,
+  /*  login(user: string, password: string): Observable<any> {
+       //Convertir pass a base64 aqui
+      return this.httpService.post(`${this.config.api}${this.routes.login}`, {
+        user,
         password
       });
-        // return new Promise((resolve, reject) => {
-        //   password = btoa(password);
-        //   this.httpService.post(`https://apidev.sieesweb.com/${this.routes.login}`, {
-        //     userName,
-        //     password
-        //   }).subscribe((response: HttpInterface) => {
-        //     if (response.status === 200) {
-        //       localStorage.setItem(this._SESSION_TOKEN_NAME, btoa(response.message));
-        //       resolve(true);
-        //     } else {
-        //       reject(false);
-        //     }
-        //   }, (err) => {
-        //     reject(false);
-        //   });
-        // });
+    }  */  
+     login(user: string, password: string): Promise<any> {
+     
+        return new Promise((resolve, reject) => {
+          password = btoa(password);
+          this.httpService.post(`${this.config.api}${this.routes.login}`, {
+            user,
+            password
+          }).subscribe((response: HttpInterface) => {
+            
+            if (response.status === 1) {
+              localStorage.setItem(this._SESSION_TOKEN_NAME, btoa(response.message));
+              resolve(true);
+              console.log(response);
+            } else {
+              reject(false);
+            }
+          }, (err) => {
+            reject(false);
+          });
+        });
       }
     
     logout(): void {
@@ -58,6 +65,7 @@ export class AuthService {
     }
     
     getToken() {
+      
         let tokenEncoded: string = localStorage.getItem(this._SESSION_TOKEN_NAME);
         let token = (tokenEncoded !== null) ? atob(tokenEncoded) : null;
         return token;
@@ -71,10 +79,10 @@ export class AuthService {
             reject();
             } else {
             // Token validation
-            this.httpService.post(`https://apidev.sieesweb.com/${this.routes.validate}`, {
+            this.httpService.post(`${this.config.api}${this.routes.validate}`, {
                 token
             }).subscribe((response: HttpInterface) => {
-                if (response.status === 200) {
+                if (response.status === 3) {
                 this.setUserData(response.message);
                 resolve(true);
                 } else {
@@ -96,5 +104,9 @@ export class AuthService {
     async getUserData() {
         const jsonData = await localStorage.getItem(this._SESSION_USER_DATA);
         return JSON.parse(jsonData);
+    }
+    get isLoggedIn(): boolean {
+      const user = JSON.parse(localStorage.getItem('_user_data'));
+      return (user !== null ) ? true : false; // !==
     }
 }

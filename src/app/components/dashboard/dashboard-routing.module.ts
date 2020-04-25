@@ -6,10 +6,6 @@ import { DefaultComponent } from './default/default.component';
 // import { BitcoinComponent } from './bitcoin/bitcoin.component';
 // import { ServerComponent } from './server/server.component';
 // import { ProjectComponent } from './project/project.component';
-import { TestComponent } from './test/test.component';
-import { InfoBusinessComponent } from './test/info-business/info-business.component';
-import { ContactBusinessComponent } from './test/contact-business/contact-business.component';
-import { PaymentBusinessComponent } from './test/payment-business/payment-business.component';
 
 const routes: Routes = [
   {
@@ -23,38 +19,7 @@ const routes: Routes = [
           breadcrumb: 'Default'
         }
       },
-      {
-        path: 'test',
-        component: TestComponent,
-        data: {
-          title: 'Test',
-          breadcrumb: 'test'
-        }
-      },
-      { 
-        path: 'info', 
-        component: InfoBusinessComponent ,
-        data: {
-          title: 'info',
-          breadcrumb: 'info'
-        }
-      },
-      { 
-        path: 'contacto', 
-        component: ContactBusinessComponent,
-        data: {
-          title: 'contacto',
-          breadcrumb: 'contacto'
-        }
-      },
-      { 
-        path: 'payment', 
-        component: PaymentBusinessComponent,
-        data: {
-          title: 'payment',
-          breadcrumb: 'payment'
-        }
-      },
+      
       // {
       //   path: 'e-commerce',
       //   component: ECommerceComponent,

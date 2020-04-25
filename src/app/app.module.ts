@@ -51,7 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    RouterModule
   ],
   providers: [AuthService, AdminGuard, SecureInnerPagesGuard, CookieService],
   bootstrap: [AppComponent]

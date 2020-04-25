@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-empresa',
@@ -6,9 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./empresa.component.css']
 })
 export class EmpresaComponent implements OnInit {
-
+  @Input() formData;
   constructor() { }
-
   ngOnInit(): void {
   }
 
