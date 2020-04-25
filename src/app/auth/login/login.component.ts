@@ -25,15 +25,11 @@ export class LoginComponent implements OnInit {
         password: ['', Validators.required]
     });
     
-    this.auth.validateToken().then(() => {
-      this.router.navigate(['/']);
-    }).catch(() => {
-      console.log( 'entro al catch del loging ts');
-    });
+    
   }
 
   ngOnInit() {
-    console.log(atob('YWRtaW5pc3RyYWRvcjEyMzQ1Nj8='));
+    
   }
 
   login() {
