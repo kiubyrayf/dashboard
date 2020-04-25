@@ -30,8 +30,11 @@ export class LoginComponent {
   }
 
   login() { 
-   this.auth.login( this.loginForm.value['user'], this.loginForm.value['password']).subscribe((response: HttpInterface) => {
+   this.auth.login( this.loginForm.value['user'], this.loginForm.value['password']).subscribe((response) => {
+     debugger;
     if (response.status === 1) {
+      let user = [{user: this.loginForm.value['user'], role: "", var:""}]; 
+      localStorage.setItem(this.auth._SESSION_USER_DATA, JSON.stringify(user))
       localStorage.setItem(this.auth._SESSION_TOKEN_NAME, JSON.stringify(response.data));
       this.router.navigate(['dashboard/default']);
     }
