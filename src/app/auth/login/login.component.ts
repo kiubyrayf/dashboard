@@ -10,7 +10,7 @@ import { HttpInterface } from 'src/app/interface/services/http/http.response.int
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   recuerdame: boolean = false;
   public loginForm: FormGroup;
   public errorMessage = "Ingrese usuario y contraseña";
@@ -29,14 +29,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    console.log(atob('YWRtaW5pc3RyYWRvcjEyMzQ1Nj8='));
-  }
-
   login() { 
    this.auth.login( this.loginForm.value['user'], this.loginForm.value['password']).subscribe((response: HttpInterface) => {
-    debugger;
-    console.log(response);
     if (response.status === 1) {
       localStorage.setItem(this.auth._SESSION_TOKEN_NAME, btoa(response.message));
       localStorage.setItem(this.auth._SESSION_USER_DATA, JSON.stringify(response.data));
