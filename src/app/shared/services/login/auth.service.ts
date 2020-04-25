@@ -31,28 +31,23 @@ export class AuthService {
 
    login(user: string, password: string): Observable<any> {
       password = btoa(password);
-      return this.httpService.post<any>(`${this.config.api}${this.routes.login}`, {
+      return this.httpService.post(`${this.config.api}${this.routes.login}`, {
         user,
         password
       });
     }  
 
-    loginPromise(user: string, password: string): Promise<any> {
-     
+    loginPromise(user: string, password: string): Promise<any> {  
         return new Promise((resolve, reject) => {
           password = btoa(password);
           this.httpService.post(`${this.config.api}${this.routes.login}`, {
             user,
             password
           }).subscribe((response: HttpInterface) => {
-            
             if (response.status === 1) {
-              debugger
-
-              localStorage.setItem(this._SESSION_TOKEN_NAME, btoa(response.message));
-              resolve(true);
-
-              console.log(response);
+               localStorage.setItem(this._SESSION_TOKEN_NAME, btoa(response.data[0]));
+               resolve(true);
+               console.log(btoa(response.data[0]));
             } else {
               reject(false);
             }
@@ -85,7 +80,7 @@ export class AuthService {
             this.httpService.post(`${this.config.api}${this.routes.validate}`, {
                 token
             }).subscribe((response: HttpInterface) => {
-                if (response.status === 3) {
+                if (response.status === 1) {
                 this.setUserData(response.message);
                   resolve(true);
                 } else {

@@ -11,9 +11,9 @@ import { HttpInterface } from 'src/app/interface/services/http/http.response.int
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
- 
+  recuerdame: boolean = false;
   public loginForm: FormGroup;
-  public errorMessage: any;
+  public errorMessage = "Ingrese usuario y contraseña";
   
 
   constructor(
@@ -25,25 +25,24 @@ export class LoginComponent implements OnInit {
         user: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
         recuerdame: ['', ,]
+
     });
   }
 
   ngOnInit() {
     console.log(atob('YWRtaW5pc3RyYWRvcjEyMzQ1Nj8='));
-    this.auth.validateToken().then(() => {
-      this.router.navigate(['/dashboard/default']);
-    }).catch(() => {
-      console.log ('cacho aqui');
-    });
   }
 
   login() { 
    this.auth.login( this.loginForm.value['user'], this.loginForm.value['password']).subscribe((response: HttpInterface) => {
-     debugger;       
+    debugger;
+    console.log(response);
     if (response.status === 1) {
       localStorage.setItem(this.auth._SESSION_TOKEN_NAME, btoa(response.message));
-      console.log(response);
-    } 
+      localStorage.setItem(this.auth._SESSION_USER_DATA, JSON.stringify(response.data));
+      this.router.navigate(['dashboard/default']);
+    }
+    this.errorMessage = response.message;
     });
   }
 }
