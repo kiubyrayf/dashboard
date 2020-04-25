@@ -32,8 +32,7 @@ export class LoginComponent {
   login() { 
    this.auth.login( this.loginForm.value['user'], this.loginForm.value['password']).subscribe((response: HttpInterface) => {
     if (response.status === 1) {
-      localStorage.setItem(this.auth._SESSION_TOKEN_NAME, btoa(response.message));
-      localStorage.setItem(this.auth._SESSION_USER_DATA, JSON.stringify(response.data));
+      localStorage.setItem(this.auth._SESSION_TOKEN_NAME, JSON.stringify(response.data));
       this.router.navigate(['dashboard/default']);
     }
     this.errorMessage = response.message;
