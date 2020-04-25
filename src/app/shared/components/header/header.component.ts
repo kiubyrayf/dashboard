@@ -2,7 +2,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NavService, Menu } from '../../services/nav.service';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from '../../services/firebase/auth.service';
+import { AuthService } from '../../services/login/auth.service';
+import { Router } from '@angular/router';
 
 var body = document.getElementsByTagName("body")[0];
 
@@ -25,7 +26,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(public navServices: NavService,
     private translate: TranslateService,
-    public authService: AuthService) {
+    public authService: AuthService,
+    private router: Router) {
     translate.setDefaultLang('es');
   }
 
@@ -34,6 +36,10 @@ export class HeaderComponent implements OnInit {
     this.removeFix();
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['auth', 'login']);
+  }
 
   right_side_bar() {
     this.right_sidebar = !this.right_sidebar

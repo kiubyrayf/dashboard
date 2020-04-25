@@ -28,9 +28,9 @@ export class ContactBusinessComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       paymentPerson: new FormControl('', Validators.required, ),
       fax:  new FormControl('', [Validators.required ] ),
-      schedule: new FormGroup({
-        mondayStart: new FormControl(''),
-        mondayEnd: new FormControl(''),
+      // schedule: new FormGroup({
+       // mondayStart: new FormControl(''),
+       // mondayEnd: new FormControl(''),
         /*tuesdayStart: ['', , ],
         tuesdayEnd: ['', , ],
         wednesdayStart: ['', , ],
@@ -41,7 +41,7 @@ export class ContactBusinessComponent implements OnInit {
         fridayEnd: ['', , ],
         saturdayStart: ['', , ],
         saturdayEnd: ['', , ],*/
-      }),
+      // }),
     });
   }
 

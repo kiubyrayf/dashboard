@@ -127,8 +127,8 @@
               </a></li>
            <!-- <li><a href="javascript:void(0)">
                 <app-feather-icons [icon]="'settings'"></app-feather-icons>Settings
-              </a></li>-->
-            <li *ngIf="authService.userData as user"><a href="javascript:void(0)" (click)="authService.SignOut()">
+              </a></li>  authService.userData-->
+            <li><a href="javascript:void(0)" (click)="logout()">
                 <app-feather-icons [icon]="'log-out'"></app-feather-icons>Salir
               </a></li>
           </ul>
