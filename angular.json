@@ -30,7 +30,7 @@
               "src/assets/scss/app.scss",
               "node_modules/angular-archwizard/archwizard.css",
               "src/styles.scss",
-              "src/assets/css/angular-clockpicker.min.css"
+              "src/assets/css/angular-clockpicker.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

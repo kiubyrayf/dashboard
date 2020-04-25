@@ -30,12 +30,13 @@
 							</div>
 						</div>
 						<div class="checkbox p-0">
-							<input id="checkbox1" type="checkbox">
+							<input formControlName="recuerdame" id="checkbox1" type="checkbox">
 							<label for="checkbox1">Recordar Usuario</label>
 						</div>
 						<div class="form-group form-row mt-3 mb-0">
 							<button class="btn btn-primary btn-block btn-lg"
 								[class.loader--text]="auth.showLoader"
+								[disabled]="!loginForm.valid || auth.showLoader"
 								type="submit" (click)="login()"><span>{{ auth.showLoader ? '' : 'Ingresar' }}</span>
 							</button>
 						</div>

@@ -29,14 +29,14 @@ export class AuthService {
       
     }
 
-  /*  login(user: string, password: string): Observable<any> {
-       //Convertir pass a base64 aqui
+    /*login(user: string, password: string): Observable<any> {
+       // Convertir pass a base64 aqui
       return this.httpService.post(`${this.config.api}${this.routes.login}`, {
         user,
         password
       });
-    }  */  
-     login(user: string, password: string): Promise<any> {
+    }*/
+    login(user: string, password: string): Promise<any> {
      
         return new Promise((resolve, reject) => {
           password = btoa(password);
@@ -44,14 +44,10 @@ export class AuthService {
             user,
             password
           }).subscribe((response: HttpInterface) => {
-            
             if (response.status === 1) {
-              debugger
-
-              localStorage.setItem(this._SESSION_TOKEN_NAME, btoa(response.message));
-              resolve(true);
-
-              console.log(response);
+               localStorage.setItem(this._SESSION_TOKEN_NAME, btoa(response.data[0]));
+               resolve(true);
+               console.log(btoa(response.data[0]));
             } else {
               reject(false);
             }
@@ -84,7 +80,7 @@ export class AuthService {
             this.httpService.post(`${this.config.api}${this.routes.validate}`, {
                 token
             }).subscribe((response: HttpInterface) => {
-                if (response.status === 3) {
+                if (response.status === 1) {
                 this.setUserData(response.message);
                   resolve(true);
                 } else {

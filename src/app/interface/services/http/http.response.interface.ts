@@ -1,4 +1,5 @@
 export interface HttpInterface {
     status: Number,
-    message: any
+    message: any,
+    data: any 
 }
