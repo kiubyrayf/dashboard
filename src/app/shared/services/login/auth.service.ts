@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
     private config: any;
     private routes: any;
-    private _SESSION_TOKEN_NAME: string;
+    public _SESSION_TOKEN_NAME: string;
     public _SESSION_USER_DATA: string;
     public showLoader: boolean = false;
 
@@ -29,14 +29,15 @@ export class AuthService {
       
     }
 
-  /*  login(user: string, password: string): Observable<any> {
-       //Convertir pass a base64 aqui
-      return this.httpService.post(`${this.config.api}${this.routes.login}`, {
+   login(user: string, password: string): Observable<any> {
+      password = btoa(password);
+      return this.httpService.post<any>(`${this.config.api}${this.routes.login}`, {
         user,
         password
       });
-    }  */  
-     login(user: string, password: string): Promise<any> {
+    }  
+
+    loginPromise(user: string, password: string): Promise<any> {
      
         return new Promise((resolve, reject) => {
           password = btoa(password);

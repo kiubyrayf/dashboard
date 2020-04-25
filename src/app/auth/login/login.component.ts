@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/login/auth.service';
+import { HttpInterface } from 'src/app/interface/services/http/http.response.interface';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     ) {
       this.loginForm = fb.group({
         user: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required]
+        password: ['', Validators.required],
+        recuerdame: ['', ,]
     });
   }
 
@@ -35,23 +37,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-  
-   /* this.auth.login( this.loginForm.value['user'], this.loginForm.value['password']).subscribe (result => {
-      console.log('Esto regresa la API');
-      console.log(result);
-      if (result.status === 1) {
-        this.router.navigate(['dashboard/default']);
-      }
-    });*/
-  this.auth.login( this.loginForm.value['user'], this.loginForm.value['password'])
-    .then(async () => {
-     await this.auth.validateToken();
-      this.router.navigate(['dashboard/default']);
-    })
-    .catch (() => {
-      console.log('Usuario Invalido ps no valida el token logincomponentTS');
+  login() { 
+   this.auth.login( this.loginForm.value['user'], this.loginForm.value['password']).subscribe((response: HttpInterface) => {
+     debugger;       
+    if (response.status === 1) {
+      localStorage.setItem(this.auth._SESSION_TOKEN_NAME, btoa(response.message));
+      console.log(response);
+    } 
     });
   }
-
 }
