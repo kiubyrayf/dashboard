@@ -42,12 +42,12 @@ export class HeaderComponent implements OnInit {
   }
 
   right_side_bar() {
-    this.right_sidebar = !this.right_sidebar
-    this.rightSidebarEvent.emit(this.right_sidebar)
+    this.right_sidebar = !this.right_sidebar;
+    this.rightSidebarEvent.emit(this.right_sidebar);
   }
 
   collapseSidebar() {
-    this.navServices.collapseSidebar = !this.navServices.collapseSidebar
+    this.navServices.collapseSidebar = !this.navServices.collapseSidebar;
   }
 
   openMobileNav() {
@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public changeLanguage(lang) {
-    this.translate.use(lang)
+    this.translate.use(lang);
   }
 
   searchTerm(term: any) {

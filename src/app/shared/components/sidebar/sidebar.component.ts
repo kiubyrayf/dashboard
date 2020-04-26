@@ -1,6 +1,8 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { NavService, Menu } from '../../services/nav.service';
+import { AuthService } from '../../services/login/auth.service';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -13,8 +15,13 @@ export class SidebarComponent {
   public menuItems: Menu[];
   public url: any;
   public fileurl: any;
+  public userS: any;
 
-  constructor(private router: Router, public navServices: NavService) {
+  constructor(private router: Router, public navServices: NavService, private auth: AuthService) {
+  
+    this.userS = this.auth.getUserData().then(
+     (resp) => console.log(resp));
+     
     this.navServices.items.subscribe(menuItems => {
       this.menuItems = menuItems
       this.router.events.subscribe((event) => {
@@ -38,6 +45,7 @@ export class SidebarComponent {
     })
   }
 
+  
   // Active Nave state
   setNavActive(item) {
     this.menuItems.filter(menuItem => {
@@ -55,6 +63,7 @@ export class SidebarComponent {
       }
     })
   }
+  
 
   // Click Toggle menu
   toggletNavActive(item) {
