@@ -3,19 +3,41 @@ import { HttpClient } from '@angular/common/http';
 import { EmpresaModel, ContactModel } from '../../model/empresas/empresa.model';
 import { map, delay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Config } from '../../../config/index';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresasService {
+  private config: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.config = Config;
+   }
 
-  get(): Observable<any> {
+  /*get(): Observable<any> {
     return this.http.get<any>('https://apidev.sieesweb.com/business?page=1&name=XTEN&id=8');
+  }*/
+  getEmpresas(): Observable<any> {
+    return this.http.get(`${this.config.api}/business?page=1&name=XTEN&id=8`).pipe (
+      map(resp => console.log(resp) )
+    );
   }
+ /* private crearArreglo(empresasObj: object) {
+    const empresas: EmpresaModel[] = [];
 
-  post(): Observable<any> {
+    if (empresasObj === null) {
+      return [];
+    }
+
+    Object.keys(empresasObj).forEach((key) => {
+      const empresa: EmpresaModel = empresasObj[key];
+      empresa.id = key; // empresa deberia tener un id
+      empresas.push(empresa);
+    });
+    return empresas;
+  }*/
+  /*post(): Observable<any> {
     const formData = new FormData();
     formData.append('name', 'xtendedit');
     formData.append('contact', '{"id": 26,"job": "developer","phoneNumber": "8122078831","email": "jesus@isydoc.com","paymentPerson": "JESUS", "fax": "8122078831" }');
@@ -31,5 +53,5 @@ export class EmpresasService {
     formData.append('selfFormat', '0');
 
     return this.http.post<any>('https://apidev.sieesweb.com/business', formData, {reportProgress: true, observe: 'events' });
-  }
+  }*/
 }

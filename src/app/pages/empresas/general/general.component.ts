@@ -7,13 +7,22 @@ import {EmpresaModel} from '../../../shared/model/empresas/empresa.model';
   styleUrls: ['./general.component.scss']
 })
 export class GeneralComponent implements OnInit {
-
-  constructor(private empresaService: EmpresasService) { }
+  empresas: EmpresaModel[] = [];
+  cargando = false;
+ 
+  constructor(private empresaService: EmpresasService ) { }
 
   ngOnInit(): void {
-    this.empresaService.post().subscribe( response =>
+    this.cargando = true;
+    this.empresaService.getEmpresas().subscribe((resp) => {
+      this.empresas = resp;
+      this.cargando = false;
+      console.log(resp);
+      console.log(this.empresas);
+    });
+    /*this.empresaService.post().subscribe( response =>
       console.log('Respuesta del servicio', response)
-    );
+    );*/
   }
 
 }
