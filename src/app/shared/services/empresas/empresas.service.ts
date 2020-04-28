@@ -18,8 +18,8 @@ export class EmpresasService {
   /*get(): Observable<any> {
     return this.http.get<any>('https://apidev.sieesweb.com/business?page=1&name=XTEN&id=8');
   }*/
-  getEmpresas(): Observable<EmpresaModel[]> {
-    return this.http.get<EmpresaModel[]>(`${this.config.api}/business?page=1&name=XTEN&id=8`);
+  getEmpresas(): Observable<any> {
+    return this.http.get(`${this.config.api}/business?page=1&name=XTEN&id=8`);
   }
  /* private crearArreglo(empresasObj: object) {
     const empresas: EmpresaModel[] = [];

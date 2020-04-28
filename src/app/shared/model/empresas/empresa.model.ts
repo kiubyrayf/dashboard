@@ -32,12 +32,8 @@ export class EmpresaModelNew {
 
 export class ClosingDocumentModel {
 id: string;
-closingDocumentTotal: number;
-closingDocument_1: File;
-closingDocument_2: File;
-closingDocument_3: File;
-closingDocument_4: File;
-closingDocument_5: File;
+name: string;
+file: File;
 }
 
 export class ServicePriceModel {
