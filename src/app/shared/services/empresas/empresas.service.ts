@@ -11,6 +11,10 @@ export class EmpresasService {
 
   constructor(private http: HttpClient) { }
 
+  get(): Observable<any> {
+    return this.http.get<any>('https://apidev.sieesweb.com/business?page=1&name=XTEN&id=8');
+  }
+
   post(): Observable<any> {
     const formData = new FormData();
     formData.append('name', 'xtendedit');
