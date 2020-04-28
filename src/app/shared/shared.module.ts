@@ -22,11 +22,12 @@ import 'hammerjs';
 import 'mousetrap';
 
 // services
-import { NavService } from "./services/nav.service";
-import { ChatService } from "./services/chat.service";
-import { CustomizerService } from "./services/customizer.service";
+import { NavService } from './services/nav.service';
+import { ChatService } from './services/chat.service';
+import { CustomizerService } from './services/customizer.service';
+import { EmpresasService } from './services/empresas.service';
 // Directives
-import { ToggleFullscreenDirective } from "./directives/fullscreen.directive";
+import { ToggleFullscreenDirective } from './directives/fullscreen.directive';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ToggleFullscreenDirective } from "./directives/fullscreen.directive";
   providers: [
     NavService,
     ChatService,
-    CustomizerService
+    CustomizerService,
+    EmpresasService
   ]
 })
 export class SharedModule { }

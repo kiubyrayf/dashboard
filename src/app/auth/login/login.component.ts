@@ -12,10 +12,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  recuerdame: boolean = false;
+  recuerdame = false;
   public loginForm: FormGroup;
   public errorMessage: any;
-  
 
   constructor(
     private fb: FormBuilder,
@@ -42,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.auth.loginPromise(this.loginForm.value['user'], this.loginForm.value['password']).then(() => {
       this.router.navigate(['dashboard', 'default']);
     }).catch(() => {
-      this.errorMessage = "Ingrese usuario y contraseña";
+      this.errorMessage = 'Ingrese usuario y contraseña';
       this.toaster.error(this.errorMessage);
     });
     /*

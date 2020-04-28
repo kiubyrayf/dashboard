@@ -14,7 +14,7 @@ export class AuthService {
     private routes: any;
     public _SESSION_TOKEN_NAME: string;
     public _SESSION_USER_DATA: string;
-    public showLoader: boolean = false;
+    public showLoader = false;
 
     constructor(
       private httpService: HttpClient
@@ -26,10 +26,9 @@ export class AuthService {
         validate: 'auth/validate',
         login: 'auth/login'
       };
-      
     }
 
-    loginPromise(user: string, password: string): Promise<any> {  
+    loginPromise(user: string, password: string): Promise<any> {
         return new Promise((resolve, reject) => {
           this.showLoader = true;
           password = btoa(password);
@@ -37,7 +36,6 @@ export class AuthService {
             user,
             password
           }).subscribe((response: HttpInterface) => {
-           
             if (response.status === 1) {
                localStorage.setItem(this._SESSION_TOKEN_NAME, btoa(response.data[0].token));
                 this.validateToken().then(() => {
@@ -57,20 +55,19 @@ export class AuthService {
           });
         });
       }
-    
+
     logout(): void {
-     
         localStorage.removeItem(this._SESSION_TOKEN_NAME);
         localStorage.removeItem(this._SESSION_USER_DATA);
         this.showLoader = false;
     }
-    
-    getToken() { // lee el toquen 
+
+    getToken() { // lee el toquen
         const tokenEncoded: string = localStorage.getItem(this._SESSION_TOKEN_NAME);
         const token = (tokenEncoded !== null) ? atob(tokenEncoded) : null;
         return token;
     }
-    
+
     validateToken(): any {
         return new Promise((resolve, reject) => {
             const token = this.getToken();
@@ -96,11 +93,11 @@ export class AuthService {
             }
         });
     }
-    
+
     setUserData(data: any) {
         localStorage.setItem(this._SESSION_USER_DATA, JSON.stringify(data));
     }
-    
+
     async getUserData() {
       const jsonData = await localStorage.getItem(this._SESSION_USER_DATA);
       return JSON.parse(jsonData);

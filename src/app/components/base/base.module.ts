@@ -22,7 +22,26 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
 
 @NgModule({
-  declarations: [AccordionComponent, AlertComponent, ButtonsComponent, CarouselComponent, CollapseComponent, DatepickerComponent, DropdownComponent, ModalComponent, NgbdModalContent, NgbdModal1Content, NgbdModal2Content, PaginationComponent, PopoverComponent, ProgressbarComponent, RatingComponent, TabsetComponent, TimepickerComponent, TooltipComponent, TypeaheadComponent],
+  declarations: [
+    AccordionComponent,
+    AlertComponent,
+    ButtonsComponent,
+    CarouselComponent,
+    CollapseComponent,
+    DatepickerComponent,
+    DropdownComponent,
+    ModalComponent,
+    NgbdModalContent,
+    NgbdModal1Content,
+    NgbdModal2Content,
+    PaginationComponent,
+    PopoverComponent,
+    ProgressbarComponent,
+    RatingComponent,
+    TabsetComponent,
+    TimepickerComponent,
+    TooltipComponent,
+    TypeaheadComponent],
   imports: [
     CommonModule,
     BaseRoutingModule,

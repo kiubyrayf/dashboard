@@ -21,7 +21,8 @@ export class HeaderComponent implements OnInit {
   public openNav: boolean = false
   public right_sidebar: boolean = false
   public text: string
-  public isOpenMobile: boolean = false
+  public isOpenMobile: boolean = false;
+  public userS: any;
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
   constructor(public navServices: NavService,
@@ -29,6 +30,9 @@ export class HeaderComponent implements OnInit {
     public authService: AuthService,
     private router: Router) {
     translate.setDefaultLang('es');
+
+    this.authService.getUserData().then(
+      (resp) => { this.userS = resp; });
   }
 
 

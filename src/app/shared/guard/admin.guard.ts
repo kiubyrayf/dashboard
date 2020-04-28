@@ -8,17 +8,16 @@ import { AuthService } from '../services/login/auth.service';
 })
 export class AdminGuard implements CanActivate {
   constructor(public authService: AuthService,
+   
     public router: Router) { }
-  
+
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean | any {
-    /*// Guard for user is login or not
-    const token = JSON.parse(localStorage.getItem('token'));
-    if (!token) { //!usser
+
+    /* const token = JSON.parse(localStorage.getItem('token'));
+    if (!token) {
       this.router.navigate(['/auth/login']);
       return true;
-    }
+    }*/
     return true;
-    */
-   return true;
   }
 }

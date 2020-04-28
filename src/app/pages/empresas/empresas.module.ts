@@ -14,8 +14,7 @@ import { InfoBusinessComponent } from './empresa/info-business/info-business.com
 import { ContactBusinessComponent } from './empresa/contact-business/contact-business.component';
 import { PaymentBusinessComponent } from './empresa/payment-business/payment-business.component';
 import { TimepickerComponent } from '../../components/base/timepicker/timepicker.component';
-
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,6 +34,7 @@ import { TimepickerComponent } from '../../components/base/timepicker/timepicker
     NgxDatatableModule,
     ReactiveFormsModule,
     ArchwizardModule,
+    NgbModule
   ]
 })
 export class EmpresasModule { }

@@ -19,8 +19,8 @@ export class SidebarComponent {
 
   constructor(private router: Router, public navServices: NavService, private auth: AuthService) {
   
-    this.userS = this.auth.getUserData().then(
-     (resp) => console.log(resp));
+   this.auth.getUserData().then(
+     (resp) => { this.userS = resp; });
      
     this.navServices.items.subscribe(menuItems => {
       this.menuItems = menuItems
