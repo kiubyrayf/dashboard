@@ -25,7 +25,7 @@ import 'mousetrap';
 import { NavService } from './services/nav.service';
 import { ChatService } from './services/chat.service';
 import { CustomizerService } from './services/customizer.service';
-import { EmpresasService } from './services/empresas.service';
+import { EmpresasService } from './services/empresas/empresas.service';
 // Directives
 import { ToggleFullscreenDirective } from './directives/fullscreen.directive';
 

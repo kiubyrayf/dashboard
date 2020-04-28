@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {EmpresasService} from '../../../shared/services/empresas/empresas.service';
+import {EmpresaModel} from '../../../shared/model/empresas/empresa.model';
 @Component({
   selector: 'app-general',
   templateUrl: './general.component.html',
