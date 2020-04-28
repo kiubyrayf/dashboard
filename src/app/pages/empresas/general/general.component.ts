@@ -18,6 +18,7 @@ export class GeneralComponent implements OnInit {
       this.empresas = resp.data;
       this.cargando = false;
       console.log( resp.data);
+
     });
     /*this.empresaService.post().subscribe( response =>
       console.log('Respuesta del servicio', response)
