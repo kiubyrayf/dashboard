@@ -6,7 +6,7 @@ export class EmpresaModel {
     address: AddressModel;
     requestServiceByMail: boolean;
     servicesPrice: ServicePriceModel;
-    closingDocument: ClosingDocumentModel;
+    closingDocument: Array<ClosingDocumentModel>;
     serviceWarranty: boolean;
     logo: File;
     selfFormat: boolean;
