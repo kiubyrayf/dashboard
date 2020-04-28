@@ -8,9 +8,12 @@ import {EmpresaModel} from '../../../shared/model/empresas/empresa.model';
 })
 export class GeneralComponent implements OnInit {
 
-  constructor() { }
+  constructor(private empresaService: EmpresasService) { }
 
   ngOnInit(): void {
+    this.empresaService.post().subscribe( response =>
+      console.log('Respuesta del servicio', response)
+    );
   }
 
 }
