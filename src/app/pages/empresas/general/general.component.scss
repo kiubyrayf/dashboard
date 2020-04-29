@@ -8,11 +8,22 @@ table {
     }
     tbody{
         tr{
+            vertical-align: middle;
+            th { vertical-align: middle;}
             td{
+                vertical-align: middle;
                 .btn{
                     padding: 10px;
                 }
             }
         }
+    }
+}
+.bgColor{
+    background-color: #313131;
+}
+a{
+    &:hover{
+        color: #000000;
     }
 }
