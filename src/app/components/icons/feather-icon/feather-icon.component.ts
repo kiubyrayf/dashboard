@@ -26,14 +26,14 @@ export class FeatherIconComponent implements OnInit {
 
   //Copy an icon code
   copyText(val: string) {
-    this.notification = true
+    this.notification = true;
     let selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
     selBox.value = '' + val + '';
-    selBox.value = '<i data-feather=' + val + '"></i>';
+    selBox.value = '<i data-feather=' + val + '></i>';
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();

@@ -1,17 +1,17 @@
 export class EmpresaModel {
-    name: string;
-    contact: ContactModel;
-    email: string;
-    phoneNumber: number;
-    address: AddressModel;
-    requestServiceByMail: boolean;
-    servicesPrice: ServicePriceModel;
-    closingDocument: Array<ClosingDocumentModel>;
-    serviceWarranty: boolean;
-    logo: File;
-    selfFormat: boolean;
-
-    constructor() {}
+    constructor(
+      public name: string,
+      public logo: File,
+      public email: string,
+      public phoneNumber: number,
+      public address: AddressModel,
+      public contact: ContactModel,
+      public servicesPrice: ServicePriceModel,
+      public closingDocument: Array<ClosingDocumentModel>,
+      public selfFormat?: boolean,
+      public serviceWarranty?: boolean,
+      public requestServiceByMail?: boolean,
+    ) {}
   }
 
 export class EmpresaModelNew {

@@ -15,6 +15,7 @@ import { ContactBusinessComponent } from './empresa/contact-business/contact-bus
 import { PaymentBusinessComponent } from './empresa/payment-business/payment-business.component';
 import { TimepickerComponent } from '../../components/base/timepicker/timepicker.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FeatherIconComponent } from '../../components/icons/feather-icon/feather-icon.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ContactBusinessComponent,
     PaymentBusinessComponent,
     TimepickerComponent,
-    NavBarBusinessComponent
+    NavBarBusinessComponent,
+    FeatherIconComponent
   ],
   imports: [
     CommonModule,

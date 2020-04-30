@@ -7,6 +7,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class NavBarBusinessComponent implements OnInit {
 
+  padre: string;
+
   constructor() { }
 
   ngOnInit() { }

@@ -18,6 +18,10 @@ export class EmpresasService {
   getEmpresas(): Observable<any> {
     return this.http.get(`${this.config.api}/business?page=1&name=XTEN&id=8`);
   }
+   
+  crearEmpresa(empresa: EmpresaModel): Observable<any> {
+    return this.http.post(`${this.config.api}/business`, empresa);
+  }
  /* private crearArreglo(empresasObj: object) {
     const empresas: EmpresaModel[] = [];
 
@@ -32,10 +36,10 @@ export class EmpresasService {
     });
     return empresas;
   }*/
-  /*post(): Observable<any> {
+  post(empresa: EmpresaModel ): Observable<any> {
     const formData = new FormData();
-    formData.append('name', 'xtendedit');
-    formData.append('contact', '{"id": 26,"job": "developer","phoneNumber": "8122078831","email": "jesus@isydoc.com","paymentPerson": "JESUS", "fax": "8122078831" }');
+    formData.append('name', empresa.name);
+    formData.append('contact', JSON.stringify(empresa.contact));
     formData.append('schedule', '{ "id": 26, "mondayStart": "2020-03-22T01:28:37.000Z","mondayEnd": "2020-03-22T01:28:37.000Z","tuesdayStart": "2020-03-22T01:28:37.000Z","tuesdayEnd": "2020-03-22T01:28:37.000Z","wednesdayStart": "2020-03-22T01:28:37.000Z","wednesdayEnd": "2020-03-22T01:28:37.000Z","thursdayStart": "2020-03-22T01:28:37.000Z","thursdayEnd": "2020-03-22T01:28:37.000Z","fridayStart": "2020-03-22T01:28:37.000Z","fridayEnd": "2020-03-22T01:28:37.000Z","saturdayStart": "2020-03-22T01:28:37.000Z","saturdayEnd": "2020-03-22T01:28:37.000Z","sundayStart": "2020-03-22T01:28:37.000Z"}');
     formData.append('email', 'esus@isydoc.com');
     formData.append('phoneNumber', '8122078831');
@@ -48,5 +52,5 @@ export class EmpresasService {
     formData.append('selfFormat', '0');
 
     return this.http.post<any>('https://apidev.sieesweb.com/business', formData, {reportProgress: true, observe: 'events' });
-  }*/
+  }
 }
