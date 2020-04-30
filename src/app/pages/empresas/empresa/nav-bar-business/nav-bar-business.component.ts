@@ -9,7 +9,9 @@ export class NavBarBusinessComponent implements OnInit {
 
   padre: string;
 
-  constructor() { }
+  constructor() {
+    this.padre = "Este es el mensaje del padre";
+   }
 
   ngOnInit() { }
 

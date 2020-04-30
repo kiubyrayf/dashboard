@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
@@ -11,15 +11,19 @@ import { EmpresaModel } from '../../../../shared/model/empresas/empresa.model';
 })
 
 export class InfoBusinessComponent implements OnInit {
+
+  @Input() hijo: string;
   public border_validation = false;
   public regForm: FormGroup;
   public title = 'registration page';
   public form: any;
   public empresalist: Array<object> = [];
+
   constructor(
       private route: Router, public empresaService: EmpresasService
     ) {
         this.createForm();
+        console.log(this.hijo);
   }
 
   // create form
