@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 
 declare var require;
 const Swal = require('sweetalert2');
@@ -11,6 +12,7 @@ const Swal = require('sweetalert2');
   encapsulation: ViewEncapsulation.None
 })
 export class PaymentBusinessComponent implements OnInit {
+  @Input() _empresa: EmpresaModel;
   public payForm: FormGroup;
   public submitted = false;
   public allData = FormData;

@@ -12,7 +12,7 @@ import { EmpresaModel } from '../../../../shared/model/empresas/empresa.model';
 
 export class InfoBusinessComponent implements OnInit {
 
-  @Input() hijo: string;
+  @Input() _empresa: EmpresaModel;
   public border_validation = false;
   public regForm: FormGroup;
   public title = 'registration page';
@@ -23,7 +23,6 @@ export class InfoBusinessComponent implements OnInit {
       private route: Router, public empresaService: EmpresasService
     ) {
         this.createForm();
-        console.log(this.hijo);
   }
 
   // create form

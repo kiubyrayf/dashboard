@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import * as $ from 'jquery';
+import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 
 @Component({
   selector: 'app-contact-business',
@@ -11,7 +12,7 @@ import * as $ from 'jquery';
   encapsulation: ViewEncapsulation.None
 })
 export class ContactBusinessComponent implements OnInit {
-
+  @Input() _empresa: EmpresaModel;
   public contactForm: FormGroup;
   public border_validation = false;
   public form: any;
