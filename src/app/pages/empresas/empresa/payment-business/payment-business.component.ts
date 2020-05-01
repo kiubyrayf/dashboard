@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@ang
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
+import { FileUploader } from 'ng2-file-upload';
 
 declare var require;
 const Swal = require('sweetalert2');
@@ -59,18 +60,46 @@ export class PaymentBusinessComponent implements OnInit {
       timer: 1500
     });
   }
+  warning() {
+    Swal.fire({
+      type: 'warning',
+      title: 'Alerta',
+      text: 'Selecciona un documento tipo JPG o PNG',
+      icon: 'warning',
+      showConfirmButton: true,
+    });
+  }
 
   ngOnInit() {  }
 
-  /*addEmpresa() {
+  addEmpresa() {
     const empresa = {
-      job: this.payForm.get('job').value,
-      phoneNumber: this.payForm.get('phoneNumber').value,
-      email: this.payForm.get('email').value,
-      paymentPerson: this.payForm.get('paymentPerson').value,
-      fax: this.payForm.get('fax').value,
+      closingDocument: this.payForm.get('closingDocument'),
+      servicesPrice: {
+        foreign: this.payForm.get('servicesPrice').value.foreign,
+        viaticForeign: this.payForm.get('servicesPrice').value.viaticForeign,
+        local: this.payForm.get('servicesPrice').value.local,
+        viaticLocal: this.payForm.get('servicesPrice').value.viaticLocal,
+        visitNotRealized: this.payForm.get('servicesPrice').value.visitNotRealized,
+        visitRealized: this.payForm.get('servicesPrice').value.visitRealized,
+        endingPrice: this.payForm.get('servicesPrice').value.endingPrice,
+        disscount: this.payForm.get('servicesPrice').value.disscount,
+      },
+      serviceWarranty: (this.payForm.get('serviceWarranty').value !== '') ? this.payForm.get('serviceWarranty').value : false,
     };
-    this.empresaList = empresa;
+     this.empresaList = empresa;
     this.data.emit(this.empresaList);
-  }*/
+  }
+  readFile(event) {
+    if ( event.target.files.length > 0) {
+      const file = event.target.files[0];
+      if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' &&  file.type !== 'application/pdf') {
+        this.warning();
+        this.form.get('closingDocument').setValue('');
+      } else {
+        this.payForm.get('closingDocument').setValue(file);
+      }
+
+    }
+  }
 }

@@ -16,6 +16,8 @@ import { PaymentBusinessComponent } from './empresa/payment-business/payment-bus
 import { TimepickerComponent } from '../../components/base/timepicker/timepicker.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FeatherIconComponent } from '../../components/icons/feather-icon/feather-icon.component';
+import { FileUploadModule } from 'ng2-file-upload';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { FeatherIconComponent } from '../../components/icons/feather-icon/feathe
     NgxDatatableModule,
     ReactiveFormsModule,
     ArchwizardModule,
-    NgbModule
+    NgbModule,
+    FileUploadModule,
   ]
 })
 export class EmpresasModule { }

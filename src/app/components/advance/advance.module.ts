@@ -36,7 +36,18 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 };
 
 @NgModule({
-  declarations: [ScrollableComponent, NgxToastrComponent, SweetAlertComponent, RangeSliderComponent, DragDropComponent, UploadComponent, StickyComponent, ImageCropComponent, OwlCarouselComponent, NgxDropzoneComponent],
+  declarations: [
+    ScrollableComponent,
+    NgxToastrComponent,
+    SweetAlertComponent,
+    RangeSliderComponent,
+    DragDropComponent,
+    UploadComponent,
+    StickyComponent,
+    ImageCropComponent,
+    OwlCarouselComponent,
+    NgxDropzoneComponent
+],
   imports: [
     CommonModule,
     AdvanceRoutingModule,

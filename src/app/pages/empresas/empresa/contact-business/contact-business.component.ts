@@ -46,6 +46,8 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
         fridayEnd: new FormControl(''),
         saturdayStart: new FormControl(''),
         saturdayEnd: new FormControl(''),
+        sundayStart: new FormControl(''),
+        sundayEnd: new FormControl(''),
       }),
     });
   }
@@ -59,23 +61,40 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-  }
-
-  ngAfterViewInit() {
     $(document).ready(() => {
       $('.clockpicker').clockpicker({
-        donetext: 'Cerrar'
+        donetext: 'Cerrar',
       });
     });
   }
 
-   addEmpresa(){
+  ngAfterViewInit() {
+   
+  }
+
+   addEmpresa() {
     const empresa = {
       job: this.contactForm.get('job').value,
       phoneNumber: this.contactForm.get('phoneNumber').value,
       email: this.contactForm.get('email').value,
       paymentPerson: this.contactForm.get('paymentPerson').value,
       fax: this.contactForm.get('fax').value,
+      schedule: {
+        mondayStart: this.contactForm.get('schedule').value.mondayStart,
+        mondayEnd: this.contactForm.get('schedule').value.mondayEnd,
+        tuesdayStart: this.contactForm.get('schedule').value.tuesdayStart,
+        tuesdayEnd: this.contactForm.get('schedule').value.tuesdayEnd,
+        wednesdayStart: this.contactForm.get('schedule').value.wednesdayStart,
+        wednesdayEnd: this.contactForm.get('schedule').value.wednesdayEnd,
+        thursdayStart: this.contactForm.get('schedule').value.thursdayStart,
+        thursdayEnd: this.contactForm.get('schedule').value.thursdayEnd,
+        fridayStart: this.contactForm.get('schedule').value.fridayStart,
+        fridayEnd: this.contactForm.get('schedule').value.fridayEnd,
+        saturdayStart: this.contactForm.get('schedule').value.saturdayStart,
+        saturdayEnd: this.contactForm.get('schedule').value.saturdayEnd,
+        sundayStart: this.contactForm.get('schedule').value.sundayStart,
+        sundayEnd: this.contactForm.get('schedule').value.sundayEnd,
+      },
     };
     this.empresaList = empresa;
     this.data.emit(this.empresaList);

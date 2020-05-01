@@ -21,6 +21,7 @@ export class UploadComponent implements OnInit {
     url: URL,
     isHTML5: true
   });
+  
   public hasBaseDropZoneOver: boolean = false;
   public hasAnotherDropZoneOver: boolean = false;
 

@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
 import { EmpresaModelNew } from '../../../../shared/model/empresas/empresa.model';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+
+declare var require;
+const Swal = require('sweetalert2');
 
 @Component({
   selector: 'app-info-business',
@@ -13,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class InfoBusinessComponent implements OnInit {
-
+  //@ViewChild('fileInput') fileInput: ElementRef;
   @Output() data: EventEmitter<any>;
   private empresaList: any;
   public isBorderValidate = false;
@@ -60,7 +63,7 @@ export class InfoBusinessComponent implements OnInit {
 
   addEmpresa() {
     const empresa = {
-    name: this.regForm.get('name').value,
+      name: this.regForm.get('name').value,
       email: this.regForm.get('email').value,
       phoneNumber: this.regForm.get('phoneNumber').value,
       logo: this.regForm.get('logo'),
@@ -78,5 +81,30 @@ export class InfoBusinessComponent implements OnInit {
      this.empresaList = empresa;
     this.data.emit(this.empresaList);
   }
+  readFile(event) {
+    if ( event.target.files.length > 0) {
+      const file = event.target.files[0];
+      if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
+        this.warning();
+        this.form.get('logo').setValue('');
+      } else {
+        this.regForm.get('logo').setValue(file);
+      }
 
+    }
+  }
+ /* clearFile() {
+    this.form.get('logo').setValue('');
+    this.fileInput.nativeElement.value = '';
+  } */
+   // A warning
+  warning() {
+    Swal.fire({
+      type: 'warning',
+      title: 'Alerta',
+      text: 'Selecciona un documento tipo JPG o PNG',
+      icon: 'warning',
+      showConfirmButton: true,
+    });
+  }
 }
