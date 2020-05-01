@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { EmpresaModelNew } from 'src/app/shared/model/empresas/empresa.model';
 
 @Component({
   selector: 'app-nav-bar-business',
@@ -8,7 +8,7 @@ import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 })
 export class NavBarBusinessComponent implements OnInit {
 
-  empresa: EmpresaModel;
+  @Input() empresaInfo: EmpresaModelNew;
 
   constructor() {
    }

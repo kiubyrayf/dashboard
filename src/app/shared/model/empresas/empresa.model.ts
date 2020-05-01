@@ -1,3 +1,5 @@
+import {Deserializable} from './deserializable.model';
+
 export class EmpresaModel {
     constructor(
       public name: string,
@@ -14,20 +16,25 @@ export class EmpresaModel {
     ) {}
   }
 
-export class EmpresaModelNew {
-    name: string;
-    contact: ContactModel;
-    email: string;
-    phoneNumber: number;
-    address: AddressModel;
-    requestServiceByMail: boolean;
-    servicesPrice: ServicePriceModel;
-    closingDocument: ClosingDocumentModel;
-    serviceWarranty: boolean;
-    logo: File;
-    selfFormat: boolean;
+export class EmpresaModelNew implements Deserializable {
+    constructor(
+      public name: string,
+      public logo: File,
+      public email: string,
+      public phoneNumber: number,
+      public address: AddressModel,
+      public contact: ContactModel,
+      public servicesPrice: ServicePriceModel,
+      public closingDocument: ClosingDocumentModel[],
+      public selfFormat?: boolean,
+      public serviceWarranty?: boolean,
+      public requestServiceByMail?: boolean,
+    ) {}
 
-    constructor() {}
+    deserialize(input: any) {
+      Object.assign(this, input);
+      return this;
+    }
 }
 
 export class ClosingDocumentModel {

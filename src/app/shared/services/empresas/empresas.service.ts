@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EmpresaModel, ContactModel } from '../../model/empresas/empresa.model';
+import { EmpresaModel } from '../../model/empresas/empresa.model';
 import { map, delay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Config } from '../../../config/index';
@@ -8,20 +8,22 @@ import { Config } from '../../../config/index';
 @Injectable({
   providedIn: 'root'
 })
+
 export class EmpresasService {
   private config: any;
 
   constructor(private http: HttpClient) {
     this.config = Config;
-   }
+  }
 
   getEmpresas(): Observable<any> {
     return this.http.get(`${this.config.api}/business?page=1&name=XTEN&id=8`);
   }
-   
+
   crearEmpresa(empresa: EmpresaModel): Observable<any> {
     return this.http.post(`${this.config.api}/business`, empresa);
   }
+
  /* private crearArreglo(empresasObj: object) {
     const empresas: EmpresaModel[] = [];
 
@@ -36,7 +38,8 @@ export class EmpresasService {
     });
     return empresas;
   }*/
-  post(empresa: EmpresaModel ): Observable<any> {
+
+  /*post(empresa: EmpresaModel ): Observable<any> {
     const formData = new FormData();
     formData.append('name', empresa.name);
     formData.append('contact', JSON.stringify(empresa.contact));
@@ -52,5 +55,5 @@ export class EmpresasService {
     formData.append('selfFormat', '0');
 
     return this.http.post<any>('https://apidev.sieesweb.com/business', formData, {reportProgress: true, observe: 'events' });
-  }
+  }*/
 }
