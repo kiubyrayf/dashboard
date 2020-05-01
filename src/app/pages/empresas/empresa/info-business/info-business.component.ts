@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
@@ -14,17 +14,17 @@ import { ActivatedRoute } from '@angular/router';
 
 export class InfoBusinessComponent implements OnInit {
 
-  @Input() empresalist: Array<object> = [];
-  //public empresas = new EmpresaModelNew();
-  public border_validation = false;
+  @Output() data: EventEmitter<any>;
+  private empresaList: any;
+  public isBorderValidate = false;
   public regForm: FormGroup;
   public title = 'registration page';
   public form: any;
- 
-
   constructor(
       private route: Router, public empresaService: EmpresasService
     ) {
+      this.data = new EventEmitter();
+      this.empresaList = {};
         this.createForm();
   }
 
@@ -48,76 +48,35 @@ export class InfoBusinessComponent implements OnInit {
 
   }
 
-  save(form: NgForm) {
-    /*if (!form.valid) {
+  save(form: any) {
+    if (!form.valid) {
       return false;
     }
-    return true;*/
+    return true;
     console.log(this.regForm);
   }
 
   ngOnInit() {  }
 
   addEmpresa() {
-  /* const empresa = new EmpresaModelNew(
-      this.regForm.value.name,
-      this.regForm.value.email,
-      this.regForm.value.phoneNumber,
-      this.regForm.value.logo,
-      this.regForm.value.address.street,
-      this.regForm.value.address.number,
-      this.regForm.value.address.cp,
-      this.regForm.value.address.municipality,
-      this.regForm.value.address.suburb,
-      this.regForm.value.requestServiceByMail,
-      this.regForm.value.selfFormat,
-    );*/
-    const empresar = {
-      name: this.regForm.value.name,
-      email: this.regForm.value.email,
-      phoneNumber: this.regForm.value.phoneNumber,
-      logo: this.regForm.value.logo,
+    const empresa = {
+    name: this.regForm.get('name').value,
+      email: this.regForm.get('email').value,
+      phoneNumber: this.regForm.get('phoneNumber').value,
+      logo: this.regForm.get('logo'),
       address: {
-        street: this.regForm.value.address.street,
-        number: this.regForm.value.address.number,
-        cp: this.regForm.value.address.cp,
-        municipality: this.regForm.value.address.municipality,
-        suburb: this.regForm.value.address.suburb,
+        street: this.regForm.get('address').value.street,
+        number: this.regForm.get('address').value.number,
+        cp: this.regForm.get('address').value.cp,
+        municipality: this.regForm.get('address').value.municipality,
+        suburb: this.regForm.get('address').value.suburb,
       },
-      requestServiceByMail: this.regForm.value.requestServiceByMail,
-      selfFormat: this.regForm.value.selfFormat,
+      // tslint:disable-next-line: max-line-length
+      requestServiceByMail: (this.regForm.get('requestServiceByMail').value !== '') ? this.regForm.get('requestServiceByMail').value : false,
+      selfFormat: (this.regForm.get('selfFormat').value !== '') ? this.regForm.get('selfFormat').value : false,
     };
-     this.empresalist.push(empresar);
-     console.log(this.empresalist);
-     
-
-   /*  this.regForm.patchValue({
-      name: this.regForm.value.name,
-      email: this.regForm.value.email,
-      phoneNumber: this.regForm.value.phoneNumber,
-      logo: this.regForm.value.logo,
-      address: {
-        street: this.regForm.value.address.street,
-        number: this.regForm.value.address.number,
-        cp: this.regForm.value.address.cp,
-        municipality: this.regForm.value.address.municipality,
-        suburb: this.regForm.value.address.suburb,
-      },
-      
-      requestServiceByMail: this.regForm.value.requestServiceByMail,
-      selfFormat: this.regForm.value.selfFormat,
-     });
-     console.log(this.regForm);*/
-
-     /* registrarEmpresa() {
-    if (this.regForm.invalid) {
-      return;
-    }
-    
-    this.empresaService.crearEmpresa(empresa)
-      .subscribe( resp => {
-        console.log(resp);
-      });
-  }*/
+     this.empresaList = empresa;
+    this.data.emit(this.empresaList);
   }
+
 }

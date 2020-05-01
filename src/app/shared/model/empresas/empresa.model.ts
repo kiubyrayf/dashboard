@@ -3,7 +3,7 @@ import {Deserializable} from './deserializable.model';
 export class EmpresaModel {
     constructor(
       public name: string,
-      public logo: File,
+      public logo: string,
       public email: string,
       public phoneNumber: number,
       public address: AddressModel,
@@ -19,7 +19,7 @@ export class EmpresaModel {
 export class EmpresaModelNew implements Deserializable {
     constructor(
       public name: string,
-      public logo: File,
+      public logo: string,
       public email: string,
       public phoneNumber: number,
       public address: AddressModel,

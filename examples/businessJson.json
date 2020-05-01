@@ -1,0 +1,51 @@
+{
+    name: null,
+    contact: {
+        job: null,
+        phoneNumber: null,
+        email: null,
+        paymentPerson: null,
+        fax: null,
+        schedule: {
+            mondayStart: null,
+            mondayEnd: null,
+            tuesdayStart: null,
+            tuesdayEnd: null,
+            wednesdayStart: null,
+            wednesdayEnd: null,
+            thursdayStart: null,
+            thursdayEnd: null,
+            fridayStart: null,
+            fridayEnd: null,
+            saturdayStart: null,
+            saturdayEnd: null,
+            sundayStart: null,
+            sundayEnd: null
+        }
+    },
+    email: null,
+    phoneNumber: null,
+    address: {
+        street: null,
+        number: null,
+        suburb: null,
+        cp: null,
+        municipality: null
+    },
+    logo: null,
+    selfFormat: false,
+    requestServiceByMail: false,
+    closingDocument: null,
+    servicesPrice: {
+        foreign: null,
+        local: null,
+        viaticForeign: null,
+        viaticLocal: null,
+        visitNotRealized: null,
+        visitRealized: null,
+        endingPrice: null,
+        disscount: null,
+    },
+    idOwner: null,
+    serviceWarranty: false
+}

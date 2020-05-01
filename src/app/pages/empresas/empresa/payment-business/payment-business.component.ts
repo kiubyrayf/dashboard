@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
@@ -12,7 +12,8 @@ const Swal = require('sweetalert2');
   encapsulation: ViewEncapsulation.None
 })
 export class PaymentBusinessComponent implements OnInit {
-  @Input() _empresa: EmpresaModel;
+  @Output() data: EventEmitter<any>;
+  private empresaList: any;
   public payForm: FormGroup;
   public submitted = false;
   public allData = FormData;
@@ -20,6 +21,8 @@ export class PaymentBusinessComponent implements OnInit {
 
   constructor(private router: Router, private fb: FormBuilder) {
     this.createForm();
+    this.data = new EventEmitter();
+    this.empresaList = {};
   }
 
   createForm() {
@@ -58,4 +61,16 @@ export class PaymentBusinessComponent implements OnInit {
   }
 
   ngOnInit() {  }
+
+  /*addEmpresa() {
+    const empresa = {
+      job: this.payForm.get('job').value,
+      phoneNumber: this.payForm.get('phoneNumber').value,
+      email: this.payForm.get('email').value,
+      paymentPerson: this.payForm.get('paymentPerson').value,
+      fax: this.payForm.get('fax').value,
+    };
+    this.empresaList = empresa;
+    this.data.emit(this.empresaList);
+  }*/
 }

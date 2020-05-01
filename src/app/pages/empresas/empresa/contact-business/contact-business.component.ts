@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
-import * as $ from 'jquery';
 import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
+
+declare const $;
 
 @Component({
   selector: 'app-contact-business',
@@ -11,14 +12,17 @@ import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
   styleUrls: ['./contact-businness.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ContactBusinessComponent implements OnInit {
-  @Input() _empresa: EmpresaModel;
+export class ContactBusinessComponent implements OnInit, AfterViewInit {
+  @Output() data: EventEmitter<any>;
+  private empresaList: any;
   public contactForm: FormGroup;
   public border_validation = false;
   public form: any;
   public title = 'contact registration page';
 
   constructor(private route: Router, private fb: FormBuilder) {
+    this.data = new EventEmitter();
+    this.empresaList = {};
     this.createContactForm();
   }
 
@@ -29,20 +33,20 @@ export class ContactBusinessComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       paymentPerson: new FormControl('', Validators.required, ),
       fax:  new FormControl('', [Validators.required ] ),
-      // schedule: new FormGroup({
-       // mondayStart: new FormControl(''),
-       // mondayEnd: new FormControl(''),
-        /*tuesdayStart: ['', , ],
-        tuesdayEnd: ['', , ],
-        wednesdayStart: ['', , ],
-        wednesdayEnd: ['', , ],
-        thursdayStart: ['', , ],
-        thursdayEnd: ['', , ],
-        fridayStart: ['', , ],
-        fridayEnd: ['', , ],
-        saturdayStart: ['', , ],
-        saturdayEnd: ['', , ],*/
-      // }),
+      schedule: new FormGroup({
+        mondayStart: new FormControl(''),
+        mondayEnd: new FormControl(''),
+        tuesdayStart: new FormControl(''),
+        tuesdayEnd: new FormControl(''),
+        wednesdayStart: new FormControl(''),
+        wednesdayEnd: new FormControl(''),
+        thursdayStart: new FormControl(''),
+        thursdayEnd: new FormControl(''),
+        fridayStart: new FormControl(''),
+        fridayEnd: new FormControl(''),
+        saturdayStart: new FormControl(''),
+        saturdayEnd: new FormControl(''),
+      }),
     });
   }
 
@@ -55,13 +59,25 @@ export class ContactBusinessComponent implements OnInit {
   }
 
   ngOnInit() {
-    function jQuery () {
+  }
+
+  ngAfterViewInit() {
+    $(document).ready(() => {
       $('.clockpicker').clockpicker({
-        placement: 'bottom',
-        align: 'left',
         donetext: 'Cerrar'
       });
-    }
-   }
+    });
+  }
 
+   addEmpresa(){
+    const empresa = {
+      job: this.contactForm.get('job').value,
+      phoneNumber: this.contactForm.get('phoneNumber').value,
+      email: this.contactForm.get('email').value,
+      paymentPerson: this.contactForm.get('paymentPerson').value,
+      fax: this.contactForm.get('fax').value,
+    };
+    this.empresaList = empresa;
+    this.data.emit(this.empresaList);
+  }
 }
