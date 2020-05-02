@@ -29,7 +29,7 @@ export class PaymentBusinessComponent implements OnInit {
   createForm() {
     this.payForm = new FormGroup({
       closingDocument: new FormControl('', Validators.required, ),
-      serviceWarranty: new FormControl('', Validators.required, ),
+      serviceWarranty: new FormControl(''),
       servicesPrice: new FormGroup({
         foreign: new FormControl('', Validators.required, ),
         viaticForeign:  new FormControl('', Validators.required, ),
@@ -89,6 +89,7 @@ export class PaymentBusinessComponent implements OnInit {
     };
      this.empresaList = empresa;
     this.data.emit(this.empresaList);
+    console.log(this.empresaList);
   }
   readFile(event) {
     if ( event.target.files.length > 0) {

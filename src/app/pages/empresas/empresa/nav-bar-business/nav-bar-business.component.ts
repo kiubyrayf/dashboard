@@ -48,8 +48,10 @@ export class NavBarBusinessComponent implements OnInit {
     formData.append('servicesPrice', JSON.stringify(this.infoPayData.servicesPrice)); // checar como se envia
     
     // haces el posteo
-   
+    console.log(formData);
+
     return this.empresaService.crearEmpresa(formData).subscribe( resp => {
+      
       console.log(resp);
     });
   
