@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { EmpresaModel } from '../../model/empresas/empresa.model';
 import { map, delay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -21,7 +21,12 @@ export class EmpresasService {
   }
 
   crearEmpresa(empresa: EmpresaModel): Observable<any> {
-    return this.http.post(`${this.config.api}/business`, empresa);
+    const params = new HttpParams()
+    .set("name", empresa.name)
+    .set("contact", JSON.stringify(empresa.contact));
+    
+
+    return this.http.post(`${this.config.api}/business`, { params });
   }
 
  /* private crearArreglo(empresasObj: object) {
