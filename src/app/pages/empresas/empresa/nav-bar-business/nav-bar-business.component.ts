@@ -18,7 +18,7 @@ export class NavBarBusinessComponent implements OnInit {
 
 
   constructor( private empresaService: EmpresasService ) {
-   }
+  }
 
   ngOnInit() { }
 
@@ -30,7 +30,6 @@ export class NavBarBusinessComponent implements OnInit {
   }
   infoPay(event) {
     this.infoPayData = event;
-
     // Supongamos que ya tienes toda la informacion
 
     const formData = new FormData();
@@ -46,12 +45,14 @@ export class NavBarBusinessComponent implements OnInit {
     formData.append('closingDocument', this.infoPayData.closingDocument.value); // checar como se envia
     formData.append('serviceWarranty', this.infoPayData.serviceWarranty);
     formData.append('servicesPrice', JSON.stringify(this.infoPayData.servicesPrice)); // checar como se envia
-    
-    // haces el posteo
-    console.log(formData);
+    // tslint:disable-next-line: no-debugger
+    debugger;
+
+    formData.forEach((value, key) => {
+      console.log('key %s: value %s', key, value);
+      });
 
     return this.empresaService.crearEmpresa(formData).subscribe( resp => {
-      
       console.log(resp);
     });
   

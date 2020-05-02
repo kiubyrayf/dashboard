@@ -61,15 +61,59 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    $(document).ready(() => {
-      $('.clockpicker').clockpicker({
-        donetext: 'Cerrar',
-      });
-    });
+    
   }
 
   ngAfterViewInit() {
-   
+    $(document).ready(() => {
+      $('.clockpicker').clockpicker({
+        autoclose: true,
+      }).find('input').change((e) => {
+        this.contactForm.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
+       /* if (e.currentTarget.formControlName === 'mondayStart') {
+          this.contactForm.get('schedule').value.mondayStart = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'mondayEnd') {
+          this.contactForm.get('schedule').value.mondayEnd = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'tuesdayStart') {
+          this.contactForm.get('schedule').value.tuesdayStart = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'tuesdayEnd') {
+          this.contactForm.get('schedule').value.tuesdayEnd = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'wednesdayStart') {
+          this.contactForm.get('schedule').value.wednesdayStart = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'wednesdayEnd') {
+          this.contactForm.get('schedule').value.wednesdayEnd = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'thursdayStart') {
+          this.contactForm.get('schedule').value.thursdayStart = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'thursdayEnd') {
+          this.contactForm.get('schedule').value.thursdayEnd = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'fridayStart') {
+          this.contactForm.get('schedule').value.fridayStart = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'fridayEnd') {
+          this.contactForm.get('schedule').value.fridayEnd = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'saturdayStart') {
+          this.contactForm.get('schedule').value.saturdayStart = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'saturdayEnd') {
+          this.contactForm.get('schedule').value.saturdayEnd = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'sundayStart') {
+          this.contactForm.get('schedule').value.sundayStart = e.currentTarget.value;
+        }
+        if (e.currentTarget.formControlName === 'sundayEnd') {
+          this.contactForm.get('schedule').value.sundayEnd = e.currentTarget.value;
+        }*/
+      });
+    });
   }
 
    addEmpresa() {
@@ -80,20 +124,30 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
       paymentPerson: this.contactForm.get('paymentPerson').value,
       fax: this.contactForm.get('fax').value,
       schedule: {
-        mondayStart: this.contactForm.get('schedule').value.mondayStart,
-        mondayEnd: this.contactForm.get('schedule').value.mondayEnd,
-        tuesdayStart: this.contactForm.get('schedule').value.tuesdayStart,
-        tuesdayEnd: this.contactForm.get('schedule').value.tuesdayEnd,
-        wednesdayStart: this.contactForm.get('schedule').value.wednesdayStart,
-        wednesdayEnd: this.contactForm.get('schedule').value.wednesdayEnd,
-        thursdayStart: this.contactForm.get('schedule').value.thursdayStart,
-        thursdayEnd: this.contactForm.get('schedule').value.thursdayEnd,
-        fridayStart: this.contactForm.get('schedule').value.fridayStart,
-        fridayEnd: this.contactForm.get('schedule').value.fridayEnd,
-        saturdayStart: this.contactForm.get('schedule').value.saturdayStart,
-        saturdayEnd: this.contactForm.get('schedule').value.saturdayEnd,
-        sundayStart: this.contactForm.get('schedule').value.sundayStart,
-        sundayEnd: this.contactForm.get('schedule').value.sundayEnd,
+        // tslint:disable-next-line: max-line-length
+        mondayStart: (this.contactForm.get('schedule').value.mondayStart !== '') ? this.contactForm.get('schedule').value.mondayStart : null,
+        mondayEnd: (this.contactForm.get('schedule').value.mondayEnd !== '') ? this.contactForm.get('schedule').value.mondayEnd : null,
+        // tslint:disable-next-line: max-line-length
+        tuesdayStart: (this.contactForm.get('schedule').value.tuesdayStart !== '') ? this.contactForm.get('schedule').value.tuesdayStart : null,
+        tuesdayEnd: (this.contactForm.get('schedule').value.tuesdayEnd !== '') ? this.contactForm.get('schedule').value.tuesdayEnd : null,
+        // tslint:disable-next-line: max-line-length
+        wednesdayStart: (this.contactForm.get('schedule').value.wednesdayStart !== '') ? this.contactForm.get('schedule').value.wednesdayStart : null,
+        // tslint:disable-next-line: max-line-length
+        wednesdayEnd: (this.contactForm.get('schedule').value.wednesdayEnd !== '') ? this.contactForm.get('schedule').value.wednesdayEnd : null,
+        // tslint:disable-next-line: max-line-length
+        thursdayStart: (this.contactForm.get('schedule').value.thursdayStart !== '') ? this.contactForm.get('schedule').value.thursdayStart : null,
+        // tslint:disable-next-line: max-line-length
+        thursdayEnd: (this.contactForm.get('schedule').value.thursdayEnd !== '') ? this.contactForm.get('schedule').value.thursdayEnd : null,
+        // tslint:disable-next-line: max-line-length
+        fridayStart: (this.contactForm.get('schedule').value.fridayStart !== '') ? this.contactForm.get('schedule').value.fridayStart : null,
+        fridayEnd: (this.contactForm.get('schedule').value.fridayEnd !== '') ? this.contactForm.get('schedule').value.fridayEnd : null,
+        // tslint:disable-next-line: max-line-length
+        saturdayStart: (this.contactForm.get('schedule').value.saturdayStart !== '') ? this.contactForm.get('schedule').value.saturdayStart : null,
+        // tslint:disable-next-line: max-line-length
+        saturdayEnd: (this.contactForm.get('schedule').value.saturdayEnd !== '') ? this.contactForm.get('schedule').value.saturdayEnd : null,
+        // tslint:disable-next-line: max-line-length
+        sundayStart: (this.contactForm.get('schedule').value.sundayStart !== '') ? this.contactForm.get('schedule').value.sundayStart : null,
+        sundayEnd: (this.contactForm.get('schedule').value.sundayEnd !== '') ? this.contactForm.get('schedule').value.sundayEnd : null,
       },
     };
     this.empresaList = empresa;
