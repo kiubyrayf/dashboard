@@ -15,6 +15,11 @@ table {
                 .btn{
                     padding: 10px;
                 }
+                a{
+                    &:hover{
+                        color: #000000;
+                    }
+                }
             }
         }
     }
@@ -22,11 +27,7 @@ table {
 .bgColor{
     background-color: #313131;
 }
-a{
-    &:hover{
-        color: #000000;
-    }
-}
+
 .loader-box {
     height: 70px;
 }
