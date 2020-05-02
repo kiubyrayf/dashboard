@@ -20,28 +20,11 @@ export class EmpresasService {
     return this.http.get(`${this.config.api}/business?page=1&name=XTEN&id=8`);
   }
 
-  crearEmpresa(empresa: EmpresaModel): Observable<any> {
-    const params = new HttpParams()
+  crearEmpresa(empresa): Observable<any> {
+    return this.http.post(`${this.config.api}/business`, empresa);
+   /* const params = new HttpParams()
     .set("name", empresa.name)
     .set("contact", JSON.stringify(empresa.contact));
-    
-
-    return this.http.post(`${this.config.api}/business`, { params });
+    return this.http.post(`${this.config.api}/business`, { params });*/
   }
-
- /* private crearArreglo(empresasObj: object) {
-    const empresas: EmpresaModel[] = [];
-
-    if (empresasObj === null) {
-      return [];
-    }
-
-    Object.keys(empresasObj).forEach((key) => {
-      const empresa: EmpresaModel = empresasObj[key];
-      empresa.id = key; // empresa deberia tener un id
-      empresas.push(empresa);
-    });
-    return empresas;
-  }*/
-
 }

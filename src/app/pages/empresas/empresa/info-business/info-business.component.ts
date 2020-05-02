@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
-import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
-import { EmpresaModelNew } from '../../../../shared/model/empresas/empresa.model';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
@@ -24,7 +22,7 @@ export class InfoBusinessComponent implements OnInit {
   public title = 'registration page';
   public form: any;
   constructor(
-      private route: Router, public empresaService: EmpresasService
+      private route: Router
     ) {
       this.data = new EventEmitter();
       this.empresaList = {};
