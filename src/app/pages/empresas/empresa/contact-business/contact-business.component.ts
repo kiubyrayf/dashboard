@@ -52,16 +52,7 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
     });
   }
 
-  save(form: any) {
-    if (!form.valid) {
-      return false;
-    }
-    return true;
-
-  }
-
   ngOnInit() {
-    
   }
 
   ngAfterViewInit() {
@@ -70,53 +61,137 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
         autoclose: true,
       }).find('input').change((e) => {
         this.contactForm.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
-       /* if (e.currentTarget.formControlName === 'mondayStart') {
-          this.contactForm.get('schedule').value.mondayStart = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'mondayEnd') {
-          this.contactForm.get('schedule').value.mondayEnd = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'tuesdayStart') {
-          this.contactForm.get('schedule').value.tuesdayStart = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'tuesdayEnd') {
-          this.contactForm.get('schedule').value.tuesdayEnd = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'wednesdayStart') {
-          this.contactForm.get('schedule').value.wednesdayStart = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'wednesdayEnd') {
-          this.contactForm.get('schedule').value.wednesdayEnd = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'thursdayStart') {
-          this.contactForm.get('schedule').value.thursdayStart = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'thursdayEnd') {
-          this.contactForm.get('schedule').value.thursdayEnd = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'fridayStart') {
-          this.contactForm.get('schedule').value.fridayStart = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'fridayEnd') {
-          this.contactForm.get('schedule').value.fridayEnd = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'saturdayStart') {
-          this.contactForm.get('schedule').value.saturdayStart = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'saturdayEnd') {
-          this.contactForm.get('schedule').value.saturdayEnd = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'sundayStart') {
-          this.contactForm.get('schedule').value.sundayStart = e.currentTarget.value;
-        }
-        if (e.currentTarget.formControlName === 'sundayEnd') {
-          this.contactForm.get('schedule').value.sundayEnd = e.currentTarget.value;
-        }*/
       });
     });
   }
 
-   addEmpresa() {
+  createMondayStart() {
+    if (this.contactForm.get('schedule').value.mondayStart !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.mondayStart);
+      return  date.toISOString();
+    } else {
+      return null;
+
+    }
+  }
+  createMondayEnd() {
+    if (this.contactForm.get('schedule').value.mondayEnd !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.mondayEnd);
+      return date.toISOString();
+    } else {
+      return null;
+
+    }
+  }
+  createTuesdayStart() {
+    if (this.contactForm.get('schedule').value.tuesdayStart !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.tuesdayStart);
+      return  date.toISOString();
+    } else {
+      return  null;
+
+    }
+  }
+  createTuesdayEnd() {
+    if (this.contactForm.get('schedule').value.tuesdayEnd !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.tuesdayEnd);
+      
+      return date.toISOString();
+    } else {
+      return null;
+
+    }
+  }
+  createWednesdayStart() {
+    if (this.contactForm.get('schedule').value.wednesdayStart !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.wednesdayStart);
+      return  date.toISOString();
+    } else {
+      return  null;
+
+    }
+  }
+  createWednesdayEnd() {
+    if (this.contactForm.get('schedule').value.wednesdayEnd !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.wednesdayEnd);
+      return   date.toISOString();
+    } else {
+      return  null;
+
+    }
+  }
+  createThursdayStart() {
+    if (this.contactForm.get('schedule').value.thursdayStart !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.thursdayStart);
+      return  date.toISOString();
+    } else {
+      return null;
+
+    }
+  }
+  createThursdayEnd() {
+    if (this.contactForm.get('schedule').value.thursdayEnd !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.thursdayEnd);
+      return date.toISOString();
+    } else {
+      return null;
+
+    }
+  }
+  createFridayStart() {
+    if (this.contactForm.get('schedule').value.fridayStart !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.fridayStart)
+      return date.toISOString();
+    } else {
+      return  null;
+
+    }
+  }
+  createFridayEnd() {
+    if (this.contactForm.get('schedule').value.fridayEnd !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.fridayEnd);
+      return  date.toISOString();
+    } else {
+      return null;
+
+    }
+  }
+  createSaturdayStart() {
+    if (this.contactForm.get('schedule').value.saturdayStart !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.saturdayStart);
+      return  date.toISOString();
+    } else {
+      return null;
+
+    }
+  }
+  createSaturdayEnd() {
+    if (this.contactForm.get('schedule').value.saturdayEnd !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.saturdayEnd);
+      return  date.toISOString();
+    } else {
+      return  null;
+
+    }
+  }
+  createSundayStart() {
+    if (this.contactForm.get('schedule').value.sundayStart !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.sundayStart);
+      return  date.toISOString();
+    } else {
+      return  null;
+
+    }
+  }
+  createSundayEnd() {
+    if (this.contactForm.get('schedule').value.sundayEnd !== '') {
+      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.sundayEnd);
+      return   date.toISOString();
+    } else {
+      return  null;
+    }
+  }
+  addEmpresa() {
     const empresa = {
       job: this.contactForm.get('job').value,
       phoneNumber: this.contactForm.get('phoneNumber').value,
@@ -125,32 +200,24 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
       fax: this.contactForm.get('fax').value,
       schedule: {
         // tslint:disable-next-line: max-line-length
-        mondayStart: (this.contactForm.get('schedule').value.mondayStart !== '') ? this.contactForm.get('schedule').value.mondayStart : null,
-        mondayEnd: (this.contactForm.get('schedule').value.mondayEnd !== '') ? this.contactForm.get('schedule').value.mondayEnd : null,
-        // tslint:disable-next-line: max-line-length
-        tuesdayStart: (this.contactForm.get('schedule').value.tuesdayStart !== '') ? this.contactForm.get('schedule').value.tuesdayStart : null,
-        tuesdayEnd: (this.contactForm.get('schedule').value.tuesdayEnd !== '') ? this.contactForm.get('schedule').value.tuesdayEnd : null,
-        // tslint:disable-next-line: max-line-length
-        wednesdayStart: (this.contactForm.get('schedule').value.wednesdayStart !== '') ? this.contactForm.get('schedule').value.wednesdayStart : null,
-        // tslint:disable-next-line: max-line-length
-        wednesdayEnd: (this.contactForm.get('schedule').value.wednesdayEnd !== '') ? this.contactForm.get('schedule').value.wednesdayEnd : null,
-        // tslint:disable-next-line: max-line-length
-        thursdayStart: (this.contactForm.get('schedule').value.thursdayStart !== '') ? this.contactForm.get('schedule').value.thursdayStart : null,
-        // tslint:disable-next-line: max-line-length
-        thursdayEnd: (this.contactForm.get('schedule').value.thursdayEnd !== '') ? this.contactForm.get('schedule').value.thursdayEnd : null,
-        // tslint:disable-next-line: max-line-length
-        fridayStart: (this.contactForm.get('schedule').value.fridayStart !== '') ? this.contactForm.get('schedule').value.fridayStart : null,
-        fridayEnd: (this.contactForm.get('schedule').value.fridayEnd !== '') ? this.contactForm.get('schedule').value.fridayEnd : null,
-        // tslint:disable-next-line: max-line-length
-        saturdayStart: (this.contactForm.get('schedule').value.saturdayStart !== '') ? this.contactForm.get('schedule').value.saturdayStart : null,
-        // tslint:disable-next-line: max-line-length
-        saturdayEnd: (this.contactForm.get('schedule').value.saturdayEnd !== '') ? this.contactForm.get('schedule').value.saturdayEnd : null,
-        // tslint:disable-next-line: max-line-length
-        sundayStart: (this.contactForm.get('schedule').value.sundayStart !== '') ? this.contactForm.get('schedule').value.sundayStart : null,
-        sundayEnd: (this.contactForm.get('schedule').value.sundayEnd !== '') ? this.contactForm.get('schedule').value.sundayEnd : null,
+        mondayStart: this.createMondayStart(),
+        mondayEnd: this.createMondayEnd(),
+        tuesdayStart: this.createTuesdayStart(),
+        tuesdayEnd: this.createTuesdayEnd(),
+        wednesdayStart: this.createWednesdayStart(),
+        wednesdayEnd: this.createWednesdayEnd(),
+        thursdayStart: this.createThursdayStart(),
+        thursdayEnd: this.createThursdayEnd(),
+        fridayStart: this.createFridayStart(),
+        fridayEnd: this.createFridayEnd(),
+        saturdayStart: this.createSaturdayStart(),
+        saturdayEnd: this.createSaturdayEnd(),
+        sundayStart: this.createSundayStart(),
+        sundayEnd: this.createSundayEnd(),
       },
     };
     this.empresaList = empresa;
     this.data.emit(this.empresaList);
+    console.log(this.empresaList);
   }
 }

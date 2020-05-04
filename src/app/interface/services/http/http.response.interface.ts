@@ -1,5 +1,12 @@
 export interface HttpInterface {
-    status: Number,
-    message: any,
-    data: any 
+    status: number;
+    message: any;
+    data: any;
+    pages: {
+        currentPage: number,
+        nextPage: number,
+        previousPage: number,
+        totalRegisters: number,
+        totalPages: number
+    };
 }

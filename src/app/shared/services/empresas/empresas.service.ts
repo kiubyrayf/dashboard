@@ -16,15 +16,11 @@ export class EmpresasService {
     this.config = Config;
   }
 
-  getEmpresas(): Observable<any> {
-    return this.http.get(`${this.config.api}/business?page=1&name=XTEN&id=8`);
+  getEmpresas(page: number): Observable<any> {
+    return this.http.get(`${this.config.api}/business?page=${page}`); // &name=XTEN&id=8
   }
 
   crearEmpresa(empresa): Observable<any> {
     return this.http.post(`${this.config.api}/business`, empresa);
-   /* const params = new HttpParams()
-    .set("name", empresa.name)
-    .set("contact", JSON.stringify(empresa.contact));
-    return this.http.post(`${this.config.api}/business`, { params });*/
   }
 }

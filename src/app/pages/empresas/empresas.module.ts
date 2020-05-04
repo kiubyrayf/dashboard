@@ -14,7 +14,7 @@ import { InfoBusinessComponent } from './empresa/info-business/info-business.com
 import { ContactBusinessComponent } from './empresa/contact-business/contact-business.component';
 import { PaymentBusinessComponent } from './empresa/payment-business/payment-business.component';
 import { TimepickerComponent } from '../../components/base/timepicker/timepicker.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FeatherIconComponent } from '../../components/icons/feather-icon/feather-icon.component';
 import { FileUploadModule } from 'ng2-file-upload';
 
@@ -40,6 +40,9 @@ import { FileUploadModule } from 'ng2-file-upload';
     ArchwizardModule,
     NgbModule,
     FileUploadModule,
+  ],
+  providers: [
+   NgbPaginationConfig
   ]
 })
 export class EmpresasModule { }

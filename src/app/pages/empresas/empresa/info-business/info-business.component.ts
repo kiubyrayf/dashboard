@@ -54,7 +54,7 @@ export class InfoBusinessComponent implements OnInit {
       return false;
     }
     return true;
-    console.log(this.regForm);
+   
   }
 
   ngOnInit() {  }
@@ -78,7 +78,6 @@ export class InfoBusinessComponent implements OnInit {
     };
      this.empresaList = empresa;
     this.data.emit(this.empresaList);
-    console.log(this.empresaList);
   }
   readFile(event) {
     if ( event.target.files.length > 0) {

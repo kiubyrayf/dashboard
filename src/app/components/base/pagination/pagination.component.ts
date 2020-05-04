@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter } from '@angular/core';
 import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,9 +8,11 @@ import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
   encapsulation: ViewEncapsulation.None,
   providers: [NgbPaginationConfig] // add NgbPaginationConfig to the component providers
 })
+
+
 export class PaginationComponent implements OnInit {
 
-  page = 4;
+  page = 2;
   advancePage = 1;
   currentPage = 3;
   isDisabled = true;
