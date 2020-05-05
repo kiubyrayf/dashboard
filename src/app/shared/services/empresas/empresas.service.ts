@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { EmpresaModel } from '../../model/empresas/empresa.model';
 import { map, delay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Config } from '../../../config/index';
@@ -17,10 +16,15 @@ export class EmpresasService {
   }
 
   getEmpresas(page: number): Observable<any> {
-    return this.http.get(`${this.config.api}/business?page=${page}`); // &name=XTEN&id=8
+    return this.http.get(`${this.config.api}/business?page=${page}`); // business?page=2&name=XTEN&id=46
   }
-
+  getEmpresa(id: any): Observable<any> {
+    return this.http.get(`${this.config.api}/business?id=${id}`); // business?page=2&name=XTEN&id=46
+  }
   crearEmpresa(empresa): Observable<any> {
     return this.http.post(`${this.config.api}/business`, empresa);
+  }
+  borrarBusiness(id: string): Observable<any> {
+   return this.http.delete(`${this.config.api}/business?id=${id}`);
   }
 }

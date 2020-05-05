@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
 import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
+import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
+import { BusinessInterface } from 'src/app/interface/business/business.interface';
 
 declare var require;
 const Swal = require('sweetalert2');
@@ -17,18 +18,22 @@ const Swal = require('sweetalert2');
 export class InfoBusinessComponent implements OnInit {
   //@ViewChild('fileInput') fileInput: ElementRef;
   @Output() data: EventEmitter<any>;
+  @Output() businessData: EventEmitter<BusinessInterface>;
   private empresaList: any;
   public isBorderValidate = false;
   public regForm: FormGroup;
   public title = 'registration page';
   public form: any;
   public empresa: EmpresaModel;
+ 
   constructor(
-      private route: Router
+      private route: Router,
+      private activeRoute: ActivatedRoute,
+      private empresaService: EmpresasService
     ) {
       this.data = new EventEmitter();
       this.empresaList = {};
-        this.createForm();
+      this.createForm();
   }
 
   // create form
@@ -58,7 +63,17 @@ export class InfoBusinessComponent implements OnInit {
    
   }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    const id = this.activeRoute.snapshot.paramMap.get('id');
+    if (id !== 'nuevo') {
+      this.empresaService.getEmpresa(id).subscribe(
+        (resp) => {
+         this.businessData = resp.data[0];
+         console.log(this.businessData);
+         this.regForm.patchValue( this.businessData);
+        });
+    }
+  }
 
   addEmpresa() {
     const empresa = {
@@ -81,7 +96,7 @@ export class InfoBusinessComponent implements OnInit {
     this.data.emit(this.empresaList);
   }
   readFile(event) {
-    if ( event.target.files.length > 0) {
+    if ( event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
         this.warning();
@@ -92,14 +107,9 @@ export class InfoBusinessComponent implements OnInit {
 
     }
   }
- /* clearFile() {
-    this.form.get('logo').setValue('');
-    this.fileInput.nativeElement.value = '';
-  } */
-   // A warning
+
   warning() {
     Swal.fire({
-      type: 'warning',
       title: 'Alerta',
       text: 'Selecciona un documento tipo JPG o PNG',
       icon: 'warning',

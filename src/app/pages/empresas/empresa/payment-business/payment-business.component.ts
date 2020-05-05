@@ -63,7 +63,7 @@ export class PaymentBusinessComponent implements OnInit {
   }
   warning() {
     Swal.fire({
-      type: 'warning',
+      //type: 'warning',
       title: 'Alerta',
       text: 'Selecciona un documento tipo JPG o PNG',
       icon: 'warning',

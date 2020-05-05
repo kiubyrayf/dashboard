@@ -1,9 +1,12 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import {EmpresasService} from '../../../shared/services/empresas/empresas.service';
 import {EmpresaModel} from '../../../shared/model/empresas/empresa.model';
 import { NgbActiveModal, NgbModal, ModalDismissReasons, NgbModalConfig, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { HttpInterface } from 'src/app/interface/services/http/http.response.interface';
+import { BusinessInterface } from 'src/app/interface/business/business.interface';
 
+declare var require;
+const Swal = require('sweetalert2');
 
 @Component({
   selector: 'app-general',
@@ -13,6 +16,7 @@ import { HttpInterface } from 'src/app/interface/services/http/http.response.int
 })
 export class GeneralComponent implements OnInit {
 
+  @Input() empresaObject: BusinessInterface;
 
   public empresas = [];
   cargando = false;
@@ -47,6 +51,25 @@ export class GeneralComponent implements OnInit {
       this.collectionSize = resp.pages.totalRegisters;
       this.totalPages = resp.pages.totalPages;
       this.cargando = false;
+    });
+  }
+  borrarEmpresa (empresas: any , i: number) {
+    Swal.fire({
+      title: '¿Esta seguro?',
+      text: `Esta seguro que desea borrar ${empresas.name}`,
+      icon: 'question',
+      showConfirmButton: true,
+      showCancelButton: true,
+    }).then((resp) => {
+     if (resp.value) {
+        this.empresas.splice(i, 1);
+        this.empresaService.borrarBusiness(empresas.id).subscribe(
+           (res: any) => {
+             console.log(res);
+           }
+        );
+        // no borra de vdd :/
+      }
     });
   }
   open(content) {

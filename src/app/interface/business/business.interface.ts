@@ -1,4 +1,5 @@
 export interface BusinessInterface {
+    id: string;
     name: string;
     contact: {
         job: string;
