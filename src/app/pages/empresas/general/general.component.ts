@@ -33,16 +33,15 @@ export class GeneralComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargando = true;
-    this.empresaService.getEmpresas(this.page).subscribe((resp: HttpInterface) => {
-      this.empresas = resp.data;
-      this.collectionSize = resp.pages.totalRegisters;
-      this.totalPages = resp.pages.totalPages;
-      this.cargando = false;
-    });
+    this.mostrarEmpresa( this.page);
   }
 
   pageChange( e: number ) {
     this.page = e;
+    this.mostrarEmpresa( this.page);
+  }
+
+  mostrarEmpresa(page) {
     this.empresaService.getEmpresas(this.page).subscribe((resp: HttpInterface) => {
       this.empresas = resp.data;
       this.collectionSize = resp.pages.totalRegisters;

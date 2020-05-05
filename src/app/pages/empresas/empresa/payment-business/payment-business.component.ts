@@ -55,7 +55,8 @@ export class PaymentBusinessComponent implements OnInit {
     Swal.fire({
       position: 'top-end',
       type: 'success',
-      title: 'Your all steps done!',
+      title: 'Completaste el formulario correctamente',
+      text: 'Procesando informacion!',
       showConfirmButton: false,
       timer: 1500
     });

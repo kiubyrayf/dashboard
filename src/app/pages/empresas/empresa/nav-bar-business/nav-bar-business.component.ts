@@ -3,6 +3,9 @@ import { EmpresaModelNew } from 'src/app/shared/model/empresas/empresa.model';
 import { BusinessInterface } from '../../../../interface/business/business.interface';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
 
+declare var require;
+const Swal = require('sweetalert2');
+
 @Component({
   selector: 'app-nav-bar-business',
   templateUrl: './nav-bar-business.component.html',
