@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
@@ -13,6 +13,7 @@ declare const $;
   encapsulation: ViewEncapsulation.None
 })
 export class ContactBusinessComponent implements OnInit, AfterViewInit {
+  @Input() entry: EmpresaModel;
   @Output() data: EventEmitter<any>;
   private empresaList: any;
   public contactForm: FormGroup;
@@ -23,36 +24,67 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
   constructor(private route: Router, private fb: FormBuilder) {
     this.data = new EventEmitter();
     this.empresaList = {};
-    this.createContactForm();
   }
 
   createContactForm() {
-    this.contactForm = new FormGroup({
-      job:  new FormControl('', Validators.required, ),
-      phoneNumber:  new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      paymentPerson: new FormControl('', Validators.required, ),
-      fax:  new FormControl('', [Validators.required ] ),
-      schedule: new FormGroup({
-        mondayStart: new FormControl(''),
-        mondayEnd: new FormControl(''),
-        tuesdayStart: new FormControl(''),
-        tuesdayEnd: new FormControl(''),
-        wednesdayStart: new FormControl(''),
-        wednesdayEnd: new FormControl(''),
-        thursdayStart: new FormControl(''),
-        thursdayEnd: new FormControl(''),
-        fridayStart: new FormControl(''),
-        fridayEnd: new FormControl(''),
-        saturdayStart: new FormControl(''),
-        saturdayEnd: new FormControl(''),
-        sundayStart: new FormControl(''),
-        sundayEnd: new FormControl(''),
-      }),
-    });
+    debugger;
+    if(this.entry)
+    {
+      console.log("entra");
+      this.contactForm = new FormGroup({
+        job:  new FormControl(this.entry.name, Validators.required, ),
+        phoneNumber:  new FormControl(this.entry.phoneNumber, [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
+        email: new FormControl(this.entry.email, [Validators.required, Validators.email]),
+        paymentPerson: new FormControl('', Validators.required, ),
+        fax:  new FormControl('', [Validators.required ] ),
+        schedule: new FormGroup({
+          mondayStart: new FormControl(''),
+          mondayEnd: new FormControl(''),
+          tuesdayStart: new FormControl(''),
+          tuesdayEnd: new FormControl(''),
+          wednesdayStart: new FormControl(''),
+          wednesdayEnd: new FormControl(''),
+          thursdayStart: new FormControl(''),
+          thursdayEnd: new FormControl(''),
+          fridayStart: new FormControl(''),
+          fridayEnd: new FormControl(''),
+          saturdayStart: new FormControl(''),
+          saturdayEnd: new FormControl(''),
+          sundayStart: new FormControl(''),
+          sundayEnd: new FormControl(''),
+        }),
+      });
+    }
+    else {
+      console.log("no entra");
+      this.contactForm = new FormGroup({
+        job:  new FormControl('', Validators.required, ),
+        phoneNumber:  new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        paymentPerson: new FormControl('', Validators.required, ),
+        fax:  new FormControl('', [Validators.required ] ),
+        schedule: new FormGroup({
+          mondayStart: new FormControl(''),
+          mondayEnd: new FormControl(''),
+          tuesdayStart: new FormControl(''),
+          tuesdayEnd: new FormControl(''),
+          wednesdayStart: new FormControl(''),
+          wednesdayEnd: new FormControl(''),
+          thursdayStart: new FormControl(''),
+          thursdayEnd: new FormControl(''),
+          fridayStart: new FormControl(''),
+          fridayEnd: new FormControl(''),
+          saturdayStart: new FormControl(''),
+          saturdayEnd: new FormControl(''),
+          sundayStart: new FormControl(''),
+          sundayEnd: new FormControl(''),
+        }),
+      });
+    }
   }
 
   ngOnInit() {
+    this.createContactForm();
   }
 
   ngAfterViewInit() {

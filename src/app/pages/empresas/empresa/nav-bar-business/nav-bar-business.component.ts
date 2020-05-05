@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { EmpresaModelNew } from 'src/app/shared/model/empresas/empresa.model';
+import { EmpresaModelNew, EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 import { BusinessInterface } from '../../../../interface/business/business.interface';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
 
@@ -18,6 +18,7 @@ export class NavBarBusinessComponent implements OnInit {
   private infoBusinessData: any;
   private infoContactData: any;
   private infoPayData: any;
+  empresa = new EmpresaModel("Nombre empresa","mail@correo.com","",0,null,null,null,null,false,false,false);
 
 
   constructor( private empresaService: EmpresasService ) {

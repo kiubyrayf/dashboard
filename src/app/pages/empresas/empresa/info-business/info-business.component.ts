@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 
 declare var require;
 const Swal = require('sweetalert2');
@@ -21,6 +22,7 @@ export class InfoBusinessComponent implements OnInit {
   public regForm: FormGroup;
   public title = 'registration page';
   public form: any;
+  public empresa: EmpresaModel;
   constructor(
       private route: Router
     ) {
@@ -46,7 +48,6 @@ export class InfoBusinessComponent implements OnInit {
       selfFormat: new FormControl(''),
       logo: new FormControl('', Validators.required, ),
     });
-
   }
 
   save(form: any) {
