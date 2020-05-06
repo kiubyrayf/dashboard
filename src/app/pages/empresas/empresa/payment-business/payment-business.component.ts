@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 import { FileUploader } from 'ng2-file-upload';
+import { BusinessInterface } from 'src/app/interface/business/business.interface';
 
 declare var require;
 const Swal = require('sweetalert2');
@@ -14,6 +15,7 @@ const Swal = require('sweetalert2');
 })
 export class PaymentBusinessComponent implements OnInit {
   @Output() data: EventEmitter<any>;
+  @Input() businessData: BusinessInterface;
   private empresaList: any;
   public payForm: FormGroup;
   public submitted = false;
@@ -24,6 +26,7 @@ export class PaymentBusinessComponent implements OnInit {
     this.createForm();
     this.data = new EventEmitter();
     this.empresaList = {};
+    this.businessData = null;
   }
 
   createForm() {
@@ -72,7 +75,9 @@ export class PaymentBusinessComponent implements OnInit {
   }
 
   ngOnInit() {  }
-
+  ngOnChanges(): void {
+    this.payForm.patchValue(this.businessData);
+  }
   addEmpresa() {
     const empresa = {
       closingDocument: this.payForm.get('closingDocument'),

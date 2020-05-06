@@ -17,12 +17,14 @@ const Swal = require('sweetalert2');
 export class NavBarBusinessComponent implements OnInit {
 
   @Input() empresaInfo: BusinessInterface;
+  public businessDataOutputInfo: BusinessInterface;
   private infoBusinessData: any;
   private infoContactData: any;
   private infoPayData: any;
   private infoB: any;
 
   constructor( private empresaService: EmpresasService,  private router: Router ) {
+    this.businessDataOutputInfo = null;
   }
 
   ngOnInit() { }
@@ -73,6 +75,10 @@ export class NavBarBusinessComponent implements OnInit {
       console.log(error);
       console.log(error.messege);
     });
+  }
+
+  businessDataOutput($event) {
+    this.businessDataOutputInfo = $event;
   }
 
 }

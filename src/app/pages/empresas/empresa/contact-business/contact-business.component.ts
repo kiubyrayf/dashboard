@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output, Input, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
@@ -14,9 +14,9 @@ declare const $;
   styleUrls: ['./contact-businness.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ContactBusinessComponent implements OnInit, AfterViewInit {
+export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() data: EventEmitter<any>;
-  @Output() businessData: EventEmitter<BusinessInterface>;
+  @Input() businessData: BusinessInterface;
 
   private empresaList: any;
   public contactForm: FormGroup;
@@ -31,6 +31,7 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
     this.data = new EventEmitter();
     this.empresaList = {};
     this.createContactForm();
+    this.businessData = null;
   }
 
   createContactForm() {
@@ -60,7 +61,7 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    
+    /*
     const id = this.activeRoute.snapshot.paramMap.get('id');
     if (id !== 'nuevo') {
       this.empresaService.getEmpresa(id).subscribe(
@@ -70,6 +71,12 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit {
          this.contactForm.patchValue( this.businessData);
       });
     }
+    */
+  }
+
+  ngOnChanges(): void {
+    console.log(this.businessData);
+    this.contactForm.patchValue(this.businessData.contact);
   }
 
   ngAfterViewInit() {

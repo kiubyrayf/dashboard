@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ElementRef, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -18,7 +18,8 @@ const Swal = require('sweetalert2');
 export class InfoBusinessComponent implements OnInit {
   //@ViewChild('fileInput') fileInput: ElementRef;
   @Output() data: EventEmitter<any>;
-  @Output() businessData: EventEmitter<BusinessInterface>;
+  @Output() businessDataOutput: EventEmitter<any>;
+  public businessData: BusinessInterface;
   private empresaList: any;
   public isBorderValidate = false;
   public regForm: FormGroup;
@@ -32,6 +33,7 @@ export class InfoBusinessComponent implements OnInit {
       private empresaService: EmpresasService
     ) {
       this.data = new EventEmitter();
+      this.businessDataOutput = new EventEmitter();
       this.empresaList = {};
       this.createForm();
   }
@@ -69,6 +71,7 @@ export class InfoBusinessComponent implements OnInit {
       this.empresaService.getEmpresa(id).subscribe(
         (resp) => {
          this.businessData = resp.data[0];
+         this.businessDataOutput.emit(this.businessData);
          console.log(this.businessData);
          this.regForm.patchValue( this.businessData);
         });
