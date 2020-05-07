@@ -68,7 +68,6 @@ export class GeneralComponent implements OnInit {
              console.log(res);
            }
         );
-        // no borra de vdd :/
       }
     });
   }

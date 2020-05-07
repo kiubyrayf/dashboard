@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ElementRef, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ElementRef, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -12,6 +12,7 @@ const Swal = require('sweetalert2');
 @Component({
   selector: 'app-info-business',
   templateUrl: './info-business.component.html',
+  styleUrls: ['./info-business.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 
@@ -19,6 +20,10 @@ export class InfoBusinessComponent implements OnInit {
   //@ViewChild('fileInput') fileInput: ElementRef;
   @Output() data: EventEmitter<any>;
   @Output() businessDataOutput: EventEmitter<any>;
+  
+  @Output() flagData: EventEmitter<any>;
+  public flagDataInfo: boolean;
+
   public businessData: BusinessInterface;
   private empresaList: any;
   public isBorderValidate = false;
@@ -26,14 +31,21 @@ export class InfoBusinessComponent implements OnInit {
   public title = 'registration page';
   public form: any;
   public empresa: EmpresaModel;
+
+  public fileName: string;
  
   constructor(
       private route: Router,
       private activeRoute: ActivatedRoute,
-      private empresaService: EmpresasService
+      private empresaService: EmpresasService,
+      private cd: ChangeDetectorRef
     ) {
       this.data = new EventEmitter();
       this.businessDataOutput = new EventEmitter();
+      
+      this.flagData = new EventEmitter();
+      this.flagDataInfo = false;
+
       this.empresaList = {};
       this.createForm();
   }
@@ -51,8 +63,8 @@ export class InfoBusinessComponent implements OnInit {
         municipality: new FormControl('', Validators.required, ),
         suburb: new FormControl('', Validators.required, ),
       }),
-      requestServiceByMail: new FormControl(''),
-      selfFormat: new FormControl(''),
+      requestServiceByMail: new FormControl(false),
+      selfFormat: new FormControl(false),
       logo: new FormControl('', Validators.required, ),
     });
   }
@@ -68,14 +80,21 @@ export class InfoBusinessComponent implements OnInit {
   ngOnInit() {
     const id = this.activeRoute.snapshot.paramMap.get('id');
     if (id !== 'nuevo') {
+      this.flagDataInfo = true;
       this.empresaService.getEmpresa(id).subscribe(
         (resp) => {
-         this.businessData = resp.data[0];
-         this.businessDataOutput.emit(this.businessData);
-         console.log(this.businessData);
-         this.regForm.patchValue( this.businessData);
+          this.flagData.emit(this.flagDataInfo);
+
+          this.businessData = resp.data[0];
+          console.log(this.businessData);
+          this.businessDataOutput.emit(this.businessData);
+          this.regForm.patchValue( this.businessData);
         });
     }
+  }
+  onChange($event) {
+    this.regForm.get($event.currentTarget.name).setValue($event.currentTarget.checked);
+   // this.regForm.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
   }
 
   addEmpresa() {
@@ -93,24 +112,11 @@ export class InfoBusinessComponent implements OnInit {
       },
       // tslint:disable-next-line: max-line-length
       requestServiceByMail: (this.regForm.get('requestServiceByMail').value !== '') ? this.regForm.get('requestServiceByMail').value : false,
-      selfFormat: (this.regForm.get('selfFormat').value !== '') ? this.regForm.get('selfFormat').value : false,
+      selfFormat: this.regForm.get('selfFormat').value
     };
-     this.empresaList = empresa;
+    this.empresaList = empresa;
     this.data.emit(this.empresaList);
   }
-  readFile(event) {
-    if ( event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
-        this.warning();
-        this.form.get('logo').setValue('');
-      } else {
-        this.regForm.get('logo').setValue(file);
-      }
-
-    }
-  }
-
   warning() {
     Swal.fire({
       title: 'Alerta',
@@ -119,4 +125,26 @@ export class InfoBusinessComponent implements OnInit {
       showConfirmButton: true,
     });
   }
+  readFile(event) {
+    // let reader = new FileReader();
+    if ( event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      // const [file] = event.target.files;
+      // reader.readAsDataURL(file);
+      if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
+        this.warning();
+        this.regForm.get('logo').setValue('');
+      } else {
+        this.regForm.get('logo').setValue(file);
+        this.fileName = file.name;
+       
+        // reader.onload = () => {
+        //  this.formGroup.patchValue({
+        //    file: reader.result
+        // });
+        this.cd.markForCheck();
+      }
+    }
+  }
+
 }

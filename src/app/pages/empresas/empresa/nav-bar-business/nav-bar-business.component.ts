@@ -16,15 +16,18 @@ const Swal = require('sweetalert2');
 
 export class NavBarBusinessComponent implements OnInit {
 
-  @Input() empresaInfo: BusinessInterface;
+ // @Input() empresaInfo: BusinessInterface;
+
   public businessDataOutputInfo: BusinessInterface;
+  public flagDataOuputInfo: boolean;
   private infoBusinessData: any;
   private infoContactData: any;
   private infoPayData: any;
-  private infoB: any;
+  // private infoB: any;
 
   constructor( private empresaService: EmpresasService,  private router: Router ) {
     this.businessDataOutputInfo = null;
+    this.flagDataOuputInfo = false;
   }
 
   ngOnInit() { }
@@ -37,6 +40,7 @@ export class NavBarBusinessComponent implements OnInit {
       showConfirmButton: true,
     });
   }
+  
   infoBusiness(event) {
     this.infoBusinessData = event;
   }
@@ -46,8 +50,6 @@ export class NavBarBusinessComponent implements OnInit {
   
   infoPay(event) {
     this.infoPayData = event;
-    // Supongamos que ya tienes toda la informacion
-
     const formData = new FormData();
 
     formData.append('name', this.infoBusinessData.name);
@@ -58,20 +60,32 @@ export class NavBarBusinessComponent implements OnInit {
     formData.append('logo', this.infoBusinessData.logo.value);
     formData.append('address', JSON.stringify(this.infoBusinessData.address));
     formData.append('contact', JSON.stringify(this.infoContactData));
-    formData.append('closingDocument', this.infoPayData.closingDocument.value);
+    formData.append('closingDocument', this.infoPayData.closingDocument);
     formData.append('serviceWarranty', this.infoPayData.serviceWarranty);
     formData.append('servicesPrice', JSON.stringify(this.infoPayData.servicesPrice));
+    
     // imprimir en colola form data
-    // formData.forEach((value, key) => {
-    //   console.log('key %s: value %s', key, value);
-    // });
+   
+     formData.forEach((value, key) => {
+       console.log('key %s: value %s', key, value);
+     });
 
     return this.empresaService.crearEmpresa(formData).subscribe( (resp: HttpInterface) => {
+
       if (resp.status === 1) {
         this.success();
         this.router.navigate(['/empresas/general']);
+      } else if (resp.status === 0) {
+        Swal.fire({
+          title: 'Creacion de empresa incorrecta',
+          text: `${resp.message}`,
+          icon: 'warning',
+          showConfirmButton: true,
+        });
+        this.router.navigate(['/empresas/general']);
       }
     }, ( error: any ) => {
+      
       console.log(error);
       console.log(error.messege);
     });
@@ -81,4 +95,7 @@ export class NavBarBusinessComponent implements OnInit {
     this.businessDataOutputInfo = $event;
   }
 
+  flagDataOuput($event) {
+    this.flagDataOuputInfo = $event;
+  }
 }
