@@ -33,7 +33,8 @@ export class InfoBusinessComponent implements OnInit {
   public empresa: EmpresaModel;
 
   public fileName: string;
- 
+  public logoName: string;
+
   constructor(
       private route: Router,
       private activeRoute: ActivatedRoute,
@@ -69,14 +70,6 @@ export class InfoBusinessComponent implements OnInit {
     });
   }
 
-  save(form: any) {
-    if (!form.valid) {
-      return false;
-    }
-    return true;
-   
-  }
-
   ngOnInit() {
     const id = this.activeRoute.snapshot.paramMap.get('id');
     if (id !== 'nuevo') {
@@ -84,12 +77,12 @@ export class InfoBusinessComponent implements OnInit {
       this.empresaService.getEmpresa(id).subscribe(
         (resp) => {
           this.flagData.emit(this.flagDataInfo);
-
           this.businessData = resp.data[0];
           console.log(this.businessData);
           this.businessDataOutput.emit(this.businessData);
           this.regForm.patchValue( this.businessData);
-        });
+          this.logoName = this.businessData.logo;
+      });
     }
   }
   onChange($event) {
@@ -126,23 +119,18 @@ export class InfoBusinessComponent implements OnInit {
     });
   }
   readFile(event) {
-    // let reader = new FileReader();
+   
     if ( event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      // const [file] = event.target.files;
-      // reader.readAsDataURL(file);
       if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
         this.warning();
         this.regForm.get('logo').setValue('');
       } else {
-        this.regForm.get('logo').setValue(file);
-        this.fileName = file.name;
+        
+         this.fileName = file.name;
+         this.regForm.get('logo').setValue(file);
+        this.logoName = '';
        
-        // reader.onload = () => {
-        //  this.formGroup.patchValue({
-        //    file: reader.result
-        // });
-        this.cd.markForCheck();
       }
     }
   }

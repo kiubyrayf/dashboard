@@ -21,7 +21,7 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
   private empresaList: any;
   public payForm: FormGroup;
   public submitted = false;
-  //public allData = FormData;
+  // public allData = FormData;
   public form: any;
 
   constructor(private router: Router, private fb: FormBuilder) {
@@ -69,7 +69,7 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
   }
   warning() {
     Swal.fire({
-      //type: 'warning',
+      // type: 'warning',
       title: 'Alerta',
       text: 'Selecciona un documento tipo JPG o PNG',
       icon: 'warning',
@@ -91,7 +91,7 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
       this.payForm.get('servicesPrice').get('visitRealized').patchValue(this.businessData.servicesPrice.visitRealized);
 
       this.payForm.get('serviceWarranty').patchValue(this.businessData.serviceWarranty);
-      this.payForm.get('closingDocument').patchValue(this.businessData.closingDocument);
+      // this.payForm.get('closingDocument').patchValue(this.businessData.closingDocument);
 
     }
   }

@@ -5,7 +5,7 @@ import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
 import { BusinessInterface } from 'src/app/interface/business/business.interface';
-import moment from 'moment';
+import * as moment from 'moment';
 
 declare const $;
 
@@ -78,13 +78,13 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   ngOnChanges(): void {
     if (this.flagDataInfo === true) {
       // this.contactForm.patchValue(this.businessData.contact);
+      
       this.contactForm.get('job').patchValue(this.businessData.contact.job);
       this.contactForm.get('phoneNumber').patchValue(this.businessData.contact.phoneNumber);
       this.contactForm.get('email').patchValue(this.businessData.contact.email);
       this.contactForm.get('paymentPerson').patchValue(this.businessData.contact.paymentPerson);
       this.contactForm.get('fax').patchValue(this.businessData.contact.fax);
 
-      // moment(YourDate).format("hh:mm a")
       this.contactForm.get('schedule').get('mondayStart').patchValue(moment.utc(this.businessData.contact.schedule.mondayStart).format('HH:mm'));
       this.contactForm.get('schedule').get('mondayEnd').patchValue(moment.utc(this.businessData.contact.schedule.mondayEnd).format('HH:mm'));
 
@@ -121,8 +121,12 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
 
   createMondayStart() {
     if (this.contactForm.get('schedule').value.mondayStart !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.mondayStart);
-      return  date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.mondayStart);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      console.log(date);
+      console.log(isoDate);
+      return  isoDate;
     } else {
       return null;
 
@@ -130,8 +134,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createMondayEnd() {
     if (this.contactForm.get('schedule').value.mondayEnd !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.mondayEnd);
-      return date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.mondayEnd);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return isoDate;
     } else {
       return null;
 
@@ -139,8 +145,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createTuesdayStart() {
     if (this.contactForm.get('schedule').value.tuesdayStart !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.tuesdayStart);
-      return  date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.tuesdayStart);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return  isoDate;
     } else {
       return  null;
 
@@ -148,9 +156,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createTuesdayEnd() {
     if (this.contactForm.get('schedule').value.tuesdayEnd !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.tuesdayEnd);
-      
-      return date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.tuesdayEnd);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return isoDate;
     } else {
       return null;
 
@@ -158,8 +167,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createWednesdayStart() {
     if (this.contactForm.get('schedule').value.wednesdayStart !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.wednesdayStart);
-      return  date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.wednesdayStart);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return  isoDate;
     } else {
       return  null;
 
@@ -167,8 +178,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createWednesdayEnd() {
     if (this.contactForm.get('schedule').value.wednesdayEnd !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.wednesdayEnd);
-      return   date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.wednesdayEnd);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return   isoDate;
     } else {
       return  null;
 
@@ -176,8 +189,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createThursdayStart() {
     if (this.contactForm.get('schedule').value.thursdayStart !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.thursdayStart);
-      return  date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.thursdayStart);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return  isoDate;
     } else {
       return null;
 
@@ -185,8 +200,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createThursdayEnd() {
     if (this.contactForm.get('schedule').value.thursdayEnd !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.thursdayEnd);
-      return date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.thursdayEnd);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return isoDate;
     } else {
       return null;
 
@@ -194,8 +211,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createFridayStart() {
     if (this.contactForm.get('schedule').value.fridayStart !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.fridayStart)
-      return date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.fridayStart);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return isoDate;
     } else {
       return  null;
 
@@ -203,8 +222,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createFridayEnd() {
     if (this.contactForm.get('schedule').value.fridayEnd !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.fridayEnd);
-      return  date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.fridayEnd);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return  isoDate;
     } else {
       return null;
 
@@ -212,8 +233,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createSaturdayStart() {
     if (this.contactForm.get('schedule').value.saturdayStart !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.saturdayStart);
-      return  date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.saturdayStart);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return  isoDate;
     } else {
       return null;
 
@@ -221,8 +244,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createSaturdayEnd() {
     if (this.contactForm.get('schedule').value.saturdayEnd !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.saturdayEnd);
-      return  date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.saturdayEnd);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return  isoDate;
     } else {
       return  null;
 
@@ -230,8 +255,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createSundayStart() {
     if (this.contactForm.get('schedule').value.sundayStart !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.sundayStart);
-      return  date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.sundayStart);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return  isoDate;
     } else {
       return  null;
 
@@ -239,8 +266,10 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   }
   createSundayEnd() {
     if (this.contactForm.get('schedule').value.sundayEnd !== '') {
-      const date = new Date( '2020-01-01T' + this.contactForm.get('schedule').value.sundayEnd);
-      return   date.toISOString();
+      const nowDate = moment().format('YYYY-MM-DD');
+      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.sundayEnd);
+      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+      return   isoDate;
     } else {
       return  null;
     }
@@ -253,6 +282,7 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
       paymentPerson: this.contactForm.get('paymentPerson').value,
       fax: this.contactForm.get('fax').value,
       schedule: {
+        
         // tslint:disable-next-line: max-line-length
         mondayStart: this.createMondayStart(),
         mondayEnd: this.createMondayEnd(),
@@ -271,6 +301,7 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
       },
     };
     this.empresaList = empresa;
+    console.log(  this.empresaList);
     this.data.emit(this.empresaList);
   }
 }

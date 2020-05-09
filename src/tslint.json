@@ -12,6 +12,13 @@
             "element",
             "app",
             "kebab-case"
+        ],
+        "max-line-length": [
+            false, 
+            {
+              "limit": 120, 
+              "ignore-pattern": "^import [^,]+ from |^export | implements"
+            }
         ]
     }
 }

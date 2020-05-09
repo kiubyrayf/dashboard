@@ -51,7 +51,6 @@ export class NavBarBusinessComponent implements OnInit {
   infoPay(event) {
     this.infoPayData = event;
     const formData = new FormData();
-
     formData.append('name', this.infoBusinessData.name);
     formData.append('email', this.infoBusinessData.email);
     formData.append('phoneNumber', this.infoBusinessData.phoneNumber);
@@ -70,25 +69,50 @@ export class NavBarBusinessComponent implements OnInit {
        console.log('key %s: value %s', key, value);
      });
 
-    return this.empresaService.crearEmpresa(formData).subscribe( (resp: HttpInterface) => {
+    if (this.flagDataOuputInfo !== true) {
+      return this.empresaService.crearEmpresa(formData).subscribe( (resp: HttpInterface) => {
 
-      if (resp.status === 1) {
-        this.success();
-        this.router.navigate(['/empresas/general']);
-      } else if (resp.status === 0) {
-        Swal.fire({
-          title: 'Creacion de empresa incorrecta',
-          text: `${resp.message}`,
-          icon: 'warning',
-          showConfirmButton: true,
-        });
-        this.router.navigate(['/empresas/general']);
-      }
-    }, ( error: any ) => {
-      
-      console.log(error);
-      console.log(error.messege);
-    });
+        if (resp.status === 1) {
+          this.success();
+          this.router.navigate(['/empresas/general']);
+        } else if (resp.status === 0) {
+          Swal.fire({
+            title: 'Creacion de empresa incorrecta',
+            text: `${resp.message}`,
+            icon: 'warning',
+            showConfirmButton: true,
+          });
+          this.router.navigate(['/empresas/general']);
+        }
+      }, ( error: any ) => {
+        console.log(error);
+        console.log(error.messege);
+      });
+    } else {
+      return this.empresaService.actualizarEmpresa(formData, this.businessDataOutputInfo.id).subscribe( (resp: HttpInterface) => {
+
+        if (resp.status === 1) {
+          Swal.fire({
+            title: 'Se actulizo empresa correctamente',
+            text: `${resp.message}`,
+            icon: 'success',
+            showConfirmButton: true,
+          });
+          this.router.navigate(['/empresas/general']);
+        } else if (resp.status === 0) {
+          Swal.fire({
+            title: 'Creacion de empresa incorrecta',
+            text: `${resp.message}`,
+            icon: 'warning',
+            showConfirmButton: true,
+          });
+          this.router.navigate(['/empresas/general']);
+        }
+      }, ( error: any ) => {
+        console.log(error);
+        console.log(error.messege);
+      });
+    }
   }
 
   businessDataOutput($event) {

@@ -27,4 +27,7 @@ export class EmpresasService {
   borrarBusiness(id: string): Observable<any> {
    return this.http.delete(`${this.config.api}/business?id=${id}`);
   }
+  actualizarEmpresa(empresa, id) {
+    return this.http.put(`${this.config.api}/business?id=${id}`, empresa);
+  }
 }
