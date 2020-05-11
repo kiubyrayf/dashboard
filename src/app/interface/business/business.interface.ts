@@ -36,11 +36,11 @@ export interface BusinessInterface {
     logo: string;
     selfFormat: boolean;
     requestServiceByMail: boolean;
-    [closingDocument: number]: {
+     closingDocument: {
         id: number;
         name: string;
         file: string;
-    } | null;
+    }[] | null;
     servicesPrice: {
         foreign: string;
         local: string;

@@ -124,8 +124,6 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
       const nowDate = moment().format('YYYY-MM-DD');
       const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.mondayStart);
       const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      console.log(date);
-      console.log(isoDate);
       return  isoDate;
     } else {
       return null;
@@ -301,7 +299,6 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
       },
     };
     this.empresaList = empresa;
-    console.log(  this.empresaList);
     this.data.emit(this.empresaList);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
+import { EmpresaModel, ClosingDocumentModel } from 'src/app/shared/model/empresas/empresa.model';
 import { FileUploader } from 'ng2-file-upload';
 import { BusinessInterface } from 'src/app/interface/business/business.interface';
 
@@ -23,6 +23,7 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
   public submitted = false;
   // public allData = FormData;
   public form: any;
+  public filesUp: any = [];
 
   constructor(private router: Router, private fb: FormBuilder) {
     this.createForm();
@@ -37,14 +38,14 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
       closingDocument: new FormControl('', Validators.required, ),
       serviceWarranty: new FormControl(''),
       servicesPrice: new FormGroup({
-        foreign: new FormControl('', Validators.required, ),
-        viaticForeign:  new FormControl('', Validators.required, ),
-        local:  new FormControl('', Validators.required, ),
-        viaticLocal: new FormControl('', Validators.required, ),
-        visitNotRealized:  new FormControl('', Validators.required, ),
-        visitRealized:  new FormControl('', Validators.required, ),
-        endingPrice:  new FormControl('', Validators.required, ),
-        disscount:  new FormControl('', Validators.required, )
+        foreign: new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
+        viaticForeign:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
+        local:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
+        viaticLocal: new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
+        visitNotRealized:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
+        visitRealized:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
+        endingPrice:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
+        disscount:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')])
       })
     });
   }
@@ -63,8 +64,7 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
       type: 'success',
       title: 'Completaste el formulario correctamente',
       text: 'Procesando informacion!',
-      showConfirmButton: false,
-      timer: 1500
+      showConfirmButton: false
     });
   }
   warning() {
@@ -89,9 +89,9 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
       this.payForm.get('servicesPrice').get('viaticLocal').patchValue(this.businessData.servicesPrice.viaticLocal);
       this.payForm.get('servicesPrice').get('visitNotRealized').patchValue(this.businessData.servicesPrice.visitNotRealized);
       this.payForm.get('servicesPrice').get('visitRealized').patchValue(this.businessData.servicesPrice.visitRealized);
-
       this.payForm.get('serviceWarranty').patchValue(this.businessData.serviceWarranty);
-      // this.payForm.get('closingDocument').patchValue(this.businessData.closingDocument);
+      this.payForm.get('closingDocument').patchValue(this.businessData.closingDocument);
+      console.log(this.businessData.closingDocument[0]);
 
     }
   }
@@ -114,15 +114,40 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
     this.data.emit(this.empresaList);
   }
   readFile(event) {
-    if ( event.target.files.length > 0) {
-      const file = event.target.files[0];
+    const file = event.target.files;
+    if (file) {
+      for (let i = 0; i > file.length; i++) {
+        const files = {
+          id: '',
+          name: '',
+          file: '',
+          url: ''
+        };
+        this.filesUp.push(file[i]);
+        files.id = file[i].id;
+        files.name = file[i].name;
+        files.file = file[i].file;
+
+        const reader = new FileReader();
+        reader.onload = ( e: any) => {
+          files.url = e.target.result + '';
+          this.filesUp.push(files);
+          console.log(this.filesUp);
+        };
+        reader.readAsDataURL( event.target.file[i]);
+      }
+    }
+    event.srcElement.value = null;
+    /*if ( event.target.files.length > 0) {
+      const file = event.target.files;
       if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' &&  file.type !== 'application/pdf') {
         this.warning();
         this.form.get('closingDocument').setValue('');
       } else {
-        this.payForm.get('closingDocument').setValue(file);
+        // this.payForm.get('closingDocument').setValue(file);
+        
       }
 
-    }
+    }*/
   }
 }

@@ -1,0 +1,209 @@
+<form [formGroup]="contactForm" (ngSubmit)="addEmpresa()" class="ngx-form mt-5" novalidate >
+  
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+        <label class="control-label" for="paymentPerson">Nombre</label>
+        <input type="text" formControlName="paymentPerson"  class="form-control" formControlName="paymentPerson"  placeholder="Nombre">
+        <div *ngIf="contactForm.controls['paymentPerson'].invalid && (contactForm.controls['paymentPerson'].dirty || contactForm.controls['paymentPerson'].touched)"
+                class="alert">
+            <div *ngIf="contactForm.controls['paymentPerson'].errors.required">
+                Nombre es obligatorio.
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label class="control-label" for="job">Empleo</label>
+        <input type="text"  class="form-control" formControlName="job"  placeholder="Empleo">
+        <div *ngIf="contactForm.controls['job'].invalid && (contactForm.controls['job'].dirty || contactForm.controls['job'].touched)"
+                class="alert">
+            <div *ngIf="contactForm.controls['job'].errors.required">
+                Empleo es obligatorio.
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label class="control-label" for="phoneNumber" >Telefono</label>
+        <input type="text"  class="form-control" formControlName="phoneNumber"  placeholder="telefono">
+        <div *ngIf="contactForm.controls['phoneNumber'].invalid && (contactForm.controls['phoneNumber'].dirty || contactForm.controls['phoneNumber'].touched)"
+            class="alert">
+            <div *ngIf="contactForm.controls['phoneNumber'].errors.required">
+                Telefono es obligatorio.
+            </div>
+            <div *ngIf="contactForm.controls['phoneNumber'].errors?.pattern">
+                Telefono tiene que ser 10 digitos numericos.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+  <div class="col-md-4 mb-3">
+      <label class="control-label" for="email">correo</label>
+      <input type="email" class="form-control" formControlName="email"  placeholder="Correo">
+      <div *ngIf="contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty || contactForm.controls['email'].touched)"
+                class="alert">
+            <div *ngIf="contactForm.controls['email'].errors.required">
+                Correo es obligatorio.
+            </div>
+            <div *ngIf="contactForm.controls['email'].errors?.email">
+                Correo no valido.
+            </div>
+        </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <label class="control-label" for="fax">Fax</label>
+    <input type="text" class="form-control" formControlName="fax"  placeholder="Fax">
+    <div *ngIf="contactForm.controls['fax'].invalid && (contactForm.controls['fax'].dirty || contactForm.controls['fax'].touched)"
+    class="alert">
+        <div *ngIf="contactForm.controls['fax'].errors.required">
+            Fax es obligatorio.
+        </div>
+        
+    </div>
+</div>
+</div>
+<h5 class="mt-3 mb-2">Horario de contacto</h5>
+<p>Formato de 24Hrs</p>
+    <div class="form-group row" formGroupName="schedule">
+    
+        <div class="form group col-sm-6 col-md-4 mb-3">
+            <label class="control-label" for="">Lunes</label>
+            <div class="row divceter">
+                    <div class="input-group clockpicker" >
+                        <input type="text" class="form-control" name="mondayStart" formControlName="mondayStart"  data-lng-clockpicker>
+                        <span class="input-group-addon">
+                            <span class="glyphicon icofont icofont-clock-time" ></span>
+                        </span>
+                    </div>
+                <label class="m-r-10 m-l-10 mb-0"> A </label>
+                <div class="input-group clockpicker" >
+                    <input type="text" class="form-control" name="mondayEnd"  formControlName="mondayEnd"  >
+                    <span class="input-group-addon">
+                        <span class="glyphicon icofont icofont-clock-time"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form group col-sm-6  col-md-4 mb-3">
+            <label class="control-label" for="">Martes</label>
+            <div class="row divceter">
+                    <div class="input-group clockpicker" >
+                        <input type="text" class="form-control" name="tuesdayStart" formControlName="tuesdayStart"  >
+                        <span class="input-group-addon">
+                            <span class="glyphicon icofont icofont-clock-time" ></span>
+                        </span>
+                    </div>
+                <label class="m-r-10 m-l-10 mb-0"> A </label>
+                <div class="input-group clockpicker" >
+                    <input type="text" class="form-control" name="tuesdayEnd"  formControlName="tuesdayEnd"  >
+                    <span class="input-group-addon">
+                        <span class="glyphicon icofont icofont-clock-time"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form group col-sm-6  col-md-4 mb-3">
+            <label class="control-label" for="">Miercoles</label>
+            <div class="row divceter">
+                    <div class="input-group clockpicker" >
+                        <input type="text" class="form-control" name="wednesdayStart" formControlName="wednesdayStart"  >
+                        <span class="input-group-addon">
+                            <span class="glyphicon icofont icofont-clock-time" ></span>
+                        </span>
+                    </div>
+                <label class="m-r-10 m-l-10 mb-0"> A </label>
+                <div class="input-group clockpicker" >
+                    <input type="text" class="form-control" name="wednesdayEnd"  formControlName="wednesdayEnd"  >
+                    <span class="input-group-addon">
+                        <span class="glyphicon icofont icofont-clock-time"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form group col-sm-6 col-md-4 mb-3">
+            <label class="control-label" for="">Jueves</label>
+            <div class="row divceter">
+                    <div class="input-group clockpicker" >
+                        <input type="text" class="form-control" name="thursdayStart" formControlName="thursdayStart"  >
+                        <span class="input-group-addon">
+                            <span class="glyphicon icofont icofont-clock-time" ></span>
+                        </span>
+                    </div>
+                <label class="m-r-10 m-l-10 mb-0"> A </label>
+                <div class="input-group clockpicker" >
+                    <input type="text" class="form-control" name="thursdayEnd"  formControlName="thursdayEnd"  >
+                    <span class="input-group-addon">
+                        <span class="glyphicon icofont icofont-clock-time"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form group col-sm-6 col-md-4 mb-3">
+            <label class="control-label" for="">Vienes</label>
+            <div class="row divceter">
+                    <div class="input-group clockpicker" >
+                        <input type="text" class="form-control" name="fridayStart" formControlName="fridayStart"  >
+                        <span class="input-group-addon">
+                            <span class="glyphicon icofont icofont-clock-time" ></span>
+                        </span>
+                    </div>
+                <label class="m-r-10 m-l-10 mb-0"> A </label>
+                <div class="input-group clockpicker" >
+                    <input type="text" class="form-control" name="fridayEnd"  formControlName="fridayEnd"  >
+                    <span class="input-group-addon">
+                        <span class="glyphicon icofont icofont-clock-time"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form group col-sm-6 col-md-4 mb-3">
+            <label class="control-label" for="">Sabado</label>
+            <div class="row divceter">
+                    <div class="input-group clockpicker " >
+                        <input type="text" class="form-control m-b-3" name="saturdayStart" formControlName="saturdayStart"  >
+                        <span class="input-group-addon">
+                            <span class="glyphicon icofont icofont-clock-time" ></span>
+                        </span>
+                    </div>
+                <label class="m-r-10 m-l-10 mb-0"> A </label>
+                <div class="input-group clockpicker" >
+                    <input type="text" class="form-control" name="saturdayEnd"  formControlName="saturdayEnd"  >
+                    <span class="input-group-addon">
+                        <span class="glyphicon icofont icofont-clock-time"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form group col-sm-6 col-md-4 mb-3">
+            <label class="control-label" for="">Domingo</label>
+            <div class="row divceter">
+                    <div class="input-group clockpicker " >
+                        <input type="text" class="form-control m-b-3" name="sundayStart" formControlName="sundayStart"  >
+                        <span class="input-group-addon">
+                            <span class="glyphicon icofont icofont-clock-time" ></span>
+                        </span>
+                    </div>
+                <label class="m-r-10 m-l-10 mb-0"> A </label>
+                <div class="input-group clockpicker" >
+                    <input type="text" class="form-control" name="sundayEnd"  formControlName="sundayEnd"  >
+                    <span class="input-group-addon">
+                        <span class="glyphicon icofont icofont-clock-time"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="form-group f1-buttons">
+    <button class="btn btn-primary btn-previous" type="button" awPreviousStep>Anterior</button>
+    <button class="btn btn-primary btn-next" type="submit" [disabled]="!contactForm.valid" awNextStep>Siguiente</button>
+  </div>
+</form>
+
+<pre>
+    estado del formulario : {{contactForm.valid}}
+    <br>
+    status : {{contactForm.status}}
+</pre>
+<pre>
+    {{contactForm.value | json}}
+</pre>
