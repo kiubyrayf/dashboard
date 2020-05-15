@@ -15,6 +15,20 @@ export const content: Routes = [
       breadcrumb: 'Empresas'
     }
   },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('../../pages/users/users.module').then(m => m.UsersModule),
+    data: {
+      breadcrumb: 'Usuarios'
+    }
+  },
+  {
+    path: 'encuestadores',
+    loadChildren: () => import('../../pages/pollsters/pollsters.module').then(m => m.PollstersModule),
+    data: {
+      breadcrumb: 'Encuestadores'
+    }
+  },
   // {
   //   path: 'base',
   //   loadChildren: () => import('../../components/base/base.module').then(m => m.BaseModule),

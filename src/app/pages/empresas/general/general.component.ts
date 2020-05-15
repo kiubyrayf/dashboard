@@ -22,8 +22,8 @@ export class GeneralComponent implements OnInit {
   cargando = false;
   closeResult: string;
 
-  public page: number; //current page
-  public collectionSize: number ; //  total de items - pageSize -  cuantos items por pagina 
+  public page: number; // current page
+  public collectionSize: number ; //  total de items - pageSize -  cuantos items por pagina
   public advancePages: number;
   public totalPages: number;
 

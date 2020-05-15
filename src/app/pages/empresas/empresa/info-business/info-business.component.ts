@@ -17,10 +17,9 @@ const Swal = require('sweetalert2');
 })
 
 export class InfoBusinessComponent implements OnInit {
-  //@ViewChild('fileInput') fileInput: ElementRef;
   @Output() data: EventEmitter<any>;
   @Output() businessDataOutput: EventEmitter<any>;
-  
+
   @Output() flagData: EventEmitter<any>;
   public flagDataInfo: boolean;
 
@@ -43,7 +42,7 @@ export class InfoBusinessComponent implements OnInit {
     ) {
       this.data = new EventEmitter();
       this.businessDataOutput = new EventEmitter();
-      
+
       this.flagData = new EventEmitter();
       this.flagDataInfo = false;
 
@@ -119,18 +118,16 @@ export class InfoBusinessComponent implements OnInit {
     });
   }
   readFile(event) {
-   
+
     if ( event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
         this.warning();
         this.regForm.get('logo').setValue('');
       } else {
-        
          this.fileName = file.name;
          this.regForm.get('logo').setValue(file);
         this.logoName = '';
-       
       }
     }
   }

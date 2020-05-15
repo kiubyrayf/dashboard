@@ -1,0 +1,24 @@
+.avatar{
+    text-align: center;
+}
+.paddingBtn{
+    padding: 10px;
+}
+table {
+    thead{
+        tr{
+            th{
+                color: #ffffff !important;
+            }
+        }
+    }
+    tbody{
+        tr{
+            vertical-align: middle;
+            th { vertical-align: middle;}
+            td{
+                vertical-align: middle;
+            }
+        }
+    }
+}

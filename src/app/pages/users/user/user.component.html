@@ -1,0 +1,141 @@
+<div class="card">
+    <div class="card-header"><h5>Usuario</h5></div>
+    <div class="card-body">
+        <form [formGroup]="userForm" (ngSubmit)="addUser()" class="ngx-form m-t-5" novalidate> 
+            <div class="form-row"><!-- save(userForm)-->
+                <div class=" form-group col-md-4 mb-3">
+                    <label class="control-label" for="name">Nombre</label>
+                    <input type="text" formControlName="name" name="name" class="form-control" placeholder="Juan">
+                    <div *ngIf="userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched)"
+                        class="alert">
+                        <div *ngIf="userForm.controls['name'].errors.required">
+                            El campo es obligatorio.
+                        </div>
+                    </div>
+                </div>
+                <div class=" form-group col-md-4 mb-3">
+                    <label class="control-label" for="middle">Segundo Nombre</label>
+                    <input type="text" formControlName="middle" name="middle" class="form-control" placeholder="Jose">
+                </div>
+                <div class=" form-group col-md-4 mb-3">
+                    <label class="control-label" for="lastname">Apellido</label>
+                    <input type="text" formControlName="lastname" name="lastname" class="form-control" placeholder="Solis">
+                    <div *ngIf="userForm.controls['lastname'].invalid && (userForm.controls['lastname'].dirty || userForm.controls['lastname'].touched)"
+                        class="alert">
+                        <div *ngIf="userForm.controls['lastname'].errors.required">
+                            El campo es obligatorio.
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="form-group" >
+                <div class="form-row ">
+                    
+                    <div class="form-group col-md-4 mb-3">
+                        <label class="control-label" for="rol">Rol</label>
+                        <select class="form-control" id="rol" #role formControlName="rol">
+                            <option disabled [value]="null">Selecciona un Rol</option>
+                            <option *ngFor="let p of roles" [value]="p">{{ p }}</option>
+                        </select>
+                        <div *ngIf="userForm.controls['rol'].invalid && (userForm.controls['rol'].dirty || userForm.controls['rol'].touched)"
+                            class="alert">
+                            <div *ngIf="userForm.controls['rol'].errors.required">
+                                El campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="role.value ==='Admin'" class="form-group col-md-4 mb-3">
+                        <label  for="business">Empresa</label>
+                        <input type="text" formControlName="business" class="form-control" 
+                          placeholder="Asistemps">
+                        <div
+                          *ngIf="userForm.controls['business'].invalid && (userForm.controls['business'].dirty || userForm.controls['business'].touched)"
+                          class="alert">
+                          <div *ngIf="userForm.controls['business'].errors.required">
+                            El campo es obligatorio.</div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group" >
+                <div class="form-row ">
+                    <div class="form-group col-md-4 mb-3">
+                        <label class="control-label" for="email">Correo</label>
+                        <input type="email" formControlName="email" name="email" class="form-control" placeholder="juan_solis@gmail.com">
+                        <div *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)"
+                            class="alert">
+                            <div *ngIf="userForm.controls['email'].errors.required">
+                                El campo es obligatorio.
+                            </div>
+                            <div *ngIf="userForm.controls['email'].errors?.pattern">
+                                Correo no valido.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4 mb-3">
+                        <label  for="f1-password">Password</label>
+                        <input type="text" formControlName="password" class="form-control" autocomplete="off"
+                          placeholder="Solis58">
+                        <div
+                          *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)"
+                          class="alert">
+                          <div *ngIf="userForm.controls['password'].errors.required">
+                            El campo es obligatorio.</div>
+                          <div *ngIf="userForm.controls['password'].errors?.minlength"> La contraseña debe de ser de minimo 6 caracteres.</div>
+                        </div>
+                      </div>
+                   <!-- <div class="form-group col-md-4 mb-3">
+                        <label  for="f1-repeat-password">Repetir Contraseña</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control" autocomplete="off"
+                          placeholder="Repetir Contraseña">
+                        <div
+                          *ngIf="userForm.controls['confirmPassword'].invalid && (userForm.controls['confirmPassword'].dirty || userForm.controls['confirmPassword'].touched)"
+                          class="alert">
+                          <div *ngIf="userForm.controls['confirmPassword'].errors.required">
+                            El campo es obligatorio.</div>
+                          <div *ngIf="userForm.controls['confirmPassword'].errors?.mustMatch">
+                            La contraseña no coinciden.
+                          </div>
+                        </div>
+                      </div>-->
+                </div>
+            </div>    
+          
+           
+           <div class="form-row mb-5" >
+                <label class="col-sm-12 control-label">Subir fotografia del usuario</label>
+                <div class="col-sm-12 "> <!--formControlName="logo"-->
+                    <input style="display: none" type="file" (change)="readFile($event)"  name="photography" #fileInput>
+                    <button class="form-control col-sm-4"  (click)="fileInput.click()"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
+                    <label class="col-sm-4 fileName">{{fileName }}</label>
+                   <!-- <label class="control-label col-sm-12 m-t-15" *ngIf="flagDataInfo===true && logoName!==''">
+                        Archivo: {{ logoName}}
+                    </label>-->
+                    <div *ngIf="userForm.controls['photography'].invalid && (userForm.controls['photography'].dirty || userForm.controls['photography'].touched)"
+                    class="alert">
+                        <div *ngIf="userForm.controls['photography'].errors.required">
+                            Subir la fotografia es obligatorio.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="form-group f1-buttons">
+                <button class="btn btn-primary btn-next" type="submit" [disabled]="!userForm.valid" >Registrar Usuario</button>
+            </div>
+        </form>
+        <hr>
+        <pre>
+            estado del formulario : {{userForm.valid}}
+            <br>
+            status : {{userForm.status}}
+        </pre>
+        <pre>
+            {{userForm.value | json}}
+        </pre>
+    </div>
+</div>
+
+

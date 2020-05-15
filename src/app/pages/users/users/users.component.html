@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-between align-items-center">
+                        <h5 >Usuarios</h5>
+                        <div >
+                            <button class="btn btn-primary" [routerLink]="['/usuarios/usuario/nuevo']" type="button" placement="top" >
+                                <i class="fa fa-plus m-r-2"></i>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ngb-pagination class="d-flex justify-content-end " (pageChange)="pageChange($event)"  [pageSize]="30" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="totalPages"  [boundaryLinks]="true"></ngb-pagination>
+                    <div class="table-responsive m-t-10">
+                        <table class="table"><!--*ngIf="!cargando && usuarios.length > 0" class="table"-->
+                            <thead class="bg-primary">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col">Rol</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Password</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">58</th>
+                                    <td><img class="img-40 rounded-circle m-r-10" src="assets/images/user/1.jpg" alt="#"> <div class="d-inline-block">Karen Dominguez</div></td>
+                                    <td>front end jr</td>
+                                    <td>karen@isydoc.com</td>
+                                    <td>karen123456</td>
+                                    <td>
+                                        <button class="btn btn-info m-r-5 m-b-5 paddingBtn" ngbTooltip="Editar" [routerLink]=""><!-- [routerLink]="[ '/empresas/empresa/',empresa.id] " -->
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button class="btn btn-danger  m-b-5 paddingBtn" ngbTooltip="Borrar" (click)="borrarEmpresa(empresa, i)"> 
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <!--<div *ngIf="!cargando && usuarios.length === 0" class="alert alert-light text-center m-t-3 ">
+                            <h4 class="alert-heading ">No hay registros</h4>
+                            <p><i class="fa fa-warning"></i></p>
+                            <p class="m-b-0 ">
+                                Por el momento no contamos con registros
+                            </p>
+                            <app-feather-icons [icon]="['alert-circle']" class="svgColor" style="width: 50px; height: 50px;"></app-feather-icons>
+                        </div>-->
+                        <div *ngIf="cargando" class="alert alert-light text-center m-t-3 ">
+                            <h4 class="alert-heading ">Cargando</h4>
+                            <div class="loader-box text-center">
+                                <div class="loader ">
+                                    <div class="line bg-primary"></div>
+                                    <div class="line bg-primary"></div>
+                                    <div class="line bg-primary"></div>
+                                    <div class="line bg-primary"></div>
+                                </div>
+                            </div>
+                            <p class="m-b-0 ">
+                                Espere por favor
+                            </p>
+                        </div>
+                    </div>
+                    <ngb-pagination class="d-flex justify-content-end  m-t-10" (pageChange)="pageChange($event)"  [pageSize]="30" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="totalPages"  [boundaryLinks]="true"></ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

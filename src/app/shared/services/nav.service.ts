@@ -49,6 +49,12 @@ export class NavService {
 		{
 			path: '/empresas/general', title: 'Empresas', icon: 'box', type: 'link' 		
 		},
+		{
+			path: '/encuestadores/encuestadores', title: 'Encuestadores', icon: 'user-check', type: 'link' 		
+		},
+		{
+			path: '/usuarios/usuarios', title: 'Usuarios', icon: 'users', type: 'link' 		
+		},
 		//{
 			// 	path: '/contact/contacts', title: 'contact', icon: 'user-plus', type: 'link'
 			// },

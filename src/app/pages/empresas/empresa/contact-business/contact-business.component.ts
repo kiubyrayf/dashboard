@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output, Input, OnChanges } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
@@ -23,9 +23,16 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
 
   private empresaList: any;
   public contactForm: FormGroup;
+  public contactList: FormArray;
   public border_validation = false;
-  public form: any;
   public title = 'contact registration page';
+
+   // returns all form groups under contacts
+   get contactFormGroup() {
+    return this.contactForm.get('contacts') as FormArray;
+  }
+  // convenience getter for easy access to form fields
+ // get f() { return this.contactForm.controls; }
 
   constructor(private route: Router, private fb: FormBuilder,
     private activeRoute: ActivatedRoute,
@@ -33,48 +40,20 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
     ) {
     this.data = new EventEmitter();
     this.empresaList = {};
-    this.createContactForm();
     this.businessData = null;
     this.flagDataInfo = false;
   }
-
-  createContactForm() {
-    this.contactForm = new FormGroup({
-        job:  new FormControl('', Validators.required, ),
-        phoneNumber:  new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        paymentPerson: new FormControl('', Validators.required, ),
-        fax:  new FormControl('', [Validators.required ] ),
-        schedule: new FormGroup({
-          mondayStart: new FormControl(''),
-          mondayEnd: new FormControl(''),
-          tuesdayStart: new FormControl(''),
-          tuesdayEnd: new FormControl(''),
-          wednesdayStart: new FormControl(''),
-          wednesdayEnd: new FormControl(''),
-          thursdayStart: new FormControl(''),
-          thursdayEnd: new FormControl(''),
-          fridayStart: new FormControl(''),
-          fridayEnd: new FormControl(''),
-          saturdayStart: new FormControl(''),
-          saturdayEnd: new FormControl(''),
-          sundayStart: new FormControl(''),
-          sundayEnd: new FormControl(''),
-        }),
-      });
-  }
-
   ngOnInit() {
+   /*  this.contactForm = this.createContact(); */
+    this.contactForm = this.fb.group({
+      contact: this.fb.array([this.createContact()])
+    });
+    console.log(this.contactForm);
+    // set contactlist to this field
+    this.contactList = this.contactForm.get('contact') as FormArray;
+    console.log(this.contactList);
   }
 
-  showSundayStart() {
-    if ( this.businessData.contact.schedule.sundayStart !== null) {
-      return  moment.utc(this.businessData.contact.schedule.sundayStart).format('HH:mm');
-    } else {
-      return null;
-
-    }
-  }
   ngOnChanges(): void {
     if (this.flagDataInfo === true) {
       // this.contactForm.patchValue(this.businessData.contact);
@@ -118,6 +97,58 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
       });
     });
   }
+
+  createContact(): FormGroup {
+    return this.fb.group({
+      job:  ['', Validators.required, ],
+      phoneNumber:  ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ],
+      email: ['', [Validators.required, Validators.email]],
+      paymentPerson: ['', Validators.required, ],
+      fax:  ['' ],
+      schedule: this.fb.group({
+        mondayStart: [''],
+        mondayEnd: [''],
+        tuesdayStart: [''],
+        tuesdayEnd: [''],
+        wednesdayStart: [''],
+        wednesdayEnd: [''],
+        thursdayStart: [''],
+        thursdayEnd: [''],
+        fridayStart: [''],
+        fridayEnd: [''],
+        saturdayStart: [''],
+        saturdayEnd: [''],
+        sundayStart: [''],
+        sundayEnd: [''],
+      }),
+    });
+  
+  }
+   // add a contact form group
+   addContact() {
+    this.contactList.push(this.createContact());
+  }
+
+  // remove contact from group
+  removeContact(index) {
+    // this.contactList = this.form.get('contacts') as FormArray;
+    this.contactList.removeAt(index);
+  }
+
+  // get the formgroup under contacts form array
+  getContactsFormGroup(index): FormGroup {
+    return this.contactList.controls[index] as FormGroup;
+  }
+
+  showSundayStart() {
+    if ( this.businessData.contact.schedule.sundayStart !== null) {
+      return  moment.utc(this.businessData.contact.schedule.sundayStart).format('HH:mm');
+    } else {
+      return null;
+
+    }
+  }
+ 
 
   createMondayStart() {
     if (this.contactForm.get('schedule').value.mondayStart !== '') {
@@ -273,7 +304,7 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
     }
   }
   addEmpresa() {
-    const empresa = {
+   /*  const empresa = {
       job: this.contactForm.get('job').value,
       phoneNumber: this.contactForm.get('phoneNumber').value,
       email: this.contactForm.get('email').value,
@@ -299,6 +330,6 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
       },
     };
     this.empresaList = empresa;
-    this.data.emit(this.empresaList);
+    this.data.emit(this.empresaList); */
   }
 }

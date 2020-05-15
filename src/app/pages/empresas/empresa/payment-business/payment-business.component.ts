@@ -145,7 +145,6 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
         this.form.get('closingDocument').setValue('');
       } else {
         // this.payForm.get('closingDocument').setValue(file);
-        
       }
 
     }*/
