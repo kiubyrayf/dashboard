@@ -4,52 +4,52 @@
       <div class="form-row ">
         <div class="col-md-3 mb-3">
             <label class="control-label" for="foreign">Foreaneo</label>
-            <input type="text" formControlName="foreign" class="form-control" placeholder="Precio">
+            <input type="text" formControlName="foreign" class="form-control" placeholder="50.00">
 
-            <div *ngIf="payForm.controls['servicesPrice'].get('foreign').invalid && (payForm.controls['servicesPrice'].get('foreign').dirty || payForm.controls['servicesPrice'].get('foreign').touched)" class="alert">
-              <div *ngIf="payForm.controls['servicesPrice'].get('foreign').errors.required">
-                El campo es obligatoria.
+            <div *ngIf="f.servicesPrice.get('foreign').invalid && (f.servicesPrice.get('foreign').dirty || f.servicesPrice.get('foreign').touched)" class="alert">
+              <div *ngIf="f.servicesPrice.get('foreign').errors.required">
+                El campo es obligatorio.
               </div>
-              <div *ngIf="payForm.controls['servicesPrice'].get('foreign').errors?.pattern">
+              <div *ngIf="f.servicesPrice.get('foreign').errors?.pattern">
                 El campo debe ser monetario.
               </div>
             </div>
         </div>
         <div class="col-md-3 mb-3">
           <label class="control-label" for="local">Local</label>
-          <input type="text" formControlName="local" class="form-control" placeholder="Precio">
+          <input type="text" formControlName="local" class="form-control" placeholder="30.00">
 
-          <div *ngIf="payForm.controls['servicesPrice'].get('local').invalid && (payForm.controls['servicesPrice'].get('local').dirty || payForm.controls['servicesPrice'].get('local').touched)" class="alert">
-              <div *ngIf="payForm.controls['servicesPrice'].get('local').errors.required">
-                 Campo obligatorio.
+          <div *ngIf="f.servicesPrice.get('local').invalid && (f.servicesPrice.get('local').dirty || f.servicesPrice.get('local').touched)" class="alert">
+              <div *ngIf="f.servicesPrice.get('local').errors.required">
+                El campo es obligatorio.
               </div>
-              <div *ngIf="payForm.controls['servicesPrice'].get('local').errors?.pattern">
+              <div *ngIf="f.servicesPrice.get('local').errors?.pattern">
                 El campo debe ser monetario.
               </div>
           </div>
         </div>
         <div class="col-md-3 mb-3">
           <label class="control-label" for="viaticForeign">Viatico Foraneo</label>
-          <input type="text" formControlName="viaticForeign" class="form-control" placeholder="Precio">
+          <input type="text" formControlName="viaticForeign" class="form-control" placeholder="1000.00">
 
-          <div *ngIf="payForm.controls['servicesPrice'].get('viaticForeign').invalid && (payForm.controls['servicesPrice'].get('viaticForeign').dirty || payForm.controls['servicesPrice'].get('viaticForeign').touched)" class="alert">
-              <div *ngIf="payForm.controls['servicesPrice'].get('viaticForeign').errors.required">
-                 Campo obligatorio.
+          <div *ngIf="f.servicesPrice.get('viaticForeign').invalid && (f.servicesPrice.get('viaticForeign').dirty || f.servicesPrice.get('viaticForeign').touched)" class="alert">
+              <div *ngIf="f.servicesPrice.get('viaticForeign').errors.required">
+                El campo es obligatorio.
               </div>
-              <div *ngIf="payForm.controls['servicesPrice'].get('viaticForeign').errors?.pattern">
+              <div *ngIf="f.servicesPrice.get('viaticForeign').errors?.pattern">
                 El campo debe ser monetario.
               </div>
           </div>
         </div>
         <div class="col-md-3 mb-3">
           <label class="control-label" for="viaticLocal">Viatico Local</label>
-          <input type="text" formControlName="viaticLocal" class="form-control" placeholder="Precio">
+          <input type="text" formControlName="viaticLocal" class="form-control" placeholder="58.52">
 
-          <div *ngIf="payForm.controls['servicesPrice'].get('viaticLocal').invalid && (payForm.controls['servicesPrice'].get('viaticLocal').dirty || payForm.controls['servicesPrice'].get('viaticLocal').touched)" class="alert">
-              <div *ngIf="payForm.controls['servicesPrice'].get('viaticLocal').errors.required">
-                El campo es obligatoria.
+          <div *ngIf="f.servicesPrice.get('viaticLocal').invalid && (f.servicesPrice.get('viaticLocal').dirty || f.servicesPrice.get('viaticLocal').touched)" class="alert">
+              <div *ngIf="f.servicesPrice.get('viaticLocal').errors.required">
+                El campo es obligatorio.
               </div>
-              <div *ngIf="payForm.controls['servicesPrice'].get('viaticLocal').errors?.pattern">
+              <div *ngIf="f.servicesPrice.get('viaticLocal').errors?.pattern">
                 El campo debe ser monetario.
               </div>
           </div>
@@ -59,44 +59,50 @@
         
         <div class="col-md-3 mb-3">
           <label class="control-label" for="visitNotRealized">Visita No Realizada</label>
-          <input type="text" formControlName="visitNotRealized" class="form-control" placeholder="Precio">
+          <input type="text" formControlName="visitNotRealized" class="form-control" placeholder="60.80">
 
-          <div *ngIf="payForm.controls['servicesPrice'].get('visitNotRealized').invalid && (payForm.controls['servicesPrice'].get('visitNotRealized').dirty || payForm.controls['servicesPrice'].get('visitNotRealized').touched)" class="alert">
-              <div *ngIf="payForm.controls['servicesPrice'].get('visitNotRealized').errors.required">
-                 Campo obligatorio.
+          <div *ngIf="f.servicesPrice.get('visitNotRealized').invalid && (f.servicesPrice.get('visitNotRealized').dirty || f.servicesPrice.get('visitNotRealized').touched)" class="alert">
+              <div *ngIf="f.servicesPrice.get('visitNotRealized').errors.required">
+                El campo es obligatorio.
               </div>
-              <div *ngIf="payForm.controls['servicesPrice'].get('visitNotRealized').errors?.pattern">
+              <div *ngIf="f.servicesPrice.get('visitNotRealized').errors?.pattern">
                 El campo debe ser monetario.
               </div>
           </div>
         </div>
         <div class="col-md-3 mb-3">
           <label class="control-label" for="visitRealized">Visita Realizada</label>
-          <input type="text" formControlName="visitRealized" class="form-control" placeholder="Precio">
-          <div *ngIf="payForm.controls['servicesPrice'].get('visitRealized').invalid && (payForm.controls['servicesPrice'].get('visitRealized').dirty || payForm.controls['servicesPrice'].get('visitRealized').touched)" class="alert">
-              <div *ngIf="payForm.controls['servicesPrice'].get('visitRealized').errors.required">
-                 Campo obligatorio.
+          <input type="text" formControlName="visitRealized" class="form-control" placeholder="50.20">
+          <div *ngIf="f.servicesPrice.get('visitRealized').invalid && (f.servicesPrice.get('visitRealized').dirty || f.servicesPrice.get('visitRealized').touched)" class="alert">
+              <div *ngIf="f.servicesPrice.get('visitRealized').errors.required">
+                El campo es obligatorio.
               </div>
-              <div *ngIf="payForm.controls['servicesPrice'].get('visitRealized').errors?.pattern">
+              <div *ngIf="f.servicesPrice.get('visitRealized').errors?.pattern">
                 El campo debe ser monetario.
               </div>
           </div>
         </div>
         <div class="col-md-3 mb-3">
           <label class="control-label" for="endingPrice">Precio Final</label>
-          <input type="text" formControlName="endingPrice" class="form-control" placeholder="Precio">
-          <div *ngIf="payForm.controls['servicesPrice'].get('endingPrice').invalid && (payForm.controls['servicesPrice'].get('endingPrice').dirty || payForm.controls['servicesPrice'].get('endingPrice').touched)" class="alert">
-              <div *ngIf="payForm.controls['servicesPrice'].get('endingPrice').errors.required">
-                 Campo obligatorio.
+          <input type="text" formControlName="endingPrice" class="form-control" placeholder="45.00">
+          <div *ngIf="f.servicesPrice.get('endingPrice').invalid && (f.servicesPrice.get('endingPrice').dirty || f.servicesPrice.get('endingPrice').touched)" class="alert">
+              <div *ngIf="f.servicesPrice.get('endingPrice').errors.required">
+                El campo es obligatorio.
+              </div>
+              <div *ngIf="f.servicesPrice.get('endingPrice').errors?.pattern">
+                El campo debe ser monetario.
               </div>
           </div>
         </div>
         <div class="col-md-3 mb-3">
           <label class="control-label" for="disscount">Descuento</label>
-          <input type="text" formControlName="disscount" class="form-control" placeholder="Precio">
-          <div *ngIf="payForm.controls['servicesPrice'].get('disscount').invalid && (payForm.controls['servicesPrice'].get('disscount').dirty || payForm.controls['servicesPrice'].get('disscount').touched)" class="alert">
-              <div *ngIf="payForm.controls['servicesPrice'].get('disscount').errors.required">
-                 Campo obligatorio.
+          <input type="text" formControlName="disscount" class="form-control" placeholder="150.00">
+          <div *ngIf="f.servicesPrice.get('disscount').invalid && (f.servicesPrice.get('disscount').dirty || f.servicesPrice.get('disscount').touched)" class="alert">
+              <div *ngIf="f.servicesPrice.get('disscount').errors.required">
+                El campo es obligatorio.
+              </div>
+              <div *ngIf="f.servicesPrice.get('disscount').errors?.pattern">
+                El campo debe ser monetario.
               </div>
           </div>
         </div>
@@ -118,9 +124,9 @@
         <label class="col-sm-3 col-form-label">Subir documento de cierre de la empresa</label>
         <div class="col-sm-9">
             <input type="file" class="form-control" formControlName="closingDocument" name="closingDocument" (change)="readFile($event)" multiple="">
-            <div *ngIf="payForm.controls['closingDocument'].invalid && (payForm.controls['closingDocument'].dirty || payForm.controls['closingDocument'].touched)"
+            <div *ngIf="f.closingDocument.invalid && (f.closingDocument.dirty || f.closingDocument.touched)"
             class="alert">
-                <div *ngIf="payForm.controls['closingDocument'].errors.required">
+                <div *ngIf="f.closingDocument.errors.required">
                     Subir los documentos de cierre es obligatorio.
                 </div>
             </div>

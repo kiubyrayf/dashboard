@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MustMatch } from './mustMatch';
 
 @Component({
@@ -12,7 +12,11 @@ export class UserComponent implements OnInit {
   public logoName: string;
   public userForm: FormGroup;
   public roles: string [];
-  constructor() {
+
+  // convenience getter for easy access to form fields
+  get f() { return this.userForm.controls; }
+  constructor(private fb: FormBuilder) {
+
     this.createForm();
   }
 
@@ -21,16 +25,16 @@ export class UserComponent implements OnInit {
   }
    // create form
   createForm() {
-    this.userForm = new FormGroup({
-      name: new FormControl('', Validators.required, ),
-      middle: new FormControl('', Validators.required, ),
-      lastname: new FormControl('', Validators.required, ),
-      email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)], ),
-     // confirmPassword: new FormControl('', [Validators.required], ),
-      photography: new FormControl('', Validators.required, ),
-      business: new FormControl('', Validators.required, ),
-      rol: new FormControl('null', Validators.required, ),
+    this.userForm = this.fb.group({
+      name: ['', Validators.required, ],
+      middle: ['', Validators.required, ],
+      lastname: ['', Validators.required, ],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ],
+      password: ['', [Validators.required, Validators.minLength(6)], ],
+     // confirmPassword: ['', [Validators.required], ],
+      photography: ['', Validators.required, ],
+      business: ['', Validators.required, ],
+      rol: ['null', Validators.required, ],
     }, /* {
       validator: MustMatch('password', 'confirmPassword')
     }*/);

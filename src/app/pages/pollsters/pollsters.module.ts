@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PollstersRoutingModule } from './pollsters-routing.module';
 import { PollsterComponent } from './pollster/pollster.component';
 import { PollstersComponent } from './pollsters/pollsters.component';
+import { ImageCropperModule } from 'src/app/components/advance/image-crop/image-cropper/image-cropper.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PollstersComponent } from './pollsters/pollsters.component';
     NgxDatatableModule,
     ReactiveFormsModule,
     NgbModule,
-    SharedModule
+    SharedModule,
+    ImageCropperModule
   ],
   providers: [
     NgbPaginationConfig

@@ -152,7 +152,13 @@ width: 95px;
 .divceter{
     align-items: center;
 }
-.rowC{
-  margin-left: -10px;
-  margin-right: -10px;
+.inlineClock{
+  display: inline-block;
+  width: 130px;
+  margin-bottom:10px;
+}
+.inlineLabel{
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 10px;
 }

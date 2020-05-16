@@ -1,37 +1,37 @@
 <form [formGroup]="regForm" (ngSubmit)="addEmpresa()" class="ngx-form mt-5" novalidate> 
-    <div class="form-row"><!-- save(regForm)-->
+    <div class="form-row"><!-- save(regForm) f.schedule.get('mondayStart')-->
         <div class=" form-group col-md-4 mb-3">
             <label class="control-label" for="name">Nombre</label>
-            <input type="text" formControlName="name" name="name" class="form-control" placeholder="Nombre de la Empresa">
-            <div *ngIf="regForm.controls['name'].invalid && (regForm.controls['name'].dirty || regForm.controls['name'].touched)"
+            <input type="text" formControlName="name" name="name" class="form-control" placeholder="Asistemps del Sur">
+            <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)"
                 class="alert">
-                <div *ngIf="regForm.controls['name'].errors.required">
-                    Nombre es obligatorio.
+                <div *ngIf="f.name.errors.required">
+                    El campo es obligatoria.
                 </div>
             </div>
         </div>
         <div class="form-group col-md-4 mb-3">
             <label class="control-label" for="email">Correo</label>
-            <input type="email" formControlName="email" name="email" class="form-control" placeholder="Correo de la Empresa">
-            <div *ngIf="regForm.controls['email'].invalid && (regForm.controls['email'].dirty || regForm.controls['email'].touched)"
+            <input type="email" formControlName="email" name="email" class="form-control" placeholder="asistemps@gmail.com">
+            <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
                 class="alert">
-                <div *ngIf="regForm.controls['email'].errors.required">
-                    Correo es obligatorio.
+                <div *ngIf="f.email.errors.required">
+                    El campo es obligatoria.
                 </div>
-                <div *ngIf="regForm.controls['email'].errors?.pattern">
+                <div *ngIf="f.email.errors?.pattern">
                     Correo no valido.
                 </div>
             </div>
         </div>
         <div class="form-group col-md-4 mb-3">
             <label class="control-label" for="phoneNumber">Telefono</label>
-            <input type="text" formControlName="phoneNumber" name="phoneNumber" class="form-control" placeholder="Telefono de la Empresa">
-            <div *ngIf="regForm.controls['phoneNumber'].invalid && (regForm.controls['phoneNumber'].dirty || regForm.controls['phoneNumber'].touched)"
+            <input type="text" formControlName="phoneNumber" name="phoneNumber" class="form-control" placeholder="8845617894">
+            <div *ngIf="f.phoneNumber.invalid && (f.phoneNumber.dirty || f.phoneNumber.touched)"
                 class="alert">
-                <div *ngIf="regForm.controls['phoneNumber'].errors.required">
-                    Telefono es obligatorio.
+                <div *ngIf="f.phoneNumber.errors.required">
+                    El campo es obligatoria.
                 </div>
-                <div *ngIf="regForm.controls['phoneNumber'].errors?.pattern">
+                <div *ngIf="f.phoneNumber.errors?.pattern">
                     Telefono tiene que ser 10 digitos numericos.
                 </div>
             </div>
@@ -43,30 +43,30 @@
 
             <div class="form-group col-md-4 mb-3">
                 <label class="control-label" for="street">Calle</label>
-                <input type="text" formControlName="street" name="street" class="form-control" placeholder="Calle">
+                <input type="text" formControlName="street" name="street" class="form-control" placeholder="Sevilla">
 
-                <div *ngIf="regForm.controls['address'].get('street').invalid && (regForm.controls['address'].get('street').dirty || regForm.controls['address'].get('street').touched)" class="alert">
-                    <div *ngIf="regForm.controls['address'].get('street').errors.required">
-                        La calle es obligatoria.
+                <div *ngIf="f.address.get('street').invalid && (f.address.get('street').dirty || f.address.get('street').touched)" class="alert">
+                    <div *ngIf="f.address.get('street').errors.required">
+                        El campo es obligatoria.
                     </div>
                 </div>
 
             </div>
             <div class="form-group col-md-4 mb-3">
                 <label class="control-label" for="number">Numero</label>
-                <input type="text" formControlName="number" name="number" class="form-control" placeholder="Numero">
-                <div *ngIf="regForm.controls['address'].get('number').invalid && (regForm.controls['address'].get('number').dirty || regForm.controls['address'].get('number').touched)" class="alert">
-                    <div *ngIf="regForm.controls['address'].get('number').errors.required">
-                        El numemro es obligatoria.
+                <input type="text" formControlName="number" name="number" class="form-control" placeholder="650">
+                <div *ngIf="f.address.get('number').invalid && (f.address.get('number').dirty || f.address.get('number').touched)" class="alert">
+                    <div *ngIf="f.address.get('number').errors.required">
+                        El campo es obligatoria.
                     </div>
                 </div>
             </div>
             <div class="form-group col-md-4 mb-3">
                 <label class="control-label" for="suburb">Colonia</label>
-                <input type="text" formControlName="suburb" name="suburb" class="form-control" placeholder="Colonia">
-                <div *ngIf="regForm.controls['address'].get('suburb').invalid && (regForm.controls['address'].get('suburb').dirty || regForm.controls['address'].get('suburb').touched)" class="alert">
-                    <div *ngIf="regForm.controls['address'].get('suburb').errors.required">
-                        La colonia es obligatoria.
+                <input type="text" formControlName="suburb" name="suburb" class="form-control" placeholder="Centro">
+                <div *ngIf="f.address.get('suburb').invalid && (f.address.get('suburb').dirty || f.address.get('suburb').touched)" class="alert">
+                    <div *ngIf="f.address.get('suburb').errors.required">
+                        El campo es obligatoria.
                     </div>
                 </div>
             </div>
@@ -74,23 +74,23 @@
         <div class="form-row">
             <div class="form-group col-md-4 mb-3">
                 <label class="control-label" for="cp">Codigo Postal</label>
-                <input type="text" formControlName="cp" name="cp" class="form-control" placeholder="Codigo Postal">
-                <div *ngIf="regForm.controls['address'].get('cp').invalid && (regForm.controls['address'].get('cp').dirty || regForm.controls['address'].get('cp').touched)"
+                <input type="text" formControlName="cp" name="cp" class="form-control" placeholder="64500">
+                <div *ngIf="f.address.get('cp').invalid && (f.address.get('cp').dirty || f.address.get('cp').touched)"
                 class="alert">
-                    <div *ngIf="regForm.controls['address'].get('cp').errors.required">
-                        Telefono es obligatorio.
+                    <div *ngIf="f.address.get('cp').errors.required">
+                        El campo es obligatoria.
                     </div>
-                    <div *ngIf="regForm.controls['address'].get('cp').errors?.pattern">
+                    <div *ngIf="f.address.get('cp').errors?.pattern">
                         Telefono tiene que ser 5 digitos numericos.
                     </div>
                 </div>
             </div>
             <div class="form-group col-md-4 mb-3">
                 <label class="control-label" for="municipality">Municipio</label>
-                <input type="text" formControlName="municipality" name="municipality" class="form-control" placeholder="Municipio">
-                <div *ngIf="regForm.controls['address'].get('municipality').invalid && (regForm.controls['address'].get('municipality').dirty || regForm.controls['address'].get('municipality').touched)" class="alert">
-                    <div *ngIf="regForm.controls['address'].get('municipality').errors.required">
-                        El municipio es obligatoria.
+                <input type="text" formControlName="municipality" name="municipality" class="form-control" placeholder="Monterrey">
+                <div *ngIf="f.address.get('municipality').invalid && (f.address.get('municipality').dirty || f.address.get('municipality').touched)" class="alert">
+                    <div *ngIf="f.address.get('municipality').errors.required">
+                        El campo es obligatoria.
                     </div>
                 </div>
             </div>
@@ -136,13 +136,14 @@
             <label class="control-label col-sm-12 m-t-15" *ngIf="flagDataInfo===true && logoName!==''">
                 Archivo: {{ logoName}}
             </label>
-            <div *ngIf="regForm.controls['logo'].invalid && (regForm.controls['logo'].dirty || regForm.controls['logo'].touched)"
+            <div *ngIf="f.logo.invalid && (f.logo.dirty || f.logo.touched)"
             class="alert">
-                <div *ngIf="regForm.controls['logo'].errors.required">
+                <div *ngIf="f.logo.errors.required">
                     Subir logo es obligatorio.
                 </div>
             </div>
         </div>
+        <img [src]="logoName" class="img-100"/>
     </div>
 
     

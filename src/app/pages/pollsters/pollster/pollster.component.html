@@ -6,9 +6,9 @@
                 <div class=" form-group col-md-4 mb-3">
                     <label class="control-label" for="name">Nombre</label>
                     <input type="text" formControlName="name" name="name" class="form-control" placeholder="Maria">
-                    <div *ngIf="pollsterForm.controls['name'].invalid && (pollsterForm.controls['name'].dirty || pollsterForm.controls['name'].touched)"
+                    <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['name'].errors.required">
+                        <div *ngIf="f.name.errors.required">
                             El campo es obligatorio.
                         </div>
                     </div>
@@ -20,9 +20,9 @@
                 <div class=" form-group col-md-4 mb-3">
                     <label class="control-label" for="lastname">Apellido</label>
                     <input type="text" formControlName="lastname" name="lastname" class="form-control" placeholder="Sanchez">
-                    <div *ngIf="pollsterForm.controls['lastname'].invalid && (pollsterForm.controls['lastname'].dirty || pollsterForm.controls['lastname'].touched)"
+                    <div *ngIf="f.lastname.invalid && (f.lastname.dirty || f.lastname.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['lastname'].errors.required">
+                        <div *ngIf="f.lastname.errors.required">
                             El campo es obligatorio.
                         </div>
                     </div>
@@ -32,9 +32,9 @@
                 <div class=" form-group col-md-4 mb-3">
                     <label class="control-label" for="birthPlace">Lugar de Nacimiento</label>
                     <input type="text" formControlName="birthPlace" name="birthPlace" class="form-control" placeholder="Monterrey, N.L.">
-                    <div *ngIf="pollsterForm.controls['birthPlace'].invalid && (pollsterForm.controls['birthPlace'].dirty || pollsterForm.controls['birthPlace'].touched)"
+                    <div *ngIf="f.birthPlace.invalid && (f.birthPlace.dirty || f.birthPlace.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['birthPlace'].errors.required">
+                        <div *ngIf="f.birthPlace.errors.required">
                             El campo es obligatorio.
                         </div>
                     </div>
@@ -42,9 +42,9 @@
                 <div class=" form-group col-md-4 mb-3">
                     <label class="control-label" for="birthDate">Fecha de Nacimiento</label>
                     <input type="text" formControlName="birthDate" placeholder="15-20-1885" onfocus="(this.type='date')" onblur="(this.type='text')" name="birthDate" class="form-control" >
-                    <div *ngIf="pollsterForm.controls['birthDate'].invalid && (pollsterForm.controls['birthDate'].dirty || pollsterForm.controls['birthDate'].touched)"
+                    <div *ngIf="f.birthDate.invalid && (f.birthDate.dirty || f.birthDate.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['birthDate'].errors.required">
+                        <div *ngIf="f.birthDate.errors.required">
                             El campo es obligatorio.
                         </div>
                     </div>
@@ -52,9 +52,9 @@
                 <div class=" form-group col-md-4 mb-3">
                     <label class="control-label" for="ifeFolio">IFE Folio Reverso</label>
                     <input type="text" formControlName="ifeFolio" name="ifeFolio" class="form-control" placeholder="WEER1323151486">
-                    <div *ngIf="pollsterForm.controls['ifeFolio'].invalid && (pollsterForm.controls['ifeFolio'].dirty || pollsterForm.controls['ifeFolio'].touched)"
+                    <div *ngIf="f.ifeFolio.invalid && (f.ifeFolio.dirty || f.ifeFolio.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['ifeFolio'].errors.required">
+                        <div *ngIf="f.ifeFolio.errors.required">
                             El campo es obligatorio.
                         </div>
                     </div>
@@ -68,8 +68,8 @@
                         <label class="control-label" for="street">Calle</label>
                         <input type="text" formControlName="street" name="street" class="form-control" placeholder="Gral Carlos Salazar Pte">
         
-                        <div *ngIf="pollsterForm.controls['address'].get('street').invalid && (pollsterForm.controls['address'].get('street').dirty || pollsterForm.controls['address'].get('street').touched)" class="alert">
-                            <div *ngIf="pollsterForm.controls['address'].get('street').errors.required">
+                        <div *ngIf="f.address.get('street').invalid && (f.address.get('street').dirty || f.address.get('street').touched)" class="alert">
+                            <div *ngIf="f.address.get('street').errors.required">
                                 El campo es obligatorio.
                             </div>
                         </div>
@@ -78,8 +78,8 @@
                     <div class="form-group col-md-4 mb-3">
                         <label class="control-label" for="number">Numero</label>
                         <input type="text" formControlName="number" name="number" class="form-control" placeholder="580">
-                        <div *ngIf="pollsterForm.controls['address'].get('number').invalid && (pollsterForm.controls['address'].get('number').dirty || pollsterForm.controls['address'].get('number').touched)" class="alert">
-                            <div *ngIf="pollsterForm.controls['address'].get('number').errors.required">
+                        <div *ngIf="f.address.get('number').invalid && (f.address.get('number').dirty || f.address.get('number').touched)" class="alert">
+                            <div *ngIf="f.address.get('number').errors.required">
                                 El campo es obligatorio.
                             </div>
                         </div>
@@ -87,8 +87,8 @@
                     <div class="form-group col-md-4 mb-3">
                         <label class="control-label" for="suburb">Colonia</label>
                         <input type="text" formControlName="suburb" name="suburb" class="form-control" placeholder="Centro">
-                        <div *ngIf="pollsterForm.controls['address'].get('suburb').invalid && (pollsterForm.controls['address'].get('suburb').dirty || pollsterForm.controls['address'].get('suburb').touched)" class="alert">
-                            <div *ngIf="pollsterForm.controls['address'].get('suburb').errors.required">
+                        <div *ngIf="f.address.get('suburb').invalid && (f.address.get('suburb').dirty || f.address.get('suburb').touched)" class="alert">
+                            <div *ngIf="f.address.get('suburb').errors.required">
                                 El campo es obligatorio.
                             </div>
                         </div>
@@ -98,12 +98,12 @@
                     <div class="form-group col-md-4 ">
                         <label class="control-label" for="cp">Codigo Postal</label>
                         <input type="text" formControlName="cp" name="cp" class="form-control" placeholder="64000">
-                        <div *ngIf="pollsterForm.controls['address'].get('cp').invalid && (pollsterForm.controls['address'].get('cp').dirty || pollsterForm.controls['address'].get('cp').touched)"
+                        <div *ngIf="f.address.get('cp').invalid && (f.address.get('cp').dirty || f.address.get('cp').touched)"
                         class="alert">
-                            <div *ngIf="pollsterForm.controls['address'].get('cp').errors.required">
+                            <div *ngIf="f.address.get('cp').errors.required">
                                 El campo es obligatorio.
                             </div>
-                            <div *ngIf="pollsterForm.controls['address'].get('cp').errors?.pattern">
+                            <div *ngIf="f.address.get('cp').errors?.pattern">
                                 El campo tiene que ser 5 digitos numericos.
                             </div>
                         </div>
@@ -111,8 +111,8 @@
                     <div class="form-group col-md-4">
                         <label class="control-label" for="municipality">Municipio</label>
                         <input type="text" formControlName="municipality" name="municipality" class="form-control" placeholder="Monterrey">
-                        <div *ngIf="pollsterForm.controls['address'].get('municipality').invalid && (pollsterForm.controls['address'].get('municipality').dirty || pollsterForm.controls['address'].get('municipality').touched)" class="alert">
-                            <div *ngIf="pollsterForm.controls['address'].get('municipality').errors.required">
+                        <div *ngIf="f.address.get('municipality').invalid && (f.address.get('municipality').dirty || f.address.get('municipality').touched)" class="alert">
+                            <div *ngIf="f.address.get('municipality').errors.required">
                                 El campo es obligatorio.
                             </div>
                         </div>
@@ -124,12 +124,12 @@
                 <div class=" form-group col-md-4 mb-3">
                     <label class="control-label" for="phone">Telefono</label>
                     <input type="text" formControlName="phone" name="phone" class="form-control" placeholder="8478447894">
-                    <div *ngIf="pollsterForm.controls['phone'].invalid && (pollsterForm.controls['phone'].dirty || pollsterForm.controls['phone'].touched)"
+                    <div *ngIf="f.phone.invalid && (f.phone.dirty || f.phone.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['phone'].errors.required">
+                        <div *ngIf="f.phone.errors.required">
                             El campo es obligatorio.
                         </div>
-                        <div *ngIf="pollsterForm.controls['phone'].errors?.pattern">
+                        <div *ngIf="f.phone.errors?.pattern">
                             Telefono tiene que ser 10 digitos numericos.
                         </div>
                     </div>
@@ -137,12 +137,12 @@
                 <div class=" form-group col-md-4 mb-3">
                     <label class="control-label" for="cellPhone">Celular</label>
                     <input type="text" formControlName="cellPhone" name="cellPhone" class="form-control" placeholder="8878447894">
-                    <div *ngIf="pollsterForm.controls['cellPhone'].invalid && (pollsterForm.controls['cellPhone'].dirty || pollsterForm.controls['cellPhone'].touched)"
+                    <div *ngIf="f.cellPhone.invalid && (f.cellPhone.dirty || f.cellPhone.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['cellPhone'].errors.required">
+                        <div *ngIf="f.cellPhone.errors.required">
                             El campo es obligatorio.
                         </div>
-                        <div *ngIf="pollsterForm.controls['cellPhone'].errors?.pattern">
+                        <div *ngIf="f.cellPhone.errors?.pattern">
                             Telefono tiene que ser 10 digitos numericos.
                         </div>
                     </div>
@@ -150,12 +150,12 @@
                 <div class=" form-group col-md-4 mb-3">
                     <label class="control-label" for="errandsPhone">Telefono de Recados</label>
                     <input type="text" formControlName="errandsPhone" name="errandsPhone" class="form-control" placeholder="8888447894">
-                    <div *ngIf="pollsterForm.controls['errandsPhone'].invalid && (pollsterForm.controls['errandsPhone'].dirty || pollsterForm.controls['errandsPhone'].touched)"
+                    <div *ngIf="f.errandsPhone.invalid && (f.errandsPhone.dirty || f.errandsPhone.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['errandsPhone'].errors.required">
+                        <div *ngIf="f.errandsPhone.errors.required">
                             El campo es obligatorio.
                         </div>
-                        <div *ngIf="pollsterForm.controls['errandsPhone'].errors?.pattern">
+                        <div *ngIf="f.errandsPhone.errors?.pattern">
                             Telefono tiene que ser 10 digitos numericos.
                         </div>
                     </div>
@@ -165,12 +165,12 @@
                 <div class="form-group col-md-4 mb-3">
                     <label class="control-label" for="email">Correo</label>
                     <input type="email" formControlName="email" name="email" class="form-control" placeholder="mariaSanches@outlook.com">
-                    <div *ngIf="pollsterForm.controls['email'].invalid && (pollsterForm.controls['email'].dirty || pollsterForm.controls['email'].touched)"
+                    <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['email'].errors.required">
+                        <div *ngIf="f.email.errors.required">
                             El campo es obligatorio.
                         </div>
-                        <div *ngIf="pollsterForm.controls['email'].errors?.pattern">
+                        <div *ngIf="f.email.errors?.pattern">
                             Correo no valido.
                         </div>
                     </div>
@@ -184,9 +184,9 @@
                         <option value="errandsPhone">Telefono de Recados</option>
                         <option value="email">Correo</option>
                     </select>
-                    <div *ngIf="pollsterForm.controls['preference'].invalid && (pollsterForm.controls['preference'].dirty || pollsterForm.controls['preference'].touched)"
+                    <div *ngIf="f.preference.invalid && (f.preference.dirty || f.preference.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['preference'].errors.required">
+                        <div *ngIf="f.preference.errors.required">
                             El campo es obligatorio.
                         </div>
                     </div>
@@ -197,148 +197,78 @@
                         <option [value]="null" disabled>Selecciona el Tipo</option>
                         <option *ngFor="let p of roles" [ngValue]="p">{{ p }}</option>
                     </select>
-                    <div *ngIf="pollsterForm.controls['rol'].invalid && (pollsterForm.controls['rol'].dirty || pollsterForm.controls['rol'].touched)"
+                    <div *ngIf="f.rol.invalid && (f.rol.dirty || f.rol.touched)"
                         class="alert">
-                        <div *ngIf="pollsterForm.controls['rol'].errors.required">
+                        <div *ngIf="f.rol.errors.required">
                             El campo es obligatorio.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-row m-t-25">
-                <div class="row rowC  col-sm-12">
-                    <h6 class="col-sm-12 m-b-0"><b>Horario Disponible para Visitas</b></h6>
-                    <hr class="col-sm-12 m-r-15 m-l-15">
+                <div class="m-b-20 col-12">
+                    <h6><b>Horario Disponible para Visitas</b></h6>
                 </div>
                
-                <div class="form-group row rowC  col-sm-12" formGroupName="schedule">
+                <div class="form-row  col-12" formGroupName="schedule">
                     <div class="form-group col-sm-6 col-md-4 mb-3">
-                        <label class="control-label" for="">Lunes</label>
-                        <div class="row divceter">
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="mondayStart" formControlName="mondayStart"  data-lng-clockpicker placeholder="12:30">
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time" ></span>
-                                    </span>
-                                </div>
-                            <label class="m-r-10 m-l-10 mb-0"> A </label>
-                            <div class="input-group clockpicker" >
-                                <input type="text" class="form-control" name="mondayEnd"  formControlName="mondayEnd"  >
-                                <span class="input-group-addon">
-                                    <span class="glyphicon icofont icofont-clock-time"></span>
-                                </span>
-                            </div>
+                        <label class="control-label" >Lunes</label>
+                        <div class="divceter">
+                            <input type="time" class="form-control inlineClock " name="mondayStart" formControlName="mondayStart"   placeholder="12:30">
+                            <label class="inlineLabel"> A </label>
+                            <input type="time" class="form-control inlineClock" name="mondayEnd"  formControlName="mondayEnd"  >
                         </div>
                     </div>
                     <div class="form-group col-sm-6  col-md-4 mb-3">
-                        <label class="control-label" for="">Martes</label>
-                        <div class="row divceter">
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="tuesdayStart" formControlName="tuesdayStart"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time" ></span>
-                                    </span>
-                                </div>
-                            <label class="m-r-10 m-l-10 mb-0"> A </label>
-                            <div class="input-group clockpicker" >
-                                <input type="text" class="form-control" name="tuesdayEnd"  formControlName="tuesdayEnd"  >
-                                <span class="input-group-addon">
-                                    <span class="glyphicon icofont icofont-clock-time"></span>
-                                </span>
-                            </div>
+                        <label class="control-label" >Martes</label>
+                        <div class="divceter">
+                            <input type="time" class="form-control inlineClock" name="tuesdayStart" formControlName="tuesdayStart"  >    
+                            <label class="inlineLabel"> A </label>
+                            <input type="time" class="form-control inlineClock" name="tuesdayEnd"  formControlName="tuesdayEnd"  >
                         </div>
                     </div>
                     <div class="form-group col-sm-6  col-md-4 mb-3">
                         <label class="control-label" for="">Miercoles</label>
-                        <div class="row divceter">
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="wednesdayStart" formControlName="wednesdayStart"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time" ></span>
-                                    </span>
-                                </div>
-                            <label class="m-r-10 m-l-10 mb-0"> A </label>
-                            <div class="input-group clockpicker" >
-                                <input type="text" class="form-control" name="wednesdayEnd"  formControlName="wednesdayEnd"  >
-                                <span class="input-group-addon">
-                                    <span class="glyphicon icofont icofont-clock-time"></span>
-                                </span>
-                            </div>
+                        <div class="divceter">
+                            <input type="time" class="form-control inlineClock" name="wednesdayStart" formControlName="wednesdayStart"  >
+                            <label class="inlineLabel"> A </label>
+                            <input type="time" class="form-control inlineClock" name="wednesdayEnd"  formControlName="wednesdayEnd"  >
                         </div>
                     </div>
                     <div class="form-group col-sm-6 col-md-4 mb-3">
                         <label class="control-label" for="">Jueves</label>
-                        <div class="row divceter">
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="thursdayStart" formControlName="thursdayStart"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time" ></span>
-                                    </span>
-                                </div>
-                            <label class="m-r-10 m-l-10 mb-0"> A </label>
-                            <div class="input-group clockpicker" >
-                                <input type="text" class="form-control" name="thursdayEnd"  formControlName="thursdayEnd"  >
-                                <span class="input-group-addon">
-                                    <span class="glyphicon icofont icofont-clock-time"></span>
-                                </span>
-                            </div>
+                        <div class="divceter">
+                            <input type="time" class="form-control inlineClock" name="thursdayStart" formControlName="thursdayStart"  >
+                            <label class="inlineLabel"> A </label>
+                            <input type="time" class="form-control inlineClock" name="thursdayEnd"  formControlName="thursdayEnd"  >
                         </div>
                     </div>
                     <div class="form-group col-sm-6 col-md-4 mb-3">
                         <label class="control-label" for="">Vienes</label>
-                        <div class="row divceter">
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="fridayStart" formControlName="fridayStart"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time" ></span>
-                                    </span>
-                                </div>
-                            <label class="m-r-10 m-l-10 mb-0"> A </label>
-                            <div class="input-group clockpicker" >
-                                <input type="text" class="form-control" name="fridayEnd"  formControlName="fridayEnd"  >
-                                <span class="input-group-addon">
-                                    <span class="glyphicon icofont icofont-clock-time"></span>
-                                </span>
-                            </div>
+                        <div class="divceter">
+                            <input type="time" class="form-control inlineClock" name="fridayStart" formControlName="fridayStart"  >
+                            <label class="inlineLabel"> A </label>
+                            <input type="time" class="form-control inlineClock" name="fridayEnd"  formControlName="fridayEnd"  >
                         </div>
                     </div>
                     <div class="form-group col-sm-6 col-md-4 mb-3">
                         <label class="control-label" for="">Sabado</label>
-                        <div class="row divceter">
-                                <div class="input-group clockpicker " >
-                                    <input type="text" class="form-control m-b-3" name="saturdayStart" formControlName="saturdayStart"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time" ></span>
-                                    </span>
-                                </div>
-                            <label class="m-r-10 m-l-10 mb-0"> A </label>
-                            <div class="input-group clockpicker" >
-                                <input type="text" class="form-control" name="saturdayEnd"  formControlName="saturdayEnd"  >
-                                <span class="input-group-addon">
-                                    <span class="glyphicon icofont icofont-clock-time"></span>
-                                </span>
-                            </div>
+                        <div class="divceter">
+                            <input type="time" class="form-control inlineClock" name="saturdayStart" formControlName="saturdayStart"  >
+                            <label class="inlineLabel"> A </label>
+                            <input type="time" class="form-control inlineClock" name="saturdayEnd"  formControlName="saturdayEnd"  >
                         </div>
                     </div>
                     <div class="form-group col-sm-6 col-md-4 mb-3">
                         <label class="control-label" for="">Domingo</label>
-                        <div class="row divceter">
-                                <div class="input-group clockpicker " >
-                                    <input type="text" class="form-control m-b-3" name="sundayStart" formControlName="sundayStart"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time" ></span>
-                                    </span>
-                                </div>
-                            <label class="m-r-10 m-l-10 mb-0"> A </label>
-                            <div class="input-group clockpicker" >
-                                <input type="text" class="form-control" name="sundayEnd"  formControlName="sundayEnd"  >
-                                <span class="input-group-addon">
-                                    <span class="glyphicon icofont icofont-clock-time"></span>
-                                </span>
-                            </div>
+                        <div class="divceter">
+                            <input type="time" class="form-control inlineClock" name="sundayStart" formControlName="sundayStart"  >
+                            <label class="inlineLabel"> A </label>
+                            <input type="time" class="form-control inlineClock" name="sundayEnd"  formControlName="sundayEnd"  >
                         </div>
                     </div>
                 </div>
+               
             </div>
             <div class="form-group m-t-10">
                 <h6 class="m-b-0"><b>Datos Bancarios</b> </h6><hr>
@@ -348,8 +278,8 @@
                         <label class="control-label" for="bank">Banco</label>
                         <input type="text" formControlName="bank" name="bank" class="form-control" placeholder="Banamex">
         
-                        <div *ngIf="pollsterForm.controls['bank'].invalid && (pollsterForm.controls['bank'].dirty || pollsterForm.controls['bank'].touched)" class="alert">
-                            <div *ngIf="pollsterForm.controls['bank'].errors.required">
+                        <div *ngIf="f.bank.invalid && (f.bank.dirty || f.bank.touched)" class="alert">
+                            <div *ngIf="f.bank.errors.required">
                                 El campo es obligatorio.
                             </div>
                         </div>
@@ -357,20 +287,20 @@
                     <div class="form-group col-md-3 mb-3">
                         <label class="control-label" for="nameOwner">Nombre del Titular</label>
                         <input type="text" formControlName="nameOwner" name="nameOwner" class="form-control" placeholder="Juan Jose Rivera Nieto">
-                        <div *ngIf="pollsterForm.controls['nameOwner'].invalid && (pollsterForm.controls['nameOwner'].dirty || pollsterForm.controls['nameOwner'].touched)" class="alert">
-                            <div *ngIf="pollsterForm.controls['nameOwner'].errors.required">
+                        <div *ngIf="f.nameOwner.invalid && (f.nameOwner.dirty || f.nameOwner.touched)" class="alert">
+                            <div *ngIf="f.nameOwner.errors.required">
                                 El campo es obligatorio.
                             </div>
                         </div>
                     </div>
                     <div class="form-group col-md-3 mb-3">
-                        <label class="control-label" for="cardNumber">Numero de Tarjeta o Cuenta</label>
+                        <label class="control-label" for="cardNumber">Numero Tarjeta/Cuenta</label>
                         <input type="text" formControlName="cardNumber" name="cardNumber" class="form-control" placeholder="444588854452">
-                        <div *ngIf="pollsterForm.controls['cardNumber'].invalid && (pollsterForm.controls['cardNumber'].dirty || pollsterForm.controls['cardNumber'].touched)" class="alert">
-                            <div *ngIf="pollsterForm.controls['cardNumber'].errors.required">
+                        <div *ngIf="f.cardNumber.invalid && (f.cardNumber.dirty || f.cardNumber.touched)" class="alert">
+                            <div *ngIf="f.cardNumber.errors.required">
                                 El campo es obligatorio.
                             </div>
-                            <div *ngIf="pollsterForm.controls['cardNumber'].errors?.pattern">
+                            <div *ngIf="f.cardNumber.errors?.pattern">
                                 El campo tiene que ser entre 10 y 19 digitos numericos.
                             </div>
                         </div>
@@ -378,8 +308,8 @@
                     <div class="form-group col-md-3 mb-3">
                         <label class="control-label" for="viatics">Viatico</label>
                         <input type="text" formControlName="viatics" name="viatics" class="form-control" placeholder="120.00">
-                        <div *ngIf="pollsterForm.controls['viatics'].invalid && (pollsterForm.controls['viatics'].dirty || pollsterForm.controls['viatics'].touched)" class="alert">
-                            <div *ngIf="pollsterForm.controls['viatics'].errors.required">
+                        <div *ngIf="f.viatics.invalid && (f.viatics.dirty || f.viatics.touched)" class="alert">
+                            <div *ngIf="f.viatics.errors.required">
                                 El campo es obligatorio.
                             </div>
                         </div>
@@ -390,18 +320,20 @@
             <div class="form-row mb-5" >
                 <label class="col-sm-12 control-label">Subir fotografia del usuario</label>
                 <div class="col-sm-12 "> <!--formControlName="logo"-->
-                    <input style="display: none" type="file" (change)="readFile($event)"  name="photography" #fileInput>
-                    <button class="form-control col-sm-4"  (click)="fileInput.click()"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
-                    <label class="col-sm-4 fileName">{{fileName }}</label>
-                <!-- <label class="control-label col-sm-12 m-t-15" *ngIf="flagDataInfo===true && logoName!==''">
-                        Archivo: {{ logoName}}
-                    </label>-->
-                    <div *ngIf="pollsterForm.controls['photography'].invalid && (pollsterForm.controls['photography'].dirty || pollsterForm.controls['photography'].touched)"
+                    <input style="display: none" fileControlName="photography" type="file" (change)="onSelectFile($event)"  name="photography" #fileInput>
+                    <button #fInput  class="form-control col-sm-4 disInliBlock"  (click)="fileInput.click(); marks(e)"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
+                    <label class="col-sm-4">{{fileName}}</label>
+               
+                    <div *ngIf="isFileUploaded && f.photography.invalid && (f.photography.dirty || f.photography.touched)"
                     class="alert">
-                        <div *ngIf="pollsterForm.controls['photography'].errors.required">
+                        <div *ngIf="f.photography.errors.required">
                             Subir la fotografia es obligatorio.
                         </div>
                     </div>
+                    
+                </div>
+                <div class="m-t-15" *ngIf="urlImg && urlImg !== ''">
+                    <img [src]="urlImg" class="img-100"/>
                 </div>
             </div>
 

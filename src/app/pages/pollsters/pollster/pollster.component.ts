@@ -1,7 +1,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 declare const $;
+declare var require;
+const Swal = require('sweetalert2');
 
 @Component({
   selector: 'app-pollster',
@@ -9,17 +12,25 @@ declare const $;
   styleUrls: ['./pollster.component.scss']
 })
 export class PollsterComponent implements OnInit, AfterViewInit {
-  public fileName: string;
-  public logoName: string;
+  public fileName: any;
+  public urlImg: any;
+
   public pollsterForm: FormGroup;
   public roles: string [];
-  public default;
-  constructor() {
+  public isFileUploaded;
+ 
+
+  // convenience getter for easy access to form fields
+  get f() { return this.pollsterForm.controls; }
+
+  constructor(private fb: FormBuilder) {
     this.createForm();
-   }
+    this.isFileUploaded = false;
+  }
 
   ngOnInit(): void {
     this.roles = ['Foreano', 'Local'];
+    console.log(this.pollsterForm.controls.photography);
   }
   ngAfterViewInit() {
     $(document).ready(() => {
@@ -32,50 +43,83 @@ export class PollsterComponent implements OnInit, AfterViewInit {
   }
   // create form
   createForm() {
-    this.pollsterForm = new FormGroup({
-      name: new FormControl('', Validators.required, ),
-      middle: new FormControl('', Validators.required, ),
-      lastname: new FormControl('', Validators.required, ),
-      birthPlace: new FormControl('', Validators.required, ),
-      birthDate: new FormControl('', Validators.required, ),
-      ifeFolio: new FormControl('', Validators.required, ),
-      address: new FormGroup({
-        street: new FormControl('', Validators.required, ),
-        number: new FormControl('', Validators.required, ),
-        cp: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{5}$')], ),
-        municipality: new FormControl('', Validators.required, ),
-        suburb: new FormControl('', Validators.required, ),
+    this.pollsterForm = this.fb.group({
+      name: ['', Validators.required, ],
+      middle: ['', Validators.required, ],
+      lastname: ['', Validators.required, ],
+      birthPlace: ['', Validators.required, ],
+      birthDate: ['', Validators.required, ],
+      ifeFolio: ['', Validators.required, ],
+      address: this.fb.group({
+        street: ['', Validators.required, ],
+        number: ['', Validators.required, ],
+        cp: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{5}$')], ],
+        municipality: ['', Validators.required, ],
+        suburb: ['', Validators.required, ],
       }),
-      phone: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
-      cellPhone: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
-      errandsPhone: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
-      preference: new FormControl('null', Validators.required, ),
-      email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ),
-      rol: new FormControl('null', Validators.required, ),
-      viatics: new FormControl('', Validators.required, ),
-      bank: new FormControl('', Validators.required, ),
-      nameOwner: new FormControl('', Validators.required, ),
-      cardNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10,19}$')] ),
-      schedule: new FormGroup({
-        mondayStart: new FormControl(''),
-        mondayEnd: new FormControl(''),
-        tuesdayStart: new FormControl(''),
-        tuesdayEnd: new FormControl(''),
-        wednesdayStart: new FormControl(''),
-        wednesdayEnd: new FormControl(''),
-        thursdayStart: new FormControl(''),
-        thursdayEnd: new FormControl(''),
-        fridayStart: new FormControl(''),
-        fridayEnd: new FormControl(''),
-        saturdayStart: new FormControl(''),
-        saturdayEnd: new FormControl(''),
-        sundayStart: new FormControl(''),
-        sundayEnd: new FormControl(''),
+      phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ],
+      cellPhone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ],
+      errandsPhone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ],
+      preference: ['null', Validators.required, ],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ],
+      rol: ['null', Validators.required, ],
+      viatics: ['', Validators.required, ],
+      bank: ['', Validators.required, ],
+      nameOwner: ['', Validators.required, ],
+      cardNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10,19}$')] ],
+      schedule: this.fb.group({
+        mondayStart: [''],
+        mondayEnd: [''],
+        tuesdayStart: [''],
+        tuesdayEnd: [''],
+        wednesdayStart: [''],
+        wednesdayEnd: [''],
+        thursdayStart: [''],
+        thursdayEnd: [''],
+        fridayStart: [''],
+        fridayEnd: [''],
+        saturdayStart: [''],
+        saturdayEnd: [''],
+        sundayStart: [''],
+        sundayEnd: [''],
       }),
-      photography: new FormControl('', Validators.required, ),
+      photography: ['', Validators.required, ],
+    });
+  }
+ 
+  addPollster() {}
+  warning() {
+    Swal.fire({
+      title: 'Alerta',
+      text: 'Selecciona un documento tipo JPG o PNG',
+      icon: 'warning',
+      showConfirmButton: true,
     });
   }
   
-  addPollster() {}
-  readFile(e) {}
+  onSelectFile(event) { // called each time file input changes
+    
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(this.pollsterForm.controls.photography);
+
+      if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
+        this.warning();
+        this.pollsterForm.get('photography').setValue('');
+        this.urlImg = '';
+        this.fileName = '';
+        this.isFileUploaded = false;
+      } else {
+        this.pollsterForm.get('photography').setValue(file);
+        const reader = new FileReader();
+        reader.readAsDataURL(file); // read file as data url
+        this.fileName =  event.target.files[0].name;
+        reader.onload = ( event) => { // called once readAsDataURL is completed
+          this.urlImg = event.target.result;
+        };
+        this.isFileUploaded = true;
+      }
+      
+    }
+  }
 }

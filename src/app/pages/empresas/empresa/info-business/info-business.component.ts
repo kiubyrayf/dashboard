@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ElementRef, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
+import { FormGroup, Validators, FormControl, NgForm, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
@@ -27,17 +27,20 @@ export class InfoBusinessComponent implements OnInit {
   private empresaList: any;
   public isBorderValidate = false;
   public regForm: FormGroup;
-  public title = 'registration page';
   public form: any;
   public empresa: EmpresaModel;
 
   public fileName: string;
-  public logoName: string;
+  public logoName: any;
+
+    // convenience getter for easy access to form fields
+  get f() { return this.regForm.controls; }
 
   constructor(
       private route: Router,
       private activeRoute: ActivatedRoute,
       private empresaService: EmpresasService,
+      private fb: FormBuilder,
       private cd: ChangeDetectorRef
     ) {
       this.data = new EventEmitter();
@@ -52,20 +55,20 @@ export class InfoBusinessComponent implements OnInit {
 
   // create form
   createForm() {
-    this.regForm = new FormGroup({
-      name: new FormControl('', Validators.required, ),
-      email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ),
-      phoneNumber: new FormControl('', [Validators.required,  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ),
-      address: new FormGroup({
-        street: new FormControl('', Validators.required, ),
-        number: new FormControl('', Validators.required, ),
-        cp: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{5}$')], ),
-        municipality: new FormControl('', Validators.required, ),
-        suburb: new FormControl('', Validators.required, ),
+    this.regForm = this.fb.group({
+      name: ['', Validators.required, ],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ],
+      phoneNumber: ['', [Validators.required,  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ],
+      address: this.fb.group({
+        street: ['', Validators.required, ],
+        number: ['', Validators.required, ],
+        cp: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{5}$')], ],
+        municipality: ['', Validators.required, ],
+        suburb: ['', Validators.required, ],
       }),
-      requestServiceByMail: new FormControl(false),
-      selfFormat: new FormControl(false),
-      logo: new FormControl('', Validators.required, ),
+      requestServiceByMail: [false],
+      selfFormat: [false],
+      logo: ['', Validators.required, ],
     });
   }
 
@@ -121,13 +124,15 @@ export class InfoBusinessComponent implements OnInit {
 
     if ( event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+      
       if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
         this.warning();
         this.regForm.get('logo').setValue('');
       } else {
          this.fileName = file.name;
          this.regForm.get('logo').setValue(file);
-        this.logoName = '';
+         this.logoName = URL.createObjectURL(file);
+         console.log(this.logoName);
       }
     }
   }

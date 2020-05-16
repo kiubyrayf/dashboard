@@ -2,13 +2,14 @@
 <form [formGroup]="contactForm" (ngSubmit)="addEmpresa()" class="ngx-form mt-5" novalidate >
   
     <div formArrayName="contact">
-        <div *ngFor="let contact of contactFormGroup.controls; let i = index;">
+        <div *ngFor="let contact of contactForm?.controls?.contact?.controls; let i = index;">
             <div [formGroupName]="i">
                 <!-- Contacts Form controls Here -->
+                <h3>Contacto No. {{i + 1}}</h3>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label class="control-label" for="paymentPerson">Nombre</label>
-                        <input type="text" formControlName="paymentPerson"  class="form-control" formControlName="paymentPerson"  placeholder="Nombre">
+                        <input type="text" formControlName="paymentPerson"  class="form-control" formControlName="paymentPerson"  placeholder="Juan Martinez">
                        <div *ngIf="getContactsFormGroup(i).get('paymentPerson').invalid && (getContactsFormGroup(i).get('paymentPerson').dirty || getContactsFormGroup(i).get('paymentPerson').touched)"
                                 class="alert"> 
                             <div *ngIf="getContactsFormGroup(i).get('paymentPerson').errors.required">
@@ -18,7 +19,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label class="control-label" for="job">Empleo</label>
-                        <input type="text"  class="form-control" formControlName="job"  placeholder="Empleo">
+                        <input type="text"  class="form-control" formControlName="job"  placeholder="Capturista">
                        <div *ngIf="getContactsFormGroup(i).get('job').invalid && (getContactsFormGroup(i).get('job').dirty || getContactsFormGroup(i).get('job').touched)"
                                 class="alert">
                             <div *ngIf="getContactsFormGroup(i).get('job').errors.required">
@@ -28,7 +29,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label class="control-label" for="phoneNumber" >Telefono</label>
-                        <input type="text"  class="form-control" formControlName="phoneNumber"  placeholder="telefono">
+                        <input type="text"  class="form-control" formControlName="phoneNumber"  placeholder="8855722466">
                         <div *ngIf="getContactsFormGroup(i).get('phoneNumber').invalid && (getContactsFormGroup(i).get('phoneNumber').dirty || getContactsFormGroup(i).get('phoneNumber').touched)"
                             class="alert">
                             <div *ngIf="getContactsFormGroup(i).get('phoneNumber').errors.required">
@@ -43,7 +44,7 @@
                 <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label class="control-label" for="email">Correo</label>
-                    <input type="email" class="form-control" formControlName="email"  placeholder="Correo">
+                    <input type="email" class="form-control" formControlName="email"  placeholder="juandv@gmail.com">
                     <div *ngIf="getContactsFormGroup(i).get('email').invalid && (getContactsFormGroup(i).get('email').dirty || getContactsFormGroup(i).get('email').touched)"
                                 class="alert">
                             <div *ngIf="getContactsFormGroup(i).get('email').errors.required">
@@ -56,52 +57,50 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <label class="control-label" for="fax">Fax</label>
-                    <input type="text" class="form-control" formControlName="fax"  placeholder="Fax">
+                    <input type="text" class="form-control" formControlName="fax"  placeholder="4567890">
                 </div>
                 </div>
                 <div class="form-row m-t-25">
-                    <div class="row rowC  col-sm-12">
-                        <h6 class="col-sm-12 m-b-0"><b>Horario Disponible para Visitas</b></h6>
-                        <hr class="col-sm-12 m-r-15 m-l-15">
+                    <div class="m-b-20 col-12">
+                        <h6><b>Horario Disponible para Visitas</b></h6>
                     </div>
                    
-                    <div class="form-group row rowC  col-sm-12" formGroupName="schedule">
+                    <div class="form-row  col-12" formGroupName="schedule">
                         <div class="form-group col-sm-6 col-md-4 mb-3">
-                            <label class="control-label" for="">Lunes</label>
-                            <div class="row divceter">
-                                    <div  class="input-group clockpicker">
-                                        <input type="text" class="form-control" name="mondayStart" formControlName="mondayStart"   placeholder="12:30">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon icofont icofont-clock-time" ></span>
-                                        </span>
-                                        <!-- <div *ngIf="f.schedule.get('mondayStart').invalid && 
-                                            (f.schedule.get('mondayStart').dirty || f.schedule.get('mondayStart').touched)"
-                                            class="alert">
-                                                <div *ngIf="f.schedule.get('mondayStart').errors.required">
-                                                    El campo es obligatorio.
-                                                </div>
-                                                
-                                        </div>  -->
-                                    </div>
-                                <label class="m-r-10 m-l-10 mb-0"> A </label>
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="mondayEnd"  formControlName="mondayEnd"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time"></span>
-                                    </span>
-                                </div>
+                            <label class="control-label" >Lunes</label>
+                            <div class="divceter">
+                                <input type="time" class="form-control inlineClock " name="mondayStart" formControlName="mondayStart"   placeholder="12:30">
+                                <label class="inlineLabel"> A </label>
+                                <input type="time" class="form-control inlineClock" name="mondayEnd"  formControlName="mondayEnd"  >
+
+                                <!-- <div *ngIf="f.schedule.get('mondayStart').invalid && 
+                                        (f.schedule.get('mondayStart').dirty || f.schedule.get('mondayStart').touched)"
+                                        class="alert">
+                                            <div *ngIf="f.schedule.get('mondayStart').errors.required">
+                                                El campo es obligatorio.
+                                            </div>
+                                            
+                                    </div>  -->
                             </div>
                         </div>
                         <div class="form-group col-sm-6  col-md-4 mb-3">
+                            <label class="control-label" >Martes</label>
+                            <div class="divceter">
+                                <input type="time" class="form-control inlineClock" name="tuesdayStart" formControlName="tuesdayStart"  >    
+                                <label class="inlineLabel"> A </label>
+                                <input type="time" class="form-control inlineClock" name="tuesdayEnd"  formControlName="tuesdayEnd"  >
+                            </div>
+                        </div>
+                        <!-- <div class="form-group col-sm-6  col-md-4 mb-3">
                             <label class="control-label" for="">Martes</label>
-                            <div class="row divceter">
+                            <div class="divceter">
                                     <div class="input-group clockpicker" >
                                         <input type="text" class="form-control" name="tuesdayStart" formControlName="tuesdayStart"  >
                                         <span class="input-group-addon">
                                             <span class="glyphicon icofont icofont-clock-time" ></span>
                                         </span>
                                     </div>
-                                <label class="m-r-10 m-l-10 mb-0"> A </label>
+                                <label class="> A </label>
                                 <div class="input-group clockpicker" >
                                     <input type="text" class="form-control" name="tuesdayEnd"  formControlName="tuesdayEnd"  >
                                     <span class="input-group-addon">
@@ -109,109 +108,60 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group col-sm-6  col-md-4 mb-3">
                             <label class="control-label" for="">Miercoles</label>
-                            <div class="row divceter">
-                                    <div class="input-group clockpicker" >
-                                        <input type="text" class="form-control" name="wednesdayStart" formControlName="wednesdayStart"  >
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon icofont icofont-clock-time" ></span>
-                                        </span>
-                                    </div>
-                                <label class="m-r-10 m-l-10 mb-0"> A </label>
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="wednesdayEnd"  formControlName="wednesdayEnd"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time"></span>
-                                    </span>
-                                </div>
+                            <div class="divceter">
+                                <input type="time" class="form-control inlineClock" name="wednesdayStart" formControlName="wednesdayStart"  >
+                                <label class="inlineLabel"> A </label>
+                                <input type="time" class="form-control inlineClock" name="wednesdayEnd"  formControlName="wednesdayEnd"  >
                             </div>
                         </div>
                         <div class="form-group col-sm-6 col-md-4 mb-3">
                             <label class="control-label" for="">Jueves</label>
-                            <div class="row divceter">
-                                    <div class="input-group clockpicker" >
-                                        <input type="text" class="form-control" name="thursdayStart" formControlName="thursdayStart"  >
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon icofont icofont-clock-time" ></span>
-                                        </span>
-                                    </div>
-                                <label class="m-r-10 m-l-10 mb-0"> A </label>
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="thursdayEnd"  formControlName="thursdayEnd"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time"></span>
-                                    </span>
-                                </div>
+                            <div class="divceter">
+                                <input type="time" class="form-control inlineClock" name="thursdayStart" formControlName="thursdayStart"  >
+                                <label class="inlineLabel"> A </label>
+                                <input type="time" class="form-control inlineClock" name="thursdayEnd"  formControlName="thursdayEnd"  >
                             </div>
                         </div>
                         <div class="form-group col-sm-6 col-md-4 mb-3">
                             <label class="control-label" for="">Vienes</label>
-                            <div class="row divceter">
-                                    <div class="input-group clockpicker" >
-                                        <input type="text" class="form-control" name="fridayStart" formControlName="fridayStart"  >
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon icofont icofont-clock-time" ></span>
-                                        </span>
-                                    </div>
-                                <label class="m-r-10 m-l-10 mb-0"> A </label>
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="fridayEnd"  formControlName="fridayEnd"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time"></span>
-                                    </span>
-                                </div>
+                            <div class="divceter">
+                                <input type="time" class="form-control inlineClock" name="fridayStart" formControlName="fridayStart"  >
+                                <label class="inlineLabel"> A </label>
+                                <input type="time" class="form-control inlineClock" name="fridayEnd"  formControlName="fridayEnd"  >
                             </div>
                         </div>
                         <div class="form-group col-sm-6 col-md-4 mb-3">
                             <label class="control-label" for="">Sabado</label>
-                            <div class="row divceter">
-                                    <div class="input-group clockpicker " >
-                                        <input type="text" class="form-control m-b-3" name="saturdayStart" formControlName="saturdayStart"  >
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon icofont icofont-clock-time" ></span>
-                                        </span>
-                                    </div>
-                                <label class="m-r-10 m-l-10 mb-0"> A </label>
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="saturdayEnd"  formControlName="saturdayEnd"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time"></span>
-                                    </span>
-                                </div>
+                            <div class="divceter">
+                                <input type="time" class="form-control inlineClock" name="saturdayStart" formControlName="saturdayStart"  >
+                                <label class="inlineLabel"> A </label>
+                                <input type="time" class="form-control inlineClock" name="saturdayEnd"  formControlName="saturdayEnd"  >
                             </div>
                         </div>
                         <div class="form-group col-sm-6 col-md-4 mb-3">
                             <label class="control-label" for="">Domingo</label>
-                            <div class="row divceter">
-                                    <div class="input-group clockpicker " >
-                                        <input type="text" class="form-control m-b-3" name="sundayStart" formControlName="sundayStart"  >
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon icofont icofont-clock-time" ></span>
-                                        </span>
-                                    </div>
-                                <label class="m-r-10 m-l-10 mb-0"> A </label>
-                                <div class="input-group clockpicker" >
-                                    <input type="text" class="form-control" name="sundayEnd"  formControlName="sundayEnd"  >
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon icofont icofont-clock-time"></span>
-                                    </span>
-                                </div>
+                            <div class="divceter">
+                                <input type="time" class="form-control inlineClock" name="sundayStart" formControlName="sundayStart"  >
+                                <label class="inlineLabel"> A </label>
+                                <input type="time" class="form-control inlineClock" name="sundayEnd"  formControlName="sundayEnd"  >
                             </div>
                         </div>
                     </div>
+                    <div class="form-group col-12 text-right">
+                        <button class="btn btn-danger" type="button" (click)="removeContact(i)"> Eliminar Contacto No. {{i + 1}} </button>
+                    </div>
                 </div>
-                <div class="form-group col-12 text-right">
-                    <button class="btn btn-danger" type="button" (click)="removeContact(i)"> Remove </button>
-                </div> 
+                 
             </div>
-             
+             <hr>
         </div>
     </div>
 
   <div class="form-group f1-buttons">
-    <button class="btn btn-primary m-1" type="button" (click)="addContact()"> Add Contact </button>
+    <button class="btn btn-primary m-1" type="button" (click)="addContact()">Agregar Contacto </button>
     <button class="btn btn-primary btn-previous" type="button" awPreviousStep>Anterior</button>
     <button class="btn btn-primary btn-next" type="submit" [disabled]="!contactForm.valid" awNextStep>Siguiente</button>
   </div>

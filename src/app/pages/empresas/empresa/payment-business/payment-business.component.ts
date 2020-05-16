@@ -24,6 +24,8 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
   // public allData = FormData;
   public form: any;
   public filesUp: any = [];
+  // convenience getter for easy access to form fields
+  get f() { return this.payForm.controls; }
 
   constructor(private router: Router, private fb: FormBuilder) {
     this.createForm();
@@ -34,18 +36,18 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
   }
 
   createForm() {
-    this.payForm = new FormGroup({
-      closingDocument: new FormControl('', Validators.required, ),
-      serviceWarranty: new FormControl(''),
-      servicesPrice: new FormGroup({
-        foreign: new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
-        viaticForeign:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
-        local:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
-        viaticLocal: new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
-        visitNotRealized:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
-        visitRealized:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
-        endingPrice:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]),
-        disscount:  new FormControl('', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')])
+    this.payForm = this.fb.group({
+      closingDocument: ['', Validators.required, ],
+      serviceWarranty: [''],
+      servicesPrice: this.fb.group({
+        foreign: ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+        viaticForeign:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+        local:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+        viaticLocal: ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+        visitNotRealized:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+        visitRealized:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+        endingPrice:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+        disscount:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]]
       })
     });
   }

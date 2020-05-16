@@ -1,8 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output, Input, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
-import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
 import { BusinessInterface } from 'src/app/interface/business/business.interface';
 import * as moment from 'moment';
@@ -17,7 +15,7 @@ declare const $;
 })
 export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() data: EventEmitter<any>;
-  
+
   @Input() businessData: BusinessInterface;
   @Input() flagDataInfo: boolean;
 
@@ -42,23 +40,22 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
     this.empresaList = {};
     this.businessData = null;
     this.flagDataInfo = false;
-  }
-  ngOnInit() {
-   /*  this.contactForm = this.createContact(); */
+
     this.contactForm = this.fb.group({
       contact: this.fb.array([this.createContact()])
     });
-    console.log(this.contactForm);
-    // set contactlist to this field
+  }
+
+  ngOnInit() {
     this.contactList = this.contactForm.get('contact') as FormArray;
-    console.log(this.contactList);
   }
 
   ngOnChanges(): void {
     if (this.flagDataInfo === true) {
+      console.log('patch value no acepta ps cambio todo')
       // this.contactForm.patchValue(this.businessData.contact);
-      
-      this.contactForm.get('job').patchValue(this.businessData.contact.job);
+
+     /*  this.contactForm.get('job').patchValue(this.businessData.contact.job);
       this.contactForm.get('phoneNumber').patchValue(this.businessData.contact.phoneNumber);
       this.contactForm.get('email').patchValue(this.businessData.contact.email);
       this.contactForm.get('paymentPerson').patchValue(this.businessData.contact.paymentPerson);
@@ -84,18 +81,18 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
 
       this.contactForm.get('schedule').get('sundayStart').patchValue(this.showSundayStart());
       this.contactForm.get('schedule').get('sundayEnd').patchValue(moment.utc(this.businessData.contact.schedule.sundayEnd).format('HH:mm'));
-
+ */
     }
   }
 
   ngAfterViewInit() {
-    $(document).ready(() => {
+   /*  $(document).ready(() => {
       $('.clockpicker').clockpicker({
         autoclose: true,
       }).find('input').change((e) => {
         this.contactForm.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
       });
-    });
+    }); */
   }
 
   createContact(): FormGroup {
@@ -122,7 +119,7 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
         sundayEnd: [''],
       }),
     });
-  
+
   }
    // add a contact form group
    addContact() {
@@ -148,7 +145,6 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
 
     }
   }
- 
 
   createMondayStart() {
     if (this.contactForm.get('schedule').value.mondayStart !== '') {
@@ -311,7 +307,7 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
       paymentPerson: this.contactForm.get('paymentPerson').value,
       fax: this.contactForm.get('fax').value,
       schedule: {
-        
+
         // tslint:disable-next-line: max-line-length
         mondayStart: this.createMondayStart(),
         mondayEnd: this.createMondayEnd(),
