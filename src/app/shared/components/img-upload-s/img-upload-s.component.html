@@ -1,0 +1,19 @@
+<div formGroupName="logo" class="form-row m-b-15">
+    <label class="col-sm-12 control-label">Subir fotografia del usuario</label>
+    <div class="col-sm-12 "> 
+        <input style="display: none"  type="file" formControlName="logo" (change)="onSelectFile($event)"  name="logo" #fileInput>
+        <button #fInput  class="form-control  disInliBlock"  (click)="fileInput.click()"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
+        <label >{{fileName}}</label>
+        <!-- A QUI NO ME HACE ESTO -->
+        <div *ngIf="!isFileUploaded && f.logo.invalid && (f.logo.dirty || f.logo.touched)"
+        class="alert">
+            <div *ngIf="f.logo.errors.required">
+                Subir la fotografia es obligatorio.
+            </div>
+        </div>
+        
+    </div>
+    <div class="m-t-15" *ngIf="urlImg && urlImg !== ''">
+        <img [src]="urlImg" class="img-100"/>
+    </div>
+</div>

@@ -1,5 +1,5 @@
-<form [formGroup]="regForm" (ngSubmit)="addEmpresa()" class="ngx-form mt-5" novalidate> 
-    <div class="form-row"><!-- save(regForm) f.schedule.get('mondayStart')-->
+<form [formGroup]="Fform" (ngSubmit)="addEmpresa()"  class="ngx-form mt-5" novalidate> 
+    <div class="form-row"><!-- save(Fform) f.schedule.get('mondayStart')-->
         <div class=" form-group col-md-4 mb-3">
             <label class="control-label" for="name">Nombre</label>
             <input type="text" formControlName="name" name="name" class="form-control" placeholder="Asistemps del Sur">
@@ -113,51 +113,20 @@
             </div>
         </div>
     </div>
-   
-   <!--  <div class="form-row mb-5" >
-        <label class="col-sm-3 col-form-label">Subir logo de la empresa</label>
-        <div class="col-sm-9">
-            <input type="file" class="form-control" formControlName="logo" name="logo" (change)="readFile($event)"  #fileInput>
-            <div>{{fileName | json }}</div>
-            <div *ngIf="regForm.controls['logo'].invalid && (regForm.controls['logo'].dirty || regForm.controls['logo'].touched)"
-            class="alert">
-                <div *ngIf="regForm.controls['logo'].errors.required">
-                    Subir logo es obligatorio.
-                </div>
-            </div>
-        </div>
-    </div> -->
-   <div class="form-row mb-5" >
-        <label class="col-sm-12 control-label">Subir logo de la empresa</label>
-        <div class="col-sm-12 row"> <!--formControlName="logo"-->
-            <input style="display: none" type="file" (change)="readFile($event)"  name="logo" #fileInput>
-            <button class="form-control col-sm-4"  (click)="fileInput.click()"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
-            <label class="col-sm-4 fileName">{{fileName }}</label>
-            <label class="control-label col-sm-12 m-t-15" *ngIf="flagDataInfo===true && logoName!==''">
-                Archivo: {{ logoName}}
-            </label>
-            <div *ngIf="f.logo.invalid && (f.logo.dirty || f.logo.touched)"
-            class="alert">
-                <div *ngIf="f.logo.errors.required">
-                    Subir logo es obligatorio.
-                </div>
-            </div>
-        </div>
-        <img [src]="logoName" class="img-100"/>
-    </div>
+   <app-img-upload-s (dataImgUrl)="imgUData($event)"></app-img-upload-s>
 
     
     <div class="form-group f1-buttons">
-        <button class="btn btn-primary btn-next" [disabled]="!regForm.valid" awNextStep> siguiente
+        <button class="btn btn-primary btn-next" [disabled]="!Fform.valid" awNextStep> siguiente
         </button>
     </div>
 </form>
 <hr>
 <pre>
-    estado del formulario : {{regForm.valid}}
+    estado del formulario : {{Fform.valid}}
     <br>
-    status : {{regForm.status}}
+    status : {{Fform.status}}
 </pre>
 <pre>
-    {{regForm.value | json}}
+    {{Fform.value | json}}
 </pre>

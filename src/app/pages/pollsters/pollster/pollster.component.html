@@ -1,7 +1,7 @@
 <div class="card">
-    <div class="card-header"><h5>Encuestador</h5></div>
+    <div class="card-header"><h3><span *ngIf="!flagData">AGREGAR </span><span *ngIf="flagData">EDITAR </span>ENCUESTADOR</h3></div>
     <div class="card-body">
-        <form [formGroup]="pollsterForm" (ngSubmit)="addPollster()" class="ngx-form m-t-5" novalidate> 
+        <form [formGroup]="Fform" (ngSubmit)="addPollster()" class="ngx-form m-t-5" novalidate> 
             <div class="form-row">
                 <div class=" form-group col-md-4 mb-3">
                     <label class="control-label" for="name">Nombre</label>
@@ -206,8 +206,9 @@
                 </div>
             </div>
             <div class="form-row m-t-25">
-                <div class="m-b-20 col-12">
-                    <h6><b>Horario Disponible para Visitas</b></h6>
+                <div class=" col-12">
+                    <h6 class="m-b-0"><b>Horario Disponible para Visitas</b></h6>
+                    <hr>
                 </div>
                
                 <div class="form-row  col-12" formGroupName="schedule">
@@ -317,39 +318,21 @@
                 </div>
                 
             </div>
-            <div class="form-row mb-5" >
-                <label class="col-sm-12 control-label">Subir fotografia del usuario</label>
-                <div class="col-sm-12 "> <!--formControlName="logo"-->
-                    <input style="display: none" fileControlName="photography" type="file" (change)="onSelectFile($event)"  name="photography" #fileInput>
-                    <button #fInput  class="form-control col-sm-4 disInliBlock"  (click)="fileInput.click(); marks(e)"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
-                    <label class="col-sm-4">{{fileName}}</label>
-               
-                    <div *ngIf="isFileUploaded && f.photography.invalid && (f.photography.dirty || f.photography.touched)"
-                    class="alert">
-                        <div *ngIf="f.photography.errors.required">
-                            Subir la fotografia es obligatorio.
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="m-t-15" *ngIf="urlImg && urlImg !== ''">
-                    <img [src]="urlImg" class="img-100"/>
-                </div>
-            </div>
+            <app-img-upload-s></app-img-upload-s>
 
             
             <div class="form-group f1-buttons">
-                <button class="btn btn-primary btn-next" type="submit" [disabled]="!pollsterForm.valid" >Registrar Encuestador</button>
+                <button class="btn btn-primary btn-next" type="submit" [disabled]="!Fform.valid" >Registrar Encuestador</button>
             </div>
         </form>
        <!--  <hr>
         <pre>
-            estado del formulario : {{pollsterForm.valid}}
+            estado del formulario : {{Fform.valid}}
             <br>
-            status : {{pollsterForm.status}}
+            status : {{Fform.status}}
         </pre>
         <pre>
-            {{pollsterForm.value | json}}
+            {{Fform.value | json}}
         </pre> -->
     </div>
 </div>

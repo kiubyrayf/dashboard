@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ElementRef, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, Validators, FormControl, NgForm, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormControl, NgForm, FormBuilder, ControlContainer, FormGroupDirective } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
@@ -26,15 +26,11 @@ export class InfoBusinessComponent implements OnInit {
   public businessData: BusinessInterface;
   private empresaList: any;
   public isBorderValidate = false;
-  public regForm: FormGroup;
-  public form: any;
+  public Fform: FormGroup;
   public empresa: EmpresaModel;
-
-  public fileName: string;
-  public logoName: any;
-
-    // convenience getter for easy access to form fields
-  get f() { return this.regForm.controls; }
+  private imgData: any;
+  // convenience getter for easy access to form fields
+  get f() { return this.Fform.controls; }
 
   constructor(
       private route: Router,
@@ -55,7 +51,7 @@ export class InfoBusinessComponent implements OnInit {
 
   // create form
   createForm() {
-    this.regForm = this.fb.group({
+    this.Fform = this.fb.group({
       name: ['', Validators.required, ],
       email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ],
       phoneNumber: ['', [Validators.required,  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ],
@@ -82,59 +78,39 @@ export class InfoBusinessComponent implements OnInit {
           this.businessData = resp.data[0];
           console.log(this.businessData);
           this.businessDataOutput.emit(this.businessData);
-          this.regForm.patchValue( this.businessData);
-          this.logoName = this.businessData.logo;
+          this.Fform.patchValue( this.businessData);
+         // this.logoName = this.businessData.logo;
       });
     }
   }
   onChange($event) {
-    this.regForm.get($event.currentTarget.name).setValue($event.currentTarget.checked);
-   // this.regForm.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
+    this.Fform.get($event.currentTarget.name).setValue($event.currentTarget.checked);
+   // this.Fform.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
   }
 
+  imgUData(event) {
+    this.imgData = event;
+    console.log('componente info: ' + this.imgData);
+  }
   addEmpresa() {
     const empresa = {
-      name: this.regForm.get('name').value,
-      email: this.regForm.get('email').value,
-      phoneNumber: this.regForm.get('phoneNumber').value,
-      logo: this.regForm.get('logo'),
+      name: this.Fform.get('name').value,
+      email: this.Fform.get('email').value,
+      phoneNumber: this.Fform.get('phoneNumber').value,
+      logo: this.Fform.get('logo').patchValue(this.imgData),
       address: {
-        street: this.regForm.get('address').value.street,
-        number: this.regForm.get('address').value.number,
-        cp: this.regForm.get('address').value.cp,
-        municipality: this.regForm.get('address').value.municipality,
-        suburb: this.regForm.get('address').value.suburb,
+        street: this.Fform.get('address').value.street,
+        number: this.Fform.get('address').value.number,
+        cp: this.Fform.get('address').value.cp,
+        municipality: this.Fform.get('address').value.municipality,
+        suburb: this.Fform.get('address').value.suburb,
       },
       // tslint:disable-next-line: max-line-length
-      requestServiceByMail: (this.regForm.get('requestServiceByMail').value !== '') ? this.regForm.get('requestServiceByMail').value : false,
-      selfFormat: this.regForm.get('selfFormat').value
+      requestServiceByMail: (this.Fform.get('requestServiceByMail').value !== '') ? this.Fform.get('requestServiceByMail').value : false,
+      selfFormat: this.Fform.get('selfFormat').value
     };
     this.empresaList = empresa;
     this.data.emit(this.empresaList);
-  }
-  warning() {
-    Swal.fire({
-      title: 'Alerta',
-      text: 'Selecciona un documento tipo JPG o PNG',
-      icon: 'warning',
-      showConfirmButton: true,
-    });
-  }
-  readFile(event) {
-
-    if ( event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      
-      if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
-        this.warning();
-        this.regForm.get('logo').setValue('');
-      } else {
-         this.fileName = file.name;
-         this.regForm.get('logo').setValue(file);
-         this.logoName = URL.createObjectURL(file);
-         console.log(this.logoName);
-      }
-    }
   }
 
 }

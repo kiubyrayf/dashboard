@@ -1,5 +1,5 @@
-
 <form [formGroup]="contactForm" (ngSubmit)="addEmpresa()" class="ngx-form mt-5" novalidate >
+  
     <div formArrayName="contact">
         <div *ngFor="let contact of contactFormGroup; let i = index;">
             <div [formGroupName]="i">
@@ -70,7 +70,16 @@
                             <div class="divceter">
                                 <input type="time" class="form-control inlineClock " name="mondayStart" formControlName="mondayStart"   placeholder="12:30">
                                 <label class="inlineLabel"> A </label>
-                                <input type="time" class="form-control inlineClock" name="mondayEnd"  formControlName="mondayEnd">
+                                <input type="time" class="form-control inlineClock" name="mondayEnd"  formControlName="mondayEnd"  >
+
+                                <!-- <div *ngIf="f.schedule.get('mondayStart').invalid && 
+                                        (f.schedule.get('mondayStart').dirty || f.schedule.get('mondayStart').touched)"
+                                        class="alert">
+                                            <div *ngIf="f.schedule.get('mondayStart').errors.required">
+                                                El campo es obligatorio.
+                                            </div>
+                                            
+                                    </div>  -->
                             </div>
                         </div>
                         <div class="form-group col-sm-6  col-md-4 mb-3">
@@ -81,6 +90,24 @@
                                 <input type="time" class="form-control inlineClock" name="tuesdayEnd"  formControlName="tuesdayEnd"  >
                             </div>
                         </div>
+                        <!-- <div class="form-group col-sm-6  col-md-4 mb-3">
+                            <label class="control-label" for="">Martes</label>
+                            <div class="divceter">
+                                    <div class="input-group clockpicker" >
+                                        <input type="text" class="form-control" name="tuesdayStart" formControlName="tuesdayStart"  >
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon icofont icofont-clock-time" ></span>
+                                        </span>
+                                    </div>
+                                <label class="> A </label>
+                                <div class="input-group clockpicker" >
+                                    <input type="text" class="form-control" name="tuesdayEnd"  formControlName="tuesdayEnd"  >
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon icofont icofont-clock-time"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div> -->
                         <div class="form-group col-sm-6  col-md-4 mb-3">
                             <label class="control-label" for="">Miercoles</label>
                             <div class="divceter">
@@ -131,11 +158,12 @@
              <hr>
         </div>
     </div>
-    <div class="form-group f1-buttons">
-        <button class="btn btn-primary m-1" type="button" (click)="addContact()">Agregar Contacto </button>
-        <button class="btn btn-primary btn-previous" type="button" awPreviousStep>Anterior</button>
-        <button class="btn btn-primary btn-next" type="submit" [disabled]="!contactForm.valid" awNextStep>Siguiente</button>
-    </div>
+
+  <div class="form-group f1-buttons">
+    <button class="btn btn-primary m-1" type="button" (click)="addContact()">Agregar Contacto </button>
+    <button class="btn btn-primary btn-previous" type="button" awPreviousStep>Anterior</button>
+    <button class="btn btn-primary btn-next" type="submit" [disabled]="!contactForm.valid" awNextStep>Siguiente</button>
+  </div>
 </form>
 
 <pre>

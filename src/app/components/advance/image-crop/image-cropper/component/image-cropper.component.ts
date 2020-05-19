@@ -29,7 +29,7 @@ export class ImageCropperComponent implements OnChanges {
     marginLeft: SafeStyle | string = '0px';
     imageVisible = false;
 
-    @ViewChild('sourceImage',{static: false}) sourceImage: ElementRef;
+    @ViewChild('sourceImage', {static: false}) sourceImage: ElementRef;
 
     @Input()
     set imageFileChanged(file: File) {
@@ -53,7 +53,7 @@ export class ImageCropperComponent implements OnChanges {
         this.loadBase64Image(imageBase64);
     }
 
-    @Input() format: 'png' | 'jpeg' | 'bmp' | 'webp' | 'ico' = 'png';
+    @Input() format: 'png' | 'jpeg' | 'bmp' | 'webp' | 'ico' | 'jpg' = 'png';
     @Input() outputType: OutputType = 'both';
     @Input() maintainAspectRatio = true;
     @Input() aspectRatio = 1;

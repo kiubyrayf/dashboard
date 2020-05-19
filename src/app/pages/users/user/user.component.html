@@ -1,8 +1,8 @@
 <div class="card">
-    <div class="card-header"><h5>Usuario</h5></div>
+    <div class="card-header"><h3><span *ngIf="!flagData">AGREGAR </span><span *ngIf="flagData">EDITAR </span>USUARIO</h3></div>
     <div class="card-body">
-        <form [formGroup]="userForm" (ngSubmit)="addUser()" class="ngx-form m-t-5" novalidate> 
-            <div class="form-row"><!-- save(userForm)-->
+        <form [formGroup]="Fform" (ngSubmit)="addUser()" class="ngx-form m-t-5" novalidate> 
+            <div class="form-row"><!-- save(Fform)-->
                 <div class=" form-group col-md-4 mb-3">
                     <label class="control-label" for="name">Nombre</label>
                     <input type="text" formControlName="name" name="name" class="form-control" placeholder="Juan">
@@ -89,51 +89,31 @@
                         <input type="password" formControlName="confirmPassword" class="form-control" autocomplete="off"
                           placeholder="Repetir Contraseña">
                         <div
-                          *ngIf="userForm.controls['confirmPassword'].invalid && (userForm.controls['confirmPassword'].dirty || userForm.controls['confirmPassword'].touched)"
+                          *ngIf="Fform.controls['confirmPassword'].invalid && (Fform.controls['confirmPassword'].dirty || Fform.controls['confirmPassword'].touched)"
                           class="alert">
-                          <div *ngIf="userForm.controls['confirmPassword'].errors.required">
+                          <div *ngIf="Fform.controls['confirmPassword'].errors.required">
                             El campo es obligatorio.</div>
-                          <div *ngIf="userForm.controls['confirmPassword'].errors?.mustMatch">
+                          <div *ngIf="Fform.controls['confirmPassword'].errors?.mustMatch">
                             La contraseña no coinciden.
                           </div>
                         </div>
                       </div>-->
                 </div>
             </div>    
-          
-           
-           <div class="form-row mb-5" >
-                <label class="col-sm-12 control-label">Subir fotografia del usuario</label>
-                <div class="col-sm-12 "> <!--formControlName="logo"-->
-                    <input style="display: none" type="file" (change)="readFile($event)"  name="photography" #fileInput>
-                    <button class="form-control col-sm-4"  (click)="fileInput.click()"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
-                    <label class="col-sm-4 fileName">{{fileName }}</label>
-                   <!-- <label class="control-label col-sm-12 m-t-15" *ngIf="flagDataInfo===true && logoName!==''">
-                        Archivo: {{ logoName}}
-                    </label>-->
-                    <div *ngIf="f.photography.invalid && (f.photography.dirty || f.photography.touched)"
-                    class="alert">
-                        <div *ngIf="f.photography.errors.required">
-                            Subir la fotografia es obligatorio.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
+            <app-img-upload-s></app-img-upload-s>
             <div class="form-group f1-buttons">
-                <button class="btn btn-primary btn-next" type="submit" [disabled]="!userForm.valid" >Registrar Usuario</button>
+                <button class="btn btn-primary btn-next" type="submit" [disabled]="!Fform.valid" >Registrar Usuario</button>
             </div>
         </form>
-        <hr>
+        <!-- <hr>
         <pre>
-            estado del formulario : {{userForm.valid}}
+            estado del formulario : {{Fform.valid}}
             <br>
-            status : {{userForm.status}}
+            status : {{Fform.status}}
         </pre>
         <pre>
-            {{userForm.value | json}}
-        </pre>
+            {{Fform.value | json}}
+        </pre> -->
     </div>
 </div>
 

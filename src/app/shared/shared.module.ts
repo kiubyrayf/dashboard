@@ -28,6 +28,8 @@ import { CustomizerService } from './services/customizer.service';
 import { EmpresasService } from './services/empresas/empresas.service';
 // Directives
 import { ToggleFullscreenDirective } from './directives/fullscreen.directive';
+import { ImgUploadSComponent } from './components/img-upload-s/img-upload-s.component';
+import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { ToggleFullscreenDirective } from './directives/fullscreen.directive';
     FeatherIconsComponent,
     ToggleFullscreenDirective,
     BreadcrumbComponent,
-    CustomizerComponent
+    CustomizerComponent,
+    ImgUploadSComponent,
+    ContactInfoComponent
   ],
   imports: [
     CommonModule,

@@ -11,6 +11,8 @@ const Swal = require('sweetalert2');
 @Component({
   selector: 'app-nav-bar-business',
   templateUrl: './nav-bar-business.component.html',
+  styleUrls: ['./nav-bar-business.component.scss'],
+
   encapsulation: ViewEncapsulation.None
 })
 

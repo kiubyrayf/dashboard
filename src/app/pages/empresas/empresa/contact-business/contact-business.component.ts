@@ -26,8 +26,8 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
   public title = 'contact registration page';
 
    // returns all form groups under contacts
-   get contactFormGroup() {
-    return this.contactForm.get('contacts') as FormArray;
+   get contactFormGroup()  {
+    return (this.contactForm.get('contact') as FormArray).controls;
   }
   // convenience getter for easy access to form fields
  // get f() { return this.contactForm.controls; }
@@ -52,7 +52,7 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
 
   ngOnChanges(): void {
     if (this.flagDataInfo === true) {
-      console.log('patch value no acepta ps cambio todo')
+      console.log('patch value no acepta ps cambio todo');
       // this.contactForm.patchValue(this.businessData.contact);
 
      /*  this.contactForm.get('job').patchValue(this.businessData.contact.job);
@@ -300,6 +300,39 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
     }
   }
   addEmpresa() {
+    let empresa: any = [];
+    let i = 0;
+    for (let contacts of this.contactFormGroup) {
+     // console.log('1' + this.getContactsFormGroup(i).get('paymentPerson').value);
+     // console.log('2' + this.contactForm.get(['contact', i]).get('paymentPerson').value);
+      empresa.push({
+        job: this.contactForm.get(['contact', i]).get('job').value,
+        phoneNumber: this.contactForm.get(['contact', i]).get('phoneNumber').value,
+        email: this.contactForm.get(['contact', i]).get('email').value,
+        paymentPerson: this.contactForm.get(['contact', i]).get('paymentPerson').value,
+        fax: this.contactForm.get(['contact', i]).get('fax').value,
+        schedule: {
+          mondayStart: this.contactForm.get(['contact', i]).get('schedule').value.mondayStart,
+          mondayEnd: this.contactForm.get(['contact', i]).get('schedule').value.mondayEnd,
+          tuesdayStart: this.contactForm.get(['contact', i]).get('schedule').value.tuesdayStart,
+          tuesdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.tuesdayEnd,
+          wednesdayStart: this.contactForm.get(['contact', i]).get('schedule').value.wednesdayStart,
+          wednesdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.wednesdayEnd,
+          thursdayStart: this.contactForm.get(['contact', i]).get('schedule').value.thursdayStart,
+          thursdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.thursdayEnd,
+          fridayStart: this.contactForm.get(['contact', i]).get('schedule').value.fridayStart,
+          fridayEnd: this.contactForm.get(['contact', i]).get('schedule').value.fridayEnd,
+          saturdayStart: this.contactForm.get(['contact', i]).get('schedule').value.saturdayStart,
+          saturdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.saturdayEnd,
+          sundayStart: this.contactForm.get(['contact', i]).get('schedule').value.sundayStart,
+          sundayEnd: this.contactForm.get(['contact', i]).get('schedule').value.sundayEnd,
+        },
+      });
+      i++;
+    }
+    this.empresaList = empresa;
+    console.log(this.empresaList);
+    this.data.emit(this.empresaList);
    /*  const empresa = {
       job: this.contactForm.get('job').value,
       phoneNumber: this.contactForm.get('phoneNumber').value,

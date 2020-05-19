@@ -1,8 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ActivatedRoute } from '@angular/router';
 
-declare const $;
 declare var require;
 const Swal = require('sweetalert2');
 
@@ -11,39 +10,29 @@ const Swal = require('sweetalert2');
   templateUrl: './pollster.component.html',
   styleUrls: ['./pollster.component.scss']
 })
-export class PollsterComponent implements OnInit, AfterViewInit {
-  public fileName: any;
-  public urlImg: any;
+export class PollsterComponent implements OnInit {
 
-  public pollsterForm: FormGroup;
+  public Fform: FormGroup;
   public roles: string [];
-  public isFileUploaded;
- 
-
+  public flagData: boolean;
   // convenience getter for easy access to form fields
-  get f() { return this.pollsterForm.controls; }
+  get f() { return this.Fform.controls; }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,  private activeRoute: ActivatedRoute) {
     this.createForm();
-    this.isFileUploaded = false;
   }
 
   ngOnInit(): void {
     this.roles = ['Foreano', 'Local'];
-    console.log(this.pollsterForm.controls.photography);
+    const id = this.activeRoute.snapshot.paramMap.get('id');
+    if (id !== 'nuevo') {
+      this.flagData = true;
+    }
   }
-  ngAfterViewInit() {
-    $(document).ready(() => {
-      $('.clockpicker').clockpicker({
-        autoclose: true,
-      }).find('input').change((e) => {
-        this.pollsterForm.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
-      });
-    });
-  }
+
   // create form
   createForm() {
-    this.pollsterForm = this.fb.group({
+    this.Fform = this.fb.group({
       name: ['', Validators.required, ],
       middle: ['', Validators.required, ],
       lastname: ['', Validators.required, ],
@@ -86,40 +75,8 @@ export class PollsterComponent implements OnInit, AfterViewInit {
       photography: ['', Validators.required, ],
     });
   }
- 
-  addPollster() {}
-  warning() {
-    Swal.fire({
-      title: 'Alerta',
-      text: 'Selecciona un documento tipo JPG o PNG',
-      icon: 'warning',
-      showConfirmButton: true,
-    });
-  }
-  
-  onSelectFile(event) { // called each time file input changes
-    
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      console.log(this.pollsterForm.controls.photography);
 
-      if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
-        this.warning();
-        this.pollsterForm.get('photography').setValue('');
-        this.urlImg = '';
-        this.fileName = '';
-        this.isFileUploaded = false;
-      } else {
-        this.pollsterForm.get('photography').setValue(file);
-        const reader = new FileReader();
-        reader.readAsDataURL(file); // read file as data url
-        this.fileName =  event.target.files[0].name;
-        reader.onload = ( event) => { // called once readAsDataURL is completed
-          this.urlImg = event.target.result;
-        };
-        this.isFileUploaded = true;
-      }
-      
-    }
-  }
+  addPollster() {}
+ 
+
 }
