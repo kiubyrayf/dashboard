@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ControlContainer, FormGroupDirective, FormControl } from '@angular/forms';
 
 declare var require;
@@ -18,14 +18,12 @@ export class ImgUploadSComponent implements OnInit {
   public isFileUploaded: boolean;
   private Fform: FormGroup;
 
-  @Output() dataImgUrl: EventEmitter<any>;
+  @Input() dataImgUrl: any;
 
   get f() { return this.Fform.controls; }
 
   constructor(private fb: FormBuilder, private parent: FormGroupDirective) {
     this.Fform = this.parent.form;
-
-    this.dataImgUrl = new EventEmitter();
     this.isFileUploaded = false;
 
   }

@@ -28,7 +28,7 @@ export class InfoBusinessComponent implements OnInit {
   public isBorderValidate = false;
   public Fform: FormGroup;
   public empresa: EmpresaModel;
-  private imgData: any;
+  public imgData: any;
   // convenience getter for easy access to form fields
   get f() { return this.Fform.controls; }
 
@@ -88,16 +88,12 @@ export class InfoBusinessComponent implements OnInit {
    // this.Fform.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
   }
 
-  imgUData(event) {
-    this.imgData = event;
-    console.log('componente info: ' + this.imgData);
-  }
   addEmpresa() {
     const empresa = {
       name: this.Fform.get('name').value,
       email: this.Fform.get('email').value,
       phoneNumber: this.Fform.get('phoneNumber').value,
-      logo: this.Fform.get('logo').patchValue(this.imgData),
+      logo: this.Fform.get('logo').setValue(this.imgData),
       address: {
         street: this.Fform.get('address').value.street,
         number: this.Fform.get('address').value.number,
