@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './components/loader/loader.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -28,8 +28,8 @@ import { CustomizerService } from './services/customizer.service';
 import { EmpresasService } from './services/empresas/empresas.service';
 // Directives
 import { ToggleFullscreenDirective } from './directives/fullscreen.directive';
-import { ImgUploadSComponent } from './components/img-upload-s/img-upload-s.component';
 import { ContactInfoComponent } from './components/contact-info/contact-info.component';
+import { AddressInfoComponent } from './components/address-info/address-info.component';
 
 @NgModule({
   declarations: [
@@ -45,13 +45,14 @@ import { ContactInfoComponent } from './components/contact-info/contact-info.com
     ToggleFullscreenDirective,
     BreadcrumbComponent,
     CustomizerComponent,
-    ImgUploadSComponent,
-    ContactInfoComponent
+    ContactInfoComponent,
+    AddressInfoComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     TranslateModule,
     DragulaModule.forRoot(),
     NgbModule,
@@ -60,7 +61,9 @@ import { ContactInfoComponent } from './components/contact-info/contact-info.com
   exports: [
     LoaderComponent,
     FeatherIconsComponent,
-    TranslateModule
+    TranslateModule,
+    ContactInfoComponent,
+    AddressInfoComponent
   ],
   providers: [
     NavService,

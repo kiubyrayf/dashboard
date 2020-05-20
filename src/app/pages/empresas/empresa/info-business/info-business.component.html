@@ -38,66 +38,7 @@
         </div>
         
     </div>
-    <div class="form-group" formGroupName="address">
-        <div class="form-row ">
-
-            <div class="form-group col-md-4 mb-3">
-                <label class="control-label" for="street">Calle</label>
-                <input type="text" formControlName="street" name="street" class="form-control" placeholder="Sevilla">
-
-                <div *ngIf="f.address.get('street').invalid && (f.address.get('street').dirty || f.address.get('street').touched)" class="alert">
-                    <div *ngIf="f.address.get('street').errors.required">
-                        El campo es obligatoria.
-                    </div>
-                </div>
-
-            </div>
-            <div class="form-group col-md-4 mb-3">
-                <label class="control-label" for="number">Numero</label>
-                <input type="text" formControlName="number" name="number" class="form-control" placeholder="650">
-                <div *ngIf="f.address.get('number').invalid && (f.address.get('number').dirty || f.address.get('number').touched)" class="alert">
-                    <div *ngIf="f.address.get('number').errors.required">
-                        El campo es obligatoria.
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-4 mb-3">
-                <label class="control-label" for="suburb">Colonia</label>
-                <input type="text" formControlName="suburb" name="suburb" class="form-control" placeholder="Centro">
-                <div *ngIf="f.address.get('suburb').invalid && (f.address.get('suburb').dirty || f.address.get('suburb').touched)" class="alert">
-                    <div *ngIf="f.address.get('suburb').errors.required">
-                        El campo es obligatoria.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4 mb-3">
-                <label class="control-label" for="cp">Codigo Postal</label>
-                <input type="text" formControlName="cp" name="cp" class="form-control" placeholder="64500">
-                <div *ngIf="f.address.get('cp').invalid && (f.address.get('cp').dirty || f.address.get('cp').touched)"
-                class="alert">
-                    <div *ngIf="f.address.get('cp').errors.required">
-                        El campo es obligatoria.
-                    </div>
-                    <div *ngIf="f.address.get('cp').errors?.pattern">
-                        Telefono tiene que ser 5 digitos numericos.
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-4 mb-3">
-                <label class="control-label" for="municipality">Municipio</label>
-                <input type="text" formControlName="municipality" name="municipality" class="form-control" placeholder="Monterrey">
-                <div *ngIf="f.address.get('municipality').invalid && (f.address.get('municipality').dirty || f.address.get('municipality').touched)" class="alert">
-                    <div *ngIf="f.address.get('municipality').errors.required">
-                        El campo es obligatoria.
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-
-    </div>    
+    <app-address-info groupName="address"></app-address-info> 
     <div class=" group-row">
         <div class="col-md-12 mb-5">
             <div class=" m-t-15 m-checkbox-inline mb-0 ml-1 animate-chk">
@@ -113,9 +54,26 @@
             </div>
         </div>
     </div>
-   <app-img-upload-s (dataImgUrl)="imgUData($event)"></app-img-upload-s>
-
-    
+    <div class="form-row m-b-15">
+        <label class="col-sm-12 control-label">Subir fotografia del usuario</label>
+        <div class="col-sm-12 "> <!--formControlName="fileImg"-->
+            <input style="display: none"  type="file" (change)="onSelectFile($event)"  name="logo" #fileInput>
+            <button #fInput  class="form-control  disInliBlock"  (click)="fileInput.click(); fileInputLogoTouched();"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
+            <label >{{fileName}}</label>
+            <!-- A QUI NO ME HACE ESTO -->
+            {{ f.logo.touched }}
+            <div *ngIf="!isFileUploaded && f.logo.invalid && (f.logo.dirty || f.logo.touched)"
+            class="alert">
+                <div *ngIf="f.logo.errors.required">
+                    Subir la fotografia es obligatorio.
+                </div>
+            </div>
+            
+        </div>
+        <div class="m-t-15" *ngIf="urlImg && urlImg !== ''">
+            <img [src]="urlImg" class="img-100"/>
+        </div>
+    </div>
     <div class="form-group f1-buttons">
         <button class="btn btn-primary btn-next" [disabled]="!Fform.valid" awNextStep> siguiente
         </button>

@@ -22,7 +22,9 @@ export class InfoBusinessComponent implements OnInit {
 
   @Output() flagData: EventEmitter<any>;
   public flagDataInfo: boolean;
-
+  public fileName: any;
+  public urlImg: any;
+  public isFileUploaded: boolean;
   public businessData: BusinessInterface;
   private empresaList: any;
   public isBorderValidate = false;
@@ -55,13 +57,6 @@ export class InfoBusinessComponent implements OnInit {
       name: ['', Validators.required, ],
       email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ],
       phoneNumber: ['', [Validators.required,  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ],
-      address: this.fb.group({
-        street: ['', Validators.required, ],
-        number: ['', Validators.required, ],
-        cp: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{5}$')], ],
-        municipality: ['', Validators.required, ],
-        suburb: ['', Validators.required, ],
-      }),
       requestServiceByMail: [false],
       selfFormat: [false],
       logo: ['', Validators.required, ],
@@ -88,6 +83,10 @@ export class InfoBusinessComponent implements OnInit {
    // this.Fform.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
   }
 
+  imgUData(event) {
+    this.imgData = event;
+    console.log('componente info: ' + this.imgData);
+  }
   addEmpresa() {
     const empresa = {
       name: this.Fform.get('name').value,
@@ -107,6 +106,48 @@ export class InfoBusinessComponent implements OnInit {
     };
     this.empresaList = empresa;
     this.data.emit(this.empresaList);
+  }
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(file);
+      // this.Fform.valid = true;
+      if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
+        this.warning();
+        this.Fform.get('logo').setValue('');
+        this.urlImg = '';
+        this.fileName = '';
+        this.isFileUploaded = false;
+      } else {
+        this.Fform.get('logo').setValue(file);
+        const reader = new FileReader();
+        reader.readAsDataURL(file); // read file as data url
+        this.fileName =  event.target.files[0].name;
+        reader.onload = ( e: any) => { // called once readAsDataURL is completed
+          this.urlImg = e.target.result;
+        };
+        this.isFileUploaded = true;
+      }
+    }
+  }
+
+  fileInputLogoTouched() {
+    console.log('aqui:)');
+    // no funca
+    this.Fform.controls.logo.markAsDirty();
+    this.Fform.controls.logo.markAsTouched();
+    this.Fform.controls.logo.setErrors({invalid: true});
+    this.isFileUploaded = false;
+    console.log(this.Fform.controls.logo);
+  }
+
+  warning() {
+    Swal.fire({
+      title: 'Alerta',
+      text: 'Selecciona un documento tipo JPG o PNG',
+      icon: 'warning',
+      showConfirmButton: true,
+    });
   }
 
 }
