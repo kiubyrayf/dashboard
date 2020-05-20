@@ -78,10 +78,6 @@ export class InfoBusinessComponent implements OnInit {
       });
     }
   }
-  onChange($event) {
-    this.Fform.get($event.currentTarget.name).setValue($event.currentTarget.checked);
-   // this.Fform.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
-  }
 
   imgUData(event) {
     this.imgData = event;
@@ -107,11 +103,9 @@ export class InfoBusinessComponent implements OnInit {
     this.empresaList = empresa;
     this.data.emit(this.empresaList);
   }
-  onSelectFile(event) { // called each time file input changes
+  onSelectFile(event) {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      console.log(file);
-      // this.Fform.valid = true;
       if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
         this.warning();
         this.Fform.get('logo').setValue('');
@@ -132,13 +126,10 @@ export class InfoBusinessComponent implements OnInit {
   }
 
   fileInputLogoTouched() {
-    console.log('aqui:)');
-    // no funca
     this.Fform.controls.logo.markAsDirty();
     this.Fform.controls.logo.markAsTouched();
     this.Fform.controls.logo.setErrors({invalid: true});
     this.isFileUploaded = false;
-    console.log(this.Fform.controls.logo);
   }
 
   warning() {

@@ -19,10 +19,9 @@ import { FormBuilder, Validators, FormGroup, ControlContainer, FormArray } from 
 export class AddressInfoComponent implements OnInit {
   @Input() groupName: string;
 
-  constructor( private fb: FormBuilder, private parentContainer: ControlContainer) {
+  constructor( private fb: FormBuilder, public parentContainer: ControlContainer) {
 
   }
-
   ngOnInit(): void {
     if (this.parentContainer.control instanceof FormGroup) {
       this.parentContainer.control.addControl(this.groupName, this.fb.group({
@@ -32,6 +31,7 @@ export class AddressInfoComponent implements OnInit {
         municipality: ['', Validators.required, ],
         suburb: ['', Validators.required, ],
       }));
+      
     }
   }
 

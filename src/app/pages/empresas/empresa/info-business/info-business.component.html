@@ -48,27 +48,24 @@
                     
                 </div>
                 <div class="checkbox checkbox-primary">
-                    <input id="selfFormat" type="checkbox" (change)="onChange($event)" formControlName="selfFormat" name="selfFormat">
+                    <input id="selfFormat" type="checkbox" formControlName="selfFormat" name="selfFormat">
                     <label class="control-label" for="selfFormat">Tiene formato propio</label>
                 </div>
             </div>
         </div>
     </div>
     <div class="form-row m-b-15">
-        <label class="col-sm-12 control-label">Subir fotografia del usuario</label>
+        <label class="col-sm-12 control-label">Subir logo de la empresa</label>
         <div class="col-sm-12 "> <!--formControlName="fileImg"-->
             <input style="display: none"  type="file" (change)="onSelectFile($event)"  name="logo" #fileInput>
             <button #fInput  class="form-control  disInliBlock"  (click)="fileInput.click(); fileInputLogoTouched();"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
             <label >{{fileName}}</label>
-            <!-- A QUI NO ME HACE ESTO -->
-            {{ f.logo.touched }}
             <div *ngIf="!isFileUploaded && f.logo.invalid && (f.logo.dirty || f.logo.touched)"
             class="alert">
                 <div *ngIf="f.logo.errors.required">
-                    Subir la fotografia es obligatorio.
+                    Subir el logo es obligatorio.
                 </div>
             </div>
-            
         </div>
         <div class="m-t-15" *ngIf="urlImg && urlImg !== ''">
             <img [src]="urlImg" class="img-100"/>
