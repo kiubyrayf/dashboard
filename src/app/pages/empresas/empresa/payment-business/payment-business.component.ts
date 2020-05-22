@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EmpresaModel, ClosingDocumentModel } from 'src/app/shared/model/empresas/empresa.model';
-import { FileUploader } from 'ng2-file-upload';
 import { BusinessInterface } from 'src/app/interface/business/business.interface';
 
 declare var require;
@@ -39,7 +37,7 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
     this.payForm = this.fb.group({
       closingDocument: ['', Validators.required, ],
       serviceWarranty: [''],
-      servicesPrice: this.fb.group({
+      servicesPriceChecker: this.fb.group({
         foreign: ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
         viaticForeign:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
         local:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
@@ -82,8 +80,7 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
   ngOnInit() {  }
   ngOnChanges(): void {
     if (this.flagDataInfo === true) {
-      console.log(this.businessData);
-      this.payForm.get('servicesPrice').get('foreign').patchValue(this.businessData.servicesPrice.foreign);
+     /*  this.payForm.get('servicesPrice').get('foreign').patchValue(this.businessData.servicesPrice.foreign);
       this.payForm.get('servicesPrice').get('disscount').patchValue(this.businessData.servicesPrice.disscount);
       this.payForm.get('servicesPrice').get('endingPrice').patchValue(this.businessData.servicesPrice.endingPrice);
       this.payForm.get('servicesPrice').get('local').patchValue(this.businessData.servicesPrice.local);
@@ -93,22 +90,19 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
       this.payForm.get('servicesPrice').get('visitRealized').patchValue(this.businessData.servicesPrice.visitRealized);
       this.payForm.get('serviceWarranty').patchValue(this.businessData.serviceWarranty);
       this.payForm.get('closingDocument').patchValue(this.businessData.closingDocument);
-      console.log(this.businessData.closingDocument[0]);
-
+      console.log(this.businessData.closingDocument[0]); */
     }
   }
   addEmpresa() {
     const empresa = {
-      closingDocument: this.payForm.get('closingDocument'),
-      servicesPrice: {
-        foreign: this.payForm.get('servicesPrice').value.foreign,
-        viaticForeign: this.payForm.get('servicesPrice').value.viaticForeign,
-        local: this.payForm.get('servicesPrice').value.local,
-        viaticLocal: this.payForm.get('servicesPrice').value.viaticLocal,
-        visitNotRealized: this.payForm.get('servicesPrice').value.visitNotRealized,
-        visitRealized: this.payForm.get('servicesPrice').value.visitRealized,
-        endingPrice: this.payForm.get('servicesPrice').value.endingPrice,
-        disscount: this.payForm.get('servicesPrice').value.disscount,
+      closingDocument: this.payForm.get('closingDocument').value,
+      servicesPriceChecker: {
+        foreign: this.payForm.get('servicesPriceChecker').value.foreign,
+        viaticForeign: this.payForm.get('servicesPriceChecker').value.viaticForeign,
+        local: this.payForm.get('servicesPriceChecker').value.local,
+        viaticLocal: this.payForm.get('servicesPriceChecker').value.viaticLocal,
+        visitNotRealized: this.payForm.get('servicesPriceChecker').value.visitNotRealized,
+        visitRealized: this.payForm.get('servicesPriceChecker').value.visitRealized
       },
       serviceWarranty: (this.payForm.get('serviceWarranty').value !== '') ? this.payForm.get('serviceWarranty').value : false,
     };

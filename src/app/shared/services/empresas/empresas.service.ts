@@ -17,7 +17,7 @@ export class EmpresasService {
   }
 
   getEmpresas(page: number): Observable<any> {
-    return this.http.get(`${this.config.api}/business?page=${page}`); // business?page=2&name=XTEN&id=46
+    return this.http.get(`${this.config.api}/business?page=${page}&id=63`); // business?page=2&name=XTEN&id=46
   }
   getEmpresa(id: any): Observable<any> {
     return this.http.get(`${this.config.api}/business?id=${id}`); // business?page=2&name=XTEN&id=46
@@ -32,7 +32,7 @@ export class EmpresasService {
     return this.http.put(`${this.config.api}/business?id=${id}`, empresa);
   }
 
-  crearEmpresaTest(empresa): Observable<any> {
+ /*  crearEmpresaTest(empresa): Observable<any> {
     let headers = new HttpHeaders({
       'Content-Type': 'multipart/form-data;',
       'name': empresa.name,
@@ -45,5 +45,5 @@ export class EmpresasService {
     
     //Se meten los headrs al post
     return this.http.post(`${this.config.api}/business`, empresa, options);
-  }
+  } */
 }

@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a [routerLink]="'/dashboard/default'">
                 <app-feather-icons [icon]="'home'"></app-feather-icons>
               </a></li>
-            <li class="breadcrumb-item" *ngIf="breadcrumbs?.parentBreadcrumb"><!-- <a *ngIf="breadcrumbs?.childBreadcrumb" [routerLink]="getPreviousUrl()">{{breadcrumbs?.parentBreadcrumb}}</a> -->{{breadcrumbs?.parentBreadcrumb}}</li>
+            <li class="breadcrumb-item" *ngIf="breadcrumbs?.parentBreadcrumb"><a [routerLink]="getPreviousUrl()">{{breadcrumbs?.parentBreadcrumb}}</a></li>
             <li class="breadcrumb-item active" *ngIf="breadcrumbs?.childBreadcrumb">{{breadcrumbs?.childBreadcrumb}}
             </li>
           </ol>

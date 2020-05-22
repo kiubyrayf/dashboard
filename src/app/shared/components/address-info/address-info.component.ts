@@ -13,9 +13,7 @@ import { FormBuilder, Validators, FormGroup, ControlContainer, FormArray } from 
     deps: [[new SkipSelf(), ControlContainer]],
   }]
 })
-/* export function useFactory(container: ControlContainer) {
-  return container;
-} */
+
 export class AddressInfoComponent implements OnInit {
   @Input() groupName: string;
 
@@ -31,8 +29,26 @@ export class AddressInfoComponent implements OnInit {
         municipality: ['', Validators.required, ],
         suburb: ['', Validators.required, ],
       }));
-      
     }
   }
+/*   public findInvalidControlsRecursive(formToInvestigate: FormGroup|FormArray): string[] {
+    const invalidControls: string[] = [];
+    const recursiveFunc = (form: FormGroup | FormArray) => {
+        Object.keys(form.controls).forEach(field => {
+            const control = form.get(field);
+            if (control.invalid) {
+              field.reportValidity();
+              invalidControls.push(field);
+            }
+            if (control instanceof FormGroup) {
+                recursiveFunc(control);
+            } else if ( control instanceof FormArray) {
+                recursiveFunc(control);
+            }
+        });
+    };
+    recursiveFunc(formToInvestigate);
+    return invalidControls;
+} */
 
 }

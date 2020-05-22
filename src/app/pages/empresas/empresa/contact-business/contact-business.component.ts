@@ -15,22 +15,17 @@ declare const $;
 })
 export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() data: EventEmitter<any>;
-
   @Input() businessData: BusinessInterface;
   @Input() flagDataInfo: boolean;
 
   private empresaList: any;
   public contactForm: FormGroup;
   public contactList: FormArray;
-  public border_validation = false;
-  public title = 'contact registration page';
 
    // returns all form groups under contacts
    get contactFormGroup()  {
     return (this.contactForm.get('contact') as FormArray).controls;
   }
-  // convenience getter for easy access to form fields
- // get f() { return this.contactForm.controls; }
 
   constructor(private route: Router, private fb: FormBuilder,
     private activeRoute: ActivatedRoute,
@@ -50,41 +45,48 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
     this.contactList = this.contactForm.get('contact') as FormArray;
   }
 
-  ngOnChanges(): void {
+  ngOnChanges() {
     if (this.flagDataInfo === true) {
-      console.log('patch value no acepta ps cambio todo');
+      console.log(this.businessData.contact);
+      this.contactForm.setControl('contact', this.existingContact(this.businessData.contact));
+      for (const contact of this.businessData.contact) {
+       
+        console.log(contact.job);
+      }
       // this.contactForm.patchValue(this.businessData.contact);
 
      /*  this.contactForm.get('job').patchValue(this.businessData.contact.job);
-      this.contactForm.get('phoneNumber').patchValue(this.businessData.contact.phoneNumber);
-      this.contactForm.get('email').patchValue(this.businessData.contact.email);
-      this.contactForm.get('paymentPerson').patchValue(this.businessData.contact.paymentPerson);
-      this.contactForm.get('fax').patchValue(this.businessData.contact.fax);
-
-      this.contactForm.get('schedule').get('mondayStart').patchValue(moment.utc(this.businessData.contact.schedule.mondayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('mondayEnd').patchValue(moment.utc(this.businessData.contact.schedule.mondayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('tuesdayStart').patchValue(moment.utc(this.businessData.contact.schedule.tuesdayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('tuesdayEnd').patchValue(moment.utc(this.businessData.contact.schedule.tuesdayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('wednesdayStart').patchValue(moment.utc(this.businessData.contact.schedule.wednesdayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('wednesdayEnd').patchValue(moment.utc(this.businessData.contact.schedule.wednesdayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('thursdayStart').patchValue(moment.utc(this.businessData.contact.schedule.thursdayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('thursdayEnd').patchValue(moment.utc(this.businessData.contact.schedule.thursdayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('fridayStart').patchValue(moment.utc(this.businessData.contact.schedule.fridayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('fridayEnd').patchValue(moment.utc(this.businessData.contact.schedule.fridayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('saturdayStart').patchValue(moment.utc(this.businessData.contact.schedule.saturdayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('saturdayEnd').patchValue(moment.utc(this.businessData.contact.schedule.saturdayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('sundayStart').patchValue(this.showSundayStart());
       this.contactForm.get('schedule').get('sundayEnd').patchValue(moment.utc(this.businessData.contact.schedule.sundayEnd).format('HH:mm'));
  */
     }
   }
-
+  existingContact( contactSet: any[] ): FormArray {
+    const formArray = new FormArray([]);
+    contactSet.forEach(element => {
+      this.fb.group({
+        job:  element.job,
+       /*  phoneNumber:  ,
+        email: ,
+        paymentPerson: ,
+        fax:  ,
+        schedule: this.fb.group({
+          mondayStart: ,
+          mondayEnd: ,
+          tuesdayStart: ,
+          tuesdayEnd: ,
+          wednesdayStart: ,
+          wednesdayEnd: ,
+          thursdayStart: ,
+          thursdayEnd: ,
+          fridayStart: ,
+          fridayEnd: ,
+          saturdayStart: ,
+          saturdayEnd: ,
+          sundayStart: ,
+          sundayEnd: , */
+      });
+    });
+  }
   ngAfterViewInit() {
    /*  $(document).ready(() => {
       $('.clockpicker').clockpicker({
@@ -137,201 +139,30 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
     return this.contactList.controls[index] as FormGroup;
   }
 
-  showSundayStart() {
+ /*  showSundayStart() {
     if ( this.businessData.contact.schedule.sundayStart !== null) {
       return  moment.utc(this.businessData.contact.schedule.sundayStart).format('HH:mm');
     } else {
       return null;
 
     }
-  }
+  } */
 
-  createMondayStart() {
-    if (this.contactForm.get('schedule').value.mondayStart !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.mondayStart);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return  isoDate;
-    } else {
-      return null;
-
-    }
-  }
-  createMondayEnd() {
-    if (this.contactForm.get('schedule').value.mondayEnd !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.mondayEnd);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return isoDate;
-    } else {
-      return null;
-
-    }
-  }
-  createTuesdayStart() {
-    if (this.contactForm.get('schedule').value.tuesdayStart !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.tuesdayStart);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return  isoDate;
-    } else {
-      return  null;
-
-    }
-  }
-  createTuesdayEnd() {
-    if (this.contactForm.get('schedule').value.tuesdayEnd !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.tuesdayEnd);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return isoDate;
-    } else {
-      return null;
-
-    }
-  }
-  createWednesdayStart() {
-    if (this.contactForm.get('schedule').value.wednesdayStart !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.wednesdayStart);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return  isoDate;
-    } else {
-      return  null;
-
-    }
-  }
-  createWednesdayEnd() {
-    if (this.contactForm.get('schedule').value.wednesdayEnd !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.wednesdayEnd);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return   isoDate;
-    } else {
-      return  null;
-
-    }
-  }
-  createThursdayStart() {
-    if (this.contactForm.get('schedule').value.thursdayStart !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.thursdayStart);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return  isoDate;
-    } else {
-      return null;
-
-    }
-  }
-  createThursdayEnd() {
-    if (this.contactForm.get('schedule').value.thursdayEnd !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.thursdayEnd);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return isoDate;
-    } else {
-      return null;
-
-    }
-  }
-  createFridayStart() {
-    if (this.contactForm.get('schedule').value.fridayStart !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.fridayStart);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return isoDate;
-    } else {
-      return  null;
-
-    }
-  }
-  createFridayEnd() {
-    if (this.contactForm.get('schedule').value.fridayEnd !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.fridayEnd);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return  isoDate;
-    } else {
-      return null;
-
-    }
-  }
-  createSaturdayStart() {
-    if (this.contactForm.get('schedule').value.saturdayStart !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.saturdayStart);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return  isoDate;
-    } else {
-      return null;
-
-    }
-  }
-  createSaturdayEnd() {
-    if (this.contactForm.get('schedule').value.saturdayEnd !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.saturdayEnd);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return  isoDate;
-    } else {
-      return  null;
-
-    }
-  }
-  createSundayStart() {
-    if (this.contactForm.get('schedule').value.sundayStart !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.sundayStart);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return  isoDate;
-    } else {
-      return  null;
-
-    }
-  }
-  createSundayEnd() {
-    if (this.contactForm.get('schedule').value.sundayEnd !== '') {
-      const nowDate = moment().format('YYYY-MM-DD');
-      const date = new Date( `${nowDate} ` + this.contactForm.get('schedule').value.sundayEnd);
-      const isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-      return   isoDate;
-    } else {
-      return  null;
-    }
-  }
   addEmpresa() {
-    let empresa: any = [];
-    let i = 0;
-    for (let contacts of this.contactFormGroup) {
+    const empresa: any = [];
+    for (const contact of this.contactFormGroup) {
      // console.log('1' + this.getContactsFormGroup(i).get('paymentPerson').value);
      // console.log('2' + this.contactForm.get(['contact', i]).get('paymentPerson').value);
       empresa.push({
-        job: this.contactForm.get(['contact', i]).get('job').value,
-        phoneNumber: this.contactForm.get(['contact', i]).get('phoneNumber').value,
-        email: this.contactForm.get(['contact', i]).get('email').value,
-        paymentPerson: this.contactForm.get(['contact', i]).get('paymentPerson').value,
-        fax: this.contactForm.get(['contact', i]).get('fax').value,
-        schedule: {
-          mondayStart: this.contactForm.get(['contact', i]).get('schedule').value.mondayStart,
-          mondayEnd: this.contactForm.get(['contact', i]).get('schedule').value.mondayEnd,
-          tuesdayStart: this.contactForm.get(['contact', i]).get('schedule').value.tuesdayStart,
-          tuesdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.tuesdayEnd,
-          wednesdayStart: this.contactForm.get(['contact', i]).get('schedule').value.wednesdayStart,
-          wednesdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.wednesdayEnd,
-          thursdayStart: this.contactForm.get(['contact', i]).get('schedule').value.thursdayStart,
-          thursdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.thursdayEnd,
-          fridayStart: this.contactForm.get(['contact', i]).get('schedule').value.fridayStart,
-          fridayEnd: this.contactForm.get(['contact', i]).get('schedule').value.fridayEnd,
-          saturdayStart: this.contactForm.get(['contact', i]).get('schedule').value.saturdayStart,
-          saturdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.saturdayEnd,
-          sundayStart: this.contactForm.get(['contact', i]).get('schedule').value.sundayStart,
-          sundayEnd: this.contactForm.get(['contact', i]).get('schedule').value.sundayEnd,
-        },
+        job: contact.get('job').value,
+        phoneNumber: contact.get('phoneNumber').value,
+        email: contact.get('email').value,
+        paymentPerson: contact.get('paymentPerson').value,
+        fax: contact.get('fax').value,
+        schedule: this.generateSchedule(contact.get('schedule').value)
       });
-      i++;
     }
     this.empresaList = empresa;
-    console.log(this.empresaList);
     this.data.emit(this.empresaList);
    /*  const empresa = {
       job: this.contactForm.get('job').value,
@@ -356,9 +187,37 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
         saturdayEnd: this.createSaturdayEnd(),
         sundayStart: this.createSundayStart(),
         sundayEnd: this.createSundayEnd(),
-      },
+      },      mondayEnd: this.contactForm.get(['contact', i]).get('schedule').value.mondayEnd,
+
     };
     this.empresaList = empresa;
     this.data.emit(this.empresaList); */
+  }
+
+  generateSchedule(contactValue) {
+    return {
+      mondayStart: this.createDateIso(contactValue.mondayStart),
+      mondayEnd: this.createDateIso(contactValue.mondayEnd),
+      tuesdayStart: this.createDateIso(contactValue.tuesdayStart),
+      tuesdayEnd: this.createDateIso(contactValue.tuesdayEnd),
+      wednesdayStart: this.createDateIso(contactValue.wednesdayStart),
+      wednesdayEnd: this.createDateIso(contactValue.wednesdayEnd),
+      thursdayStart: this.createDateIso(contactValue.thursdayStart),
+      thursdayEnd: this.createDateIso(contactValue.thursdayEnd),
+      fridayStart: this.createDateIso(contactValue.fridayStart),
+      fridayEnd: this.createDateIso(contactValue.fridayEnd),
+      saturdayStart: this.createDateIso(contactValue.saturdayStart),
+      saturdayEnd: this.createDateIso(contactValue.saturdayEnd),
+      sundayStart: this.createDateIso(contactValue.sundayStart),
+      sundayEnd: this.createDateIso(contactValue.sundayEnd),
+    };
+  }
+  createDateIso(dateString) {
+    if (dateString === '') {
+      return null;
+    }
+    const nowDate = moment().format('YYYY-MM-DD');
+    const date = new Date( `${nowDate} ` + dateString);
+    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
   }
 }

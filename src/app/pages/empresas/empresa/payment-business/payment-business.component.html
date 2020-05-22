@@ -1,16 +1,16 @@
 <form [formGroup]="payForm" (ngSubmit)="addEmpresa()" class="ngx-form" novalidate>
-    <div class="form-group" formGroupName="servicesPrice">
+    <div class="form-group" formGroupName="servicesPriceChecker">
       <h5>Precios</h5>
       <div class="form-row ">
         <div class="col-md-3 mb-3">
             <label class="control-label" for="foreign">Foreaneo</label>
             <input type="text" formControlName="foreign" class="form-control" placeholder="50.00">
 
-            <div *ngIf="f.servicesPrice.get('foreign').invalid && (f.servicesPrice.get('foreign').dirty || f.servicesPrice.get('foreign').touched)" class="alert">
-              <div *ngIf="f.servicesPrice.get('foreign').errors.required">
+            <div *ngIf="f.servicesPriceChecker.get('foreign').invalid && (f.servicesPriceChecker.get('foreign').dirty || f.servicesPriceChecker.get('foreign').touched)" class="alert">
+              <div *ngIf="f.servicesPriceChecker.get('foreign').errors.required">
                 El campo es obligatorio.
               </div>
-              <div *ngIf="f.servicesPrice.get('foreign').errors?.pattern">
+              <div *ngIf="f.servicesPriceChecker.get('foreign').errors?.pattern">
                 El campo debe ser monetario.
               </div>
             </div>
@@ -19,11 +19,11 @@
           <label class="control-label" for="local">Local</label>
           <input type="text" formControlName="local" class="form-control" placeholder="30.00">
 
-          <div *ngIf="f.servicesPrice.get('local').invalid && (f.servicesPrice.get('local').dirty || f.servicesPrice.get('local').touched)" class="alert">
-              <div *ngIf="f.servicesPrice.get('local').errors.required">
+          <div *ngIf="f.servicesPriceChecker.get('local').invalid && (f.servicesPriceChecker.get('local').dirty || f.servicesPriceChecker.get('local').touched)" class="alert">
+              <div *ngIf="f.servicesPriceChecker.get('local').errors.required">
                 El campo es obligatorio.
               </div>
-              <div *ngIf="f.servicesPrice.get('local').errors?.pattern">
+              <div *ngIf="f.servicesPriceChecker.get('local').errors?.pattern">
                 El campo debe ser monetario.
               </div>
           </div>
@@ -32,11 +32,11 @@
           <label class="control-label" for="viaticForeign">Viatico Foraneo</label>
           <input type="text" formControlName="viaticForeign" class="form-control" placeholder="1000.00">
 
-          <div *ngIf="f.servicesPrice.get('viaticForeign').invalid && (f.servicesPrice.get('viaticForeign').dirty || f.servicesPrice.get('viaticForeign').touched)" class="alert">
-              <div *ngIf="f.servicesPrice.get('viaticForeign').errors.required">
+          <div *ngIf="f.servicesPriceChecker.get('viaticForeign').invalid && (f.servicesPriceChecker.get('viaticForeign').dirty || f.servicesPriceChecker.get('viaticForeign').touched)" class="alert">
+              <div *ngIf="f.servicesPriceChecker.get('viaticForeign').errors.required">
                 El campo es obligatorio.
               </div>
-              <div *ngIf="f.servicesPrice.get('viaticForeign').errors?.pattern">
+              <div *ngIf="f.servicesPriceChecker.get('viaticForeign').errors?.pattern">
                 El campo debe ser monetario.
               </div>
           </div>
@@ -45,11 +45,11 @@
           <label class="control-label" for="viaticLocal">Viatico Local</label>
           <input type="text" formControlName="viaticLocal" class="form-control" placeholder="58.52">
 
-          <div *ngIf="f.servicesPrice.get('viaticLocal').invalid && (f.servicesPrice.get('viaticLocal').dirty || f.servicesPrice.get('viaticLocal').touched)" class="alert">
-              <div *ngIf="f.servicesPrice.get('viaticLocal').errors.required">
+          <div *ngIf="f.servicesPriceChecker.get('viaticLocal').invalid && (f.servicesPriceChecker.get('viaticLocal').dirty || f.servicesPriceChecker.get('viaticLocal').touched)" class="alert">
+              <div *ngIf="f.servicesPriceChecker.get('viaticLocal').errors.required">
                 El campo es obligatorio.
               </div>
-              <div *ngIf="f.servicesPrice.get('viaticLocal').errors?.pattern">
+              <div *ngIf="f.servicesPriceChecker.get('viaticLocal').errors?.pattern">
                 El campo debe ser monetario.
               </div>
           </div>
@@ -61,11 +61,11 @@
           <label class="control-label" for="visitNotRealized">Visita No Realizada</label>
           <input type="text" formControlName="visitNotRealized" class="form-control" placeholder="60.80">
 
-          <div *ngIf="f.servicesPrice.get('visitNotRealized').invalid && (f.servicesPrice.get('visitNotRealized').dirty || f.servicesPrice.get('visitNotRealized').touched)" class="alert">
-              <div *ngIf="f.servicesPrice.get('visitNotRealized').errors.required">
+          <div *ngIf="f.servicesPriceChecker.get('visitNotRealized').invalid && (f.servicesPriceChecker.get('visitNotRealized').dirty || f.servicesPriceChecker.get('visitNotRealized').touched)" class="alert">
+              <div *ngIf="f.servicesPriceChecker.get('visitNotRealized').errors.required">
                 El campo es obligatorio.
               </div>
-              <div *ngIf="f.servicesPrice.get('visitNotRealized').errors?.pattern">
+              <div *ngIf="f.servicesPriceChecker.get('visitNotRealized').errors?.pattern">
                 El campo debe ser monetario.
               </div>
           </div>
@@ -73,39 +73,16 @@
         <div class="col-md-3 mb-3">
           <label class="control-label" for="visitRealized">Visita Realizada</label>
           <input type="text" formControlName="visitRealized" class="form-control" placeholder="50.20">
-          <div *ngIf="f.servicesPrice.get('visitRealized').invalid && (f.servicesPrice.get('visitRealized').dirty || f.servicesPrice.get('visitRealized').touched)" class="alert">
-              <div *ngIf="f.servicesPrice.get('visitRealized').errors.required">
+          <div *ngIf="f.servicesPriceChecker.get('visitRealized').invalid && (f.servicesPriceChecker.get('visitRealized').dirty || f.servicesPriceChecker.get('visitRealized').touched)" class="alert">
+              <div *ngIf="f.servicesPriceChecker.get('visitRealized').errors.required">
                 El campo es obligatorio.
               </div>
-              <div *ngIf="f.servicesPrice.get('visitRealized').errors?.pattern">
+              <div *ngIf="f.servicesPriceChecker.get('visitRealized').errors?.pattern">
                 El campo debe ser monetario.
               </div>
           </div>
         </div>
-        <div class="col-md-3 mb-3">
-          <label class="control-label" for="endingPrice">Precio Final</label>
-          <input type="text" formControlName="endingPrice" class="form-control" placeholder="45.00">
-          <div *ngIf="f.servicesPrice.get('endingPrice').invalid && (f.servicesPrice.get('endingPrice').dirty || f.servicesPrice.get('endingPrice').touched)" class="alert">
-              <div *ngIf="f.servicesPrice.get('endingPrice').errors.required">
-                El campo es obligatorio.
-              </div>
-              <div *ngIf="f.servicesPrice.get('endingPrice').errors?.pattern">
-                El campo debe ser monetario.
-              </div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <label class="control-label" for="disscount">Descuento</label>
-          <input type="text" formControlName="disscount" class="form-control" placeholder="150.00">
-          <div *ngIf="f.servicesPrice.get('disscount').invalid && (f.servicesPrice.get('disscount').dirty || f.servicesPrice.get('disscount').touched)" class="alert">
-              <div *ngIf="f.servicesPrice.get('disscount').errors.required">
-                El campo es obligatorio.
-              </div>
-              <div *ngIf="f.servicesPrice.get('disscount').errors?.pattern">
-                El campo debe ser monetario.
-              </div>
-          </div>
-        </div>
+        
       </div>
     </div>
     

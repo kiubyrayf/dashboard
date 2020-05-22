@@ -4,6 +4,7 @@ import {EmpresaModel} from '../../../shared/model/empresas/empresa.model';
 import { NgbActiveModal, NgbModal, ModalDismissReasons, NgbModalConfig, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { HttpInterface } from 'src/app/interface/services/http/http.response.interface';
 import { BusinessInterface } from 'src/app/interface/business/business.interface';
+import * as moment from 'moment';
 
 declare var require;
 const Swal = require('sweetalert2');
@@ -53,6 +54,10 @@ export class GeneralComponent implements OnInit {
       this.cargando = false;
     });
   }
+
+  timeContact(index, contacts) {
+    return moment.utc(index.schedule.contacts).format('HH:mm');
+  }
   borrarEmpresa (empresas: any , i: number) {
     Swal.fire({
       title: '¿Esta seguro?',
@@ -88,7 +93,6 @@ export class GeneralComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
   }

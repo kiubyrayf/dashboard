@@ -24,17 +24,119 @@
                                     <th scope="col">Contacto</th>
                                     <th scope="col">Telefono</th>
                                     <th scope="col">Correo</th>
-                                    <th scope="col">Documentos</th>
+                                    <th scope="col">Orden de Compra</th>
+                                    <th scope="col">Documentos de Cierre</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let empresa of empresas | slice: { pageSize: 30, currentPage: page  }; let i=index;" >
                                     <th scope="row">{{((page - 1) * 30) + (i + 1)}}</th>
-                                    <td>{{empresa.name}}</td>
-                                    <td>{{empresa.contact.paymentPerson}}</td>
+                                    <td><img class="img-40 rounded-circle m-r-10" [src]="empresa.logo" alt="Logo {{empresa.name}}"> {{empresa.name}}</td>
+                                    <td>
+                                        <ng-template #content2 let-modal>
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Contactos</h4>
+                                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="table-responsive m-b-30">
+                                                    <table class="table table-xs">
+                                                        <thead class="bgColor">
+                                                            <tr>
+                                                                <th scope="col">ID</th>
+                                                                <th scope="col">Nombre</th>
+                                                                <th scope="col">Email</th>
+                                                                <th scope="col">Empleo</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody *ngFor="let contacts of empresa.contact; let x=index; " class="borderBottom">
+                                                            <tr >
+                                                                <th scope="row">{{contacts.id}}</th>
+                                                                <td> {{contacts.paymentPerson}} </td>
+                                                                <td>{{contacts.email}}</td>
+                                                                <td>{{contacts.job}}</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <th colspan="4" class="bgColorS">Horario</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="4">
+                                                                    <span class="inlineBlockSpan">
+                                                                        <span><b>Lunes</b> </span>
+                                                                        <p>{{contacts.schedule.mondayStart | date:'shortTime' }} a {{contacts.schedule.mondayEnd | date:'shortTime' }}</p>
+                                                                    </span>
+                                                                    <span class="inlineBlockSpan">
+                                                                        <span><b>Martes</b></span>
+                                                                        <p>{{contacts.schedule.tuesdayStart | date:'shortTime' }} a {{contacts.schedule.tuesdayEnd | date:'shortTime' }}</p>
+                                                                    </span>
+                                                                    <span class="inlineBlockSpan">
+                                                                        <span><b>Miercoles</b></span>
+                                                                        <p>{{contacts.schedule.wednesdayStart | date:'shortTime' }} a {{contacts.schedule.wednesdayEnd | date:'shortTime' }}</p>
+                                                                    </span>
+                                                                    <span class="inlineBlockSpan">    
+                                                                    <span ><b>Jueves</b></span>
+                                                                        <p>{{contacts.schedule.thursdayStart | date:'shortTime' }} a {{contacts.schedule.thursdayEnd | date:'shortTime' }}</p>
+                                                                    </span>
+                                                                    <span class="inlineBlockSpan">
+                                                                        <span><b>Viernes</b></span>
+                                                                        <p>{{contacts.schedule.fridayStart | date:'shortTime' }} a {{contacts.schedule.fridayEnd | date:'shortTime' }}</p>
+                                                                    </span>
+                                                                    <span class="inlineBlockSpan">
+                                                                        <span><b>Sabado</b></span>
+                                                                        <p>{{contacts.schedule.saturdayStart | date:'shortTime' }} a {{contacts.schedule.saturdayEnd | date:'shortTime' }}</p>
+                                                                    </span>
+                                                                    <span class="inlineBlockSpan">
+                                                                        <span><b>Domingo</b></span>
+                                                                        <p>{{contacts.schedule.sundayStart | date:'shortTime' }} a {{contacts.schedule.sundayEnd | date:'shortTime' }}</p>
+                                                                     </span>
+                                                                </td>       
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            
+                                        </ng-template>
+                                        <a (click)="openVerticallyCentered(content2)" [routerLink]=""><i class="fa fa-users"></i> Contactos</a>
+                                    </td>
                                     <td>{{empresa.phoneNumber}}</td>
                                     <td>{{empresa.email}}</td>
+                                    <td>
+                                        <ng-template #content1 let-modal>
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Orden de Compra</h4>
+                                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="table-responsive m-b-30">
+                                                    <table class="table table-xs">
+                                                        <thead class="bgColor">
+                                                            <tr>
+                                                                <th scope="col">ID</th>
+                                                                <th scope="col">Nombre</th>
+                                                                <th scope="col">Archivo</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let cd of empresa.buyOrder; let x=index">
+                                                                <th scope="row">{{cd.id}}</th>
+                                                                <td> {{cd.name}} </td>
+                                                                <td><a href="{{cd.file}}"><i class="fa fa-file-o"></i> Documento</a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            
+                                        </ng-template>
+                                        <a (click)="openVerticallyCentered(content1)" [routerLink]=""><i class="fa fa-files-o"></i> Orden de Compra</a>
+                                    </td>
                                     <td>
                                         <ng-template #content let-modal>
                                             <div class="modal-header">
@@ -57,14 +159,14 @@
                                                             <tr *ngFor="let cd of empresa.closingDocument; let x=index">
                                                                 <th scope="row">{{cd.id}}</th>
                                                                 <td> {{cd.name}} </td>
-                                                                <td><a href="{{cd.file}}" target="_blank"><i class="fa fa-file-o"></i> Documento</a></td>
+                                                                <td><a href="{{cd.file}}"><i class="fa fa-file-o"></i> Documento</a></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                             
-                                            </ng-template>
+                                        </ng-template>
                                         <a (click)="openVerticallyCentered(content)" [routerLink]=""><i class="fa fa-files-o"></i> Documentos de cierre</a>
                                     </td>
                                     <td>

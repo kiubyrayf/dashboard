@@ -49,3 +49,19 @@ alert-heading{
         margin-bottom: 0;
     }
 }
+.inlineBlockSpan{
+    display:inline-block;
+    padding: 0 35px;
+    span{
+        b{
+            font-weight: 600;
+        }
+    }
+}
+.bgColorS{
+    background-color:#cac7c7;
+    text-align: center;
+}
+.borderBottom{
+    border-bottom: 1px solid #000000;
+}
