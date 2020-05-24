@@ -30,6 +30,7 @@ import { EmpresasService } from './services/empresas/empresas.service';
 import { ToggleFullscreenDirective } from './directives/fullscreen.directive';
 import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 import { AddressInfoComponent } from './components/address-info/address-info.component';
+import { ImgUploadSComponent } from './components/img-upload-s/img-upload-s.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AddressInfoComponent } from './components/address-info/address-info.com
     BreadcrumbComponent,
     CustomizerComponent,
     ContactInfoComponent,
-    AddressInfoComponent
+    AddressInfoComponent,
+    ImgUploadSComponent
   ],
   imports: [
     CommonModule,
@@ -63,7 +65,8 @@ import { AddressInfoComponent } from './components/address-info/address-info.com
     FeatherIconsComponent,
     TranslateModule,
     ContactInfoComponent,
-    AddressInfoComponent
+    AddressInfoComponent,
+    ImgUploadSComponent
   ],
   providers: [
     NavService,

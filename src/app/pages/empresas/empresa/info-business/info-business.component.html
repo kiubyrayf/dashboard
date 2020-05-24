@@ -164,23 +164,9 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="form-group col-md-8 mb-3">
-                <label class="control-label">Subir foto del Propietario</label>
-                <div> <!--formControlName="fileImg"
-                    <input style="display: none"  type="file" (change)="onSelectFile($event)"  name="photography" #fileInputP>
-                    <button #fInput  class="form-control  disInliBlock"  (click)="fileInputP.click(); fileInputLogoTouched();"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
-                    <label >{{fileName}}</label>
-                    <div *ngIf="!isFileUploaded && f.owner.get('photography').invalid && (f.owner.get('photography').dirty || f.owner.get('photography').touched)"
-                    class="alert">
-                        <div *ngIf="f.owner.get('photography').errors.required">
-                            Subir la fotografia es obligatorio.
-                        </div>
-                    </div>
-                </div>
-                <div class="m-t-15" *ngIf="urlImg && urlImg !== ''">
-                    <img [src]="urlImg" class="img-100"/>
-                </div>
-            </div> -->
+             <div class="form-group col-md-8 mb-3">
+                <app-img-upload-s groupName="photography" (fileInfo)="photography=$event" ></app-img-upload-s>
+            </div> 
         </div>
     </div>
     <!-- <app-address-info groupName="address"></app-address-info>  -->
@@ -198,26 +184,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- <div class="form-row" style="margin-left: 1px;">
-        <div class="form-group col-md-6 mb-3">
-            <label class="control-label">Subir logo de la empresa</label>
-            <div> <!--formControlName="fileImg"
-                <input style="display: none"  type="file" (change)="onSelectFile($event)"  name="logo" #fileInput>
-                <button class="form-control  disInliBlock"  (click)="fileInput.click(); fileInputLogoTouched();"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
-                <label >{{fileName}}</label>
-                <div *ngIf="!isFileUploaded && f.logo.invalid && (f.logo.dirty || f.logo.touched)"
-                class="alert">
-                    <div *ngIf="f.logo.errors.required">
-                        Subir el logo es obligatorio.
-                    </div>
-                </div>
-            </div>
-            <div class="m-t-15" *ngIf="urlImg && urlImg !== ''">
-                <img [src]="urlImg" class="img-100"/>
-            </div>
-        </div>
-    </div> -->
+    </div>=
+    <app-img-upload-s groupName="logo" (fileInfo)="logo=$event"></app-img-upload-s>
     <div class="form-group f1-buttons">
         <button class="btn btn-primary btn-next" [disabled]="!Fform.valid" awNextStep> siguiente
         </button>

@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ElementRef, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, Validators, FormControl, NgForm, FormBuilder, ControlContainer, FormGroupDirective } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
 import { BusinessInterface } from 'src/app/interface/business/business.interface';
 import * as moment from 'moment';
@@ -54,11 +53,11 @@ export class InfoBusinessComponent implements OnInit {
   createForm() {
     this.Fform = this.fb.group({
       name: ['', Validators.required, ],
-      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ],
+      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$')], ],
       phoneNumber: ['', [Validators.required,  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')], ],
       requestServiceByMail: [false],
       selfFormat: [false],
-      //logo: ['', Validators.required, ],
+      // logo: ['', Validators.required, ],
       address: this.fb.group({
         street: ['', Validators.required, ],
         number: ['', Validators.required, ],
@@ -73,7 +72,7 @@ export class InfoBusinessComponent implements OnInit {
         firstName: ['', Validators.required, ],
         middleName: ['', Validators.required, ],
         lastName: ['', Validators.required, ],
-        email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], ],
+        email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$')], ],
       }),
     });
   }
@@ -124,42 +123,5 @@ export class InfoBusinessComponent implements OnInit {
     this.empresaList = empresa;
     this.data.emit(this.empresaList);
   }
-  onSelectFile(event) {
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' ) {
-        this.warning();
-        this.Fform.get('logo').setValue('');
-        this.urlImg = '';
-        this.fileName = '';
-        this.isFileUploaded = false;
-      } else {
-        this.Fform.get('logo').setValue(file);
-        const reader = new FileReader();
-        reader.readAsDataURL(file); // read file as data url
-        this.fileName =  event.target.files[0].name;
-        reader.onload = ( e: any) => { // called once readAsDataURL is completed
-          this.urlImg = e.target.result;
-        };
-        this.isFileUploaded = true;
-      }
-    }
-  }
-
-  fileInputLogoTouched() {
-    this.Fform.controls.logo.markAsDirty();
-    this.Fform.controls.logo.markAsTouched();
-    this.Fform.controls.logo.setErrors({invalid: true});
-    this.isFileUploaded = false;
-  }
-
-  warning() {
-    Swal.fire({
-      title: 'Alerta',
-      text: 'Selecciona un documento tipo JPG o PNG',
-      icon: 'warning',
-      showConfirmButton: true,
-    });
-  }
-
+  
 }

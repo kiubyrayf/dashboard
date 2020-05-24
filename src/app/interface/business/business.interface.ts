@@ -1,31 +1,7 @@
 export interface BusinessInterface {
     id: number;
     name: string;
-    contact: [{
-        id: number; // se pone el id
-        job: string;
-        phoneNumber: string; // falto esto
-        email: string;
-        paymentPerson: string;
-        fax: string;
-        schedule: {
-            id: string,
-            mondayStart: string;
-            mondayEnd: string;
-            tuesdayStart: string;
-            tuesdayEnd: string;
-            wednesdayStart: string;
-            wednesdayEnd: string;
-            thursdayStart: string;
-            thursdayEnd: string;
-            fridayStart: string;
-            fridayEnd: string;
-            saturdayStart: string;
-            saturdayEnd: string;
-            sundayStart: string;
-            sundayEnd: string;
-        }
-    }];
+    contact: IContact[];
     email: string;
     phoneNumber: string;
     address: {
@@ -79,5 +55,36 @@ export interface BusinessInterface {
         email: string
     };
     serviceWarranty: boolean;
+    services: [{
+        id: number;
+        priceStart: string;
+        priceEnd: string;
+        priceDisscount: string;
+    }];
 }
 
+export interface IContact {
+    id: number; // se pone el id
+    job: string;
+    phoneNumber: string; // falto esto
+    email: string;
+    paymentPerson: string;
+    fax: string;
+    schedule: {
+        id: string;
+        mondayStart: string;
+        mondayEnd: string;
+        tuesdayStart: string;
+        tuesdayEnd: string;
+        wednesdayStart: string;
+        wednesdayEnd: string;
+        thursdayStart: string;
+        thursdayEnd: string;
+        fridayStart: string;
+        fridayEnd: string;
+        saturdayStart: string;
+        saturdayEnd: string;
+        sundayStart: string;
+        sundayEnd: string;
+    };
+}

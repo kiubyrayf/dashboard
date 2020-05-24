@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@ang
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
 import { BusinessInterface } from 'src/app/interface/business/business.interface';
+import { IContact } from "src/app/interface/business/IContact";
 import * as moment from 'moment';
 
 declare const $;
@@ -13,7 +14,7 @@ declare const $;
   styleUrls: ['./contact-businness.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChanges {
+export class ContactBusinessComponent implements OnInit, OnChanges {
   @Output() data: EventEmitter<any>;
   @Input() businessData: BusinessInterface;
   @Input() flagDataInfo: boolean;
@@ -47,54 +48,41 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
 
   ngOnChanges() {
     if (this.flagDataInfo === true) {
-      console.log(this.businessData.contact);
       this.contactForm.setControl('contact', this.existingContact(this.businessData.contact));
-      for (const contact of this.businessData.contact) {
-       
-        console.log(contact.job);
-      }
       // this.contactForm.patchValue(this.businessData.contact);
-
      /*  this.contactForm.get('job').patchValue(this.businessData.contact.job);
       this.contactForm.get('schedule').get('sundayEnd').patchValue(moment.utc(this.businessData.contact.schedule.sundayEnd).format('HH:mm'));
  */
     }
   }
-  existingContact( contactSet: any[] ): FormArray {
+  existingContact( contactSet: IContact[] ): FormArray {
     const formArray = new FormArray([]);
-    contactSet.forEach(element => {
-      this.fb.group({
-        job:  element.job,
-       /*  phoneNumber:  ,
-        email: ,
-        paymentPerson: ,
-        fax:  ,
+    contactSet.forEach(e => {
+      formArray.push(this.fb.group({
+        job:  e.job,
+        phoneNumber: e.phoneNumber ,
+        email: e.email,
+        paymentPerson: e.paymentPerson,
+        fax:  e.fax,
         schedule: this.fb.group({
-          mondayStart: ,
-          mondayEnd: ,
-          tuesdayStart: ,
-          tuesdayEnd: ,
-          wednesdayStart: ,
-          wednesdayEnd: ,
-          thursdayStart: ,
-          thursdayEnd: ,
-          fridayStart: ,
-          fridayEnd: ,
-          saturdayStart: ,
-          saturdayEnd: ,
-          sundayStart: ,
-          sundayEnd: , */
-      });
+          mondayStart: moment.utc(e.schedule.mondayStart).format('HH:mm'),
+          mondayEnd: moment.utc(e.schedule.mondayEnd).format('HH:mm'),
+          tuesdayStart: moment.utc(e.schedule.tuesdayStart).format('HH:mm'),
+          tuesdayEnd: moment.utc(e.schedule.tuesdayEnd).format('HH:mm'),
+          wednesdayStart: moment.utc(e.schedule.wednesdayStart).format('HH:mm'),
+          wednesdayEnd: moment.utc(e.schedule.wednesdayEnd).format('HH:mm'),
+          thursdayStart: moment.utc(e.schedule.thursdayStart).format('HH:mm'),
+          thursdayEnd: moment.utc(e.schedule.thursdayEnd).format('HH:mm'),
+          fridayStart: moment.utc(e.schedule.fridayStart).format('HH:mm'),
+          fridayEnd: moment.utc(e.schedule.fridayEnd).format('HH:mm'),
+          saturdayStart: moment.utc(e.schedule.saturdayStart).format('HH:mm'),
+          saturdayEnd: moment.utc(e.schedule.saturdayEnd).format('HH:mm'),
+          sundayStart: moment.utc(e.schedule.mondayStart).format('HH:mm'),
+          sundayEnd: moment.utc(e.schedule.mondayEnd).format('HH:mm'),
+        })
+      }));
     });
-  }
-  ngAfterViewInit() {
-   /*  $(document).ready(() => {
-      $('.clockpicker').clockpicker({
-        autoclose: true,
-      }).find('input').change((e) => {
-        this.contactForm.get('schedule').value[e.currentTarget.name] = e.currentTarget.value;
-      });
-    }); */
+    return formArray;
   }
 
   createContact(): FormGroup {
@@ -139,14 +127,6 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
     return this.contactList.controls[index] as FormGroup;
   }
 
- /*  showSundayStart() {
-    if ( this.businessData.contact.schedule.sundayStart !== null) {
-      return  moment.utc(this.businessData.contact.schedule.sundayStart).format('HH:mm');
-    } else {
-      return null;
-
-    }
-  } */
 
   addEmpresa() {
     const empresa: any = [];
@@ -164,34 +144,6 @@ export class ContactBusinessComponent implements OnInit, AfterViewInit, OnChange
     }
     this.empresaList = empresa;
     this.data.emit(this.empresaList);
-   /*  const empresa = {
-      job: this.contactForm.get('job').value,
-      phoneNumber: this.contactForm.get('phoneNumber').value,
-      email: this.contactForm.get('email').value,
-      paymentPerson: this.contactForm.get('paymentPerson').value,
-      fax: this.contactForm.get('fax').value,
-      schedule: {
-
-        // tslint:disable-next-line: max-line-length
-        mondayStart: this.createMondayStart(),
-        mondayEnd: this.createMondayEnd(),
-        tuesdayStart: this.createTuesdayStart(),
-        tuesdayEnd: this.createTuesdayEnd(),
-        wednesdayStart: this.createWednesdayStart(),
-        wednesdayEnd: this.createWednesdayEnd(),
-        thursdayStart: this.createThursdayStart(),
-        thursdayEnd: this.createThursdayEnd(),
-        fridayStart: this.createFridayStart(),
-        fridayEnd: this.createFridayEnd(),
-        saturdayStart: this.createSaturdayStart(),
-        saturdayEnd: this.createSaturdayEnd(),
-        sundayStart: this.createSundayStart(),
-        sundayEnd: this.createSundayEnd(),
-      },      mondayEnd: this.contactForm.get(['contact', i]).get('schedule').value.mondayEnd,
-
-    };
-    this.empresaList = empresa;
-    this.data.emit(this.empresaList); */
   }
 
   generateSchedule(contactValue) {

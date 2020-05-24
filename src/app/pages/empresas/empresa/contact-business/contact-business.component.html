@@ -49,7 +49,7 @@
                             <div *ngIf="getContactsFormGroup(i).get('email').errors.required">
                                 El campo es obligatorio.
                             </div>
-                            <div *ngIf="getContactsFormGroup(i).get('email').errors?.email">
+                            <div *ngIf="getContactsFormGroup(i).get('email').errors?.pattern">
                                  El correo no valido.
                             </div>
                         </div>
@@ -126,9 +126,9 @@
                         <button class="btn btn-danger" type="button" (click)="removeContact(i)">Eliminar Contacto {{i + 1}} </button>
                     </div>
                 </div>
-                 
+                <hr class="m-b-30">
             </div>
-             <hr>
+             
         </div>
     </div>
     <div class="form-group f1-buttons">
