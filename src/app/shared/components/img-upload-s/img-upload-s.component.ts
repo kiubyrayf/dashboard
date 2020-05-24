@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, Input, SkipSelf, forwardRef, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ControlContainer, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ImgInfoService } from '../../services/img-info.service';
 
 declare var require;
 const Swal = require('sweetalert2');
@@ -36,7 +37,7 @@ export class ImgUploadSComponent implements  OnInit {
 
   get f() { return this.Fform.controls; }
 
-  constructor( private fb: FormBuilder, private parentContainer: ControlContainer) {
+  constructor( private fb: FormBuilder, private parentContainer: ControlContainer, private imgService: ImgInfoService) {
     this.isFileUploaded = false;
     this.Fform = this.fb.group({
       file: ['', Validators.required]
@@ -88,6 +89,12 @@ export class ImgUploadSComponent implements  OnInit {
       icon: 'warning',
       showConfirmButton: true,
     });
+  }
+
+  //Aqui es donde se va a meter valires al service, llames a este metodo cualquiera que este subscrito va a actualizarse automaticamente
+  setValue(message:string)
+  {
+    this.imgService.setData("Ejemplo");
   }
 
 }

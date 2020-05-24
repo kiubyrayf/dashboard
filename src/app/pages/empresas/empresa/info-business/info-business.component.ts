@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
 import { BusinessInterface } from 'src/app/interface/business/business.interface';
 import * as moment from 'moment';
+import { ImgInfoService } from 'src/app/shared/services/img-info.service';
 
 declare var require;
 const Swal = require('sweetalert2');
@@ -29,6 +30,7 @@ export class InfoBusinessComponent implements OnInit {
   public businessData: BusinessInterface;
   private empresaList: any;
   public Fform: FormGroup;
+  public message: string;
   // convenience getter for easy access to form fields
   get f() { return this.Fform.controls; }
 
@@ -37,7 +39,8 @@ export class InfoBusinessComponent implements OnInit {
       private activeRoute: ActivatedRoute,
       private empresaService: EmpresasService,
       private fb: FormBuilder,
-      private cd: ChangeDetectorRef
+      private cd: ChangeDetectorRef,
+      private imgService: ImgInfoService
     ) {
       this.data = new EventEmitter();
       this.businessDataOutput = new EventEmitter();
@@ -47,6 +50,10 @@ export class InfoBusinessComponent implements OnInit {
 
       this.empresaList = {};
       this.createForm();
+      //Aqui te subscrbes al mensaje del servicio, cuando cambies el valor del service con sel setData se va a cambiar solo
+      this.imgService.sharedMessage.subscribe(res =>
+        this.message = res  
+      );
   }
 
   // create form

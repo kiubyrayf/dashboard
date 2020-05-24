@@ -1,5 +1,5 @@
 <label class="control-label">Subir foto del Propietario</label>
-<div> <!--formControlName="fileImg"-->
+<div [formGroup]="Fform"> <!--formControlName="fileImg"-->
     <input style="display: none"  type="file" (change)="onSelectFile($event)"  name="photography" #fileInput>
     <button #fInput  class="form-control  disInliBlock"  (click)="fileInput.click(); fileInputLogoTouched();"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
     <label >{{fileName}}</label>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ContactService } from '../../../shared/services/firebase/contact.service';
 import { ToastrService } from 'ngx-toastr';
+import { ImgUploadService } from 'src/app/shared/services/img-upload.service';
 
 type UserFields = 'name' | 'surname' | 'mobile' | 'profileImg' | 'age';
 type FormErrors = { [u in UserFields]: string };
@@ -27,7 +28,7 @@ export class NewUserComponent implements OnInit {
   public url: any;
   public avatraLink: any;
 
-  constructor(private fb: FormBuilder, private router: Router, private contactService: ContactService,private toastr:ToastrService) {
+  constructor(private fb: FormBuilder, private router: Router, private contactService: ContactService,private toastr:ToastrService, private testService: ImgUploadService) {
     this.contactForm = new FormGroup({
       name: new FormControl(),
       surname: new FormControl(),
@@ -80,6 +81,10 @@ export class NewUserComponent implements OnInit {
     this.router.navigate(['/contact/contacts']);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    //Aqui se llama al servicio y se cacha la respuesta
+    let response = this.testService.returnMessage();
+    console.log(response)
+   }
 
 }
