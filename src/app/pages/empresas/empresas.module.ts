@@ -17,6 +17,7 @@ import { TimepickerComponent } from '../../components/base/timepicker/timepicker
 import { NgbModule, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FeatherIconComponent } from '../../components/icons/feather-icon/feather-icon.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { DocumentBusinessComponent } from './empresa/document-business/document-business.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     TimepickerComponent,
     NavBarBusinessComponent,
     FeatherIconComponent,
+    DocumentBusinessComponent,
   ],
   imports: [
     CommonModule,

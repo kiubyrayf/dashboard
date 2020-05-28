@@ -1,10 +1,9 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation, EventEmitter, Output, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, Input, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
-import { BusinessInterface } from 'src/app/interface/business/business.interface';
-import { IContact } from "src/app/interface/business/IContact";
 import * as moment from 'moment';
+import { IBusinessGet, IContact } from 'src/app/interface/business/ibusiness-get';
 
 declare const $;
 
@@ -16,7 +15,7 @@ declare const $;
 })
 export class ContactBusinessComponent implements OnInit, OnChanges {
   @Output() data: EventEmitter<any>;
-  @Input() businessData: BusinessInterface;
+  @Input() businessData: IBusinessGet;
   @Input() flagDataInfo: boolean;
 
   private empresaList: any;
@@ -55,7 +54,8 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
  */
     }
   }
-  existingContact( contactSet: IContact[] ): FormArray {
+
+  existingContact( contactSet: IContact[] ) { // :FormArray
     const formArray = new FormArray([]);
     contactSet.forEach(e => {
       formArray.push(this.fb.group({
@@ -129,7 +129,7 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
 
 
   addEmpresa() {
-    const empresa: any = [];
+    /* const empresa: any = [];
     for (const contact of this.contactFormGroup) {
      // console.log('1' + this.getContactsFormGroup(i).get('paymentPerson').value);
      // console.log('2' + this.contactForm.get(['contact', i]).get('paymentPerson').value);
@@ -143,7 +143,7 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
       });
     }
     this.empresaList = empresa;
-    this.data.emit(this.empresaList);
+    this.data.emit(this.empresaList); */
   }
 
   generateSchedule(contactValue) {
@@ -173,3 +173,4 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
     return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
   }
 }
+

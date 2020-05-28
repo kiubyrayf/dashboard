@@ -46,5 +46,7 @@ export class UserComponent implements OnInit {
     }*/);
   }
   addUser() {}
-  readFile(e) {}
+  setPhotography(event) {
+    this.Fform.controls.photography.setValue(event);
+  }
 }

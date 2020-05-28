@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ContactService } from '../../../shared/services/firebase/contact.service';
 import { ToastrService } from 'ngx-toastr';
-import { ImgUploadService } from 'src/app/shared/services/img-upload.service';
+// import { ImgUploadService } from 'src/app/shared/services/img-upload.service';
 
 type UserFields = 'name' | 'surname' | 'mobile' | 'profileImg' | 'age';
 type FormErrors = { [u in UserFields]: string };
@@ -27,8 +27,8 @@ export class NewUserComponent implements OnInit {
   public errorMessage: any;
   public url: any;
   public avatraLink: any;
-
-  constructor(private fb: FormBuilder, private router: Router, private contactService: ContactService,private toastr:ToastrService, private testService: ImgUploadService) {
+  // dentro del contrusctor ( aui) , private testService: ImgUploadService
+  constructor(private fb: FormBuilder, private router: Router, private contactService: ContactService, private toastr: ToastrService) {
     this.contactForm = new FormGroup({
       name: new FormControl(),
       surname: new FormControl(),
@@ -45,7 +45,7 @@ export class NewUserComponent implements OnInit {
       age: new FormControl('', Validators.required),
     });
   }
-  showSuccess(){
+  showSuccess() {
     this.toastr.success('User Created!');
   }
 
@@ -55,26 +55,25 @@ export class NewUserComponent implements OnInit {
         res => {
           this.resetFields();
           this.router.navigate(['/contact/contacts']);
-          this.showSuccess()
+          this.showSuccess();
         }
-      )
+      );
   }
 
-  //FileUpload
+  // FileUpload
   readUrl(event: any) {
-    if (event.target.files.length === 0)
-      return;
-    //Image upload validation
-    var mimeType = event.target.files[0].type;
+    if (event.target.files.length === 0) { return; }
+    // Image upload validation
+    const mimeType = event.target.files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
     // Image upload
-    var reader = new FileReader();
+    const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
       this.url = reader.result;
-    }
+    };
   }
 
   cancel() {
@@ -82,9 +81,9 @@ export class NewUserComponent implements OnInit {
   }
 
   ngOnInit() {
-    //Aqui se llama al servicio y se cacha la respuesta
-    let response = this.testService.returnMessage();
-    console.log(response)
+    // Aqui se llama al servicio y se cacha la respuesta
+    /* let response = this.testService.returnMessage();
+    console.log(response) */
    }
 
 }

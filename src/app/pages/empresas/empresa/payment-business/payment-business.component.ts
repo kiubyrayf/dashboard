@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BusinessInterface } from 'src/app/interface/business/business.interface';
+import { IBusinessGet } from 'src/app/interface/business/ibusiness-get';
 
 declare var require;
 const Swal = require('sweetalert2');
@@ -13,7 +13,7 @@ const Swal = require('sweetalert2');
 })
 export class PaymentBusinessComponent implements OnInit, OnChanges {
   @Output() data: EventEmitter<any>;
-  @Input() businessData: BusinessInterface;
+  @Input() businessData: IBusinessGet;
   @Input() flagDataInfo: boolean;
 
   private empresaList: any;

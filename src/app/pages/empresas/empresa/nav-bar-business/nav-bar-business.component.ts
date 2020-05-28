@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { EmpresaModelNew, EmpresaModel } from 'src/app/shared/model/empresas/empresa.model';
-import { BusinessInterface } from '../../../../interface/business/business.interface';
+import { IBusinessGet } from 'src/app/interface/business/ibusiness-get';
 import { EmpresasService } from 'src/app/shared/services/empresas/empresas.service';
 import { HttpInterface } from 'src/app/interface/services/http/http.response.interface';
 import { Router } from '@angular/router';
@@ -18,14 +17,11 @@ const Swal = require('sweetalert2');
 
 export class NavBarBusinessComponent implements OnInit {
 
- // @Input() empresaInfo: BusinessInterface;
-
-  public businessDataOutputInfo: BusinessInterface;
+  public businessDataOutputInfo: IBusinessGet;
   public flagDataOuputInfo: boolean;
   private infoBusinessData: any;
   private infoContactData: any;
   private infoPayData: any;
-  // private infoB: any;
 
   constructor( private empresaService: EmpresasService,  private router: Router ) {
     this.businessDataOutputInfo = null;

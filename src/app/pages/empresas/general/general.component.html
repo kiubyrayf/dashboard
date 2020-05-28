@@ -127,7 +127,7 @@
                                                             <tr *ngFor="let cd of empresa.buyOrder; let x=index">
                                                                 <th scope="row">{{cd.id}}</th>
                                                                 <td> {{cd.name}} </td>
-                                                                <td><a href="{{cd.file}}"><i class="fa fa-file-o"></i> Documento</a></td>
+                                                                <td><a href="{{cd.file}}" download><i class="fa fa-file-o"></i> Documento</a></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -159,7 +159,7 @@
                                                             <tr *ngFor="let cd of empresa.closingDocument; let x=index">
                                                                 <th scope="row">{{cd.id}}</th>
                                                                 <td> {{cd.name}} </td>
-                                                                <td><a href="{{cd.file}}"><i class="fa fa-file-o"></i> Documento</a></td>
+                                                                <td><a href="{{cd.file}}" download><i class="fa fa-file-o"></i> Documento</a></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

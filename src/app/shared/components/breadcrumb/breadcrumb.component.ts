@@ -30,33 +30,36 @@ export class BreadcrumbComponent implements OnInit {
       }))
       .pipe(filter(route => route.outlet === PRIMARY_OUTLET))
       .subscribe(route => {
-        let snapshot = this.router.routerState.snapshot;
-        let title = route.snapshot.data['title'];
-        let parent = route.parent.snapshot.data['breadcrumb'];
-        let child = route.snapshot.data['breadcrumb'];
+        const snapshot = this.router.routerState.snapshot;
+        const title = route.snapshot.data['title'];
+        const parent = route.parent.snapshot.data['breadcrumb'];
+        const parentUrl = route.parent.snapshot.data['parentUrl'];
+        const child = route.snapshot.data['breadcrumb'];
         this.breadcrumbs = {};
         this.title = title;
         this.breadcrumbs = {
           'parentBreadcrumb': parent,
-          'childBreadcrumb': child
+          'childBreadcrumb': child,
+          'parentUrlBreadcrumb': parentUrl
         };
       });
   }
 
   ngOnInit() { }
 
+  // tslint:disable-next-line: use-life-cycle-interface
   ngOnDestroy() {  }
 
   public getHistory(): string[] {
     return this.history;
   }
-  public getPreviousUrl(): string {
+  public getPreviousUrl() {
     this.router.events
     .pipe(filter(event => event instanceof NavigationEnd))
     .subscribe(({urlAfterRedirects}: NavigationEnd) => {
       this.history = [...this.history, urlAfterRedirects];
+      return this.history[this.history.length - 1] || '/dashboard/default';
     });
 
-    return this.history[this.history.length - 2] || '/dashboard/default';
   }
 }

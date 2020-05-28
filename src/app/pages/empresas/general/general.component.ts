@@ -3,7 +3,7 @@ import {EmpresasService} from '../../../shared/services/empresas/empresas.servic
 import {EmpresaModel} from '../../../shared/model/empresas/empresa.model';
 import { NgbActiveModal, NgbModal, ModalDismissReasons, NgbModalConfig, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { HttpInterface } from 'src/app/interface/services/http/http.response.interface';
-import { BusinessInterface } from 'src/app/interface/business/business.interface';
+import { IBusinessGet } from 'src/app/interface/business/ibusiness-get';
 import * as moment from 'moment';
 
 declare var require;
@@ -17,7 +17,7 @@ const Swal = require('sweetalert2');
 })
 export class GeneralComponent implements OnInit {
 
-  @Input() empresaObject: BusinessInterface;
+  @Input() empresaObject: IBusinessGet;
 
   public empresas = [];
   cargando = false;

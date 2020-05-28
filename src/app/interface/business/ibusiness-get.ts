@@ -1,4 +1,4 @@
-export interface BusinessInterface {
+export interface IBusinessGet {
     id: number;
     name: string;
     contact: IContact[];
@@ -17,26 +17,6 @@ export interface BusinessInterface {
     logo: string;
     selfFormat: boolean;
     requestServiceByMail: boolean;
-    closingDocument: [{
-        id: number;
-        name: string;
-        file: string;
-    }];
-    buyOrder: [{
-        id: number;
-        name: string;
-        file: string;
-    }];
-    comentary: [{
-        id: number;
-        text: string;
-        owner: {
-            firstName: string;
-            middleName: string;
-            lastName: string;
-            email: string
-        }; // sepaararlo para aqui
-    }];
     servicesPriceChecker: {
         id: number;
         foreign: string;
@@ -46,6 +26,31 @@ export interface BusinessInterface {
         visitNotRealized: string;
         visitRealized: string;
     };
+    serviceWarranty: boolean;
+    buyOrder: [{
+        id: number;
+        name: string;
+        file: string;
+    }];
+    closingDocument: [{
+        id: number;
+        name: string;
+        file: string;
+    }];
+    
+    comentary: [{
+        id: number;
+        text: string;
+        owner: {
+            firstName: string;
+            middleName: string;
+            lastName: string;
+            email: string
+        };
+        dateCreate: string;
+        dateUpdate: string;
+        dateDelete: string;
+    }];
     owner: {
         id: number;
         photography: string;
@@ -54,20 +59,13 @@ export interface BusinessInterface {
         lastName: string;
         email: string
     };
-    serviceWarranty: boolean;
-    services: [{
-        id: number;
-        priceStart: string;
-        priceEnd: string;
-        priceDisscount: string;
-    }];
 }
 
 export interface IContact {
-    id: number; // se pone el id
+    id: number;
     job: string;
-    phoneNumber: string; // falto esto
     email: string;
+    phoneNumber: string; // falto esto get de business
     paymentPerson: string;
     fax: string;
     schedule: {
@@ -88,3 +86,4 @@ export interface IContact {
         sundayEnd: string;
     };
 }
+

@@ -8,6 +8,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UsersRoutingModule } from './users-routing.module';
 import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users/users.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UsersComponent } from './users/users.component';
     FormsModule,
     NgxDatatableModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    SharedModule
   ],
   providers: [
    NgbPaginationConfig

@@ -323,9 +323,12 @@
                 </div>
                 
             </div>
-           <!--  <app-img-upload-s></app-img-upload-s> -->
-
-            
+            <div class=" form-row m-b-15 ">
+                <div class="form-gropup">
+                    <label class="control-label">Subir fotografia del encuestador</label>
+                    <app-img-upload-s groupName="photography" (fileInfo)="setPhotography($event)"></app-img-upload-s>
+                </div>
+            </div>
             <div class="form-group f1-buttons">
                 <button class="btn btn-primary btn-next" type="submit" [disabled]="!Fform.valid" >Registrar Encuestador</button>
             </div>

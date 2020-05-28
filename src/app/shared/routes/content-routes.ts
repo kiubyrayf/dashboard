@@ -5,28 +5,35 @@ export const content: Routes = [
     path: 'dashboard',
     loadChildren: () => import('../../components/dashboard/dashboard.module').then(m => m.DashboardModule),
     data: {
-      breadcrumb: 'Dashboard'
+      breadcrumb: 'Dashboard',
+      parentUrl: '/dashboard/default'
+
     }
   },
   {
     path: 'empresas',
     loadChildren: () => import('../../pages/empresas/empresas.module').then(m => m.EmpresasModule),
     data: {
-      breadcrumb: 'Empresas'
+      breadcrumb: 'Empresas',
+      parentUrl: '/empresas/general'
     }
   },
   {
     path: 'usuarios',
     loadChildren: () => import('../../pages/users/users.module').then(m => m.UsersModule),
     data: {
-      breadcrumb: 'Usuarios'
+      breadcrumb: 'Usuarios',
+      parentUrl: '/usuarios/usuarios'
+
     }
   },
   {
     path: 'encuestadores',
     loadChildren: () => import('../../pages/pollsters/pollsters.module').then(m => m.PollstersModule),
     data: {
-      breadcrumb: 'Encuestadores'
+      breadcrumb: 'Encuestadores',
+      parentUrl: '/encuestadores/encuestadores'
+
     }
   },
   // {

@@ -77,6 +77,8 @@ export class PollsterComponent implements OnInit {
   }
 
   addPollster() {}
- 
+  setPhotography(event) {
+    this.Fform.controls.photography.setValue(event);
+  }
 
 }
