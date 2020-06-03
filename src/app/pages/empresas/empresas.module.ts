@@ -18,6 +18,7 @@ import { NgbModule, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FeatherIconComponent } from '../../components/icons/feather-icon/feather-icon.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { DocumentBusinessComponent } from './empresa/document-business/document-business.component';
+import { DivisionBusinessComponent } from './empresa/division-business/division-business.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DocumentBusinessComponent } from './empresa/document-business/document-
     NavBarBusinessComponent,
     FeatherIconComponent,
     DocumentBusinessComponent,
+    DivisionBusinessComponent,
   ],
   imports: [
     CommonModule,

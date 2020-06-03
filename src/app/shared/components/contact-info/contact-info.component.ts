@@ -1,5 +1,7 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { IBusinessGet, IContact } from 'src/app/interface/business/ibusiness-get';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-contact-info',
@@ -7,54 +9,31 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./contact-info.component.scss']
 })
 export class ContactInfoComponent implements OnInit, OnChanges {
+  @Output() contactArray: EventEmitter<any>;
+  @Input() i: number;
 
-  private empresaList: any;
-  public contactForm: FormGroup;
+  public Fform: FormGroup;
   public contactList: FormArray;
 
   // returns all form groups under contacts
   get contactFormGroup()  {
-    return (this.contactForm.get('contact') as FormArray).controls;
+    return (this.Fform.get('contact') as FormArray).controls;
   }
   constructor(private fb: FormBuilder) {
-    this.contactForm = this.fb.group({
+    this.Fform = this.fb.group({
       contact: this.fb.array([this.createContact()])
     });
+    this.contactArray = new EventEmitter();
   }
 
   ngOnInit() {
-    this.contactList = this.contactForm.get('contact') as FormArray;
+    this.contactList = this.Fform.get('contact') as FormArray;
   }
-  ngOnChanges(): void {
-   // this.contactForm.patchValue(this.businessData.contact);
-
-     /*  this.contactForm.get('job').patchValue(this.businessData.contact.job);
-      this.contactForm.get('phoneNumber').patchValue(this.businessData.contact.phoneNumber);
-      this.contactForm.get('email').patchValue(this.businessData.contact.email);
-      this.contactForm.get('paymentPerson').patchValue(this.businessData.contact.paymentPerson);
-      this.contactForm.get('fax').patchValue(this.businessData.contact.fax);
-
-      this.contactForm.get('schedule').get('mondayStart').patchValue(moment.utc(this.businessData.contact.schedule.mondayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('mondayEnd').patchValue(moment.utc(this.businessData.contact.schedule.mondayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('tuesdayStart').patchValue(moment.utc(this.businessData.contact.schedule.tuesdayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('tuesdayEnd').patchValue(moment.utc(this.businessData.contact.schedule.tuesdayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('wednesdayStart').patchValue(moment.utc(this.businessData.contact.schedule.wednesdayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('wednesdayEnd').patchValue(moment.utc(this.businessData.contact.schedule.wednesdayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('thursdayStart').patchValue(moment.utc(this.businessData.contact.schedule.thursdayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('thursdayEnd').patchValue(moment.utc(this.businessData.contact.schedule.thursdayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('fridayStart').patchValue(moment.utc(this.businessData.contact.schedule.fridayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('fridayEnd').patchValue(moment.utc(this.businessData.contact.schedule.fridayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('saturdayStart').patchValue(moment.utc(this.businessData.contact.schedule.saturdayStart).format('HH:mm'));
-      this.contactForm.get('schedule').get('saturdayEnd').patchValue(moment.utc(this.businessData.contact.schedule.saturdayEnd).format('HH:mm'));
-
-      this.contactForm.get('schedule').get('sundayStart').patchValue(this.showSundayStart());
-      this.contactForm.get('schedule').get('sundayEnd').patchValue(moment.utc(this.businessData.contact.schedule.sundayEnd).format('HH:mm'));
- */
+  ngOnChanges() {
+    /* if (this.flagDataInfo === true) {
+      this.Fform.setControl('contact', this.existingContact(this.businessData.contact));
+    } */
+    this.contactList = this.Fform.get('contact') as FormArray;
   }
   createContact(): FormGroup {
     return this.fb.group({
@@ -82,53 +61,91 @@ export class ContactInfoComponent implements OnInit, OnChanges {
     });
 
   }
-   // add a contact form group
-   addContact() {
+
+  addContact() {
     this.contactList.push(this.createContact());
   }
 
-  // remove contact from group
   removeContact(index) {
-    // this.contactList = this.form.get('contacts') as FormArray;
     this.contactList.removeAt(index);
   }
 
-  // get the formgroup under contacts form array
   getContactsFormGroup(index): FormGroup {
     return this.contactList.controls[index] as FormGroup;
   }
 
   addEmpresa() {
-    const contact: any = [];
-    let i = 0;
-    for (let contacts of this.contactFormGroup) {
-     // console.log('1' + this.getContactsFormGroup(i).get('paymentPerson').value);
-     // console.log('2' + this.contactForm.get(['contact', i]).get('paymentPerson').value);
-     contact.push({
-        job: this.contactForm.get(['contact', i]).get('job').value,
-        phoneNumber: this.contactForm.get(['contact', i]).get('phoneNumber').value,
-        email: this.contactForm.get(['contact', i]).get('email').value,
-        paymentPerson: this.contactForm.get(['contact', i]).get('paymentPerson').value,
-        fax: this.contactForm.get(['contact', i]).get('fax').value,
-        schedule: {
-          mondayStart: this.contactForm.get(['contact', i]).get('schedule').value.mondayStart,
-          mondayEnd: this.contactForm.get(['contact', i]).get('schedule').value.mondayEnd,
-          tuesdayStart: this.contactForm.get(['contact', i]).get('schedule').value.tuesdayStart,
-          tuesdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.tuesdayEnd,
-          wednesdayStart: this.contactForm.get(['contact', i]).get('schedule').value.wednesdayStart,
-          wednesdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.wednesdayEnd,
-          thursdayStart: this.contactForm.get(['contact', i]).get('schedule').value.thursdayStart,
-          thursdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.thursdayEnd,
-          fridayStart: this.contactForm.get(['contact', i]).get('schedule').value.fridayStart,
-          fridayEnd: this.contactForm.get(['contact', i]).get('schedule').value.fridayEnd,
-          saturdayStart: this.contactForm.get(['contact', i]).get('schedule').value.saturdayStart,
-          saturdayEnd: this.contactForm.get(['contact', i]).get('schedule').value.saturdayEnd,
-          sundayStart: this.contactForm.get(['contact', i]).get('schedule').value.sundayStart,
-          sundayEnd: this.contactForm.get(['contact', i]).get('schedule').value.sundayEnd,
-        },
+    const contacts: any = [];
+    for (const contact of this.contactFormGroup) {
+      contacts.push({
+        job: contact.get('job').value,
+        phoneNumber: contact.get('phoneNumber').value,
+        email: contact.get('email').value,
+        paymentPerson: contact.get('paymentPerson').value,
+        fax: contact.get('fax').value,
+        schedule: this.generateSchedule(contact.get('schedule').value)
       });
-      i++;
     }
-    this.contactList = contact;
+    this.contactArray.emit({
+      divisionIndex: this.i,
+      contacts: contacts
+    });
+  }
+
+  generateSchedule(contactValue) {
+    return {
+      mondayStart: this.createDateIso(contactValue.mondayStart),
+      mondayEnd: this.createDateIso(contactValue.mondayEnd),
+      tuesdayStart: this.createDateIso(contactValue.tuesdayStart),
+      tuesdayEnd: this.createDateIso(contactValue.tuesdayEnd),
+      wednesdayStart: this.createDateIso(contactValue.wednesdayStart),
+      wednesdayEnd: this.createDateIso(contactValue.wednesdayEnd),
+      thursdayStart: this.createDateIso(contactValue.thursdayStart),
+      thursdayEnd: this.createDateIso(contactValue.thursdayEnd),
+      fridayStart: this.createDateIso(contactValue.fridayStart),
+      fridayEnd: this.createDateIso(contactValue.fridayEnd),
+      saturdayStart: this.createDateIso(contactValue.saturdayStart),
+      saturdayEnd: this.createDateIso(contactValue.saturdayEnd),
+      sundayStart: this.createDateIso(contactValue.sundayStart),
+      sundayEnd: this.createDateIso(contactValue.sundayEnd),
+    };
+  }
+  createDateIso(dateString) {
+    if (dateString === '') {
+      return null;
+    }
+    const nowDate = moment().format('YYYY-MM-DD');
+    const date = new Date( `${nowDate} ` + dateString);
+    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+  }
+
+  existingContact( contactSet: IContact[] ) {
+    const formArray = new FormArray([]);
+    contactSet.forEach(e => {
+      formArray.push(this.fb.group({
+        job: e.job,
+        phoneNumber: e.phoneNumber,
+        email: e.email,
+        paymentPerson: e.paymentPerson,
+        fax: e.fax,
+        schedule: this.fb.group({
+          mondayStart: moment.utc(e.schedule.mondayStart).format('HH:mm'),
+          mondayEnd: moment.utc(e.schedule.mondayEnd).format('HH:mm'),
+          tuesdayStart: moment.utc(e.schedule.tuesdayStart).format('HH:mm'),
+          tuesdayEnd: moment.utc(e.schedule.tuesdayEnd).format('HH:mm'),
+          wednesdayStart: moment.utc(e.schedule.wednesdayStart).format('HH:mm'),
+          wednesdayEnd: moment.utc(e.schedule.wednesdayEnd).format('HH:mm'),
+          thursdayStart: moment.utc(e.schedule.thursdayStart).format('HH:mm'),
+          thursdayEnd: moment.utc(e.schedule.thursdayEnd).format('HH:mm'),
+          fridayStart: moment.utc(e.schedule.fridayStart).format('HH:mm'),
+          fridayEnd: moment.utc(e.schedule.fridayEnd).format('HH:mm'),
+          saturdayStart: moment.utc(e.schedule.saturdayStart).format('HH:mm'),
+          saturdayEnd: moment.utc(e.schedule.saturdayEnd).format('HH:mm'),
+          sundayStart: moment.utc(e.schedule.mondayStart).format('HH:mm'),
+          sundayEnd: moment.utc(e.schedule.mondayEnd).format('HH:mm'),
+        })
+      }));
+    });
+    return formArray;
   }
 }

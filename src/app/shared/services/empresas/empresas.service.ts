@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { map, delay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Config } from '../../../config/index';
-import { RequestOptions } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'

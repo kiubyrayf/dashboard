@@ -23,7 +23,7 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
   public contactList: FormArray;
 
    // returns all form groups under contacts
-   get contactFormGroup()  {
+  get contactFormGroup()  {
     return (this.contactForm.get('contact') as FormArray).controls;
   }
 
@@ -35,7 +35,6 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
     this.empresaList = {};
     this.businessData = null;
     this.flagDataInfo = false;
-
     this.contactForm = this.fb.group({
       contact: this.fb.array([this.createContact()])
     });
@@ -53,17 +52,18 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
       this.contactForm.get('schedule').get('sundayEnd').patchValue(moment.utc(this.businessData.contact.schedule.sundayEnd).format('HH:mm'));
  */
     }
+    this.contactList = this.contactForm.get('contact') as FormArray;
   }
 
   existingContact( contactSet: IContact[] ) { // :FormArray
     const formArray = new FormArray([]);
     contactSet.forEach(e => {
       formArray.push(this.fb.group({
-        job:  e.job,
+        job: e.job,
         phoneNumber: e.phoneNumber ,
         email: e.email,
         paymentPerson: e.paymentPerson,
-        fax:  e.fax,
+        fax: e.fax,
         schedule: this.fb.group({
           mondayStart: moment.utc(e.schedule.mondayStart).format('HH:mm'),
           mondayEnd: moment.utc(e.schedule.mondayEnd).format('HH:mm'),
@@ -109,10 +109,9 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
         sundayEnd: [''],
       }),
     });
-
   }
    // add a contact form group
-   addContact() {
+  addContact() {
     this.contactList.push(this.createContact());
   }
 
@@ -127,13 +126,10 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
     return this.contactList.controls[index] as FormGroup;
   }
 
-
   addEmpresa() {
-    /* const empresa: any = [];
+    const empresa: any = [];
     for (const contact of this.contactFormGroup) {
-     // console.log('1' + this.getContactsFormGroup(i).get('paymentPerson').value);
-     // console.log('2' + this.contactForm.get(['contact', i]).get('paymentPerson').value);
-      empresa.push({
+     empresa.push({
         job: contact.get('job').value,
         phoneNumber: contact.get('phoneNumber').value,
         email: contact.get('email').value,
@@ -143,7 +139,7 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
       });
     }
     this.empresaList = empresa;
-    this.data.emit(this.empresaList); */
+    this.data.emit(this.empresaList);
   }
 
   generateSchedule(contactValue) {

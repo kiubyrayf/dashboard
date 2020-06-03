@@ -7,16 +7,28 @@
         </div>
         <div class="card-body step-indicator">
           <aw-wizard navBarLayout="large-filled-symbols">
-            <aw-wizard-step [navigationSymbol]="{ symbol: '&#xf0e8;', fontFamily: 'FontAwesome ' }"
-              stepTitle="Informacion de Empresa">
-              <app-info-business (data)="infoBusiness($event)"  (businessDataOutput)="businessDataOutput($event)" (flagData)="flagDataOuput($event)"></app-info-business>
+            
+
+            <aw-wizard-step [canExit]="canExitStep2"  [navigationSymbol]="{ symbol: '&#xf0e8;', fontFamily: 'FontAwesome'}"
+              stepTitle="Informacion">
+              <app-info-business (data)="infoBusiness($event)"  (setRFCParent)="setRFCParentInfo($event)" (businessDataOutput)="businessDataOutput($event)" (flagData)="flagDataOuput($event)"></app-info-business>
             </aw-wizard-step>
-            <aw-wizard-step [navigationSymbol]="{ symbol: '&#xf0f0;', fontFamily: 'FontAwesome' }" stepTitle="Contactos de Empresa">
+
+            <aw-wizard-step [navigationSymbol]="{symbol: '&#xf0c0;', fontFamily: 'FontAwesome'}" stepTitle="Contactos">
               <app-contact-business (data)="infoContact($event)" [businessData]="businessDataOutputInfo" [flagDataInfo]="flagDataOuputInfo"></app-contact-business>
             </aw-wizard-step>
-            <aw-wizard-step [navigationSymbol]="{ symbol: '&#xf09d;', fontFamily: 'FontAwesome' }"
-              stepTitle="Administracion Monetaria">
-               <app-payment-business (data)="infoPay($event)" [businessData]="businessDataOutputInfo" [flagDataInfo]="flagDataOuputInfo"></app-payment-business>
+
+            <aw-wizard-step [navigationSymbol]="{symbol: '&#xf09d;', fontFamily: 'FontAwesome'}"
+              stepTitle="Servicios">
+              <app-payment-business (data)="infoService($event)" [businessData]="businessDataOutputInfo" [flagDataInfo]="flagDataOuputInfo" [serviceListInfo]="serviceListOInfo"></app-payment-business>
+            </aw-wizard-step>
+
+            <aw-wizard-step stepTitle="Documentacion" [navigationSymbol]="{symbol: '&#xf0ea;', fontFamily: 'FontAwesome'}">
+              <app-document-business [businessData]="businessDataOutputInfo" [flagDataInfo]="flagDataOuputInfo"></app-document-business>
+            </aw-wizard-step>
+
+            <aw-wizard-step stepTitle="Division" [navigationSymbol]="{symbol: '&#xf03b;', fontFamily: 'FontAwesome'}">
+              <app-division-business (data)="infoDivision($event)" [businessData]="businessDataOutputInfo" [flagDataInfo]="flagDataOuputInfo"></app-division-business>
             </aw-wizard-step>
           </aw-wizard>
         </div>

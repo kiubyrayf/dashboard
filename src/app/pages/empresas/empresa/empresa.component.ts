@@ -6,7 +6,6 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./empresa.component.scss']
 })
 export class EmpresaComponent implements OnInit {
-  //@Input() formData;
   constructor() { }
   ngOnInit(): void {
   }

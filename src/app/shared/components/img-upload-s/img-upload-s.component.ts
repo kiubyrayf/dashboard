@@ -9,8 +9,8 @@ const Swal = require('sweetalert2');
   selector: 'app-img-upload-s',
   templateUrl: './img-upload-s.component.html',
   styleUrls: ['./img-upload-s.component.scss'],
- 
 })
+
 export class ImgUploadSComponent implements  OnInit {
 
   public fileName: any;

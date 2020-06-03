@@ -1,1 +1,49 @@
-<p>document-business works!</p>
+<form [formGroup]="Fform" (ngSubmit)="addEmpresa()" class="ngx-form mt-5" novalidate>
+    
+    <div class="form-group row mb-5" >
+      <div class="row">
+        <label class="col-sm-3 col-form-label">Subir documento de cierre de la empresa</label>
+        <div class="col-sm-9">
+            <input type="file" class="form-control" formControlName="closingDocument" name="closingDocument" (change)="readFile($event)" multiple="">
+            <div *ngIf="f.closingDocument.invalid && (f.closingDocument.dirty || f.closingDocument.touched)"
+            class="alert">
+                <div *ngIf="f.closingDocument.errors.required">
+                    Subir los documentos de cierre es obligatorio.
+                </div>
+            </div>
+            
+        </div>
+      </div>
+      <table *ngIf="flagDataInfo===true" class="table table-xs">
+        <thead class="bgColor">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Archivo</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cd of businessData.closingDocument; let x=index">
+                <th scope="row">{{cd.id}}</th>
+                <td> {{cd.name}} </td>
+                <td>{{cd.file}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="f1-buttons">
+      <button class="btn btn-primary btn-previous" type="button" awPreviousStep>Anterior</button>
+      <button class="btn btn-primary btn-submit" type="submit" [disabled]="!Fform.valid">Guardar
+      </button>
+    </div>
+  </form>
+  <hr>
+<pre>
+    estado del formulario : {{Fform.valid}}
+    <br>
+    status : {{Fform.status}}
+</pre>
+<pre>
+    {{Fform.value | json}}
+</pre>

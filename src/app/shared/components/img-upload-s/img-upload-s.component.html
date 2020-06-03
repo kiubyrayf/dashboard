@@ -1,7 +1,7 @@
 
 <div [formGroup]="Fform"> <!--formControlName="fileImg"-->
     <input style="display: none"  type="file" (change)="onSelectFile($event)"  name="file" #fileInput>
-    <button #fInput  class="form-control  disInliBlock"  (click)="fileInput.click(); fileInputLogoTouched();"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
+    <button #fInput type="button" class="form-control  disInliBlock"  (click)="fileInput.click(); fileInputLogoTouched();"><i class="fa fa-cloud-upload"></i> Selecciona Archivo</button>
     <label >{{fileName}}</label>
     <div *ngIf="!isFileUploaded && f.file.invalid && (f.file.dirty || f.file.touched)"
     class="alert">
@@ -13,8 +13,7 @@
 <div class="m-t-15" *ngIf="imgUpload && imgUpload !== '' && (!urlImg  || urlImg === null)">
     <a [href]="imgUpload" download>
         <img [src]="imgUpload" class="img-100"/>
-        <label class="m-l-10" for="imgUpload">{{imgUpload}}</label>
-        <label for="">{{urlImg}}</label>
+        <p class="m-l-10" for="imgUpload">{{imgUpload}}</p>
     </a>
 </div>
 <div class="m-t-15" *ngIf="urlImg && urlImg !== '' ">

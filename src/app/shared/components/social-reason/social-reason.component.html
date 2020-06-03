@@ -1,0 +1,23 @@
+<div  [formGroup]="Fform">
+    <h6 class="m-b-0"><b>Razones Sociales</b></h6><hr>
+    <div class="form-row" formArrayName="socialReason">
+        <div *ngFor="let rfc of rfcFormGroup; let i = index;" class="col-md-4">
+            <div class="form-group  mb-3" [formGroupName]="i">
+                <label class="control-label" for="street">Razon Social {{i + 1}}</label>
+                <input type="text" formControlName="name" (change)="addErfc()" class="form-control input-size" formControlName="name">
+                <button *ngIf="i>0" class="btn btn-danger btn-circle" type="button" ngbTooltip="Eliminar Razon Social {{i+1}}" 
+                    (click)="removeRFC(i); addErfc()"><i class="fa fa-trash-o"></i>
+                </button>
+                <button class="btn btn-primary btn-circle" type="button" ngbTooltip="Agregar Nueva Razon Social" 
+                    (click)="addRFC()" [disabled]="!getRFCFormGroup(i).get('name').valid"><i class="fa fa-plus"></i> 
+                </button>
+                <div *ngIf="getRFCFormGroup(i).get('name').invalid && (getRFCFormGroup(i).get('name').dirty || getRFCFormGroup(i).get('name').touched)"
+                         class="alert"> 
+                     <div *ngIf="getRFCFormGroup(i).get('name').errors.required">
+                         El campo es obligatorio.
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

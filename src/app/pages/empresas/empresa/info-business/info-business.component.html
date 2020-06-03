@@ -39,7 +39,7 @@
     </div>
     <div class=" form-row m-b-30 ">
         <div class="form-group" >
-            <div class=" m-checkbox-inline  animate-chk " style="margin-left: 9px;">
+            <div class=" m-checkbox-inline  animate-chk" style="margin-left: 9px;">
                 <div class="checkbox checkbox-primary">
                     <input id="requestServiceByMail" type="checkbox" formControlName="requestServiceByMail" name="requestServiceByMail">
                     <label class="control-label" for="requestServiceByMail">Se solicito servicio por correo</label>
@@ -48,6 +48,10 @@
                 <div class="checkbox checkbox-primary">
                     <input id="selfFormat" type="checkbox" formControlName="selfFormat" name="selfFormat">
                     <label class="control-label" for="selfFormat">Tiene formato propio</label>
+                </div>
+                <div class="checkbox checkbox-primary">
+                    <input id="serviceWarranty" type="checkbox" formControlName="serviceWarranty" name="serviceWarranty">
+                    <label class="control-label" for="serviceWarranty">Tiene garantia</label>
                 </div>
             </div>
         </div>
@@ -136,23 +140,10 @@
             </div>
         </div>
     </div> 
-    <div class="form-group  m-t-25" formGroupName="socialReason">
-        <h6 class="m-b-0"><b>Razones Sociales</b> </h6><hr>
-        <div class="form-row ">
-            <div class="form-group col-md-4 mb-3">
-                <label class="control-label" for="street">Razon Social</label>
-                <input type="text" formControlName="street" name="street" class="form-control" placeholder="Sevilla">
-                <div *ngIf="f.address.get('street').invalid && (f.address.get('street').dirty || f.address.get('street').touched)" class="alert">
-                    <div *ngIf="f.address.get('street').errors.required">
-                        El campo es obligatorio.
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-        
+    <div class="form-group  m-t-25">
+        <app-social-reason (rfcArray)="setRFC($event)"></app-social-reason>
     </div> 
-    <div class="form-group m-t-25 m-b-45" formGroupName="owner">
+    <div class="form-group m-t-25 " formGroupName="owner">
         <h6 class="m-b-0"><b>Propietario</b></h6><hr>
         <div class="form-row">
             <div class=" form-group col-md-4 mb-3">
@@ -206,10 +197,14 @@
             </div> 
         </div>
     </div>
-    
-    <div class="form-group f1-buttons">
-        <button class="btn btn-primary btn-next" [disabled]="!Fform.valid" awNextStep> siguiente
-        </button>
+    <div *ngIf="flagDataInfo === false" class=" form-row  m-t-25">
+        <div class="form-gropup col-md-8">
+            <label class="control-label">Comentarios</label>
+            <textarea class="form-control comentaryHeight"  formControlName="text" name="text"></textarea>
+        </div>
+    </div>
+    <div class="form-group f1-buttons  m-t-25">
+        <button class="btn btn-primary btn-next" type="submit" [disabled]="!Fform.valid" awNextStep> siguiente</button>
     </div>
 </form>
 <hr>

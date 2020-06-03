@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, Input, AfterViewInit, OnChanges } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IBusinessGet } from 'src/app/interface/business/ibusiness-get';
 
@@ -15,15 +15,17 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
   @Output() data: EventEmitter<any>;
   @Input() businessData: IBusinessGet;
   @Input() flagDataInfo: boolean;
-
+  @Input() serviceListInfo: any;
+  
   private empresaList: any;
-  public payForm: FormGroup;
-  public submitted = false;
-  // public allData = FormData;
-  public form: any;
-  public filesUp: any = [];
+  public Fform: FormGroup;
+  public serviceArray: FormArray;
+
   // convenience getter for easy access to form fields
-  get f() { return this.payForm.controls; }
+  get f() { return this.Fform.controls; }
+  get serviceFormGroup()  {
+    return (this.Fform.get('services') as FormArray).controls;
+  }
 
   constructor(private router: Router, private fb: FormBuilder) {
     this.createForm();
@@ -34,115 +36,87 @@ export class PaymentBusinessComponent implements OnInit, OnChanges {
   }
 
   createForm() {
-    this.payForm = this.fb.group({
-      closingDocument: ['', Validators.required, ],
-      serviceWarranty: [''],
+    /* // closingDocument: ['', Validators.required, ], */
+    this.Fform = this.fb.group({
+      services: this.fb.array([this.createServices()]),
       servicesPriceChecker: this.fb.group({
-        foreign: ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
-        viaticForeign:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+        foreign:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
         local:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
-        viaticLocal: ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+        viaticForeign:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+        viaticLocal:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
         visitNotRealized:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
-        visitRealized:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
-        endingPrice:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
-        disscount:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]]
-      })
+        visitRealized:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]]
+      }),
+    });
+  }
+  createServices() {
+    return this.fb.group({
+      servicesPriceStart:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+      servicesPriceEnd:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+      servicesPriceDisscount:  ['', [Validators.required, Validators.pattern('(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$')]],
+      serviceId: ['', Validators.required]
     });
   }
 
-  onSubmit() {
-    this.submitted = true;
-    if (!this.payForm.valid) {
-      return false;
-    }
-    return true;
+  ngOnInit() {
+    this.serviceArray = this.Fform.get('services') as FormArray;
   }
-
-  success() {
-    Swal.fire({
-      position: 'top-end',
-      type: 'success',
-      title: 'Completaste el formulario correctamente',
-      text: 'Procesando informacion!',
-      showConfirmButton: false
-    });
-  }
-  warning() {
-    Swal.fire({
-      // type: 'warning',
-      title: 'Alerta',
-      text: 'Selecciona un documento tipo JPG o PNG',
-      icon: 'warning',
-      showConfirmButton: true,
-    });
-  }
-
-  ngOnInit() {  }
-  ngOnChanges(): void {
+  ngOnChanges() {
     if (this.flagDataInfo === true) {
-     /*  this.payForm.get('servicesPrice').get('foreign').patchValue(this.businessData.servicesPrice.foreign);
-      this.payForm.get('servicesPrice').get('disscount').patchValue(this.businessData.servicesPrice.disscount);
-      this.payForm.get('servicesPrice').get('endingPrice').patchValue(this.businessData.servicesPrice.endingPrice);
-      this.payForm.get('servicesPrice').get('local').patchValue(this.businessData.servicesPrice.local);
-      this.payForm.get('servicesPrice').get('viaticForeign').patchValue(this.businessData.servicesPrice.viaticForeign);
-      this.payForm.get('servicesPrice').get('viaticLocal').patchValue(this.businessData.servicesPrice.viaticLocal);
-      this.payForm.get('servicesPrice').get('visitNotRealized').patchValue(this.businessData.servicesPrice.visitNotRealized);
-      this.payForm.get('servicesPrice').get('visitRealized').patchValue(this.businessData.servicesPrice.visitRealized);
-      this.payForm.get('serviceWarranty').patchValue(this.businessData.serviceWarranty);
-      this.payForm.get('closingDocument').patchValue(this.businessData.closingDocument);
+     /*  this.Fform.get('servicesPrice').get('foreign').patchValue(this.businessData.servicesPrice.foreign);
+      this.Fform.get('servicesPrice').get('disscount').patchValue(this.businessData.servicesPrice.disscount);
+      this.Fform.get('servicesPrice').get('endingPrice').patchValue(this.businessData.servicesPrice.endingPrice);
+      this.Fform.get('servicesPrice').get('local').patchValue(this.businessData.servicesPrice.local);
+      this.Fform.get('servicesPrice').get('viaticForeign').patchValue(this.businessData.servicesPrice.viaticForeign);
+      this.Fform.get('servicesPrice').get('viaticLocal').patchValue(this.businessData.servicesPrice.viaticLocal);
+      this.Fform.get('servicesPrice').get('visitNotRealized').patchValue(this.businessData.servicesPrice.visitNotRealized);
+      this.Fform.get('servicesPrice').get('visitRealized').patchValue(this.businessData.servicesPrice.visitRealized);
+      this.Fform.get('serviceWarranty').patchValue(this.businessData.serviceWarranty);
+      this.Fform.get('closingDocument').patchValue(this.businessData.closingDocument);
       console.log(this.businessData.closingDocument[0]); */
     }
+    this.serviceArray = this.Fform.get('services') as FormArray;
   }
+
+  // add Service Array from group
+  addServices() {
+    this.serviceArray.push(this.createServices());
+  }
+  // remove Service Array from group
+  removeServices(index) {
+    this.serviceArray.removeAt(index);
+  }
+  // get the formgroup under Service Array
+  getServicesFormGroup(index): FormGroup {
+    return this.serviceArray.controls[index] as FormGroup;
+  }
+
   addEmpresa() {
     const empresa = {
-      closingDocument: this.payForm.get('closingDocument').value,
       servicesPriceChecker: {
-        foreign: this.payForm.get('servicesPriceChecker').value.foreign,
-        viaticForeign: this.payForm.get('servicesPriceChecker').value.viaticForeign,
-        local: this.payForm.get('servicesPriceChecker').value.local,
-        viaticLocal: this.payForm.get('servicesPriceChecker').value.viaticLocal,
-        visitNotRealized: this.payForm.get('servicesPriceChecker').value.visitNotRealized,
-        visitRealized: this.payForm.get('servicesPriceChecker').value.visitRealized
+        foreign: this.Fform.get('servicesPriceChecker').value.foreign,
+        viaticForeign: this.Fform.get('servicesPriceChecker').value.viaticForeign,
+        local: this.Fform.get('servicesPriceChecker').value.local,
+        viaticLocal: this.Fform.get('servicesPriceChecker').value.viaticLocal,
+        visitNotRealized: this.Fform.get('servicesPriceChecker').value.visitNotRealized,
+        visitRealized: this.Fform.get('servicesPriceChecker').value.visitRealized
       },
-      serviceWarranty: (this.payForm.get('serviceWarranty').value !== '') ? this.payForm.get('serviceWarranty').value : false,
+      services: this.addServicesList(),
     };
-     this.empresaList = empresa;
+    this.empresaList = empresa;
+    console.log(this.empresaList);
     this.data.emit(this.empresaList);
   }
-  readFile(event) {
-    const file = event.target.files;
-    if (file) {
-      for (let i = 0; i > file.length; i++) {
-        const files = {
-          id: '',
-          name: '',
-          file: '',
-          url: ''
-        };
-        this.filesUp.push(file[i]);
-        files.id = file[i].id;
-        files.name = file[i].name;
-        files.file = file[i].file;
-
-        const reader = new FileReader();
-        reader.onload = ( e: any) => {
-          files.url = e.target.result + '';
-          this.filesUp.push(files);
-          console.log(this.filesUp);
-        };
-        reader.readAsDataURL( event.target.file[i]);
-      }
+  addServicesList() {
+    const services: any = [];
+    for (const service of this.serviceFormGroup) {
+      services.push({
+        servicesPriceStart: service.get('servicesPriceStart').value,
+        servicesPriceEnd: service.get('servicesPriceEnd').value,
+        servicesPriceDisscount: service.get('servicesPriceDisscount').value,
+        serviceId: service.get('serviceId').value,
+      });
     }
-    event.srcElement.value = null;
-    /*if ( event.target.files.length > 0) {
-      const file = event.target.files;
-      if (file.type !== 'image/png'  && file.type !== 'image/jpeg' && file.type !== 'image/jpg' &&  file.type !== 'application/pdf') {
-        this.warning();
-        this.form.get('closingDocument').setValue('');
-      } else {
-        // this.payForm.get('closingDocument').setValue(file);
-      }
-
-    }*/
+    return services;
   }
 }

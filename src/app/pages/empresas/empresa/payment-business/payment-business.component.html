@@ -1,8 +1,8 @@
-<form [formGroup]="payForm" (ngSubmit)="addEmpresa()" class="ngx-form" novalidate>
+<form [formGroup]="Fform" (ngSubmit)="addEmpresa()" class="ngx-form mt-5" novalidate>
     <div class="form-group" formGroupName="servicesPriceChecker">
-      <h5>Precios</h5>
+      <h6 class="m-b-0"><b>Precios</b></h6><hr>
       <div class="form-row ">
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-3">
             <label class="control-label" for="foreign">Foreaneo</label>
             <input type="text" formControlName="foreign" class="form-control" placeholder="50.00">
 
@@ -15,7 +15,7 @@
               </div>
             </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-3">
           <label class="control-label" for="local">Local</label>
           <input type="text" formControlName="local" class="form-control" placeholder="30.00">
 
@@ -28,7 +28,7 @@
               </div>
           </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-3">
           <label class="control-label" for="viaticForeign">Viatico Foraneo</label>
           <input type="text" formControlName="viaticForeign" class="form-control" placeholder="1000.00">
 
@@ -41,7 +41,10 @@
               </div>
           </div>
         </div>
-        <div class="col-md-3 mb-3">
+       
+      </div>
+      <div class="form-row ">
+        <div class="col-md-4 mb-3">
           <label class="control-label" for="viaticLocal">Viatico Local</label>
           <input type="text" formControlName="viaticLocal" class="form-control" placeholder="58.52">
 
@@ -53,11 +56,8 @@
                 El campo debe ser monetario.
               </div>
           </div>
-      </div>
-      </div>
-      <div class="form-row ">
-        
-        <div class="col-md-3 mb-3">
+        </div>
+        <div class="col-md-4 mb-3">
           <label class="control-label" for="visitNotRealized">Visita No Realizada</label>
           <input type="text" formControlName="visitNotRealized" class="form-control" placeholder="60.80">
 
@@ -70,7 +70,7 @@
               </div>
           </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-3">
           <label class="control-label" for="visitRealized">Visita Realizada</label>
           <input type="text" formControlName="visitRealized" class="form-control" placeholder="50.20">
           <div *ngIf="f.servicesPriceChecker.get('visitRealized').invalid && (f.servicesPriceChecker.get('visitRealized').dirty || f.servicesPriceChecker.get('visitRealized').touched)" class="alert">
@@ -85,62 +85,84 @@
         
       </div>
     </div>
-    
-    <div class=" group-row">
-      <div class="col-md-12 mb-5">
-          <div class=" m-t-15 m-checkbox-inline mb-0 ml-1 animate-chk">
-              <div class="checkbox checkbox-primary">
-                  <input id="serviceWarranty" type="checkbox" formControlName="serviceWarranty">
-                  <label class="control-label" for="serviceWarranty">Tiene garantia</label>
-              </div>
-          </div>
-      </div>
-    </div>
-    <div class="form-group row mb-5" >
-      <div class="row">
-        <label class="col-sm-3 col-form-label">Subir documento de cierre de la empresa</label>
-        <div class="col-sm-9">
-            <input type="file" class="form-control" formControlName="closingDocument" name="closingDocument" (change)="readFile($event)" multiple="">
-            <div *ngIf="f.closingDocument.invalid && (f.closingDocument.dirty || f.closingDocument.touched)"
-            class="alert">
-                <div *ngIf="f.closingDocument.errors.required">
-                    Subir los documentos de cierre es obligatorio.
+    <div class="form-group" formArrayName="services">
+      <h6 class="m-b-0"><b>Servicios</b></h6><hr>
+      <div  *ngFor="let service of serviceFormGroup; let i = index;">
+        <div [formGroupName]="i">  
+          <h5>Servicio {{i + 1}}</h5>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label class="control-label" for="servicesPriceStart">Precio Inicial</label>
+                <input type="text" formControlName="servicesPriceStart" class="form-control" placeholder="50.00">
+
+                <div *ngIf="getServicesFormGroup(i).get('servicesPriceStart').invalid && (getServicesFormGroup(i).get('servicesPriceStart').dirty || getServicesFormGroup(i).get('servicesPriceStart').touched)" class="alert">
+                  <div *ngIf="getServicesFormGroup(i).get('servicesPriceStart').errors.required">
+                    El campo es obligatorio.
+                  </div>
+                  <div *ngIf="getServicesFormGroup(i).get('servicesPriceStart').errors?.pattern">
+                    El campo debe ser monetario.
+                  </div>
                 </div>
             </div>
-            
+            <div class="col-md-6 mb-3">
+              <label class="control-label" for="servicesPriceEnd">Precio Final</label>
+              <input type="text" formControlName="servicesPriceEnd" class="form-control" placeholder="50.00">
+
+              <div *ngIf="getServicesFormGroup(i).get('servicesPriceEnd').invalid && (getServicesFormGroup(i).get('servicesPriceEnd').dirty || getServicesFormGroup(i).get('servicesPriceEnd').touched)" class="alert">
+                <div *ngIf="getServicesFormGroup(i).get('servicesPriceEnd').errors.required">
+                  El campo es obligatorio.
+                </div>
+                <div *ngIf="getServicesFormGroup(i).get('servicesPriceEnd').errors?.pattern">
+                  El campo debe ser monetario.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label class="control-label" for="servicesPriceDisscount">Descuento</label>
+              <input type="text" formControlName="servicesPriceDisscount" class="form-control" placeholder="50.00">
+
+              <div *ngIf="getServicesFormGroup(i).get('servicesPriceDisscount').invalid && (getServicesFormGroup(i).get('servicesPriceDisscount').dirty || getServicesFormGroup(i).get('servicesPriceDisscount').touched)" class="alert">
+                <div *ngIf="getServicesFormGroup(i).get('servicesPriceDisscount').errors.required">
+                  El campo es obligatorio.
+                </div>
+                <div *ngIf="getServicesFormGroup(i).get('servicesPriceDisscount').errors?.pattern">
+                  El campo debe ser monetario.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="control-label" for="serviceId">Servicio</label>
+              <select class="form-control"  #serviceID  formControlName="serviceId">
+                <option *ngFor="let service of serviceListInfo" [value]="service.id">{{ service.name }}</option>
+              </select>
+              <div *ngIf="getServicesFormGroup(i).get('serviceId').invalid && (getServicesFormGroup(i).get('serviceId').dirty || getServicesFormGroup(i).get('serviceId').touched)" class="alert">
+                  <div *ngIf="getServicesFormGroup(i).get('serviceId').errors.required">
+                      El campo es obligatorio.
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-12 text-right">
+            <button *ngIf="i>0" class="btn btn-danger" type="button" (click)="removeServices(i)">Eliminar Servicio {{i + 1}} </button>
+          </div>
+          <hr class="m-b-30">
         </div>
-      </div>
-      <table *ngIf="flagDataInfo===true" class="table table-xs">
-        <thead class="bgColor">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Archivo</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let cd of businessData.closingDocument; let x=index">
-                <th scope="row">{{cd.id}}</th>
-                <td> {{cd.name}} </td>
-                <td>{{cd.file}}</td>
-            </tr>
-        </tbody>
-    </table>
+      </div>  
     </div>
     <div class="f1-buttons">
+      <button class="btn btn-primary m-1" [disabled]="!Fform.valid" type="button" (click)="addServices()">Agregar Servicio </button>
       <button class="btn btn-primary btn-previous" type="button" awPreviousStep>Anterior</button>
-      <button class="btn btn-primary btn-submit" type="submit" [disabled]="!payForm.valid"
-        (click)="success()">Guardar
-      </button>
+      <button class="btn btn-primary btn-next" type="submit" [disabled]="!Fform.valid" awNextStep> siguiente</button>
     </div>
   </form>
   <hr>
 <pre>
-    estado del formulario : {{payForm.valid}}
+    estado del formulario : {{Fform.valid}}
     <br>
-    status : {{payForm.status}}
+    status : {{Fform.status}}
 </pre>
 <pre>
-    {{payForm.value | json}}
+    {{Fform.value | json}}
 </pre>

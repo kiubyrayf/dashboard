@@ -37,7 +37,6 @@ export interface IBusinessGet {
         name: string;
         file: string;
     }];
-    
     comentary: [{
         id: number;
         text: string;

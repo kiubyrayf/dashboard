@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import {EmpresasService} from '../../../shared/services/empresas/empresas.service';
-import {EmpresaModel} from '../../../shared/model/empresas/empresa.model';
 import { NgbActiveModal, NgbModal, ModalDismissReasons, NgbModalConfig, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { HttpInterface } from 'src/app/interface/services/http/http.response.interface';
 import { IBusinessGet } from 'src/app/interface/business/ibusiness-get';
