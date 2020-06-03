@@ -127,7 +127,7 @@ existingContact( contactSet: IcontactDivision[] ) {
       }));
     });
     return formArray;
-  } 
+  }
 
   addDivision() {
     this.divisionList.push(this.createDivision());
@@ -146,6 +146,29 @@ existingContact( contactSet: IcontactDivision[] ) {
     for (const division of this.divisionFormGroup) {
      empresa.push({
         name: division.get('name').value,
+        contact: {
+          job: division.get('contact').get('job').value.job,
+          phoneNumber: division.get('contact').get('phoneNumber').value.phoneNumber,
+          email: division.get('contact').get('email').value.email,
+          paymentPerson: division.get('paymentPerson').value.paymentPerson,
+          fax: division.get('contact').get('fax').value.fax,
+          schedule: {
+            /* mondayStart: ,
+            mondayEnd: ,
+            tuesdayStart: ,
+            tuesdayEnd: ,
+            wednesdayStart: ,
+            wednesdayEnd: ,
+            thursdayStart: ,
+            thursdayEnd: ,
+            fridayStart: ,
+            fridayEnd: ,
+            saturdayStart: ,
+            saturdayEnd: ,
+            sundayStart: ,
+            sundayEnd: , */
+          }
+        }
       });
     }
     this.empresaList = empresa;

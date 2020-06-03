@@ -135,7 +135,7 @@ export class ContactBusinessComponent implements OnInit, OnChanges {
         email: contact.get('email').value,
         paymentPerson: contact.get('paymentPerson').value,
         fax: contact.get('fax').value,
-        schedule: this.generateSchedule(contact.get('schedule').value)
+        schedule: this.generateSchedule(contact.get('schedule').value),
       });
     }
     this.empresaList = empresa;
