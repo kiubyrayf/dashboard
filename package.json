@@ -125,7 +125,7 @@
     "karma-jasmine": "~3.1.1",
     "karma-jasmine-html-reporter": "^1.5.2",
     "ng2-completer": "^3.0.3",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "protractor": "~5.4.3",
     "ts-node": "~8.6.2",
     "tslint": "~6.0.0",
